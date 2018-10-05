@@ -10,6 +10,8 @@
 #define Calibration_Intrinsic_hpp
 
 #include <stdio.h>
+#include <string>
+#include <iostream>
 #include "Settings.hpp"
 
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
@@ -19,13 +21,14 @@ public:
     Calibration_Instrinsic();
     ~Calibration_Instrinsic();
     
-    static int performCalibration(const string cali_config);
+    static Settings performCalibration(const string cali_config);
     
     static bool runCalibrationAndSave(Settings& s, Size imageSize, Mat&  cameraMatrix, Mat& distCoeffs,
                                vector<vector<Point2f> > imagePoints );
     static bool runCalibration( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
                                vector<vector<Point2f> > imagePoints, vector<Mat>& rvecs, vector<Mat>& tvecs,
                                vector<float>& reprojErrs,  double& totalAvgErr);
+    
 private:
     
     static void saveCameraParams( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,

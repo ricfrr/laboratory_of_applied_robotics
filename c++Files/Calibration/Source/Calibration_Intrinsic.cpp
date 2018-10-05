@@ -23,7 +23,7 @@ static inline void read(const FileNode& node, Settings& x, const Settings& defau
     x.read(node);
 }
 
-int Calibration_Instrinsic::performCalibration(const string cali_config){
+Settings Calibration_Instrinsic::performCalibration(const string cali_config){
     //! [file_read]
     Settings s;
     const string inputSettingsFile = cali_config;
@@ -31,7 +31,7 @@ int Calibration_Instrinsic::performCalibration(const string cali_config){
     if (!fs.isOpened())
     {
         cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
-        return -1;
+        return s;
     }
     fs["Settings"] >> s;
     fs.release();                                         // close Settings file
@@ -43,7 +43,7 @@ int Calibration_Instrinsic::performCalibration(const string cali_config){
     if (!s.goodInput)
     {
         cout << "Invalid input detected. Application stopping. " << endl;
-        return -1;
+        return s;
     }
     
     vector<vector<Point2f> > imagePoints;
@@ -221,7 +221,7 @@ int Calibration_Instrinsic::performCalibration(const string cali_config){
     }
     //! [show_results]
     
-    return 0;
+    return s;
 }
 
 bool Calibration_Instrinsic::runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix, Mat& distCoeffs,

@@ -8,8 +8,13 @@
 
 #include <iostream>
 #include "Headers/Calibration_Intrinsic.hpp"
+#include "Headers/Undistortion.hpp"
 
 int main(int argc, const char * argv[]) {
     
-    return Calibration_Instrinsic::performCalibration(argv[1]);
+    Settings s = Calibration_Instrinsic::performCalibration(argv[1]);
+    Undistorsion undistorsion = Undistorsion(s.outputFileName);
+    undistorsion.processVideo();
+    
+    return 0;
 }
