@@ -35,7 +35,6 @@ public:
     
 private:
     string calibration_filename;
-    
     void loadCoefficients(const std::string& filename,
                           cv::Mat& camera_matrix,
                           cv::Mat& distCoeffs);

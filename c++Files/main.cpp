@@ -12,17 +12,19 @@
 #include "Headers/Inverse_Perspective_Mapping.hpp"
 #include "Headers/Image_Processing.hpp"
 
+const string intrinsic_calibration = "config/intrinsic_calibration.xml";
 
 int main(int argc, const char * argv[]) {
+
+    //Calibration_Instrinsic cal = Calibration_Instrinsic();
+    //cal.performCalibration(argv[1]);
+    Calibration_Instrinsic::performCalibration("calib_config.xml");
+
     
-    Settings s = Calibration_Instrinsic::performCalibration(argv[1]);
-    Undistorsion undistorsion = Undistorsion(s.outputFileName);
-    undistorsion.processVideo();
-    
-    Inverse_Perspective_Mapping * ipm = new Inverse_Perspective_Mapping;
-    ipm->run(s.outputFileName,"../data/persp_transf.jpg","../config/fullCalibration.yml");
-    
-    Image_Processing::run(ipm->outputfilename,"../data/img.jpg");
+    //Undistorsion undistorsion = Undistorsion(intrinsic_path);
+    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
+    ipm.run(intrinsic_calibration,"../data/map/01.jpg","config/fullCalibration.yml");
+
     
     return 0;
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Air Marvin. All rights reserved.
 //
 
-#include "Settings.hpp"
+#include "../Headers/Settings.hpp"
 
 void Settings::write(FileStorage& fs) const                        //Write serialization for this class
 {
