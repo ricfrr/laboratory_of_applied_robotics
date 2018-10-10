@@ -21,7 +21,7 @@ public:
     Calibration_Instrinsic();
     ~Calibration_Instrinsic();
     
-    static Settings performCalibration(const string cali_config);
+    static void performCalibration(const string cali_config);
     
     static bool runCalibrationAndSave(Settings& s, Size imageSize, Mat&  cameraMatrix, Mat& distCoeffs,
                                vector<vector<Point2f> > imagePoints );
