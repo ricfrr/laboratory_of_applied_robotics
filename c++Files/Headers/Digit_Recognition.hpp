@@ -15,6 +15,7 @@
 //tesseract doesn't work when using namespace std
 //delete every using namespace std line in the previous code to compile this code
 #include "Optical_Character_Recognition.hpp"
+#include "Template_Character_Recognition.hpp"
 
 //different algorithms for recognizing digits
 enum DigitRecognitionAlgo {

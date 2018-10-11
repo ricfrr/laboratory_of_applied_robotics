@@ -31,6 +31,7 @@ void Digit_Recognition::initialize_algorithm(){
     switch (picked_algorithm) {
     case opencv:
             std::cout << "open cv algorithm is beeing used" << std::endl;
+            this->algortihm = new Template_Character_Recognition;
             break;
         case tesseractOCP:
             std::cout << "tesseract ocr algorithm is beeing used" << std::endl;
