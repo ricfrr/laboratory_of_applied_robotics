@@ -100,12 +100,17 @@ void Optical_Character_Recognition::processImage(const std::string& filename)
         double angle = 0;
         bool entered = false;
         
+        if (ocr->MeanTextConf() < 80) result = -99;
+        
         if (result != -99) angle = 360;
         
         DigitResultDistribution dis = DigitResultDistribution();
         
         if(!roi.empty()){
             cv::imshow("Detecting", roi);}
+        
+        int level = 0;
+        int r = -99;
         
         while(angle < 360 && !roi.empty()){
             entered = true;
@@ -123,7 +128,16 @@ void Optical_Character_Recognition::processImage(const std::string& filename)
             
             if(result == -16) result = -99;
             
+            if(ocr->MeanTextConf() < 80){
+                result = -99;
+            }
+            else if (ocr->MeanTextConf() > level) {
+                level = ocr->MeanTextConf();
+                r = result;
+            }
+            
             if (result != -99) {
+                //int r = ocr->MeanTextConf();
                 dis.add(result);
             }
 
@@ -137,6 +151,8 @@ void Optical_Character_Recognition::processImage(const std::string& filename)
         //no digit is result -99
         if (result != -99) {
             std::cout << "result was " << std::to_string(result)  << std::endl;
+            std::cout << "with a confidence level of " << std::to_string(level) << std::endl;
+            std::cout << "result saved for biggest confidence " << std::to_string(r) << std::endl;
             //stop if detected image
             cv::waitKey(0);}
         else {
