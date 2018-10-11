@@ -19,22 +19,20 @@
 #include <iostream>
 
 template < typename T>
-std::pair<bool, int > findInVector(const std::vector<T>  & vecOfElements, const T  & element)
+int findInVector(const std::vector<T>  & vecOfElements, const T  & element)
 {
-    std::pair<bool, int > result;
+    int result;
     
     // Find given element in vector
     auto it = std::find(vecOfElements.begin(), vecOfElements.end(), element);
     
     if (it != vecOfElements.end())
     {
-        result.second = distance(vecOfElements.begin(), it);
-        result.first = true;
+        result = distance(vecOfElements.begin(), it);
     }
     else
     {
-        result.first = false;
-        result.second = -1;
+        result = -99;
     }
     
     return result;
@@ -56,8 +54,8 @@ struct DigitResultDistribution {
         std::vector<int> v{zero,one,two,three,four,five,six,seven,eight,nine};
         auto it = *std::max_element(std::begin(v), std::end(v));
 
-        std::pair<bool, int > i = findInVector(v,it);
-        return i.second;
+        int i = findInVector(v,it);
+        return i;
     }
     
     void add(int number){
