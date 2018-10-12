@@ -8,16 +8,14 @@
 
 #include "../Headers/Inverse_Perspective_Mapping.hpp"
 
-
-
 Inverse_Perspective_Mapping::Inverse_Perspective_Mapping()
 {
-    std::cout << "Inverse Perspective Mapping";
+    std::cout << "Inverse Perspective Mapping DONE"<<std::endl;
 }
 
 Inverse_Perspective_Mapping::~Inverse_Perspective_Mapping()
 {
-    //nada
+    // nada
 }
 
 void Inverse_Perspective_Mapping::loadCoefficients(const std::string &filename,
@@ -34,15 +32,14 @@ void Inverse_Perspective_Mapping::loadCoefficients(const std::string &filename,
     fs.release();
 }
 
-
-
 std::vector<cv::Point> findCorners(Mat img)
 {
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
     // Preparing the kernel matrix
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
+    cv::Mat kernel = cv::getStructuringElement(
+        cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
 
     // Definining contour containers
     cv::Mat contours_img;
@@ -52,29 +49,66 @@ std::vector<cv::Point> findCorners(Mat img)
 
     // Find black regions, modified color range in order to detect the shape
     cv::Mat black_mask;
-    cv::inRange(hsv_img, cv::Scalar(0, 0, 0), cv::Scalar(180, 90, 90), black_mask); //
+    cv::inRange(hsv_img, cv::Scalar(0, 0, 0), cv::Scalar(180, 90, 90),
+                black_mask); //
 
     // Filter (applying dilation, blurring, dilation and erosion) the image
-    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((4 * 2) + 1, (4 * 2) + 1));
+    kernel = cv::getStructuringElement(cv::MORPH_RECT,
+                                       cv::Size((4 * 2) + 1, (4 * 2) + 1));
     cv::dilate(black_mask, black_mask, kernel);
     cv::GaussianBlur(black_mask, black_mask, cv::Size(9, 9), 6, 6);
     cv::dilate(black_mask, black_mask, kernel);
     cv::erode(black_mask, black_mask, kernel);
 
-    //cv::imshow("BLACK_filter", black_mask);
-    //cv::moveWindow("BLACK_filter", W_0+2*(img.cols+OFFSET_W), H_0);
+    // cv::imshow("BLACK_filter", black_mask);
+    // cv::moveWindow("BLACK_filter", W_0+2*(img.cols+OFFSET_W), H_0);
 
     // Process black mask
     contours_img = img.clone();
-    cv::findContours(black_mask, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-    drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1, cv::LINE_AA);
+    cv::findContours(black_mask, contours, cv::RETR_EXTERNAL,
+                     cv::CHAIN_APPROX_SIMPLE);
+    drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
+                 cv::LINE_AA);
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, 70, true);
         contours_approx = {approx_curve};
         if (approx_curve.size() == 4)
         {
-            std::cout << "approx " << approx_curve << std::endl;
+            //std::cout << "corners :  " << approx_curve << std::endl;
+            Scalar color = Scalar(0, 0, 255);
+            cv::Point p1;
+            p1 = approx_curve[1];
+            approx_curve[1] = approx_curve[3];
+            approx_curve[3] = p1;
+            // code for printing map with corners
+            /*
+            for (int i = 0; i < approx_curve.size();
+                 i++) // access by reference to avoid copying
+            {
+
+                switch (i)
+                {
+                case 0:
+                    color = Scalar(0, 0, 255);
+                    break;
+                case 1:
+                    color = Scalar(255, 0, 0);
+                    break;
+                case 2:
+                    color = Scalar(0, 255, 0);
+                    break;
+                case 3:
+                    color = Scalar(255, 255, 255);
+                    break;
+                default:
+                    color = Scalar(0, 0, 255);
+                    break;
+                }
+                cv::circle(contours_img, {approx_curve[i]}, 20, color, -1);
+                imshow("corner points", contours_img);
+            }*/
+            //list of corners that identify the arena
             arena = approx_curve;
         }
     }
@@ -89,10 +123,9 @@ std::vector<cv::Point> findCorners(Mat img)
 // Since the real size of the rectangle is known (width: 1m, height: 1.5m),
 // the fucntion returns also the pixel_scale, i.e. the size (in mm) of each
 // pixel in the top view image
-Mat Inverse_Perspective_Mapping::findTransform(const std::string &calib_image_name,
-                                               const cv::Mat &camera_matrix,
-                                               const cv::Mat &dist_coeffs,
-                                               double &pixel_scale)
+Mat Inverse_Perspective_Mapping::findTransform(
+    const std::string &calib_image_name, const cv::Mat &camera_matrix,
+    const cv::Mat &dist_coeffs, double &pixel_scale, cv::Mat &persp_img)
 {
     Mat calib_image, original_image = imread(calib_image_name);
 
@@ -103,53 +136,53 @@ Mat Inverse_Perspective_Mapping::findTransform(const std::string &calib_image_na
 
     undistort(original_image, calib_image, camera_matrix, dist_coeffs);
 
-    //cv::Mat corner_pixels = pickNPoints(4, calib_image);
     // find corners
     std::vector<cv::Point> corners = findCorners(calib_image);
 
     // Destination image
-    Size size(1200, 800);
+    Size size(400,600);
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
-    pts_dst.push_back(Point2f(50, 50));
-    pts_dst.push_back(Point2f(size.width - 1, 50));
+    pts_dst.push_back(Point2f(5, 5));
+    pts_dst.push_back(Point2f(size.width - 1, 5));
     pts_dst.push_back(Point2f(size.width - 1, size.height - 1));
-    pts_dst.push_back(Point2f(50, size.height - 1));
+    pts_dst.push_back(Point2f(5, size.height - 1));
 
     Mat tform = findHomography(corners, pts_dst);
-    warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
-    imshow("Image", im_dst);
+    warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
+                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+    persp_img = im_dst;
+    // imshow("Image", im_dst);
 
-    waitKey(0);
+    // waitKey(0);
     return tform;
 }
 
 // Store all the parameters to a file, for a later use, using the FileStorage
 // class methods
-void Inverse_Perspective_Mapping::storeAllParameters(const std::string &filename,
-                                                     const cv::Mat &camera_matrix,
-                                                     const cv::Mat &dist_coeffs,
-                                                     double pixel_scale,
-                                                     const Mat &persp_transf)
+void Inverse_Perspective_Mapping::storeAllParameters(
+    const std::string &filename, const cv::Mat &camera_matrix,
+    const cv::Mat &dist_coeffs, double pixel_scale, const Mat &persp_transf)
 {
     cv::FileStorage fs(filename, cv::FileStorage::WRITE);
-    fs << "camera_matrix" << camera_matrix
-       << "dist_coeffs" << dist_coeffs
-       << "pixel_scale" << pixel_scale
-       << "persp_transf" << persp_transf;
+    fs << "camera_matrix" << camera_matrix << "dist_coeffs" << dist_coeffs
+       << "pixel_scale" << pixel_scale << "persp_transf" << persp_transf;
     fs.release();
 }
 
-void Inverse_Perspective_Mapping::run(std::string intrinsic_conf, std::string image, std::string outputfilename)
+cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf,
+                                         std::string image,
+                                         std::string outputfilename)
 {
     cv::Mat camera_matrix, dist_coeffs;
     loadCoefficients(intrinsic_conf, camera_matrix, dist_coeffs);
     this->outputfilename = outputfilename;
-
-    double pixel_scale=1.1; // TODO ...just for testing
-    Mat persp_transf = findTransform(image, camera_matrix, dist_coeffs, pixel_scale);
-    std::cout << "Pixel Scale: " << pixel_scale << "mm" << std::endl;
-
-    storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale, persp_transf);
+    double pixel_scale = 0.4; // TODO ...just for testing
+    Mat persp_img;
+    Mat persp_transf =
+        findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
+    storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale,
+                       persp_transf);
+    return persp_img;
 }
