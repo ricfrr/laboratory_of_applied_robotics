@@ -9,7 +9,7 @@ Arena::~Arena()
     // nada
 }
 
-void Arena::findArena(Mat img)
+void Arena::findArena(const Mat &img)
 {
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;

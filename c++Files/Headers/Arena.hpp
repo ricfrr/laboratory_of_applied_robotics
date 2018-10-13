@@ -13,7 +13,7 @@ class Arena : public Shape
     ~Arena();
     
     //
-    void findArena(Mat img);
+    void findArena(const Mat &img);
     
     // setter and getter of the points
     std::vector<cv::Point> getCorners();

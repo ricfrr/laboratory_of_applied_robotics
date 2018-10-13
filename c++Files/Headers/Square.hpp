@@ -1,20 +1,16 @@
-#ifndef ExitPoint_hpp
-#define ExitPoint_hpp
-#include "Shape.hpp"
+#ifndef Square_hpp
+#define Square_hpp
 #include <vector>
+
+#include "Shape.hpp"
 
 using namespace cv;
 
-class ExitPoint : public Shape
-{
+class Square : public Shape  {
 
 public:
-  ExitPoint();
-  ~ExitPoint();
-
-  //
-
-  void findExitPoint(const Mat &img);
+  Square();
+  ~Square();
 
   // setter and getter of the points
   std::vector<cv::Point> getCorners();
@@ -33,9 +29,10 @@ public:
   void setBottomRight(cv::Point bottomRight);
 
 private:
-  void findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners);
-  const int epsilon_approx = 20; // value for detect poly
+  void findHalf(int &half_h, int &half_w,
+                const std::vector<cv::Point> &corners);
+
   cv::Point top_left, top_right, bottom_left, bottom_right;
 };
 
-#endif /* ExitPoint_hpp */
+#endif /* Square_hpp */

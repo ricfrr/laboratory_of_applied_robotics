@@ -9,7 +9,7 @@ ExitPoint::~ExitPoint()
     // nada
 }
 
-void ExitPoint::findExitPoint(Mat img)
+void ExitPoint::findExitPoint(const Mat &img)
 {
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
@@ -37,8 +37,8 @@ void ExitPoint::findExitPoint(Mat img)
     cv::GaussianBlur(blue_mask, blue_mask, cv::Size(9, 9), 6, 6);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
+    
 
-    imshow("blue mask", blue_mask);
     // Process blue mask
 
     contours_img = img.clone();
@@ -58,16 +58,10 @@ void ExitPoint::findExitPoint(Mat img)
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
     }
-
-    std::cout << "BEF : " << corners << std::endl;
-
-    //
     setCorners(corners);
     corners = getCorners();
     std::cout << "Exit : " << corners << std::endl;
 
-    imshow("Exit", contours_img);
-    cv::waitKey(0);
 }
 
 std::vector<cv::Point> ExitPoint::getCorners()
@@ -80,7 +74,7 @@ std::vector<cv::Point> ExitPoint::getCorners()
     return corners;
 };
 //
-void findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners)
+void ExitPoint::findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners)
 {
     for (int i = 0; i < corners.size(); i++)
     {
