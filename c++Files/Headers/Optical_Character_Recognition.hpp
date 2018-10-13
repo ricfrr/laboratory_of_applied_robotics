@@ -32,9 +32,15 @@ public:
     
     int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
     
-    int detect_digit(tesseract::TessBaseAPI *&ocr, cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
+    int detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
     
     void getResult(tesseract::TessBaseAPI *&ocr, cv::Mat &img, int &result);
+    
+    std::vector<int> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
+    
+    int maxConf = 80;
+    
+    tesseract::TessBaseAPI * ocr = new tesseract::TessBaseAPI();
     
 
 };

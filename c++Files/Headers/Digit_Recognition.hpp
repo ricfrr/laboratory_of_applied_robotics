@@ -19,7 +19,7 @@
 
 //different algorithms for recognizing digits
 enum DigitRecognitionAlgo {
-    opencv,
+    templateMatching,
     tesseractOCP
 };
 
@@ -30,9 +30,30 @@ public:
     Digit_Recognition();
     Digit_Recognition(DigitRecognitionAlgo algorithm);
     
+    ///set detection algorithm for digits e.g. tesseract or template matching
     void set_algo(DigitRecognitionAlgo algorithm);
     
+    ///run the algorithm on an image containing digits
     void run_demo(const std::string filename);
+    
+    ///detect a single digit in an prepared image
+    ///will return first detected digit
+    int detect_single_digit(cv::Mat &img);
+    
+    ///returns a list of digits recognized in an prepared image
+    std::vector<int> detect_digits(cv::Mat &img);
+    
+    ///detects digit of prepared image and checks if the result was fitting the map requierements
+    int detect_digit_for_map(cv::Mat &img);
+    
+    ///detects all the digits of an unprepared images and logs the information
+    void detect_digits_for_map(cv::Mat &img);
+    
+    ///sets a hsv filter for better image recognition results
+    void set_filter(HSVFilterRange filterRange);
+    
+    ///extracts the rect information of regions where the filter was applied
+    std::vector<cv::Rect> get_regions_of_interest(cv::Mat &img);
     
 private:
     ///the algorithm used to
@@ -41,6 +62,9 @@ private:
     Character_Recognition_Algorithm * algortihm;
     
     void initialize_algorithm();
+    
+    ///checks if the detected digit is between 1 and 4
+    bool is_valid(int &detectedDigit);
 };
 
 #endif /* Digit_Recognition_hpp */

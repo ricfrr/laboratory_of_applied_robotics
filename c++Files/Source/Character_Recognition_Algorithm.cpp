@@ -86,7 +86,7 @@ void Character_Recognition_Algorithm::rotate_image(cv::Mat &src, double angle, c
 void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
     
     // Display original image
-    displayImage(img, "Original");
+    //displayImage(img, "Original");
     //cv::waitKey(0);
     
     // Convert color space from BGR to HSV
@@ -97,7 +97,11 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     
     // Find green regions
     cv::Mat green_mask;
-    apply_mask(hsv_img, green_mask, cv::Scalar(65, 30, 80), cv::Scalar(75, 255, 255));
+    apply_mask(hsv_img,
+               green_mask,
+               cv::Scalar(filter.lb[0], filter.lb[1], filter.lb[2]),
+               cv::Scalar(filter.ub[0], filter.ub[1], filter.ub[2]));
+    
     //displayImage(green_mask, "GREEN_filter1");
     //cv::waitKey(0);
     
@@ -109,8 +113,8 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     boundRect = extract_regions_of_interest(img, green_mask,contours_img);
     
     //displaying
-    //displayImage(contours_img, "Original");
-    //cv::waitKey(0);
+//    displayImage(contours_img, "Original");
+//    cv::waitKey(0);
     
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
@@ -118,7 +122,35 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
     //displaying some more
-    //displayImage(green_mask_inv, "Numbers");
-    //cv::waitKey(0);
+//    displayImage(green_mask_inv, "Numbers");
+//    cv::waitKey(0);
     
+}
+
+void Character_Recognition_Algorithm::set_lower_bound_filter(double hue, double saturation, double value){
+    if(hue > 180 || saturation > 255 || value > 255){
+        std::cout << "wrong values set for lower bound filter hsv values" << std::endl;
+        return;
+    }
+    if(hue < 0 || saturation < 0 || value < 0){
+        std::cout << "wrong values set for lower bound filter hsv values" << std::endl;
+        return;
+    }
+    this->filter.lb[0] = hue;
+    this->filter.lb[1] = saturation;
+    this->filter.lb[2] = value;
+}
+
+void Character_Recognition_Algorithm::set_upper_bound_filter(double hue, double saturation, double value){
+    if(hue > 180 || saturation > 255 || value > 255){
+        std::cout << "wrong values set for upper bound filter hsv values" << std::endl;
+        return;
+    }
+    if(hue < 0 || saturation < 0 || value < 0){
+        std::cout << "wrong values set for upper bound filter hsv values" << std::endl;
+        return;
+    }
+    this->filter.ub[0] = hue;
+    this->filter.ub[1] = saturation;
+    this->filter.ub[2] = value;
 }

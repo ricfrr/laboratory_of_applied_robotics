@@ -55,6 +55,10 @@ struct DigitResultDistribution {
         auto it = *std::max_element(std::begin(v), std::end(v));
 
         int i = findInVector(v,it);
+        
+        //no result
+        if(i==0 && zero == 0) return -99;
+        
         return i;
     }
     
@@ -97,6 +101,45 @@ struct DigitResultDistribution {
     }
 };
 
+struct HSVFilterRange {
+    //works best for the good image
+    cv::Scalar lb = cv::Scalar(65, 30, 80);
+    cv::Scalar ub = cv::Scalar(75, 255, 255);
+    
+private:
+    std::string quality = "good";
+    
+public:
+    //works best for the worst image
+//    cv::Scalar lb = cv::Scalar(30, 70, 70);
+//    cv::Scalar ub = cv::Scalar(90, 255, 255);
+    
+    HSVFilterRange(){}
+    
+    std::string saved_quality = "good";
+    
+    HSVFilterRange(std::string quality){
+        if (quality == "good"){
+            this->lb = cv::Scalar(65, 30, 80);
+            this->ub = cv::Scalar(75, 255, 255);
+            this->quality = quality;
+            saved_quality = quality;
+        }
+        else if (quality == "medium"){
+            this->lb = cv::Scalar(30, 100, 55);
+            this-> ub = cv::Scalar(90, 255, 255);
+            this->quality = quality;
+            saved_quality = quality;
+        }
+        else if (quality == "bad"){
+            this->lb = cv::Scalar(30, 70, 70);
+            this->ub = cv::Scalar(90, 255, 255);
+            this->quality = quality;
+            saved_quality = quality;
+        }
+    }
+};
+
 /// abstract class for character recognition algorithms
 class Character_Recognition_Algorithm {
 
@@ -106,12 +149,16 @@ public:
     
     const double MIN_AREA_SIZE = 100;
     
+    HSVFilterRange filter;
+    
     //pure virtual function, to run the demo like the public code gave us
     ///a demo function displaying the performance of a given algorithm
     virtual void processImage(const std::string& filename) = 0;
     
     ///the (virtual) function that runs the recognition engine
     virtual int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI) = 0;
+    
+    virtual std::vector<int> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered) = 0;
     
     //the folowing functions are used for preparing an image to find the parts containing digits
     //these steps are similar for every recognition algorithm
@@ -135,6 +182,12 @@ public:
     void rotate_image(cv::Mat &src, double angle, cv::Mat &result);
     
     void preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect);
+    
+    void set_lower_bound_filter(double hue, double saturation, double value);
+    
+    void set_upper_bound_filter(double hue, double saturation, double value);
+    
+    double delta_angle = 45;
 };
 
 #endif /* Character_Recognition_Algorithm_hpp */
