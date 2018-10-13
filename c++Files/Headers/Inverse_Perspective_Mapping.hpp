@@ -35,9 +35,6 @@ public:
     Inverse_Perspective_Mapping();
     ~Inverse_Perspective_Mapping();
     
-    // Defintion of the function pickNPoints and the callback mouseCallback.
-    // The function pickNPoints is used to display a window with a background
-    // image, and to prompt the user to select n points on this image.
     UserData *data = new UserData;
     
     std::string outputfilename;
@@ -46,12 +43,6 @@ void loadCoefficients(const std::string& filename,
                       cv::Mat& camera_matrix,
                       cv::Mat& dist_coeffs);
 
-
-    //void mouseCallback(int event, int x, int y, int, void* p);
-    
-    
-
-    cv::Mat pickNPoints(int n0, const Mat& img);
 
 
 // Example of function to determine the perspective transformation of a
@@ -65,7 +56,8 @@ void loadCoefficients(const std::string& filename,
 Mat findTransform(const std::string& calib_image_name,
                   const cv::Mat& camera_matrix,
                   const cv::Mat& dist_coeffs,
-                  double& pixel_scale);
+                  double& pixel_scale,
+                  cv::Mat &persp_img);
 
 // Store all the parameters to a file, for a later use, using the FileStorage
 // class methods
@@ -75,8 +67,7 @@ void storeAllParameters(const std::string& filename,
                         double pixel_scale,
                         const Mat& persp_transf);
     
-void run(std::string intrinsic_conf, std::string image, std::string outputfilename);
-    
+cv::Mat run(std::string intrinsic_conf, std::string image, std::string outputfilename );
 };
 
 #endif /* Inverse_Perspective_Mapping_hpp */
