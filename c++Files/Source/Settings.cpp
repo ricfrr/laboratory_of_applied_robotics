@@ -66,17 +66,17 @@ void Settings::validate()
     goodInput = true;
     if (boardSize.width <= 0 || boardSize.height <= 0)
     {
-        cerr << "Invalid Board size: " << boardSize.width << " " << boardSize.height << endl;
+        std::cerr << "Invalid Board size: " << boardSize.width << " " << boardSize.height << std::endl;
         goodInput = false;
     }
     if (squareSize <= 10e-6)
     {
-        cerr << "Invalid square size " << squareSize << endl;
+        std::cerr << "Invalid square size " << squareSize << std::endl;
         goodInput = false;
     }
     if (nrFrames <= 0)
     {
-        cerr << "Invalid number of frames " << nrFrames << endl;
+        std::cerr << "Invalid number of frames " << nrFrames << std::endl;
         goodInput = false;
     }
     
@@ -87,7 +87,7 @@ void Settings::validate()
         //if the input is given as an integer of 0 to 9 the inputtype is set to camera
         if (input[0] >= '0' && input[0] <= '9')
         {
-            stringstream ss(input);
+            std::stringstream ss(input);
             ss >> cameraID;
             inputType = CAMERA;
         }
@@ -115,7 +115,7 @@ void Settings::validate()
     }
     if (inputType == INVALID)
     {
-        cerr << " Input does not exist: " << input;
+        std::cerr << " Input does not exist: " << input;
         goodInput = false;
     }
     
@@ -146,7 +146,7 @@ void Settings::validate()
     if (!patternToUse.compare("ASYMMETRIC_CIRCLES_GRID")) calibrationPattern = ASYMMETRIC_CIRCLES_GRID;
     if (calibrationPattern == NOT_EXISTING)
     {
-        cerr << " Camera calibration mode does not exist: " << patternToUse << endl;
+        std::cerr << " Camera calibration mode does not exist: " << patternToUse << std::endl;
         goodInput = false;
     }
     atImageList = 0;
@@ -169,7 +169,7 @@ Mat Settings::nextImage()
 }
 
 ///extract the images out of the first expected xml file list node
-bool Settings::readStringList( const string& filename, vector<string>& l )
+bool Settings::readStringList( const std::string& filename, std::vector<std::string>& l )
 {
     l.clear();
     FileStorage fs(filename, FileStorage::READ);
@@ -180,18 +180,18 @@ bool Settings::readStringList( const string& filename, vector<string>& l )
     return false;
     FileNodeIterator it = n.begin(), it_end = n.end();
     for( ; it != it_end; ++it )
-    l.push_back((string)*it);
+    l.push_back((std::string)*it);
     return true;
 }
 
 ///checks if the giving filename is an xml, yaml or yml file
-bool Settings::isListOfImages( const string& filename)
+bool Settings::isListOfImages( const std::string& filename)
 {
-    string s(filename);
+    std::string s(filename);
     // Look for file extension
     //if file is not of type xml yaml or yml it's no list of images
     //***not checking if list really contains images !!!
-    if( s.find(".xml") == string::npos && s.find(".yaml") == string::npos && s.find(".yml") == string::npos )
+    if( s.find(".xml") == std::string::npos && s.find(".yaml") == std::string::npos && s.find(".yml") == std::string::npos )
     return false;
     else
     return true;

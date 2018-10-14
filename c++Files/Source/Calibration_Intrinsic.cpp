@@ -9,10 +9,10 @@
 #include "../Headers/Calibration_Intrinsic.hpp"
 
 Calibration_Instrinsic::Calibration_Instrinsic(){
-    cout << "started intrinsic calibration";
+    std::cout << "started intrinsic calibration";
 }
 Calibration_Instrinsic::~Calibration_Instrinsic() {
-    cout << "destructing intrinsic calbration";
+    std::cout << "destructing intrinsic calbration";
 }
 
 static inline void read(const FileNode& node, Settings& x, const Settings& default_value = Settings())
@@ -23,14 +23,14 @@ static inline void read(const FileNode& node, Settings& x, const Settings& defau
     x.read(node);
 }
 
-void Calibration_Instrinsic::performCalibration(const string cali_config){
+void Calibration_Instrinsic::performCalibration(const std::string cali_config){
     //! [file_read]
     Settings s;
-    const string inputSettingsFile = cali_config;
+    const std::string inputSettingsFile = cali_config;
     FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
     if (!fs.isOpened())
     {
-        cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << endl;
+        std::cout << "Could not open the configuration file: \"" << inputSettingsFile << "\"" << std::endl;
         exit (-1);
     }
     fs["Settings"] >> s;
@@ -42,11 +42,11 @@ void Calibration_Instrinsic::performCalibration(const string cali_config){
 
     if (!s.goodInput)
     {
-        cout << "Invalid input detected. Application stopping. " << endl;
+        std::cout << "Invalid input detected. Application stopping. " << std::endl;
         exit (-1);
     }
 
-    vector<vector<Point2f> > imagePoints;
+    std::vector<std::vector<Point2f> > imagePoints;
     Mat cameraMatrix, distCoeffs;
     Size imageSize;
     int mode = s.inputType == Settings::IMAGE_LIST ? CAPTURING : DETECTION;
@@ -83,7 +83,7 @@ void Calibration_Instrinsic::performCalibration(const string cali_config){
         if( s.flipVertical )    flip( view, view, 0 );
 
         //! [find_pattern]
-        vector<Point2f> pointBuf;
+        std::vector<Point2f> pointBuf;
 
         bool found;
 
@@ -136,7 +136,7 @@ void Calibration_Instrinsic::performCalibration(const string cali_config){
         //! [pattern_found]
         //----------------------------- Output Text ------------------------------------------------
         //! [output_text]
-        string msg = (mode == CAPTURING) ? "100/100" :
+        std::string msg = (mode == CAPTURING) ? "100/100" :
                       mode == CALIBRATED ? "Calibrated" : "Press 'g' to start";
         int baseLine = 0;
         Size textSize = getTextSize(msg, 1, 1, 1, &baseLine);
@@ -226,16 +226,16 @@ void Calibration_Instrinsic::performCalibration(const string cali_config){
 }
 
 bool Calibration_Instrinsic::runCalibrationAndSave(Settings& s, Size imageSize, Mat& cameraMatrix, Mat& distCoeffs,
-                           vector<vector<Point2f> > imagePoints)
+                           std::vector<std::vector<Point2f> > imagePoints)
 {
-    vector<Mat> rvecs, tvecs;
-    vector<float> reprojErrs;
+    std::vector<Mat> rvecs, tvecs;
+    std::vector<float> reprojErrs;
     double totalAvgErr = 0;
 
     bool ok = Calibration_Instrinsic::runCalibration(s, imageSize, cameraMatrix, distCoeffs, imagePoints, rvecs, tvecs, reprojErrs,
                              totalAvgErr);
-    cout << (ok ? "Calibration succeeded" : "Calibration failed")
-    << ". avg re projection error = " << totalAvgErr << endl;
+    std::cout << (ok ? "Calibration succeeded" : "Calibration failed")
+    << ". avg re projection error = " << totalAvgErr << std::endl;
 
     if (ok)
         saveCameraParams(s, imageSize, cameraMatrix, distCoeffs, rvecs, tvecs, reprojErrs, imagePoints,
@@ -244,8 +244,8 @@ bool Calibration_Instrinsic::runCalibrationAndSave(Settings& s, Size imageSize, 
 }
 
 bool Calibration_Instrinsic::runCalibration( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
-                           vector<vector<Point2f> > imagePoints, vector<Mat>& rvecs, vector<Mat>& tvecs,
-                           vector<float>& reprojErrs,  double& totalAvgErr)
+                           std::vector<std::vector<Point2f> > imagePoints, std::vector<Mat>& rvecs, std::vector<Mat>& tvecs,
+                           std::vector<float>& reprojErrs,  double& totalAvgErr)
 {
     //! [fixed_aspect]
     cameraMatrix = Mat::eye(3, 3, CV_64F);
@@ -258,7 +258,7 @@ bool Calibration_Instrinsic::runCalibration( Settings& s, Size& imageSize, Mat& 
         distCoeffs = Mat::zeros(8, 1, CV_64F);
     }
     
-    vector<vector<Point3f> > objectPoints(1);
+    std::vector<std::vector<Point3f> > objectPoints(1);
     calcBoardCornerPositions(s.boardSize, s.squareSize, objectPoints[0], s.calibrationPattern);
     
     objectPoints.resize(imagePoints.size(),objectPoints[0]);
@@ -282,7 +282,7 @@ bool Calibration_Instrinsic::runCalibration( Settings& s, Size& imageSize, Mat& 
                               s.flag);
     }
     
-    cout << "Re-projection error reported by calibrateCamera: "<< rms << endl;
+    std::cout << "Re-projection error reported by calibrateCamera: "<< rms << std::endl;
     
     bool ok = checkRange(cameraMatrix) && checkRange(distCoeffs);
     
@@ -293,8 +293,8 @@ bool Calibration_Instrinsic::runCalibration( Settings& s, Size& imageSize, Mat& 
 }
 
 void Calibration_Instrinsic::saveCameraParams( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
-                             const vector<Mat>& rvecs, const vector<Mat>& tvecs,
-                             const vector<float>& reprojErrs, const vector<vector<Point2f> >& imagePoints,
+                             const std::vector<Mat>& rvecs, const std::vector<Mat>& tvecs,
+                             const std::vector<float>& reprojErrs, const std::vector<std::vector<Point2f> >& imagePoints,
                              double totalAvgErr )
 {
 
@@ -406,13 +406,13 @@ void Calibration_Instrinsic::saveCameraParams( Settings& s, Size& imageSize, Mat
     }
 }
 
-double Calibration_Instrinsic::computeReprojectionErrors( const vector<vector<Point3f> >& objectPoints,
-                                        const vector<vector<Point2f> >& imagePoints,
-                                        const vector<Mat>& rvecs, const vector<Mat>& tvecs,
+double Calibration_Instrinsic::computeReprojectionErrors( const std::vector<std::vector<Point3f> >& objectPoints,
+                                        const std::vector<std::vector<Point2f> >& imagePoints,
+                                        const std::vector<Mat>& rvecs, const std::vector<Mat>& tvecs,
                                         const Mat& cameraMatrix , const Mat& distCoeffs,
-                                        vector<float>& perViewErrors, bool fisheye)
+                                        std::vector<float>& perViewErrors, bool fisheye)
 {
-    vector<Point2f> imagePoints2;
+    std::vector<Point2f> imagePoints2;
     size_t totalPoints = 0;
     double totalErr = 0, err;
     perViewErrors.resize(objectPoints.size());
@@ -439,7 +439,7 @@ double Calibration_Instrinsic::computeReprojectionErrors( const vector<vector<Po
     return std::sqrt(totalErr/totalPoints);
 }
 
-void Calibration_Instrinsic::calcBoardCornerPositions(Size boardSize, float squareSize, vector<Point3f>& corners,
+void Calibration_Instrinsic::calcBoardCornerPositions(Size boardSize, float squareSize, std::vector<Point3f>& corners,
                                      Settings::Pattern patternType /*= Settings::CHESSBOARD*/)
 {
     corners.clear();

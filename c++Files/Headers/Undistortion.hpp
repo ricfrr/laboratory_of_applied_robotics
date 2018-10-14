@@ -19,12 +19,11 @@
 #include <string>
 
 using namespace cv;
-using namespace std;
 
 class Undistorsion {
     
 public:
-    Undistorsion(string calibration_filename);
+    Undistorsion(std::string calibration_filename);
     ~Undistorsion();
     
     void processVideo();
@@ -34,7 +33,7 @@ public:
                          InputArray newCameraMatrix = noArray() );
     
 private:
-    string calibration_filename;
+    std::string calibration_filename;
     void loadCoefficients(const std::string& filename,
                           cv::Mat& camera_matrix,
                           cv::Mat& distCoeffs);

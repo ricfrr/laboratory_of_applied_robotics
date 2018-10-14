@@ -21,26 +21,26 @@ public:
     Calibration_Instrinsic();
     ~Calibration_Instrinsic();
     
-    static void performCalibration(const string cali_config);
+    static void performCalibration(const std::string cali_config);
     
     static bool runCalibrationAndSave(Settings& s, Size imageSize, Mat&  cameraMatrix, Mat& distCoeffs,
-                               vector<vector<Point2f> > imagePoints );
+                               std::vector<std::vector<Point2f> > imagePoints );
     static bool runCalibration( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
-                               vector<vector<Point2f> > imagePoints, vector<Mat>& rvecs, vector<Mat>& tvecs,
-                               vector<float>& reprojErrs,  double& totalAvgErr);
+                               std::vector<std::vector<Point2f> > imagePoints, std::vector<Mat>& rvecs, std::vector<Mat>& tvecs,
+                               std::vector<float>& reprojErrs,  double& totalAvgErr);
     
 private:
     
     static void saveCameraParams( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
-                                 const vector<Mat>& rvecs, const vector<Mat>& tvecs,
-                                 const vector<float>& reprojErrs, const vector<vector<Point2f> >& imagePoints,
+                                 const std::vector<Mat>& rvecs, const std::vector<Mat>& tvecs,
+                                 const std::vector<float>& reprojErrs, const std::vector<std::vector<Point2f> >& imagePoints,
                                  double totalAvgErr );
-    static double computeReprojectionErrors( const vector<vector<Point3f> >& objectPoints,
-                                            const vector<vector<Point2f> >& imagePoints,
-                                            const vector<Mat>& rvecs, const vector<Mat>& tvecs,
+    static double computeReprojectionErrors( const std::vector<std::vector<Point3f> >& objectPoints,
+                                            const std::vector<std::vector<Point2f> >& imagePoints,
+                                            const std::vector<Mat>& rvecs, const std::vector<Mat>& tvecs,
                                             const Mat& cameraMatrix , const Mat& distCoeffs,
-                                            vector<float>& perViewErrors, bool fisheye);
-    static void calcBoardCornerPositions(Size boardSize, float squareSize, vector<Point3f>& corners,
+                                            std::vector<float>& perViewErrors, bool fisheye);
+    static void calcBoardCornerPositions(Size boardSize, float squareSize, std::vector<Point3f>& corners,
                                          Settings::Pattern patternType /*= Settings::CHESSBOARD*/);
     
 };

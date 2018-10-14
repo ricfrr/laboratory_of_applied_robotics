@@ -24,7 +24,6 @@
 #include <opencv2/highgui.hpp>
 
 using namespace cv;
-using namespace std;
 
 class Settings
 {
@@ -41,9 +40,9 @@ public:
     
     Mat nextImage();
     
-    static bool readStringList( const string& filename, vector<string>& l );
+    static bool readStringList( const std::string& filename, std::vector<std::string>& l );
     
-    static bool isListOfImages( const string& filename);
+    static bool isListOfImages( const std::string& filename);
 
 public:
     Size boardSize;              // The size of the board -> Number of items by width and height
@@ -57,9 +56,9 @@ public:
     bool calibZeroTangentDist;   // Assume zero tangential distortion
     bool calibFixPrincipalPoint; // Fix the principal point at the center
     bool flipVertical;           // Flip the captured images around the horizontal axis
-    string outputFileName;       // The name of the file where to write
+    std::string outputFileName;       // The name of the file where to write
     bool showUndistorsed;        // Show undistorted images after calibration
-    string input;                // The input ->
+    std::string input;                // The input ->
     bool useFisheye;             // use fisheye camera model for calibration
     bool fixK1;                  // fix K1 distortion coefficient
     bool fixK2;                  // fix K2 distortion coefficient
@@ -68,7 +67,7 @@ public:
     bool fixK5;                  // fix K5 distortion coefficient
     
     int cameraID;
-    vector<string> imageList;
+    std::vector<std::string> imageList;
     size_t atImageList;
     VideoCapture inputCapture;
     InputType inputType;
@@ -76,7 +75,7 @@ public:
     int flag;
     
 private:
-    string patternToUse;
+    std::string patternToUse;
     
     
 };

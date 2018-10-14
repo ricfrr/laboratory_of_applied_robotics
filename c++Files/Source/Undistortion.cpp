@@ -8,7 +8,7 @@
 
 #include "../Headers/Undistortion.hpp"
 
-Undistorsion::Undistorsion(string calibration_filename)
+Undistorsion::Undistorsion(std::string calibration_filename)
 {
     this->calibration_filename = calibration_filename;
 }
