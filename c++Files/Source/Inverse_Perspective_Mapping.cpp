@@ -7,10 +7,11 @@
 //
 
 #include "../Headers/Inverse_Perspective_Mapping.hpp"
+#include "../Headers/Arena.hpp"
 
 Inverse_Perspective_Mapping::Inverse_Perspective_Mapping()
 {
-    std::cout << "Inverse Perspective Mapping DONE"<<std::endl;
+    std::cout << "Inverse Perspective Mapping DONE" << std::endl;
 }
 
 Inverse_Perspective_Mapping::~Inverse_Perspective_Mapping()
@@ -30,6 +31,23 @@ void Inverse_Perspective_Mapping::loadCoefficients(const std::string &filename,
     fs["camera_matrix"] >> camera_matrix;
     fs["distortion_coefficients"] >> dist_coeffs;
     fs.release();
+}
+
+void computeDistanceandSwap(std::vector<cv::Point> &corner)
+{
+
+    double first_side = cv::norm(corner[0] - corner[1]);
+    double second_side = cv::norm(corner[1] - corner[2]);
+    std::cout << "FIRST side : " << first_side << "  Second side" << second_side << std::endl;
+
+    if (first_side >= second_side)
+    {
+        cv::Point tmp_corner = corner[0];
+        corner[0] = corner[3];
+        corner[3] = corner[2];
+        corner[2] = corner[1];
+        corner[1] = tmp_corner;
+    }
 }
 
 std::vector<cv::Point> findCorners(Mat img)
@@ -77,10 +95,15 @@ std::vector<cv::Point> findCorners(Mat img)
         {
             //std::cout << "corners :  " << approx_curve << std::endl;
             Scalar color = Scalar(0, 0, 255);
+            // swapping corners in order to avoid mirror effect
+
             cv::Point p1;
             p1 = approx_curve[1];
             approx_curve[1] = approx_curve[3];
             approx_curve[3] = p1;
+
+            // compute distance and eventually swap corners
+            computeDistanceandSwap(approx_curve);
             // code for printing map with corners
             /*
             for (int i = 0; i < approx_curve.size();
@@ -115,6 +138,28 @@ std::vector<cv::Point> findCorners(Mat img)
     return arena;
 }
 
+void reTransform(cv::Mat &persp_img){
+    // Destination image
+    Size size(400, 600);
+    Arena arena = Arena();
+    arena.findArena(persp_img);
+    std::vector<cv::Point> corners = arena.getCorners();
+
+    Mat im_dst = Mat::zeros(size, CV_8UC3);
+    // Create a vector of points.
+    std::vector<Point2f> pts_dst;
+    pts_dst.push_back(Point2f(25,25));
+    pts_dst.push_back(Point2f(size.width-25, +25));
+    pts_dst.push_back(Point2f(size.width-25, size.height-25));
+    pts_dst.push_back(Point2f(25, size.height-25));
+
+    Mat tform = findHomography(corners, pts_dst);
+    warpPerspective(persp_img, im_dst, tform, size, cv::INTER_LINEAR,
+                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+    persp_img = im_dst;
+}
+
+
 // Example of function to determine the perspective transformation of a
 // rectangle on the ground plane (with manual intervention from the user, that
 // is required to select the 4 corner points of the rectangle, starting from the
@@ -140,7 +185,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
     std::vector<cv::Point> corners = findCorners(calib_image);
 
     // Destination image
-    Size size(400,600);
+    Size size(400, 600);
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
@@ -152,12 +197,15 @@ Mat Inverse_Perspective_Mapping::findTransform(
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+    
+    reTransform(im_dst);
     persp_img = im_dst;
-    // imshow("Image", im_dst);
+    imshow("Image", im_dst);
 
-    // waitKey(0);
+    waitKey(0);
     return tform;
 }
+
 
 // Store all the parameters to a file, for a later use, using the FileStorage
 // class methods

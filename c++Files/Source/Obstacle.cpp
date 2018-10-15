@@ -82,8 +82,8 @@ void Obstacle::findObstacles(const Mat &img)
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
     }
-    imshow("shapes", contours_img);
-    waitKey(0);
+    //imshow("shapes", contours_img);
+    //waitKey(0);
 }
 
 std::vector<Square> Obstacle::getSquares()
@@ -99,4 +99,9 @@ std::vector<Triangle> Obstacle::getTriangles()
 std::vector<Pentagon> Obstacle::getPentagons()
 {
     return pentagons;
+};
+
+std::vector<Hexagon> Obstacle::getHexagons()
+{
+    return hexagons;
 };

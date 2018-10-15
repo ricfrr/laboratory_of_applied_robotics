@@ -21,6 +21,7 @@ public:
   std::vector<Triangle> getTriangles();
   std::vector<Square> getSquares();
   std::vector<Pentagon> getPentagons();
+  std::vector<Hexagon> getHexagons();
 
 private:
   const int epsilon_approx = 7;
