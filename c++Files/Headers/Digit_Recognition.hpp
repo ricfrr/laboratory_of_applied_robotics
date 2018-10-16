@@ -47,7 +47,7 @@ public:
     int detect_digit_for_map(cv::Mat &img);
     
     ///detects all the digits of an unprepared images and logs the information
-    void detect_digits_for_map(cv::Mat &img);
+    void detect_digits_for_map(const cv::Mat img_input);
     
     ///sets a hsv filter for better image recognition results
     void set_filter(HSVFilterRange filterRange);

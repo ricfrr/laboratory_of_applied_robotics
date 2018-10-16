@@ -105,7 +105,7 @@ void Arena::findArena(const Mat &img)
 
     
     //imshow("arena", contours_img);
-    cv::waitKey(0);
+    //cv::waitKey(0);
 
 }
 

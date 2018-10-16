@@ -13,7 +13,7 @@
 #include "Headers/Image_Processing.hpp"
 #include "Headers/Arena.hpp"
 #include "Headers/ExitPoint.hpp"
-#include "Headers/Pentagon.hpp"
+#include "Headers/Map.hpp"
 #include "Headers/Obstacle.hpp"
 
 using namespace std;
@@ -30,17 +30,9 @@ int main(int argc, const char *argv[])
     Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
     persp_img = ipm.run(intrinsic_calibration, argv[1], "config/fullCalibration.yml");
 
-    //shape detection
-    Arena arena = Arena();
-    arena.findArena(persp_img);
-
-    ExitPoint exit_point = ExitPoint();
-    exit_point.findExitPoint(persp_img);
-
-    Obstacle obstacle_finder = Obstacle();
-    obstacle_finder.findObstacles(persp_img);
-    std::vector<Pentagon> pentagons = obstacle_finder.getPentagons();
-    
+    // MAP
+    Map map = Map();
+    map.createMap(persp_img);
     
     
     return 0;

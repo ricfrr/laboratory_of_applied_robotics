@@ -138,7 +138,7 @@ std::vector<cv::Point> findCorners(Mat img)
     return arena;
 }
 
-void reTransform(cv::Mat &persp_img){
+void reTransform(cv::Mat &persp_img, double &pixel_scale){
     // Destination image
     Size size(400, 600);
     Arena arena = Arena();
@@ -156,6 +156,11 @@ void reTransform(cv::Mat &persp_img){
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(persp_img, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+
+    double top_dist = cv::norm(corners[0]-corners[1]);
+    pixel_scale =top_dist/960;
+    std::cout<<"pixel scale: "<<pixel_scale<<std::endl;
+
     persp_img = im_dst;
 }
 
@@ -198,11 +203,10 @@ Mat Inverse_Perspective_Mapping::findTransform(
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
     
-    reTransform(im_dst);
+    reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
-    imshow("Image", im_dst);
-
-    waitKey(0);
+    //imshow("Image", im_dst);
+    //waitKey(0);
     return tform;
 }
 

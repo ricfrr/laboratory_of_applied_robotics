@@ -6,7 +6,7 @@
 //  Copyright © 2018 Air Marvin. All rights reserved.
 //
 
-#include "Character_Recognition_Algorithm.hpp"
+#include "../Headers/Character_Recognition_Algorithm.hpp"
 
 cv::Mat Character_Recognition_Algorithm::loadImage(const std::string& filename){
     // Load image from file

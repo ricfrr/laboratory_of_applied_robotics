@@ -6,7 +6,7 @@
 //  Copyright © 2018 Air Marvin. All rights reserved.
 //
 
-#include "Template_Character_Recognition.hpp"
+#include "../Headers/Template_Character_Recognition.hpp"
 
 Template_Character_Recognition::Template_Character_Recognition(){}
 

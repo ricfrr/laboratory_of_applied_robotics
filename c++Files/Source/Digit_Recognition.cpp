@@ -6,7 +6,7 @@
 //  Copyright © 2018 Air Marvin. All rights reserved.
 //
 
-#include "Digit_Recognition.hpp"
+#include "../Headers/Digit_Recognition.hpp"
 
 Digit_Recognition::Digit_Recognition(){
     std::cout << "basic digit recognition constructor selected" << std::endl;
@@ -107,8 +107,9 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
     return results;
 }
 
-void Digit_Recognition::detect_digits_for_map(cv::Mat &img){
+void Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
+    cv::Mat img = img_input;
     std::vector<cv::Rect> rects = get_regions_of_interest(img);
     
     std::vector<int> results;

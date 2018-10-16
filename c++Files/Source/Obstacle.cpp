@@ -35,8 +35,6 @@ void Obstacle::findObstacles(const Mat &img)
     cv::erode(red_mask, red_mask, kernel);
     cv::dilate(red_mask, red_mask, kernel);
 
-    imshow("red mask ", red_mask);
-
     // Process red mask
 
     contours_img = img.clone();

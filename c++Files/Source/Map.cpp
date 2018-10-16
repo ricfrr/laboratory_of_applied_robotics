@@ -61,7 +61,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             if (isOutofArena(cell_corners, arena))
             {
                 cell.setBorder();
-                std::cout << "b";
+                //std::cout << "b";
             }
             else
             {
@@ -70,24 +70,24 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 if (contact(cell_corners, corners))
                 {
                     cell.setExit();
-                    std::cout << "\033[1;34mx\033[0m";
+                    //std::cout << "\033[1;34mx\033[0m";
                 }
             }
             if (!cell.isBorder() && !cell.isExit() && checkObstacles(cell, obstacles))
             {
                 cell.setObstacle();
-                std::cout << "\033[1;31mo\033[0m";
+                //std::cout << "\033[1;31mo\033[0m";
             }
             if (cell.isEmpty())
             {
-                std::cout << "\033[1;32me\033[0m";
+                //std::cout << "\033[1;32me\033[0m";
             }
             temp_vec.push_back(cell);
             temp_x = temp_x + x_incr;
         }
         temp_y = temp_y + y_incr;
         temp_x = 0;
-        std::cout << std::endl;
+        //std::cout << std::endl;
         grid.push_back(temp_vec);
     }
     std::cout << "---- DONE ----" << std::endl;
@@ -239,8 +239,8 @@ bool Map::contact(std::vector<cv::Point> cell,
         /* is odd */
         if (intersections % 2)
         {
-            //std::cout << "INSIDE point : " << point << " poly : " << poly << std::endl;
-            //std::cout << "poly size : " << poly.size() << " max_y : " << max_y << " min_y : " << min_y << std::endl;
+            std::cout << "INSIDE point : " << point << " poly : " << poly << std::endl;
+            std::cout << "poly size : " << poly.size() << " max_y : " << max_y << " min_y : " << min_y << std::endl;
             return true;
         }
     }

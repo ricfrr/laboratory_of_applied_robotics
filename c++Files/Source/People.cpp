@@ -11,7 +11,11 @@ People::~People()
 
 void People::findCircles(const Mat &img)
 {
-    static const int W_0 = 300;
+    imshow("img", img);
+    waitKey(0);
+    Digit_Recognition dg_recognition = Digit_Recognition();
+    dg_recognition.detect_digits_for_map(img);
+    /*static const int W_0 = 300;
     static const int H_0 = 0;
     static const int OFFSET_W = 10;
     static const int OFFSET_H = 100;
@@ -22,12 +26,12 @@ void People::findCircles(const Mat &img)
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
     // Preparing the kernel matrix,  Find green regions
     cv::Mat green_mask;
-    cv::inRange(hsv_img, cv::Scalar(55, 90,55), cv::Scalar(70, 255, 255), green_mask);
+    cv::inRange(hsv_img, cv::Scalar(45, 65,45), cv::Scalar(70, 255, 255), green_mask);
 
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
     // Filter (applying dilation, blurring, dilation and erosion) the image
     cv::dilate(green_mask, green_mask, kernel);
-    cv::GaussianBlur(green_mask, green_mask, cv::Size(13, 13), 6, 6);
+    cv::GaussianBlur(green_mask, green_mask, cv::Size(7, 7), 2, 2);
     cv::dilate(green_mask, green_mask, kernel);
     cv::erode(green_mask, green_mask, kernel);
 
@@ -61,7 +65,7 @@ void People::findCircles(const Mat &img)
         }
     }
     imshow("Circle", img);
-    cv::waitKey(0);
+    cv::waitKey(0);*/
 }
 
 std::vector<Circle> People::getCircles() { return circles; };

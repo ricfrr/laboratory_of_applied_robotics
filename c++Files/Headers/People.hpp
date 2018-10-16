@@ -2,6 +2,7 @@
 #define People_hpp
 #include "Circle.hpp"
 #include "Shape.hpp"
+#include "Digit_Recognition.hpp"
 #include <vector>
 
 using namespace cv;
