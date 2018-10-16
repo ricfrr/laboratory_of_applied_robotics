@@ -64,7 +64,7 @@ int Template_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect,
     // Load digits template images
     std::vector<cv::Mat> templROIs;
     for (int i=0; i<=9; ++i) {
-        templROIs.emplace_back(cv::imread("../imgs/template/" + std::to_string(i) + ".png"));
+        templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
     }
 
     ROI = cv::Mat(image, rect); // extract the ROI containing the digit
@@ -125,7 +125,7 @@ std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_a
             // Load digits template images
             std::vector<cv::Mat> templROIs;
             for (int i=0; i<=9; ++i) {
-                templROIs.emplace_back(cv::imread("../imgs/template/" + std::to_string(i) + ".png"));
+                templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
             }
             result = getResult(templROIs, roi2);
             
