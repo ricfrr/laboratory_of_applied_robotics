@@ -30,7 +30,7 @@ void Digit_Recognition::run_demo(const std::string filename){
 void Digit_Recognition::initialize_algorithm(){
     
     
-    HSVFilterRange filter = HSVFilterRange();
+    HSVFilterRange filter = HSVFilterRange("bad");
     if(this->algortihm != nullptr){
         filter = this->algortihm->filter;
     }
@@ -78,11 +78,40 @@ std::vector<int> Digit_Recognition::detect_digits(cv::Mat &img){
     this->algortihm->preprocessing(img, filtered, boundRect);
 
     //run the image detection of the regions
-    std::vector<int> results = this->algortihm->detection_algorithm(boundRect, filtered);
+    std::vector<std::pair<int,cv::Rect>> results = this->algortihm->detection_algorithm(boundRect, filtered);
     //some insides
     std::cout << "detected " << results.size() << " digits" << std::endl;
     
-    return results;
+    //collect the integers
+    std::vector<int> res;
+    
+    for(int i = 0;i<results.size();i++)
+        res.push_back(results[i].first);
+    
+    return res;
+}
+
+std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
+    cv::Mat filtered;
+    std::vector<cv::Rect> boundRect;
+    
+    std::vector<PeopleData> data;
+    //apply filters
+    //extract regions of interest
+    this->algortihm->preprocessing(img, filtered, boundRect);
+    
+    //run the image detection of the regions
+    std::vector<std::pair<int,cv::Rect>> results = this->algortihm->detection_algorithm(boundRect, filtered);
+    //some insides
+    std::cout << "detected " << results.size() << " digits" << std::endl;
+    
+    //collect the data
+    std::vector<PeopleData> res;
+    
+    for(int i = 0;i<results.size();i++)
+        res.push_back(PeopleData(results[i].first,results[i].second));
+    
+    return data;
 }
 
 std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
@@ -107,22 +136,27 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
     return results;
 }
 
-void Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
+std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
     cv::Mat img = img_input;
     std::vector<cv::Rect> rects = get_regions_of_interest(img);
     
-    std::vector<int> results;
+    std::vector<PeopleData> results;
     
     bool one = false;
     bool two = false;
     bool three = false;
     bool four = false;
     
+    std::cout << "detected " << rects.size() << " images" << std::endl;
+    
     for(int i = 0; i<rects.size();i++){
         
         //crop the image to get the part with digit
         cv::Mat newimg(img, rects[i]);
+        
+//        cv:: imshow("img_"+std::to_string(i), img);
+//        cv::waitKey(0);
         
         //show (debugginh)
 //        std::string title = "detecting" + std::to_string(i+1) + " image";
@@ -134,7 +168,7 @@ void Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
         //check if the result makes sence
         if(is_valid(result)){
             //save the result
-            results.push_back(result);
+            results.push_back(PeopleData(result,rects[i]));
             std::cout << "got a result of " << result << std::endl;
             if(result == 1)
                 one = true;
@@ -160,6 +194,8 @@ void Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
             }
         }
     }
+    
+    return results;
 }
 
 bool Digit_Recognition::is_valid(int &detectedDigit){
@@ -192,15 +228,18 @@ int Digit_Recognition::detect_digit_for_map(cv::Mat &img){
     //when no result has been archieved
     if(digits.empty()){
         //change the filter
-        std::string saved = this->algortihm->filter.saved_quality;
-        HSVFilterRange range("medium");
-        range.saved_quality = saved;
-        set_filter(range);
+//        std::string saved = this->algortihm->filter.saved_quality;
+//        HSVFilterRange range("bad");
+//        range.saved_quality = saved;
+//        set_filter(range);
         //try again
         digits = detect_digits(img);
         //try the template matching
         if(digits.empty()){
+            //reset filter
+//            HSVFilterRange filter = HSVFilterRange(this->algortihm->filter.saved_quality);
             set_algo(templateMatching);
+//            set_filter(filter);
             digits = detect_digits(img);
         }
     }

@@ -29,7 +29,7 @@ public:
     
     int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
     
-    std::vector<int> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
+    std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
     
     int getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI);
 };

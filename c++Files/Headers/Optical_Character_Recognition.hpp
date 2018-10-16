@@ -36,7 +36,7 @@ public:
     
     void getResult(tesseract::TessBaseAPI *&ocr, cv::Mat &img, int &result);
     
-    std::vector<int> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
+    std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
     
     int maxConf = 80;
     

@@ -17,6 +17,18 @@
 #include "Optical_Character_Recognition.hpp"
 #include "Template_Character_Recognition.hpp"
 
+struct PeopleData {
+    double radius;
+    cv::Point center;
+    int digit;
+    
+    PeopleData(int digit, cv::Rect rect){
+        this->digit = digit;
+        this->radius = std::min(rect.height,rect.width);
+        this->center = cv::Point(rect.x + rect.width/2, rect.y + rect.height/2);
+    }
+};
+
 //different algorithms for recognizing digits
 enum DigitRecognitionAlgo {
     templateMatching,
@@ -43,11 +55,14 @@ public:
     ///returns a list of digits recognized in an prepared image
     std::vector<int> detect_digits(cv::Mat &img);
     
+    ///returns a list of PeopleData Objects recognized in an prepared image
+    std::vector<PeopleData> detect_peopleData(cv::Mat &img);
+    
     ///detects digit of prepared image and checks if the result was fitting the map requierements
     int detect_digit_for_map(cv::Mat &img);
     
-    ///detects all the digits of an unprepared images and logs the information
-    void detect_digits_for_map(const cv::Mat img_input);
+    ///detects all the digits of an unprepared images and returns people information
+    std::vector<PeopleData> detect_digits_for_map(const cv::Mat img_input);
     
     ///sets a hsv filter for better image recognition results
     void set_filter(HSVFilterRange filterRange);
@@ -59,7 +74,7 @@ private:
     ///the algorithm used to
     DigitRecognitionAlgo picked_algorithm;
     
-    Character_Recognition_Algorithm * algortihm;
+    Character_Recognition_Algorithm * algortihm = nullptr;
     
     void initialize_algorithm();
     

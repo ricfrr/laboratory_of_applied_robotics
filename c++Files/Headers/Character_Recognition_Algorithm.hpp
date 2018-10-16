@@ -103,11 +103,11 @@ struct DigitResultDistribution {
 
 struct HSVFilterRange {
     //works best for the good image
-    cv::Scalar lb = cv::Scalar(65, 30, 80);
-    cv::Scalar ub = cv::Scalar(75, 255, 255);
+    cv::Scalar lb = cv::Scalar(30, 70, 70);
+    cv::Scalar ub = cv::Scalar(90, 255, 255);
     
 private:
-    std::string quality = "good";
+    std::string quality = "bad";
     
 public:
     //works best for the worst image
@@ -116,7 +116,7 @@ public:
     
     HSVFilterRange(){}
     
-    std::string saved_quality = "good";
+    std::string saved_quality = "bad";
     
     HSVFilterRange(std::string quality){
         if (quality == "good"){
@@ -144,12 +144,12 @@ public:
 class Character_Recognition_Algorithm {
 
 public:
-    Character_Recognition_Algorithm(){}
+    Character_Recognition_Algorithm();
     ~Character_Recognition_Algorithm(){}
     
     const double MIN_AREA_SIZE = 100;
     
-    HSVFilterRange filter;
+    HSVFilterRange filter = HSVFilterRange();
     
     //pure virtual function, to run the demo like the public code gave us
     ///a demo function displaying the performance of a given algorithm
@@ -158,7 +158,7 @@ public:
     ///the (virtual) function that runs the recognition engine
     virtual int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI) = 0;
     
-    virtual std::vector<int> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered) = 0;
+    virtual std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered) = 0;
     
     //the folowing functions are used for preparing an image to find the parts containing digits
     //these steps are similar for every recognition algorithm

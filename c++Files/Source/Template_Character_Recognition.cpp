@@ -8,7 +8,9 @@
 
 #include "../Headers/Template_Character_Recognition.hpp"
 
-Template_Character_Recognition::Template_Character_Recognition(){}
+Template_Character_Recognition::Template_Character_Recognition(){
+    this->filter = HSVFilterRange("bad");
+}
 
 Template_Character_Recognition::~Template_Character_Recognition(){}
 
@@ -88,9 +90,9 @@ int Template_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect,
     return maxIdx;
 }
 
-std::vector<int> Template_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
+std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
     
-    std::vector<int> results;
+    std::vector<std::pair<int,cv::Rect>> results;
     
     cv::Mat roi;
     // For each green blob in the original image containing a digit
@@ -141,7 +143,8 @@ std::vector<int> Template_Character_Recognition::detection_algorithm(std::vector
         //no digit is result -99
         if (result != -99) {
             //std::cout << "result was " << std::to_string(result)  << std::endl;
-            results.push_back(result);
+            results.push_back(std::pair<int, cv::Rect>(result,boundRect[i]));
+            //results.push_back(result);
         }
         else {
             //std::cout << "read an image but could not recognize digit" << std::endl;

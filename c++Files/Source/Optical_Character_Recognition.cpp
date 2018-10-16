@@ -15,6 +15,8 @@ Optical_Character_Recognition::Optical_Character_Recognition(){
     ocr->SetPageSegMode(tesseract::PSM_SINGLE_CHAR);
     // Only digits are valid output characters
     ocr->SetVariable("tessedit_char_whitelist", "0123456789");
+    
+    this->filter = HSVFilterRange("bad");
 }
 
 Optical_Character_Recognition::~Optical_Character_Recognition(){
@@ -78,9 +80,9 @@ void Optical_Character_Recognition::getResult(tesseract::TessBaseAPI *&ocr, cv::
     result = *ocr->GetUTF8Text() - '0';
 }
 
-std::vector<int> Optical_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
+std::vector<std::pair<int,cv::Rect>> Optical_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
     
-    std::vector<int> results;
+    std::vector<std::pair<int,cv::Rect>> results;
     
     //go through all rects and see if it contains a digit
     for (int i=0; i<boundRect.size(); ++i)
@@ -153,7 +155,8 @@ std::vector<int> Optical_Character_Recognition::detection_algorithm(std::vector<
 //            if(final_roi.empty() == false)
 //                cv::imshow("succesfull result of " + std::to_string(result), final_roi);
             //stop if detected image
-            results.push_back(result);
+            //PeopleData result_people = PeopleData(result,boundRect[i]);
+            results.push_back(std::pair<int, cv::Rect>(result,boundRect[i]));
         }
         else {
             //std::cout << "read an image but could not recognize digit" << std::endl;

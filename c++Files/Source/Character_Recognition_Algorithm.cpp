@@ -8,6 +8,10 @@
 
 #include "../Headers/Character_Recognition_Algorithm.hpp"
 
+Character_Recognition_Algorithm::Character_Recognition_Algorithm(){
+        this->filter = HSVFilterRange("bad");
+}
+
 cv::Mat Character_Recognition_Algorithm::loadImage(const std::string& filename){
     // Load image from file
     cv::Mat img = cv::imread(filename.c_str());
@@ -86,14 +90,14 @@ void Character_Recognition_Algorithm::rotate_image(cv::Mat &src, double angle, c
 void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
     
     // Display original image
-    //displayImage(img, "Original");
-    //cv::waitKey(0);
+//    displayImage(img, "Original");
+//    cv::waitKey(0);
     
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     convert_bgr_to_hsv(img, hsv_img);
-    //displayImage(hsv_img, "hsv");
-    //cv::waitKey(0);
+//    displayImage(hsv_img, "hsv");
+//    cv::waitKey(0);
     
     // Find green regions
     cv::Mat green_mask;
@@ -102,8 +106,8 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
                cv::Scalar(filter.lb[0], filter.lb[1], filter.lb[2]),
                cv::Scalar(filter.ub[0], filter.ub[1], filter.ub[2]));
     
-    //displayImage(green_mask, "GREEN_filter1");
-    //cv::waitKey(0);
+//    displayImage(green_mask, "GREEN_filter1");
+//    cv::waitKey(0);
     
     // Apply some filtering
     cv::Mat kernel = apply_some_filtering(green_mask);
