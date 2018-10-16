@@ -14,7 +14,11 @@ void People::findCircles(const Mat &img)
     imshow("img", img);
     waitKey(0);
     Digit_Recognition dg_recognition = Digit_Recognition();
-    dg_recognition.detect_digits_for_map(img);
+    std::vector<PeopleData> data = dg_recognition.detect_digits_for_map(img);
+    
+    for(int i=0;i<data.size();i++)
+        std::cout << "detected a guy called " << data[i].digit << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << std::endl;
+    
     /*static const int W_0 = 300;
     static const int H_0 = 0;
     static const int OFFSET_W = 10;
