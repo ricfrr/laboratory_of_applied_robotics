@@ -16,8 +16,7 @@ void Map::createMap(const Mat &img)
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
     people.findCircles(img);
-    // imshow("map", img);
-    // waitKey(0);
+
     // detection of all obstacles
     initializeGrid(arena, exit_point, obstacles);
 }

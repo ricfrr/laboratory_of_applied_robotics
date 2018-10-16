@@ -1,0 +1,60 @@
+\hypertarget{class_digit___recognition}{}\section{Digit\+\_\+\+Recognition Class Reference}
+\label{class_digit___recognition}\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+
+
+Class for Recognizing Digits.  
+
+
+
+
+{\ttfamily \#include $<$Digit\+\_\+\+Recognition.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}\label{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}} 
+{\bfseries Digit\+\_\+\+Recognition} (Digit\+Recognition\+Algo algorithm)
+\item 
+\mbox{\Hypertarget{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}\label{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}} 
+void \mbox{\hyperlink{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}{set\+\_\+algo}} (Digit\+Recognition\+Algo algorithm)
+\begin{DoxyCompactList}\small\item\em set detection algorithm for digits e.\+g. tesseract or template matching \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}\label{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}} 
+void \mbox{\hyperlink{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}{run\+\_\+demo}} (const std\+::string filename)
+\begin{DoxyCompactList}\small\item\em run the algorithm on an image containing digits \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}{detect\+\_\+single\+\_\+digit}} (cv\+::\+Mat \&img)
+\item 
+\mbox{\Hypertarget{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}\label{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}{detect\+\_\+digits}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em returns a list of digits recognized in an prepared image \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}\label{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_people_data}{People\+Data}} $>$ \mbox{\hyperlink{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}{detect\+\_\+people\+Data}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em returns a list of \mbox{\hyperlink{struct_people_data}{People\+Data}} Objects recognized in an prepared image \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_a479e6126291463d9117abc6553c555df}\label{class_digit___recognition_a479e6126291463d9117abc6553c555df}} 
+int \mbox{\hyperlink{class_digit___recognition_a479e6126291463d9117abc6553c555df}{detect\+\_\+digit\+\_\+for\+\_\+map}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em detects digit of prepared image and checks if the result was fitting the map requierements \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}\label{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_people_data}{People\+Data}} $>$ \mbox{\hyperlink{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}{detect\+\_\+digits\+\_\+for\+\_\+map}} (const cv\+::\+Mat img\+\_\+input)
+\begin{DoxyCompactList}\small\item\em detects all the digits of an unprepared images and returns people information \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}\label{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}} 
+void \mbox{\hyperlink{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}{set\+\_\+filter}} (\mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} filter\+Range)
+\begin{DoxyCompactList}\small\item\em sets a hsv filter for better image recognition results \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}\label{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}} 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}{get\+\_\+regions\+\_\+of\+\_\+interest}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em extracts the rect information of regions where the filter was applied \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for Recognizing Digits. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}\label{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}} 
+\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!detect\+\_\+single\+\_\+digit@{detect\+\_\+single\+\_\+digit}}
+\index{detect\+\_\+single\+\_\+digit@{detect\+\_\+single\+\_\+digit}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+\subsubsection{\texorpdfstring{detect\+\_\+single\+\_\+digit()}{detect\_single\_digit()}}
+{\footnotesize\ttfamily int Digit\+\_\+\+Recognition\+::detect\+\_\+single\+\_\+digit (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{img }\end{DoxyParamCaption})}
+
+detect a single digit in an prepared image will return first detected digit 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Digit\+\_\+\+Recognition.\+hpp\end{DoxyCompactItemize}
