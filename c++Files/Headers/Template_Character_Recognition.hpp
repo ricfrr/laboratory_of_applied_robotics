@@ -25,7 +25,7 @@ public:
     Template_Character_Recognition();
     ~Template_Character_Recognition();
     
-    const std::string template_path = "../data/template";
+    const std::string template_path = "../data/template/";
     
     void processImage(const std::string& filename);
     

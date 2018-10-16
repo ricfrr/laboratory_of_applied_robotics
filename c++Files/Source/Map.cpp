@@ -106,7 +106,7 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
             return true;
         }
     }
-    
+    return false;
 };
 
 bool Map::checkPeople(Cell cell, People people)
