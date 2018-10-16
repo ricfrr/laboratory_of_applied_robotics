@@ -17,13 +17,15 @@ class Circle : public Shape
     void setRadius(int radius_c);
     cv::Point getCenter();
     void setCenter(cv::Point center_c);
+    int getDigit();
+    void setDigit(int digit_i);
     
    
 
 
   private:
     cv::Point center;
-    int radius;
+    int radius, digit;
 };
 
 #endif /* Circle_hpp */

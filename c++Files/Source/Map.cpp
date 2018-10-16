@@ -1,6 +1,5 @@
 #include "../Headers/Map.hpp"
 
-
 Map::Map()
 {
     // creator
@@ -12,7 +11,7 @@ Map::~Map()
 
 void Map::createMap(const Mat &img)
 {
-    
+
     arena.findArena(img);
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
@@ -70,28 +69,60 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 if (contact(cell_corners, corners))
                 {
                     cell.setExit();
-                    //std::cout << "\033[1;34mx\033[0m";
+                    std::cout << "\033[1;34mx\033[0m";
                 }
             }
-            if (!cell.isBorder() && !cell.isExit() && checkObstacles(cell, obstacles))
+            if (!cell.isEmpty() && checkPeople(cell, people))
+            {
+                cell.setRescue();
+                std::cout << "\033[1;36mr\033[0m";
+            }
+            if (!cell.isEmpty() && checkObstacles(cell, obstacles))
             {
                 cell.setObstacle();
-                //std::cout << "\033[1;31mo\033[0m";
+                std::cout << "\033[1;31mo\033[0m";
             }
             if (cell.isEmpty())
             {
-                //std::cout << "\033[1;32me\033[0m";
+                std::cout << "\033[1;32me\033[0m";
             }
             temp_vec.push_back(cell);
             temp_x = temp_x + x_incr;
         }
         temp_y = temp_y + y_incr;
         temp_x = 0;
-        //std::cout << std::endl;
+        std::cout << std::endl;
         grid.push_back(temp_vec);
     }
     std::cout << "---- DONE ----" << std::endl;
 };
+
+bool circleContact(std::vector<cv::Point> corners, Circle circle)
+{
+    double distance;
+    for (int i =0; i<corners.size(); i++){
+        distance  = cv::norm(corners[i] - corners[((i+1)%corners.size())]);
+        if (distance<= circle.getRadius()){
+            return true;
+        }
+    }
+    
+};
+
+bool Map::checkPeople(Cell cell, People people)
+{
+    std::vector<Circle> circles = people.getCircles();
+    std::vector<cv::Point> cell_corners = cell.getCorners();
+
+    for (int i = 0; i < circles.size(); i++)
+    {
+        if (circleContact(cell_corners, circles[i]))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 bool Map::checkObstacles(Cell cell, Obstacle obstacles)
 {
@@ -239,8 +270,8 @@ bool Map::contact(std::vector<cv::Point> cell,
         /* is odd */
         if (intersections % 2)
         {
-            std::cout << "INSIDE point : " << point << " poly : " << poly << std::endl;
-            std::cout << "poly size : " << poly.size() << " max_y : " << max_y << " min_y : " << min_y << std::endl;
+            //std::cout << "INSIDE point : " << point << " poly : " << poly << std::endl;
+            //std::cout << "poly size : " << poly.size() << " max_y : " << max_y << " min_y : " << min_y << std::endl;
             return true;
         }
     }

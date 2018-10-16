@@ -35,6 +35,9 @@ private:
 
   bool checkObstacles(Cell cell, Obstacle obstacles);
 
+  bool checkPeople(Cell cell, People people);
+
+
   ExitPoint exit_point;
   Obstacle obstacles;
   Arena arena;
