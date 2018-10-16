@@ -16,8 +16,6 @@ void People::findCircles(const Mat &img)
     Digit_Recognition dg_recognition = Digit_Recognition();
     //dg_recognition.set_filter(HSVFilterRange("bad"));
     std::vector<PeopleData> data = dg_recognition.detect_digits_for_map(img);
-    std::vector<Circle> circles;
-
     for (int i = 0; i < data.size(); i++)
     {
         std::cout << "detected a guy called " << data[i].digit << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << std::endl;
@@ -27,7 +25,7 @@ void People::findCircles(const Mat &img)
         Circle circle_d = Circle();
         circle_d.setDigit(data[i].digit);
         circle_d.setCenter(center);
-        circle_d.setRadius(data[i].radius);
+        circle_d.setRadius(data[i].radius/2);
         circles.push_back(circle_d);
     }
 }

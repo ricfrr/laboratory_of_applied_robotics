@@ -16,8 +16,8 @@ void Map::createMap(const Mat &img)
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
     people.findCircles(img);
-    //imshow("map", img);
-    //waitKey(0);
+    // imshow("map", img);
+    // waitKey(0);
     // detection of all obstacles
     initializeGrid(arena, exit_point, obstacles);
 }
@@ -55,32 +55,32 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
 
             cell.setCorners(cell_corners);
             cell.setEmpty();
-            //check if cell is in contact with an obj
+            // check if cell is in contact with an obj
 
             if (isOutofArena(cell_corners, arena))
             {
                 cell.setBorder();
-                //std::cout << "b";
+                std::cout << "b";
             }
             else
             {
                 std::vector<cv::Point> corners = exit_point.getCorners();
-                //std::cout << "CHECK EXIT" << std::endl;
+                // std::cout << "CHECK EXIT" << std::endl;
                 if (contact(cell_corners, corners))
                 {
                     cell.setExit();
                     std::cout << "\033[1;34mx\033[0m";
                 }
             }
-            if (!cell.isEmpty() && checkPeople(cell, people))
-            {
-                cell.setRescue();
-                std::cout << "\033[1;36mr\033[0m";
-            }
-            if (!cell.isEmpty() && checkObstacles(cell, obstacles))
+            if (cell.isEmpty() && checkObstacles(cell, obstacles))
             {
                 cell.setObstacle();
                 std::cout << "\033[1;31mo\033[0m";
+            }
+            else if (checkPeople(cell, people))
+            {
+                cell.setRescue();
+                std::cout << "\033[1;36mr\033[0m";
             }
             if (cell.isEmpty())
             {
@@ -97,12 +97,19 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
     std::cout << "---- DONE ----" << std::endl;
 };
 
+double distanceBetweenTwoPoints(double x, double y, double a, double b)
+{
+    return sqrt(pow(x - a, 2) + pow(y - b, 2));
+};
+
 bool circleContact(std::vector<cv::Point> corners, Circle circle)
 {
     double distance;
-    for (int i =0; i<corners.size(); i++){
-        distance  = cv::norm(corners[i] - corners[((i+1)%corners.size())]);
-        if (distance<= circle.getRadius()){
+    for (int i = 0; i < corners.size(); i++)
+    {
+        distance = distanceBetweenTwoPoints(corners[i].x,corners[i].y,circle.getCenter().x,circle.getCenter().y);
+        if (distance < circle.getRadius() )
+        { 
             return true;
         }
     }
@@ -111,9 +118,10 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
 
 bool Map::checkPeople(Cell cell, People people)
 {
+    
     std::vector<Circle> circles = people.getCircles();
     std::vector<cv::Point> cell_corners = cell.getCorners();
-
+    //std::cout<<"circles size : "<<circles.size()<<" cell_corner : "<<cell_corners.size()<<std::endl;
     for (int i = 0; i < circles.size(); i++)
     {
         if (circleContact(cell_corners, circles[i]))
@@ -137,7 +145,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
         for (int k = 0; k < triangles.size(); k++)
         {
             std::vector<cv::Point> tmp_tr = triangles[k].getCorners();
-            //std::cout << "CHECK TRIANGLE" << std::endl;
+            // std::cout << "CHECK TRIANGLE" << std::endl;
             if (contact(cell_corners, tmp_tr))
             {
                 touched = true;
@@ -149,7 +157,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
         for (int k = 0; k < squares.size(); k++)
         {
             std::vector<cv::Point> tmp_sq = squares[k].getCorners();
-            //std::cout << "CHECK SQUARE" << std::endl;
+            // std::cout << "CHECK SQUARE" << std::endl;
             if (contact(cell_corners, tmp_sq))
             {
                 touched = true;
@@ -161,7 +169,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
         for (int k = 0; k < pentagons.size(); k++)
         {
             std::vector<cv::Point> tmp_pt = pentagons[k].getCorners();
-            //std::cout << "CHECK PENTAGON" << std::endl;
+            // std::cout << "CHECK PENTAGON" << std::endl;
             if (contact(cell_corners, tmp_pt))
             {
                 touched = true;
@@ -173,7 +181,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
         for (int k = 0; k < hexagons.size(); k++)
         {
             std::vector<cv::Point> tmp_hx = hexagons[k].getCorners();
-            //std::cout << "CHECK HEXAGON" << std::endl;
+            // std::cout << "CHECK HEXAGON" << std::endl;
             if (contact(cell_corners, tmp_hx))
             {
                 touched = true;
@@ -207,7 +215,8 @@ bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena)
     return false;
 };
 
-void Map::findMaxMinY(int &max_y, int &min_y, const std::vector<cv::Point> poly)
+void Map::findMaxMinY(int &max_y, int &min_y,
+                      const std::vector<cv::Point> poly)
 {
     min_y = 600;
     max_y = 0;
@@ -224,13 +233,14 @@ void Map::findMaxMinY(int &max_y, int &min_y, const std::vector<cv::Point> poly)
     }
 }
 
-// check if a cell is in contact with a polygon, TODO se un un punto è piu basso o piu alto del poligono non ha senso controllarlo quindi non ci va
+// check if a cell is in contact with a polygon,
 bool Map::contact(std::vector<cv::Point> cell,
                   const std::vector<cv::Point> poly)
 {
     int max_y, min_y;
     findMaxMinY(max_y, min_y, poly);
-    //std::cout<<"poly size : "<<poly.size()<<" max_y : "<<max_y<<" min_y : "<<min_y<<std::endl;
+    // std::cout<<"poly size : "<<poly.size()<<" max_y : "<<max_y<<" min_y :
+    // "<<min_y<<std::endl;
     for (int i = 0; i < cell.size(); i++)
     {
         cv::Point point = cell[i];
@@ -263,15 +273,16 @@ bool Map::contact(std::vector<cv::Point> cell,
             // if y_int is higher than y do intersect
             if (y <= y_int)
             {
-                //std::cout << "point : " << point << " poly : " << poly << std::endl;
+                // std::cout << "point : " << point << " poly : " << poly << std::endl;
                 intersections++;
             }
         }
         /* is odd */
         if (intersections % 2)
         {
-            //std::cout << "INSIDE point : " << point << " poly : " << poly << std::endl;
-            //std::cout << "poly size : " << poly.size() << " max_y : " << max_y << " min_y : " << min_y << std::endl;
+            // std::cout << "INSIDE point : " << point << " poly : " << poly <<
+            // std::endl; std::cout << "poly size : " << poly.size() << " max_y : " <<
+            // max_y << " min_y : " << min_y << std::endl;
             return true;
         }
     }
