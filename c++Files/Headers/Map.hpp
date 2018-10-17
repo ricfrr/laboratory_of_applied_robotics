@@ -33,9 +33,9 @@ private:
 
   bool isOutofArena(std::vector<cv::Point> corners, Arena arena);
 
-  bool checkObstacles(Cell cell, Obstacle obstacles);
+  void checkObstacles(Cell &cell, Obstacle obstacles);
 
-  bool checkPeople(Cell cell, People people);
+  void checkPeople(Cell &cell, People people);
 
 
   ExitPoint exit_point;

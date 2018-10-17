@@ -58,6 +58,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
 
             if (isOutofArena(cell_corners, arena))
             {
+                arena.setCell(cell);
                 cell.setBorder();
                 std::cout << "b";
             }
@@ -67,19 +68,26 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 // std::cout << "CHECK EXIT" << std::endl;
                 if (contact(cell_corners, corners))
                 {
+                    exit_point.setCell(cell);
                     cell.setExit();
                     std::cout << "\033[1;34mx\033[0m";
                 }
             }
-            if (cell.isEmpty() && checkObstacles(cell, obstacles))
+            if (cell.isEmpty())
             {
-                cell.setObstacle();
-                std::cout << "\033[1;31mo\033[0m";
+                checkObstacles(cell, obstacles);
+                if (cell.isObstacle())
+                {
+                    std::cout << "\033[1;31mo\033[0m";
+                }
             }
-            else if (checkPeople(cell, people))
+            if (cell.isEmpty())
             {
-                cell.setRescue();
-                std::cout << "\033[1;36mr\033[0m";
+                checkPeople(cell, people);
+                if (cell.isRescue())
+                {
+                    std::cout << "\033[1;36mr\033[0m";
+                }
             }
             if (cell.isEmpty())
             {
@@ -106,18 +114,18 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
     double distance;
     for (int i = 0; i < corners.size(); i++)
     {
-        distance = distanceBetweenTwoPoints(corners[i].x,corners[i].y,circle.getCenter().x,circle.getCenter().y);
-        if (distance < circle.getRadius() )
-        { 
+        distance = distanceBetweenTwoPoints(corners[i].x, corners[i].y, circle.getCenter().x, circle.getCenter().y);
+        if (distance < circle.getRadius())
+        {
             return true;
         }
     }
     return false;
 };
 
-bool Map::checkPeople(Cell cell, People people)
+void Map::checkPeople(Cell &cell, People people)
 {
-    
+
     std::vector<Circle> circles = people.getCircles();
     std::vector<cv::Point> cell_corners = cell.getCorners();
     //std::cout<<"circles size : "<<circles.size()<<" cell_corner : "<<cell_corners.size()<<std::endl;
@@ -125,13 +133,13 @@ bool Map::checkPeople(Cell cell, People people)
     {
         if (circleContact(cell_corners, circles[i]))
         {
-            return true;
+            cell.setRescue(circles[i].getDigit());
+            circles[i].setCell(cell);
         }
     }
-    return false;
 }
 
-bool Map::checkObstacles(Cell cell, Obstacle obstacles)
+void Map::checkObstacles(Cell &cell, Obstacle obstacles)
 {
     bool touched = false;
     std::vector<Triangle> triangles = obstacles.getTriangles();
@@ -147,6 +155,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
             // std::cout << "CHECK TRIANGLE" << std::endl;
             if (contact(cell_corners, tmp_tr))
             {
+                triangles[k].setCell(cell);
                 touched = true;
             }
         }
@@ -159,6 +168,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
             // std::cout << "CHECK SQUARE" << std::endl;
             if (contact(cell_corners, tmp_sq))
             {
+                squares[k].setCell(cell);
                 touched = true;
             }
         }
@@ -171,6 +181,7 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
             // std::cout << "CHECK PENTAGON" << std::endl;
             if (contact(cell_corners, tmp_pt))
             {
+                pentagons[k].setCell(cell);
                 touched = true;
             }
         }
@@ -183,11 +194,15 @@ bool Map::checkObstacles(Cell cell, Obstacle obstacles)
             // std::cout << "CHECK HEXAGON" << std::endl;
             if (contact(cell_corners, tmp_hx))
             {
+                hexagons[k].setCell(cell);
                 touched = true;
             }
         }
     }
-    return touched;
+    if (touched)
+    {
+        cell.setObstacle();
+    }
 };
 
 bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena)

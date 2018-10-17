@@ -1,8 +1,8 @@
 #ifndef Cell_hpp
 #define Cell_hpp
 #include <vector>
+#include <opencv2/core/core.hpp>
 
-#include "Shape.hpp"
 
 using namespace cv;
 
@@ -35,17 +35,19 @@ class Cell
     bool isBorder();
     bool isObstacle();
     bool isRescue();
+    int getDigit();
 
     void setEmpty();
     void setExit();
     void setBorder();
     void setObstacle();
-    void setRescue();
+    void setRescue(int digit_i);
 
    private: 
     
     void findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners);
     bool empty, exit_p, border, obstacle, rescue;
+    int digit =0;
     cv::Point top_left, top_right, bottom_left, bottom_right;
 };
 

@@ -109,13 +109,18 @@ void Cell::setObstacle()
     obstacle = true;
     rescue = false;
 };
-void Cell::setRescue()
+
+int Cell::getDigit(){
+    return digit;
+};
+void Cell::setRescue(int digit_i)
 {
     empty = false;
     exit_p = false;
     border = false;
     obstacle = false;
     rescue = true;
+    digit = digit_i;
 };
 
 bool Cell::isEmpty()
