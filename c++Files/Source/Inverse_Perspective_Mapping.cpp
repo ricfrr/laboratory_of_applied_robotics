@@ -230,7 +230,7 @@ cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf,
     cv::Mat camera_matrix, dist_coeffs;
     loadCoefficients(intrinsic_conf, camera_matrix, dist_coeffs);
     this->outputfilename = outputfilename;
-    double pixel_scale = 0.4; // TODO ...just for testing
+    double pixel_scale = 0;
     Mat persp_img;
     Mat persp_transf =
         findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
