@@ -42,5 +42,5 @@ void Image_Processing::run(std::string calibration, std::string imagefilename)
     cv::hconcat(img, img_warped, concat);
     cv::resize(concat, concat, cv::Size(1280,512));
     cv::imshow("Win1", concat);
-    cv::waitKey(0);
+    //cv::waitKey(0);
 }

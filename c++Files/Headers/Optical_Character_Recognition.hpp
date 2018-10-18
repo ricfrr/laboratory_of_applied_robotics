@@ -38,7 +38,7 @@ public:
     
     std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
     
-    int maxConf = 80;
+    int maxConf = 85;
     
     tesseract::TessBaseAPI * ocr = new tesseract::TessBaseAPI();
     

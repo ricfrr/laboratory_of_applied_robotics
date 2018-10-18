@@ -49,6 +49,9 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
     returnedImg = original_img.clone();
     cv::findContours(filtered_img, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     
+//    displayImage(filtered_img, "contours");
+//    cv::waitKey(0);
+    
     std::vector<cv::Rect> boundRect(contours.size());
     for (int i=0; i<contours.size(); ++i)
     {
@@ -96,6 +99,15 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     convert_bgr_to_hsv(img, hsv_img);
+    
+    //find a filter
+    Color_Processing color;
+    //color.find_black_threshold(hsv_img);
+    color.load_pixels(hsv_img);
+    HSVFilterRange filter = color.getFilter();
+    this->filter = filter;
+    
+    
 //    displayImage(hsv_img, "hsv");
 //    cv::waitKey(0);
     
@@ -125,6 +137,8 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
+//    displayImage(filtered, "filtered");
+//    cv::waitKey(0);
     //displaying some more
 //    displayImage(green_mask_inv, "Numbers");
 //    cv::waitKey(0);

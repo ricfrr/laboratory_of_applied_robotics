@@ -80,7 +80,7 @@ int Template_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect,
         cv::erode(ROI, ROI, kernel);
         
         // Show the actual image used for the template matching
-        cv::imshow("ROI", ROI);
+        // cv::imshow("ROI", ROI);
         
         // Find the template digit with the best matching
         int maxIdx = getResult(templROIs, ROI);
@@ -107,16 +107,16 @@ std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_a
         
         DigitResultDistribution dis = DigitResultDistribution();
         
-        if(!roi.empty()){
-            cv::imshow("Detecting", roi);}
+//        if(!roi.empty()){
+//            cv::imshow("Detecting", roi);}
         
         while(angle < 360 && !roi.empty()){
             entered = true;
             //std::cout << "rotating image and retrying" << std::endl;
-            if(angle == 0){
-                cv::imshow("Problem", roi);
-                
-            }
+//            if(angle == 0){
+//                cv::imshow("Problem", roi);
+//
+//            }
             
             cv::Mat roi2,roi3;
             rotate_image(roi, angle, roi2);

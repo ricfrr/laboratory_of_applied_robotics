@@ -29,6 +29,9 @@ int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv
     
     ROI = cv::Mat(image, rect); // extract the ROI containing the digit
     
+//    displayImage(image, "digit");
+//    cv::waitKey(0);
+    
     if (ROI.empty()) return -99;
     
     cv::resize(ROI, ROI, cv::Size(200, 200)); // resize the ROI

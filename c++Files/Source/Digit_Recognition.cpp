@@ -100,6 +100,9 @@ std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
     //extract regions of interest
     this->algortihm->preprocessing(img, filtered, boundRect);
     
+    cv::imshow("proprocessing", filtered);
+    cv::waitKey(0);
+    
     //run the image detection of the regions
     std::vector<std::pair<int,cv::Rect>> results = this->algortihm->detection_algorithm(boundRect, filtered);
     //some insides
@@ -122,9 +125,9 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
     //do the preprocessing to apply filters and extract filtered regions
     this->algortihm->preprocessing(img, fil, bR);
     
-    algortihm->displayImage(fil, "filtered");
     std::string name = "filtered_" + std::to_string(this->algortihm->filter.lb[0]) + "_" + std::to_string(this->algortihm->filter.lb[1]) + "_" + std::to_string(this->algortihm->filter.lb[2]);
-    cv::imwrite(name + ".jpg", fil);
+    
+    cv::imshow("input_", fil);
     
     std::vector<cv::Rect> results;
     
@@ -154,14 +157,7 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
         
         //crop the image to get the part with digit
         cv::Mat newimg(img, rects[i]);
-        
-//        cv:: imshow("img_"+std::to_string(i), img);
-//        cv::waitKey(0);
-        
-        //show (debugginh)
-//        std::string title = "detecting" + std::to_string(i+1) + " image";
-//        cv::imshow(title, newimg);
-        
+      
         //detect the digit
         int result = detect_digit_for_map(newimg);
         
@@ -194,6 +190,7 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
             }
         }
     }
+            cv::waitKey(0);
     
     return results;
 }

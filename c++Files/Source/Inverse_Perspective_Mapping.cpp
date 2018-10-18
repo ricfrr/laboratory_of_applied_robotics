@@ -184,6 +184,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
         throw std::runtime_error("Could not open image " + calib_image_name);
     }
 
+    //undistort the image based on the calibration
     undistort(original_image, calib_image, camera_matrix, dist_coeffs);
 
     // find corners

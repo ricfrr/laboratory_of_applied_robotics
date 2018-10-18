@@ -12,11 +12,9 @@
 #include <stdio.h>
 #include <string>
 
-#include <opencv2/core.hpp>
-#include <opencv2/videoio.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/opencv.hpp>
 #include <iostream>
+
+#include "Color_Processing.hpp"
 
 template < typename T>
 int findInVector(const std::vector<T>  & vecOfElements, const T  & element)
@@ -101,44 +99,6 @@ struct DigitResultDistribution {
     }
 };
 
-struct HSVFilterRange {
-    //works best for the good image
-    cv::Scalar lb = cv::Scalar(30, 70, 70);
-    cv::Scalar ub = cv::Scalar(90, 255, 255);
-    
-private:
-    std::string quality = "bad";
-    
-public:
-    //works best for the worst image
-//    cv::Scalar lb = cv::Scalar(30, 70, 70);
-//    cv::Scalar ub = cv::Scalar(90, 255, 255);
-    
-    HSVFilterRange(){}
-    
-    std::string saved_quality = "bad";
-    
-    HSVFilterRange(std::string quality){
-        if (quality == "good"){
-            this->lb = cv::Scalar(65, 30, 80);
-            this->ub = cv::Scalar(75, 255, 255);
-            this->quality = quality;
-            saved_quality = quality;
-        }
-        else if (quality == "medium"){
-            this->lb = cv::Scalar(30, 100, 55);
-            this-> ub = cv::Scalar(90, 255, 255);
-            this->quality = quality;
-            saved_quality = quality;
-        }
-        else if (quality == "bad"){
-            this->lb = cv::Scalar(30, 70, 70);
-            this->ub = cv::Scalar(90, 255, 255);
-            this->quality = quality;
-            saved_quality = quality;
-        }
-    }
-};
 
 /// abstract class for character recognition algorithms
 class Character_Recognition_Algorithm {
