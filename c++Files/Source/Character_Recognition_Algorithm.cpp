@@ -102,8 +102,8 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     
     //find a filter
     Color_Processing color;
-    //color.find_black_threshold(hsv_img);
-    color.load_pixels(hsv_img);
+    std::string filename = "../data/calib/filter_.png"; //the link might has to be adapted
+    color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;
     
