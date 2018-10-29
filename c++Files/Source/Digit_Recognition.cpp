@@ -100,6 +100,15 @@ std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
     //extract regions of interest
     this->algortihm->preprocessing(img, filtered, boundRect);
     
+    //some insides
+    std::cout << "detected " << boundRect.size() << " circles" << std::endl;
+    
+    //collect the data
+    std::vector<PeopleData> res;
+    
+    for(int i = 0;i<boundRect.size();i++)
+        res.push_back(PeopleData(0,boundRect[i]));
+    
     cv::imshow("proprocessing", filtered);
     cv::waitKey(0);
     
@@ -108,11 +117,11 @@ std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
     //some insides
     std::cout << "detected " << results.size() << " digits" << std::endl;
     
-    //collect the data
-    std::vector<PeopleData> res;
-    
-    for(int i = 0;i<results.size();i++)
-        res.push_back(PeopleData(results[i].first,results[i].second));
+    for(int i = 0;i<boundRect.size();i++)
+        for(int j = 0;j<results.size();j++)
+            if(boundRect[i] == results[j].second)
+                res[j].digit = results[j].first;
+        
     
     return data;
 }
@@ -157,7 +166,7 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
         
         //crop the image to get the part with digit
         cv::Mat newimg(img, rects[i]);
-      
+        
         //detect the digit
         int result = detect_digit_for_map(newimg);
         
@@ -174,23 +183,25 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
                 three = true;
             else if(result == 4)
                 four = true;
-        }else{
-           std::cout << "got no result" << std::endl;
-            if(!one){
-                std::cout << "ONE is missing" << std::endl;
-            }
-            if(!two){
-                std::cout << "TWO is missing" << std::endl;
-            }
-            if(!three){
-                std::cout << "THREE is missing" << std::endl;
-            }
-            if(!four){
-                std::cout << "FOUR is missing" << std::endl;
-            }
+        }
+        else {
+            results.push_back(PeopleData(0,rects[i]));
         }
     }
-            cv::waitKey(0);
+    
+    if(!one){
+        std::cout << "ONE is missing" << std::endl;
+    }
+    if(!two){
+        std::cout << "TWO is missing" << std::endl;
+    }
+    if(!three){
+        std::cout << "THREE is missing" << std::endl;
+    }
+    if(!four){
+        std::cout << "FOUR is missing" << std::endl;
+    }
+    cv::waitKey(0);
     
     return results;
 }
