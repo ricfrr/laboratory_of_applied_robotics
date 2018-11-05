@@ -274,12 +274,13 @@ bool Map::contact(std::vector<cv::Point> cell,
                 p2 = poly[0];
 
             // if x is out bound not intersect
-            if ((x < p1.x && x < p2.x) || (x > p1.x && x > p2.x))
+            if ((x <= p1.x && x <= p2.x) || (x > p1.x && x > p2.x))
                 continue;
             if (y > max_y || y < min_y)
             {
                 continue;
             }
+
 
             // where intersect at point x ?
             double y_int = p1.y + (p2.y - p1.y) * (x - p1.x) / (p2.x - p1.x);
@@ -287,16 +288,12 @@ bool Map::contact(std::vector<cv::Point> cell,
             // if y_int is higher than y do intersect
             if (y <= y_int)
             {
-                // std::cout << "point : " << point << " poly : " << poly << std::endl;
                 intersections++;
             }
         }
         /* is odd */
         if (intersections % 2)
         {
-            // std::cout << "INSIDE point : " << point << " poly : " << poly <<
-            // std::endl; std::cout << "poly size : " << poly.size() << " max_y : " <<
-            // max_y << " min_y : " << min_y << std::endl;
             return true;
         }
     }
