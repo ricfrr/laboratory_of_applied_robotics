@@ -158,7 +158,7 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale){
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
 
     double top_dist = cv::norm(corners[0]-corners[1]);
-    pixel_scale =top_dist/960;
+    pixel_scale =top_dist/970;
     std::cout<<"pixel scale: "<<pixel_scale<<std::endl;
 
     persp_img = im_dst;
@@ -203,11 +203,11 @@ Mat Inverse_Perspective_Mapping::findTransform(
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
-    
+    imshow("first persp", im_dst);
     reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
-    //imshow("Image", im_dst);
-    //waitKey(0);
+    imshow("sec persp", im_dst);
+    waitKey(0);
     return tform;
 }
 
