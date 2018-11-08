@@ -150,58 +150,80 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
 
 std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
-    cv::Mat img = img_input;
-    std::vector<cv::Rect> rects = get_regions_of_interest(img);
+    //*** new Marvin
+    
+    cv::Mat filtered;
+    std::vector<cv::Rect> rects;
+    
+    cv::Mat source = img_input.clone();
+    
+    std::vector<cv::Mat> digit_images = this->algortihm->preprocessing(source, filtered, rects);
+    
+    for(int i = 0;i<digit_images.size();i++){
+        cv::imshow("digit_"+std::to_string(i), digit_images[i]);
+        this->algortihm->prepare_uniform_window(digit_images[i]);
+        
+        std::cout << this->algortihm->detect_digit(digit_images[i]) << std::endl;
+        cv::waitKey(0);
+    }
+    
+    cv::waitKey(0);
     
     std::vector<PeopleData> results;
     
-    bool one = false;
-    bool two = false;
-    bool three = false;
-    bool four = false;
-    
-    std::cout << "detected " << rects.size() << " images" << std::endl;
-    
-    for(int i = 0; i<rects.size();i++){
-        
-        //crop the image to get the part with digit
-        cv::Mat newimg(img, rects[i]);
-        
-        //detect the digit
-        int result = detect_digit_for_map(newimg);
-        
-        //check if the result makes sence
-        if(is_valid(result)){
-            //save the result
-            results.push_back(PeopleData(result,rects[i]));
-            std::cout << "got a result of " << result << std::endl;
-            if(result == 1)
-                one = true;
-            else if(result == 2)
-                two = true;
-            else if(result == 3)
-                three = true;
-            else if(result == 4)
-                four = true;
-        }
-        else {
-            results.push_back(PeopleData(0,rects[i]));
-        }
-    }
-    
-    if(!one){
-        std::cout << "ONE is missing" << std::endl;
-    }
-    if(!two){
-        std::cout << "TWO is missing" << std::endl;
-    }
-    if(!three){
-        std::cout << "THREE is missing" << std::endl;
-    }
-    if(!four){
-        std::cout << "FOUR is missing" << std::endl;
-    }
-   // cv::waitKey(0);
+    //*** old Marvin
+//    cv::Mat img = img_input;
+//    std::vector<cv::Rect> rects = get_regions_of_interest(img);
+//
+//    std::vector<PeopleData> results;
+//
+//    bool one = false;
+//    bool two = false;
+//    bool three = false;
+//    bool four = false;
+//
+//    std::cout << "detected " << rects.size() << " images" << std::endl;
+//
+//    for(int i = 0; i<rects.size();i++){
+//
+//        //crop the image to get the part with digit
+//        cv::Mat newimg(img, rects[i]);
+//
+//        //detect the digit
+//        int result = detect_digit_for_map(newimg);
+//
+//        //check if the result makes sence
+//        if(is_valid(result)){
+//            //save the result
+//            results.push_back(PeopleData(result,rects[i]));
+//            std::cout << "got a result of " << result << std::endl;
+//            if(result == 1)
+//                one = true;
+//            else if(result == 2)
+//                two = true;
+//            else if(result == 3)
+//                three = true;
+//            else if(result == 4)
+//                four = true;
+//        }
+//        else {
+//            results.push_back(PeopleData(0,rects[i]));
+//        }
+//    }
+//
+//    if(!one){
+//        std::cout << "ONE is missing" << std::endl;
+//    }
+//    if(!two){
+//        std::cout << "TWO is missing" << std::endl;
+//    }
+//    if(!three){
+//        std::cout << "THREE is missing" << std::endl;
+//    }
+//    if(!four){
+//        std::cout << "FOUR is missing" << std::endl;
+//    }
+//   // cv::waitKey(0);
     
     return results;
 }

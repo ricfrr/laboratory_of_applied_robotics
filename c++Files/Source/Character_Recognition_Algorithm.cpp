@@ -91,11 +91,7 @@ void Character_Recognition_Algorithm::rotate_image(cv::Mat &src, double angle, c
                    cv::Scalar(255, 255, 255));
 }
 
-void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
-    
-    // Display original image
-//    displayImage(img, "Original");
-//    cv::waitKey(0);
+std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
     
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
@@ -103,14 +99,11 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     
     //find a filter
     Color_Processing color;
-    std::string filename = "../data/calib/filter_.png"; //the link might has to be adapted
+    std::string filename = "../data/calib/filter_+++.png"; //the link might has to be adapted
     color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;
     
-    
-//    displayImage(hsv_img, "hsv");
-//    cv::waitKey(0);
     
     // Find green regions
     cv::Mat green_mask;
@@ -119,8 +112,6 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
                cv::Scalar(filter.lb[0], filter.lb[1], filter.lb[2]),
                cv::Scalar(filter.ub[0], filter.ub[1], filter.ub[2]));
     
-//    displayImage(green_mask, "GREEN_filter1");
-//    cv::waitKey(0);
     
     // Apply some filtering
     cv::Mat kernel = apply_some_filtering(green_mask);
@@ -129,23 +120,56 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     cv::Mat contours_img;
     boundRect = extract_regions_of_interest(img, green_mask,contours_img);
     
-    //displaying
-//    displayImage(contours_img, "Original");
-//    cv::waitKey(0);
-    
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
-    displayImage(img, "inversion one");
-    displayImage(green_mask, "inversion two");
+//    displayImage(img, "inversion one");
+//    displayImage(green_mask, "inversion two");
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
+//    displayImage(green_mask, "used");
+//    displayImage(green_mask_inv, "inv");
 //    displayImage(filtered, "filtered");
-   // cv::waitKey(0);
-    //displaying some more
-//    displayImage(green_mask_inv, "Numbers");
 //    cv::waitKey(0);
+    //cutting out the areas of interest and return them
+    std::vector<cv::Mat> cut_images;
+    for(int i = 0;i<boundRect.size();i++){
+        cv::Mat cut_img = cv::Mat(filtered, boundRect[i]);
+        if (!cut_img.empty())
+            cut_images.push_back(cut_img);
+    }
     
+    return cut_images;
+
+    
+}
+
+void Character_Recognition_Algorithm::prepare_uniform_window(cv::Mat &img){
+    
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
+    
+    cv::resize(img, img, cv::Size(200, 200)); // resize the ROI
+    cv::imshow("after resizing", img);
+    
+    //cv::adaptiveThreshold(img, img, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 3, 0);
+    cv::threshold( img, img, 80, 255, 1 ); // threshold and binarize the image, to suppress some noise
+    cv::imshow("after threshold", img);
+    
+    // Apply some additional smoothing and filtering
+    cv::erode(img, img, kernel);
+    cv::imshow("after erosion", img);
+    cv::GaussianBlur(img, img, cv::Size(3, 3), 2, 2);
+    cv::imshow("after blur", img);
+    cv::erode(img, img, kernel);
+    cv::imshow("after erosion2", img);
+    cv::erode(img, img, kernel);
+    cv::imshow("after erosion3", img);
+
+    
+//    cv::dilate(img, img, kernel);
+//    cv::imshow("after dilation", img);
+//    cv::erode(img, img, kernel);
+//    cv::imshow("eroding", img);
 }
 
 void Character_Recognition_Algorithm::set_lower_bound_filter(double hue, double saturation, double value){

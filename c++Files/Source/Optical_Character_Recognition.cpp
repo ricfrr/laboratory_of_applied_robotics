@@ -23,27 +23,12 @@ Optical_Character_Recognition::~Optical_Character_Recognition(){
     ocr->End();
 }
 
-int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image, cv::Rect &rect, cv::Mat &ROI){
-    
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
-    
-    ROI = cv::Mat(image, rect); // extract the ROI containing the digit
-    
-//    displayImage(image, "digit");
-//    cv::waitKey(0);
-    
-    if (ROI.empty()) return -99;
-    
-    cv::resize(ROI, ROI, cv::Size(200, 200)); // resize the ROI
-    cv::threshold( ROI, ROI, 100, 255, 0 ); // threshold and binarize the image, to suppress some noise
-    
-    // Apply some additional smoothing and filtering
-    cv::erode(ROI, ROI, kernel);
-    cv::GaussianBlur(ROI, ROI, cv::Size(5, 5), 2, 2);
-    cv::erode(ROI, ROI, kernel);
+int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image){
     
     // Set image data
-    OCR->SetImage(ROI.data, ROI.cols, ROI.rows, 3, ROI.step);
+    OCR->SetImage(image.data, image.cols, image.rows, 3, image.step);
+    
+    std::cout << "result with confidence " << OCR->MeanTextConf() << std::endl;
     
     // know your ASCI table
     int result = *OCR->GetUTF8Text() - '0';
@@ -56,7 +41,7 @@ int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv
     return result;
 }
 
-int Optical_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI){
+int Optical_Character_Recognition::detect_digit(cv::Mat &image){
     
     // Create Tesseract object
     tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
@@ -68,7 +53,7 @@ int Optical_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect, 
     ocr->SetVariable("tessedit_char_whitelist", "0123456789");
     
     // know your ASCI table
-    int result = detect_digit(ocr, image, rect, ROI);
+    int result = detect_digit(ocr, image);
     
     ocr->End();
     
@@ -95,8 +80,10 @@ std::vector<std::pair<int,cv::Rect>> Optical_Character_Recognition::detection_al
         
         cv::Mat final_roi;
         
+        roi = cv::Mat(filtered,boundRect[i]);
+        
         // run the tesseract engine
-        int result = detect_digit(ocr, filtered, boundRect[i], roi);
+        int result = detect_digit(ocr,filtered);
         
         double angle = 0;
         bool entered = false;

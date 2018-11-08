@@ -207,6 +207,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
     reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
     imshow("sec persp", im_dst);
+    imwrite("sec_persp.png", im_dst);
     waitKey(0);
     return tform;
 }

@@ -29,7 +29,7 @@ public:
     
     void processImage(const std::string& filename);
     
-    int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
+    int detect_digit(cv::Mat &image);
     
     std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
     

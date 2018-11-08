@@ -15,7 +15,6 @@ void People::findCircles(const Mat &img)
     //waitKey(0);
     Digit_Recognition dg_recognition = Digit_Recognition();
     
-    //dg_recognition.set_filter(filter);
     std::vector<PeopleData> data = dg_recognition.detect_digits_for_map(img);
     for (int i = 0; i < data.size(); i++)
     {

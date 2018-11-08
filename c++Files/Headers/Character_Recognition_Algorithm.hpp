@@ -116,7 +116,7 @@ public:
     virtual void processImage(const std::string& filename) = 0;
     
     ///the (virtual) function that runs the recognition engine
-    virtual int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI) = 0;
+    virtual int detect_digit(cv::Mat &image) = 0;
     
     virtual std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered) = 0;
     
@@ -133,6 +133,8 @@ public:
     
     cv::Mat apply_some_filtering(cv::Mat &img);
     
+    void prepare_uniform_window(cv::Mat &img);
+    
     std::vector<cv::Rect> extract_regions_of_interest(cv::Mat &original_img,
                                                       cv::Mat & filtered_img,
                                                       cv::Mat &returnedImg);
@@ -141,7 +143,7 @@ public:
     
     void rotate_image(cv::Mat &src, double angle, cv::Mat &result);
     
-    void preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect);
+    std::vector<cv::Mat> preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect);
     
     void set_lower_bound_filter(double hue, double saturation, double value);
     

@@ -57,37 +57,39 @@ int Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, c
     return maxIdx;
 }
 
-int Template_Character_Recognition::detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI){
+int Template_Character_Recognition::detect_digit(cv::Mat &image){
     
-    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
+//    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
+//
+//    // Load digits template images
+//    std::vector<cv::Mat> templROIs;
+//    for (int i=0; i<=9; ++i) {
+//        templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
+//    }
+//
+//    ROI = cv::Mat(image, rect); // extract the ROI containing the digit
+//
+//        if (ROI.empty()) return -99;
+//
+//        cv::resize(ROI, ROI, cv::Size(200, 200)); // resize the ROI
+//        cv::threshold( ROI, ROI, 100, 255, 0 ); // threshold and binarize the image, to suppress some noise
+//
+//        // Apply some additional smoothing and filtering
+//        cv::erode(ROI, ROI, kernel);
+//        cv::GaussianBlur(ROI, ROI, cv::Size(5, 5), 2, 2);
+//        cv::erode(ROI, ROI, kernel);
+//
+//        // Show the actual image used for the template matching
+//        // cv::imshow("ROI", ROI);
+//
+//        // Find the template digit with the best matching
+//        int maxIdx = getResult(templROIs, ROI);
+//
+//        //std::cout << "Best fitting template: " << maxIdx << std::endl;
+//
+//    return maxIdx;
     
-    // Load digits template images
-    std::vector<cv::Mat> templROIs;
-    for (int i=0; i<=9; ++i) {
-        templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
-    }
-
-    ROI = cv::Mat(image, rect); // extract the ROI containing the digit
-        
-        if (ROI.empty()) return -99;
-        
-        cv::resize(ROI, ROI, cv::Size(200, 200)); // resize the ROI
-        cv::threshold( ROI, ROI, 100, 255, 0 ); // threshold and binarize the image, to suppress some noise
-        
-        // Apply some additional smoothing and filtering
-        cv::erode(ROI, ROI, kernel);
-        cv::GaussianBlur(ROI, ROI, cv::Size(5, 5), 2, 2);
-        cv::erode(ROI, ROI, kernel);
-        
-        // Show the actual image used for the template matching
-        // cv::imshow("ROI", ROI);
-        
-        // Find the template digit with the best matching
-        int maxIdx = getResult(templROIs, ROI);
-        
-        //std::cout << "Best fitting template: " << maxIdx << std::endl;
-    
-    return maxIdx;
+    return 0;
 }
 
 std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
@@ -98,7 +100,9 @@ std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_a
     // For each green blob in the original image containing a digit
     for (int i=0; i<boundRect.size(); ++i)
     {
-        int result = detect_digit(filtered,boundRect[i] , roi);
+        
+        cv::Mat img = cv::Mat(filtered,boundRect[i]);
+        int result = detect_digit(img);
         
         double angle = 0;
         bool entered = false;

@@ -30,9 +30,9 @@ public:
     ///demo function for displaying performance of algorithm
     void processImage(const std::string& filename);
     
-    int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
+    int detect_digit(cv::Mat &image);
     
-    int detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
+    int detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image);
     
     void getResult(tesseract::TessBaseAPI *&ocr, cv::Mat &img, int &result);
     
