@@ -14,6 +14,10 @@ void Arena::findArena(const Mat &img)
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
+    
+    // Save the image for the presentation
+    cv::imwrite("hsv_img.jpg", hsv_img);
+    
     // Preparing the kernel matrix
     cv::Mat kernel = cv::getStructuringElement(
         cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));

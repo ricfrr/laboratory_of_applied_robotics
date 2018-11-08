@@ -38,6 +38,7 @@ cv::Mat Character_Recognition_Algorithm::apply_some_filtering(cv::Mat &img){
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((1*2) + 1, (1*2)+1));
     cv::dilate(img, img, kernel);
     cv::erode(img, img, kernel);
+
     return kernel;
 }
 
@@ -134,11 +135,13 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
+    displayImage(img, "inversion one");
+    displayImage(green_mask, "inversion two");
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
 //    displayImage(filtered, "filtered");
-//    cv::waitKey(0);
+   // cv::waitKey(0);
     //displaying some more
 //    displayImage(green_mask_inv, "Numbers");
 //    cv::waitKey(0);
