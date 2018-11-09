@@ -21,11 +21,13 @@ struct PeopleData {
     double radius;
     cv::Point center;
     int digit;
+    int confidence;
     
-    PeopleData(int digit, cv::Rect rect){
-        this->digit = digit;
+    PeopleData(std::pair<int,int> digit, cv::Rect rect){
+        this->digit = digit.first;
         this->radius = std::min(rect.height,rect.width);
         this->center = cv::Point(rect.x + rect.width/2, rect.y + rect.height/2);
+        this->confidence = digit.second;
     }
 };
 

@@ -57,7 +57,7 @@ int Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, c
     return maxIdx;
 }
 
-int Template_Character_Recognition::detect_digit(cv::Mat &image){
+std::pair<int,int> Template_Character_Recognition::detect_digit(cv::Mat &image){
     
 //    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
 //
@@ -89,7 +89,7 @@ int Template_Character_Recognition::detect_digit(cv::Mat &image){
 //
 //    return maxIdx;
     
-    return 0;
+    return {0,0};
 }
 
 std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
@@ -102,7 +102,7 @@ std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_a
     {
         
         cv::Mat img = cv::Mat(filtered,boundRect[i]);
-        int result = detect_digit(img);
+        int result = detect_digit(img).first;
         
         double angle = 0;
         bool entered = false;

@@ -107,7 +107,7 @@ std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
     std::vector<PeopleData> res;
     
     for(int i = 0;i<boundRect.size();i++)
-        res.push_back(PeopleData(0,boundRect[i]));
+        res.push_back(PeopleData({0,0},boundRect[i]));
     
     cv::imshow("proprocessing", filtered);
    // cv::waitKey(0);
@@ -159,17 +159,28 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
     
     std::vector<cv::Mat> digit_images = this->algortihm->preprocessing(source, filtered, rects);
     
+    std::vector<PeopleData> results;
+    
+    if(digit_images.size() != rects.size())
+        std::runtime_error("too many rects and not enough digits");
+    
     for(int i = 0;i<digit_images.size();i++){
-        cv::imshow("digit_"+std::to_string(i), digit_images[i]);
+        //cv::imshow("digit_"+std::to_string(i), digit_images[i]);
+        
+        //do the noise reduction
         this->algortihm->prepare_uniform_window(digit_images[i]);
         
-        std::cout << this->algortihm->detect_digit(digit_images[i]) << std::endl;
-        cv::waitKey(0);
+        //detect the digit
+        std::pair<int,int> digit = this->algortihm->detect_digit(digit_images[i]);
+        std::cout << digit.first << std::endl;
+        
+        //create the people data
+        if(digit.first > 0 && digit.first <= 4)
+            results.push_back(PeopleData(digit,rects[i]));
+        else
+            results.push_back(PeopleData({0,0},rects[i]));
+            
     }
-    
-    cv::waitKey(0);
-    
-    std::vector<PeopleData> results;
     
     //*** old Marvin
 //    cv::Mat img = img_input;

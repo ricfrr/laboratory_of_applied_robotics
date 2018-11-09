@@ -203,12 +203,12 @@ Mat Inverse_Perspective_Mapping::findTransform(
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
-    imshow("first persp", im_dst);
+    //imshow("first persp", im_dst);
     reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
-    imshow("sec persp", im_dst);
+    //imshow("sec persp", im_dst);
     imwrite("sec_persp.png", im_dst);
-    waitKey(0);
+    //waitKey(0);
     return tform;
 }
 

@@ -107,7 +107,7 @@ public:
     Character_Recognition_Algorithm();
     ~Character_Recognition_Algorithm(){}
     
-    const double MIN_AREA_SIZE = 100;
+    const double MIN_AREA_SIZE = 200;
     
     HSVFilterRange filter = HSVFilterRange();
     
@@ -116,7 +116,7 @@ public:
     virtual void processImage(const std::string& filename) = 0;
     
     ///the (virtual) function that runs the recognition engine
-    virtual int detect_digit(cv::Mat &image) = 0;
+    virtual std::pair<int,int> detect_digit(cv::Mat &image) = 0;
     
     virtual std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered) = 0;
     

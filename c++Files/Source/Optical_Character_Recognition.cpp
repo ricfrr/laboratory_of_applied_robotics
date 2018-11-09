@@ -41,7 +41,7 @@ int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv
     return result;
 }
 
-int Optical_Character_Recognition::detect_digit(cv::Mat &image){
+std::pair<int,int> Optical_Character_Recognition::detect_digit(cv::Mat &image){
     
     // Create Tesseract object
     tesseract::TessBaseAPI *ocr = new tesseract::TessBaseAPI();
@@ -54,10 +54,11 @@ int Optical_Character_Recognition::detect_digit(cv::Mat &image){
     
     // know your ASCI table
     int result = detect_digit(ocr, image);
+    int confidence = ocr->MeanTextConf();
     
     ocr->End();
     
-    return result;
+    return std::pair<int,int>(result,confidence);
 }
 
 void Optical_Character_Recognition::getResult(tesseract::TessBaseAPI *&ocr, cv::Mat &img, int &result){

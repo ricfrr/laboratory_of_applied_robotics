@@ -122,26 +122,25 @@ std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img
     
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
-//    displayImage(img, "inversion one");
-//    displayImage(green_mask, "inversion two");
+
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
-//    displayImage(green_mask, "used");
-//    displayImage(green_mask_inv, "inv");
-//    displayImage(filtered, "filtered");
-//    cv::waitKey(0);
+
     //cutting out the areas of interest and return them
     std::vector<cv::Mat> cut_images;
+    std::vector<cv::Rect> rects;
     for(int i = 0;i<boundRect.size();i++){
         cv::Mat cut_img = cv::Mat(filtered, boundRect[i]);
-        if (!cut_img.empty())
+        if (!cut_img.empty()){
             cut_images.push_back(cut_img);
+            rects.push_back(boundRect[i]);
+        }
     }
     
-    return cut_images;
-
+    boundRect = rects;
     
+    return cut_images;
 }
 
 void Character_Recognition_Algorithm::prepare_uniform_window(cv::Mat &img){
