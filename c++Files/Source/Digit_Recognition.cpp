@@ -170,13 +170,71 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
         //do the noise reduction
         this->algortihm->prepare_uniform_window(digit_images[i]);
         
+        //detect orientation
+        double angle = this->algortihm->determine_orientation(digit_images[i]);
+        
+        //two different orientations
+        cv::Mat orientation_0, orientation_1, orientation_2;
+        orientation_0 = digit_images[i].clone();
+        
+        //rotate the image
+        this->algortihm->rotate_image(digit_images[i], angle, orientation_1);
+        angle = 180;
+        this->algortihm->rotate_image(orientation_1, angle, orientation_2);
+        
+//        cv::imshow("orientation_0", orientation_0);
+//        cv::imshow("orientation_1", orientation_1);
+//        cv::imshow("orientation_2", orientation_2);
+//        cv::waitKey(0);
+        
         //detect the digit
-        std::pair<int,int> digit = this->algortihm->detect_digit(digit_images[i]);
-        std::cout << digit.first << std::endl;
+        std::pair<int,int> digit_0 = this->algortihm->detect_digit(orientation_0);
+        std::cout << "result for orientation_0 " << digit_0.first << std::endl;
+        std::pair<int,int> digit_1 = this->algortihm->detect_digit(orientation_1);
+        std::cout << "result for orientation_1 " << digit_1.first << std::endl;
+        std::pair<int,int> digit_2 = this->algortihm->detect_digit(orientation_2);
+        std::cout << "result for orientation_2 " << digit_2.first << std::endl;
+        
+        std::pair<int,int> digit = digit_0;
+        
+        if(digit_0.second < digit_1.second){
+            digit = digit_1;
+            if(digit_1.second < digit_2.second)
+                digit = digit_2;
+        }
+       
+        else if(digit_0.second < digit_2.second)
+            digit = digit_2;
+        
+        double angle2 = 15;
+        
+        while(angle2 < 360){
+            if (digit.second > 70 && digit.first >= 1 && digit.first <= 4)
+                break;
+            
+            cv::Mat result;
+            std::pair<int,int> digit_4;
+            
+            //rotate the image
+            this->algortihm->rotate_image(digit_images[i], angle2, result);
+            digit_4 = this->algortihm->detect_digit(result);
+            angle2 += 15;
+//            cv::imshow("rotated", result);
+//            std::cout << digit_4.first << " " << digit_4.second <<  std::endl;
+//            cv::waitKey(0);
+            
+            if(digit.second < digit_4.second)
+                digit = digit_4;
+            
+            if(digit.second > 80)
+                break;
+        }
         
         //create the people data
         if(digit.first > 0 && digit.first <= 4)
             results.push_back(PeopleData(digit,rects[i]));
+        else if (digit.first == 7)
+            results.push_back(PeopleData({1,1},rects[i]));
         else
             results.push_back(PeopleData({0,0},rects[i]));
             

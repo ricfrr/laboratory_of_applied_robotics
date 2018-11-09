@@ -28,7 +28,7 @@ int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv
     // Set image data
     OCR->SetImage(image.data, image.cols, image.rows, 3, image.step);
     
-    std::cout << "result with confidence " << OCR->MeanTextConf() << std::endl;
+    //std::cout << "result with confidence " << OCR->MeanTextConf() << std::endl;
     
     // know your ASCI table
     int result = *OCR->GetUTF8Text() - '0';

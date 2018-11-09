@@ -125,6 +125,9 @@ public:
     
     void displayImage(cv::Mat & image,std::string windowTitle);
     
+    ///computes an angle based on the fitline method
+    double determine_orientation(cv::Mat image);
+    
     cv::Mat loadImage(const std::string& filename);
     
     void convert_bgr_to_hsv(cv::Mat &original, cv::Mat &converted);
@@ -148,6 +151,8 @@ public:
     void set_lower_bound_filter(double hue, double saturation, double value);
     
     void set_upper_bound_filter(double hue, double saturation, double value);
+    
+    void turn_image(cv::Mat input, cv::Mat & output, double angle);
     
     double delta_angle = 45;
 };
