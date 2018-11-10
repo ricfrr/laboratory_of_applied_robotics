@@ -22,7 +22,7 @@ cv::Mat Character_Recognition_Algorithm::loadImage(const std::string& filename){
 }
 
 void Character_Recognition_Algorithm::displayImage(cv::Mat & image,std::string windowTitle){
-    cv::imshow(windowTitle, image);
+    //cv::imshow(windowTitle, image);
 }
 
 void Character_Recognition_Algorithm::convert_bgr_to_hsv(cv::Mat &original, cv::Mat &converted){
@@ -50,8 +50,8 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
     returnedImg = original_img.clone();
     cv::findContours(filtered_img, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     
-//    displayImage(filtered_img, "contours");
-//    cv::waitKey(0);
+    displayImage(filtered_img, "contours");
+    //cv::waitKey(0);
     
     std::vector<cv::Rect> boundRect(contours.size());
     for (int i=0; i<contours.size(); ++i)
@@ -94,8 +94,8 @@ void Character_Recognition_Algorithm::rotate_image(cv::Mat &src, double angle, c
 void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
     
     // Display original image
-//    displayImage(img, "Original");
-//    cv::waitKey(0);
+    displayImage(img, "Original");
+    //cv::waitKey(0);
     
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;

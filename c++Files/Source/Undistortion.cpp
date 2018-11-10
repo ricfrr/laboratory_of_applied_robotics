@@ -23,8 +23,8 @@ void Undistorsion::undistort_image(cv::Mat frame, cv::Mat frameUndist,
 
     undistort(frame, frameUndist, cameraMatrix, distCoeffs);
 
-    cv::imshow("Original", frame);
-    cv::imshow("Undistorted", frameUndist);
+    //cv::imshow("Original", frame);
+    //cv::imshow("Undistorted", frameUndist);
 }
 
 void Undistorsion::loadCoefficients(const std::string &filename,

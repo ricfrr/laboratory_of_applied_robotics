@@ -19,47 +19,60 @@
 #include <atomic>
 #include <unistd.h>
 #include "Arena.hpp"
+#include "Settings.hpp"
 
 using namespace cv;
 
-struct UserData
-{
-    cv::Mat result, bg_img;
-    int idx = 0;
-    std::string name;
-    std::atomic<bool> done;
-    int n;
-};
-
-class Inverse_Perspective_Mapping
-{
-
-  public:
+/*!
+ * produce a perspective transformation around the arena given a photo
+ */
+class Inverse_Perspective_Mapping {
+public:
+    /*!
+     * constructor of  inverse perspective mapping class
+     */
     Inverse_Perspective_Mapping();
+
+    /*!
+     * destructor of inverse perspective mapping class
+     */
     ~Inverse_Perspective_Mapping();
 
-    UserData *data = new UserData;
 
-    std::string outputfilename;
-
+    /*!
+     *
+     * @param filename intrinsic calibration file name
+     * @param camera_matrix camerat matrix file
+     * @param dist_coeffs distortion coefficients
+     */
     void loadCoefficients(const std::string &filename,
                           cv::Mat &camera_matrix,
                           cv::Mat &dist_coeffs);
 
-    // Example of function to determine the perspective transformation of a
-    // rectangle on the ground plane (with manual intervention from the user, that
-    // is required to select the 4 corner points of the rectangle, starting from the
-    // top-left corner and proceeding in clockwise order, and the origin (top-left)
-    // and scale of the transformed top view image).
-    // Since the real size of the rectangle is known (width: 1m, height: 1.5m),
-    // the fucntion returns also the pixel_scale, i.e. the size (in mm) of each
-    // pixel in the top view image
+    /*!
+     * function to determine the perspective transformation of a
+     * rectangle on the ground plane
+     * @param calib_image_name image
+     * @param camera_matrix camera matrix
+     * @param dist_coeffs distortion coefficents
+     * @param pixel_scale pixel scaling
+     * @param persp_img image after trasformation
+     * @return
+     */
     Mat findTransform(const std::string &calib_image_name,
                       const cv::Mat &camera_matrix,
                       const cv::Mat &dist_coeffs,
                       double &pixel_scale,
                       cv::Mat &persp_img);
-
+    /*!
+     *  Store all the parameters to a file, for a later use, using the FileStorage
+     *  class methods
+     * @param filename
+     * @param camera_matrix
+     * @param dist_coeffs
+     * @param pixel_scale
+     * @param persp_transf
+     */
     // Store all the parameters to a file, for a later use, using the FileStorage
     // class methods
     void storeAllParameters(const std::string &filename,
@@ -68,8 +81,19 @@ class Inverse_Perspective_Mapping
                             double pixel_scale,
                             const Mat &persp_transf);
 
+    /*!
+     * perform a perspective transformation
+     * @param intrinsic_conf
+     * @param image
+     * @param outputfilename
+     * @return the image after transformation
+     */
     cv::Mat run(std::string intrinsic_conf, std::string image, std::string outputfilename);
-    //void Inverse_Perspective_Mapping::reTransform(cv::Mat &persp_img);
+
+private:
+
+    Settings settings;
+    std::string outputfilename;
 };
 
 #endif /* Inverse_Perspective_Mapping_hpp */

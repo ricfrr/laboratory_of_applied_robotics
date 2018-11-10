@@ -11,7 +11,7 @@ People::~People()
 
 void People::findCircles(const Mat &img)
 {
-    imshow("img", img);
+    //imshow("img", img);
     //waitKey(0);
     Digit_Recognition dg_recognition = Digit_Recognition();
     

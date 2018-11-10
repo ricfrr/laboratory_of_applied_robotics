@@ -125,8 +125,8 @@ std::vector<cv::Point> Arena::getCorners()
 //
 void Arena::setCorners(std::vector<cv::Point> corners)
 {
-    int half_h = 300;
-    int half_w = 200;
+    int half_h = settings.IMG_LENGHT/2;
+    int half_w = settings.IMG_WIDTH/2;
     for (int i = 0; i < corners.size(); i++)
     {
         if (corners[i].x< half_w)

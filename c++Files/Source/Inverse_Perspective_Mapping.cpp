@@ -139,19 +139,21 @@ std::vector<cv::Point> findCorners(Mat img)
 }
 
 void reTransform(cv::Mat &persp_img, double &pixel_scale){
+    Settings settings;
     // Destination image
-    Size size(400, 600);
+    Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
     Arena arena = Arena();
     arena.findArena(persp_img);
     std::vector<cv::Point> corners = arena.getCorners();
 
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
+
     std::vector<Point2f> pts_dst;
-    pts_dst.push_back(Point2f(25,25));
-    pts_dst.push_back(Point2f(size.width-25, +25));
-    pts_dst.push_back(Point2f(size.width-25, size.height-25));
-    pts_dst.push_back(Point2f(25, size.height-25));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP,settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width-settings.GAP_PERSP, +settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width-settings.GAP_PERSP, size.height-settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, size.height-settings.GAP_PERSP));
 
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(persp_img, im_dst, tform, size, cv::INTER_LINEAR,
@@ -191,23 +193,23 @@ Mat Inverse_Perspective_Mapping::findTransform(
     std::vector<cv::Point> corners = findCorners(calib_image);
 
     // Destination image
-    Size size(400, 600);
+    Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
-    pts_dst.push_back(Point2f(5, 5));
-    pts_dst.push_back(Point2f(size.width - 1, 5));
-    pts_dst.push_back(Point2f(size.width - 1, size.height - 1));
-    pts_dst.push_back(Point2f(5, size.height - 1));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, size.height - settings.GAP_PERSP));
 
     Mat tform = findHomography(corners, pts_dst);
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
-    imshow("first persp", im_dst);
+    //imshow("first persp", im_dst);
     reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
-    imshow("sec persp", im_dst);
-    waitKey(0);
+    //imshow("sec persp", im_dst);
+    //waitKey(0);
     return tform;
 }
 

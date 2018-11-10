@@ -109,8 +109,8 @@ std::vector<PeopleData> Digit_Recognition::detect_peopleData(cv::Mat &img){
     for(int i = 0;i<boundRect.size();i++)
         res.push_back(PeopleData(0,boundRect[i]));
     
-    cv::imshow("proprocessing", filtered);
-   // cv::waitKey(0);
+    //cv::imshow("proprocessing", filtered);
+    //cv::waitKey(0);
     
     //run the image detection of the regions
     std::vector<std::pair<int,cv::Rect>> results = this->algortihm->detection_algorithm(boundRect, filtered);
@@ -136,7 +136,7 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
     
     std::string name = "filtered_" + std::to_string(this->algortihm->filter.lb[0]) + "_" + std::to_string(this->algortihm->filter.lb[1]) + "_" + std::to_string(this->algortihm->filter.lb[2]);
     
-    cv::imshow("input_", fil);
+    //cv::imshow("input_", fil);
     
     std::vector<cv::Rect> results;
     
@@ -201,7 +201,7 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
     if(!four){
         std::cout << "FOUR is missing" << std::endl;
     }
-   // cv::waitKey(0);
+    //cv::waitKey(0);
     
     return results;
 }

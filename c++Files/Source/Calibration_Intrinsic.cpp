@@ -168,7 +168,7 @@ void Calibration_Instrinsic::performCalibration(const std::string cali_config){
         //! [output_undistorted]
         //------------------------------ Show image and check for input commands -------------------
         //! [await_input]
-        imshow("Image View", view);
+        //imshow("Image View", view);
         char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
 
         if( key  == ESC_KEY )
@@ -213,7 +213,7 @@ void Calibration_Instrinsic::performCalibration(const std::string cali_config){
             if(view.empty())
                 continue;
             remap(view, rview, map1, map2, INTER_LINEAR);
-            imshow("Image View", rview);
+            //imshow("Image View", rview);
             char c = (char)waitKey();
             if( c  == ESC_KEY || c == 'q' || c == 'Q' )
                 break;

@@ -12,14 +12,29 @@
 #include <unistd.h>
 
 using namespace cv;
-
+/*!
+ * class for handling all the shapes in the map
+ */
 class Shape
 {
   public:
+    /*!
+     * constructor of the shape class
+     */
     Shape();
+    /*!
+     * destructor of the shape class
+     */
     ~Shape();
-
+    /*!
+     * connect a cell to the shape
+     * @param cell_i cell that has to be connected to the shape
+     */
     void setCell(Cell cell_i);
+    /*!
+     * return the cell which is connected
+     * @return the cell which is connected
+     */
     std::vector<Cell> getCell();
 
   private:

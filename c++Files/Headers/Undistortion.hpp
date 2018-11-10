@@ -19,14 +19,30 @@
 #include <string>
 
 using namespace cv;
-
+/*!
+ * class for undistorsion of the images
+ */
 class Undistorsion {
     
 public:
+    /*!
+     * construcor of the Undistorion class
+     * @param calibration_filename name of the calibration file
+     */
     Undistorsion(std::string calibration_filename);
+    /*!
+     * destructor of the Undistortion class
+     */
     ~Undistorsion();
-    
-    void processVideo();
+
+    /*!
+     * function that undistort the image 
+     * @param frame
+     * @param frameUndist
+     * @param cameraMatrix
+     * @param distCoeffs
+     * @param newCameraMatrix
+     */
     void undistort_image(cv::Mat frame, cv::Mat frameUndist,
                          InputArray cameraMatrix,
                          InputArray distCoeffs,

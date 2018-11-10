@@ -232,7 +232,7 @@ bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena)
 void Map::findMaxMinY(int &max_y, int &min_y,
                       const std::vector<cv::Point> poly)
 {
-    min_y = 600;
+    min_y = setting.IMG_LENGHT;
     max_y = 0;
     for (int i = 0; i < poly.size(); i++)
     {
