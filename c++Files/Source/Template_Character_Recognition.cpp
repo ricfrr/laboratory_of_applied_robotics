@@ -14,22 +14,6 @@ Template_Character_Recognition::Template_Character_Recognition(){
 
 Template_Character_Recognition::~Template_Character_Recognition(){}
 
-void Template_Character_Recognition::processImage(const std::string& filename)
-{
-    // Load image from file
-    cv::Mat img = cv::imread(filename.c_str());
-    if(img.empty()) {
-        throw std::runtime_error("Failed to open the file " + filename);
-    }
-    
-    cv::Mat filtered;
-    std::vector<cv::Rect> boundRect;
-    
-    preprocessing(img, filtered, boundRect);
-    
-    detection_algorithm(boundRect, filtered);
-    
-}
 
 int Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI){
     // Find the template digit with the best matching
@@ -90,70 +74,4 @@ std::pair<int,int> Template_Character_Recognition::detect_digit(cv::Mat &image){
 //    return maxIdx;
     
     return {0,0};
-}
-
-std::vector<std::pair<int,cv::Rect>> Template_Character_Recognition::detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered){
-    
-    std::vector<std::pair<int,cv::Rect>> results;
-    
-    cv::Mat roi;
-    // For each green blob in the original image containing a digit
-    for (int i=0; i<boundRect.size(); ++i)
-    {
-        
-        cv::Mat img = cv::Mat(filtered,boundRect[i]);
-        int result = detect_digit(img).first;
-        
-        double angle = 0;
-        bool entered = false;
-        
-        if (result != -99) angle = 360;
-        
-        DigitResultDistribution dis = DigitResultDistribution();
-        
-//        if(!roi.empty()){
-//            cv::imshow("Detecting", roi);}
-        
-        while(angle < 360 && !roi.empty()){
-            entered = true;
-            //std::cout << "rotating image and retrying" << std::endl;
-//            if(angle == 0){
-//                cv::imshow("Problem", roi);
-//
-//            }
-            
-            cv::Mat roi2,roi3;
-            rotate_image(roi, angle, roi2);
-            
-            //get the result
-            // Load digits template images
-            std::vector<cv::Mat> templROIs;
-            for (int i=0; i<=9; ++i) {
-                templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
-            }
-            result = getResult(templROIs, roi2);
-            
-            if (result != -99) {
-                dis.add(result);
-            }
-            
-            angle += delta_angle;
-        }
-        
-        if (entered) {
-            result = dis.best();
-        }
-        
-        //no digit is result -99
-        if (result != -99) {
-            //std::cout << "result was " << std::to_string(result)  << std::endl;
-            results.push_back(std::pair<int, cv::Rect>(result,boundRect[i]));
-            //results.push_back(result);
-        }
-        else {
-            //std::cout << "read an image but could not recognize digit" << std::endl;
-        }
-    }
-    
-    return results;
 }
