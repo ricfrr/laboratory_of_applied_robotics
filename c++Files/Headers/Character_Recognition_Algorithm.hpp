@@ -36,18 +36,40 @@ int findInVector(const std::vector<T>  & vecOfElements, const T  & element)
     return result;
 }
 
+/**
+ \brief A structure that builds a distribution of digits based on their amount.
+ 
+ \discussion This structure helps finding the best result, based on number of appearences when detecting rotating digits with a ML based machine.
+ When rotating a digit e.g. the 1 it might be recognized as a 7 or a 2. This approach adds up all the results and stores them in a distribution map. At the end of a rotation cycle, it is possible to extract the most likely solution -> in this example the digit 1.
+ 
+ \see Character_Recognition_Algorithm.rotate_image
+ */
 struct DigitResultDistribution {
+    ///sum of zeros detected
     int zero = 0;
+    ///sum of ones detected
     int one = 0;
+    ///sum of twos detected
     int two = 0;
+    ///sum of threes detected
     int three = 0;
+    ///sum of fours detected
     int four = 0;
+    ///sum of fives detected
     int five = 0;
+    ///sum of sixes detected
     int six = 0;
+    ///sum of sevens detected
     int seven = 0;
+    ///sum of eights detected
     int eight = 0;
+    ///sum of nines detected
     int nine = 0;
     
+    /**
+     \return returns the digit that appeared most
+     \return if no result was found it returns a -99
+     */
     int best(){
         std::vector<int> v{zero,one,two,three,four,five,six,seven,eight,nine};
         auto it = *std::max_element(std::begin(v), std::end(v));
@@ -60,6 +82,7 @@ struct DigitResultDistribution {
         return i;
     }
     
+    ///used to increment a digit count
     void add(int number){
         switch (number) {
             case 0:

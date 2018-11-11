@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hexagon',['Hexagon',['../class_hexagon.html',1,'']]],
-  ['hsvfilterrange',['HSVFilterRange',['../struct_h_s_v_filter_range.html',1,'']]]
+  ['five',['five',['../struct_digit_result_distribution.html#abcc61ba15e9235041d116e79f2a8ff75',1,'DigitResultDistribution']]],
+  ['four',['four',['../struct_digit_result_distribution.html#a405d14955c2198e42e83f58403176bca',1,'DigitResultDistribution']]]
 ];
