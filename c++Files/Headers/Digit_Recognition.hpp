@@ -37,19 +37,29 @@ struct PeopleData {
     }
 };
 
-//different algorithms for recognizing digits
+/// \brief different algorithms for recognizing digits
 enum DigitRecognitionAlgo {
     templateMatching,
     tesseractOCP
 };
 
-///Class for Recognizing Digits
+/**
+ \brief The Digit_Recognition class is used to detect digits in the arena and export PeopleData.
+ 
+ \discussion The Digit_Recognition class is used to detect digits in the arena and export PeopleData.
+ The class contains a Character_Recognition_Algorithm member that is used to detect digits. Changing the DigitRecognitionAlgo type results in the use of another implementation of Character_Recognition_Algorithm derived classes.
+ New types of Character_Recognition_Algorithm subclasses can be added to improve digit recognition performance over time.
+ The class contains HSVFilterRange object that is able to automatically construct a color filter from a given input image.
+ When detect_digit_for_map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a PeopleData object that can be used to create People objects and feed the map.
+ \see People
+ \see Map
+ */
 class Digit_Recognition {
     
 public:
     Digit_Recognition();
     
-    /// \brief constructing the class with a set Character_Recognition_Algorithm object type
+    /// \brief constructing the class with a set DigitRecognitionAlgo type
     /// \param algorithm a DigitRecognitionAlgo enum type that specifies the type of Character_Recognition_Algorithm used to perform the recognition of the digit
     /// \see Optical_Recognition_Algorithm, Template_Character_Recognition
     Digit_Recognition(DigitRecognitionAlgo algorithm);

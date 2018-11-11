@@ -18,60 +18,63 @@ Inheritance diagram for Character\+\_\+\+Recognition\+\_\+\+Algorithm\+:\begin{f
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_character___recognition___algorithm_ae830baa9ccf7c55ad73c78173188059e}\label{class_character___recognition___algorithm_ae830baa9ccf7c55ad73c78173188059e}} 
-virtual void \mbox{\hyperlink{class_character___recognition___algorithm_ae830baa9ccf7c55ad73c78173188059e}{process\+Image}} (const std\+::string \&filename)=0
-\begin{DoxyCompactList}\small\item\em a demo function displaying the performance of a given algorithm \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_character___recognition___algorithm_ad360b10ac65fe20b42607ef9568052a3}\label{class_character___recognition___algorithm_ad360b10ac65fe20b42607ef9568052a3}} 
-virtual int \mbox{\hyperlink{class_character___recognition___algorithm_ad360b10ac65fe20b42607ef9568052a3}{detect\+\_\+digit}} (cv\+::\+Mat \&image, cv\+::\+Rect \&rect, cv\+::\+Mat \&R\+OI)=0
-\begin{DoxyCompactList}\small\item\em the (virtual) function that runs the recognition engine \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_character___recognition___algorithm_af17cbb0e6b84fd9430ff1788f6c57740}\label{class_character___recognition___algorithm_af17cbb0e6b84fd9430ff1788f6c57740}} 
-virtual std\+::vector$<$ std\+::pair$<$ int, cv\+::\+Rect $>$ $>$ {\bfseries detection\+\_\+algorithm} (std\+::vector$<$ cv\+::\+Rect $>$ \&bound\+Rect, cv\+::\+Mat \&filtered)=0
-\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_ae6fbf353044a0d3d1c4703bff3a46080}\label{class_character___recognition___algorithm_ae6fbf353044a0d3d1c4703bff3a46080}} 
-void {\bfseries display\+Image} (cv\+::\+Mat \&image, std\+::string window\+Title)
-\item 
+void \mbox{\hyperlink{class_character___recognition___algorithm_ae6fbf353044a0d3d1c4703bff3a46080}{display\+Image}} (cv\+::\+Mat \&image, std\+::string window\+Title)
+\begin{DoxyCompactList}\small\item\em calls cv\+::imshow \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_character___recognition___algorithm_ae82193efbeb4c590439d07669c8f3dc2}\label{class_character___recognition___algorithm_ae82193efbeb4c590439d07669c8f3dc2}} 
+double \mbox{\hyperlink{class_character___recognition___algorithm_ae82193efbeb4c590439d07669c8f3dc2}{determine\+\_\+orientation}} (cv\+::\+Mat image)
+\begin{DoxyCompactList}\small\item\em computes an angle based on the fitline method \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_character___recognition___algorithm_a94b5e41f908d351eaa81d9cf36b0d9cc}\label{class_character___recognition___algorithm_a94b5e41f908d351eaa81d9cf36b0d9cc}} 
+virtual std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_character___recognition___algorithm_a94b5e41f908d351eaa81d9cf36b0d9cc}{detect\+\_\+digit}} (cv\+::\+Mat \&image)=0
+\begin{DoxyCompactList}\small\item\em the (virtual) function that runs the recognition engine \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_ad7302516bfe29b94dd6787cfb4aa9183}\label{class_character___recognition___algorithm_ad7302516bfe29b94dd6787cfb4aa9183}} 
-cv\+::\+Mat {\bfseries load\+Image} (const std\+::string \&filename)
-\item 
+cv\+::\+Mat \mbox{\hyperlink{class_character___recognition___algorithm_ad7302516bfe29b94dd6787cfb4aa9183}{load\+Image}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em calls cv\+::imread \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_ab393524887755e6e363d281856b8aa1e}\label{class_character___recognition___algorithm_ab393524887755e6e363d281856b8aa1e}} 
-void {\bfseries convert\+\_\+bgr\+\_\+to\+\_\+hsv} (cv\+::\+Mat \&original, cv\+::\+Mat \&converted)
-\item 
+void \mbox{\hyperlink{class_character___recognition___algorithm_ab393524887755e6e363d281856b8aa1e}{convert\+\_\+bgr\+\_\+to\+\_\+hsv}} (cv\+::\+Mat \&original, cv\+::\+Mat \&converted)
+\begin{DoxyCompactList}\small\item\em convertion if color sheme \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_af84b6a4dad5edcf27f65d5dbc884efb2}\label{class_character___recognition___algorithm_af84b6a4dad5edcf27f65d5dbc884efb2}} 
-void {\bfseries apply\+\_\+mask} (cv\+::\+Mat \&original, cv\+::\+Mat \&converted, cv\+::\+Scalar lowerbound, cv\+::\+Scalar upperbound)
-\item 
+void \mbox{\hyperlink{class_character___recognition___algorithm_af84b6a4dad5edcf27f65d5dbc884efb2}{apply\+\_\+mask}} (cv\+::\+Mat \&original, cv\+::\+Mat \&converted, cv\+::\+Scalar lowerbound, cv\+::\+Scalar upperbound)
+\begin{DoxyCompactList}\small\item\em calls cv\+::inrange function \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a5f8eaa507a9b61ba71d361e2306d0110}\label{class_character___recognition___algorithm_a5f8eaa507a9b61ba71d361e2306d0110}} 
-cv\+::\+Mat {\bfseries apply\+\_\+some\+\_\+filtering} (cv\+::\+Mat \&img)
-\item 
+cv\+::\+Mat \mbox{\hyperlink{class_character___recognition___algorithm_a5f8eaa507a9b61ba71d361e2306d0110}{apply\+\_\+some\+\_\+filtering}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em dilate and erode image \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_character___recognition___algorithm_a7eb8c5de6b5fc691530c1e57b499fcbd}\label{class_character___recognition___algorithm_a7eb8c5de6b5fc691530c1e57b499fcbd}} 
+void \mbox{\hyperlink{class_character___recognition___algorithm_a7eb8c5de6b5fc691530c1e57b499fcbd}{prepare\+\_\+uniform\+\_\+window}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em resizing to 200x200px, threshold, erode and blur \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a21924694ba0aacb82054ea33191cb52a}\label{class_character___recognition___algorithm_a21924694ba0aacb82054ea33191cb52a}} 
-std\+::vector$<$ cv\+::\+Rect $>$ {\bfseries extract\+\_\+regions\+\_\+of\+\_\+interest} (cv\+::\+Mat \&original\+\_\+img, cv\+::\+Mat \&filtered\+\_\+img, cv\+::\+Mat \&returned\+Img)
-\item 
+std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{class_character___recognition___algorithm_a21924694ba0aacb82054ea33191cb52a}{extract\+\_\+regions\+\_\+of\+\_\+interest}} (cv\+::\+Mat \&original\+\_\+img, cv\+::\+Mat \&filtered\+\_\+img, cv\+::\+Mat \&returned\+Img)
+\begin{DoxyCompactList}\small\item\em extract regions that circular \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a75ff23b5b2722c9c572091755985e137}\label{class_character___recognition___algorithm_a75ff23b5b2722c9c572091755985e137}} 
-std\+::tuple$<$ cv\+::\+Mat, cv\+::\+Mat $>$ {\bfseries invert\+\_\+masked\+\_\+image} (cv\+::\+Mat \&original, cv\+::\+Mat \&masked\+\_\+image)
-\item 
+std\+::tuple$<$ cv\+::\+Mat, cv\+::\+Mat $>$ \mbox{\hyperlink{class_character___recognition___algorithm_a75ff23b5b2722c9c572091755985e137}{invert\+\_\+masked\+\_\+image}} (cv\+::\+Mat \&original, cv\+::\+Mat \&masked\+\_\+image)
+\begin{DoxyCompactList}\small\item\em inverts the image colors black white -\/ white black \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a4f7714bd67ad5804c909859b8eb5b8c6}\label{class_character___recognition___algorithm_a4f7714bd67ad5804c909859b8eb5b8c6}} 
-void {\bfseries rotate\+\_\+image} (cv\+::\+Mat \&src, double angle, cv\+::\+Mat \&result)
-\item 
-\mbox{\Hypertarget{class_character___recognition___algorithm_a7642ccec81710fa52c553c13dcf7e0ca}\label{class_character___recognition___algorithm_a7642ccec81710fa52c553c13dcf7e0ca}} 
-void {\bfseries preprocessing} (cv\+::\+Mat \&img, cv\+::\+Mat \&filtered, std\+::vector$<$ cv\+::\+Rect $>$ \&bound\+Rect)
-\item 
+void \mbox{\hyperlink{class_character___recognition___algorithm_a4f7714bd67ad5804c909859b8eb5b8c6}{rotate\+\_\+image}} (cv\+::\+Mat \&src, double angle, cv\+::\+Mat \&result)
+\begin{DoxyCompactList}\small\item\em rotates the image and produces a new image with black background \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_character___recognition___algorithm_aa05c6fd498c38bf7725a445f15c5b77b}\label{class_character___recognition___algorithm_aa05c6fd498c38bf7725a445f15c5b77b}} 
+std\+::vector$<$ cv\+::\+Mat $>$ \mbox{\hyperlink{class_character___recognition___algorithm_aa05c6fd498c38bf7725a445f15c5b77b}{preprocessing}} (cv\+::\+Mat \&img, cv\+::\+Mat \&filtered, std\+::vector$<$ cv\+::\+Rect $>$ \&bound\+Rect)
+\begin{DoxyCompactList}\small\item\em applies the color filter and detects circular objects and returns images of found regions \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a06c2a31ba8f4ab6e3aacea6b643a4d7d}\label{class_character___recognition___algorithm_a06c2a31ba8f4ab6e3aacea6b643a4d7d}} 
-void {\bfseries set\+\_\+lower\+\_\+bound\+\_\+filter} (double hue, double saturation, double value)
-\item 
+void \mbox{\hyperlink{class_character___recognition___algorithm_a06c2a31ba8f4ab6e3aacea6b643a4d7d}{set\+\_\+lower\+\_\+bound\+\_\+filter}} (double hue, double saturation, double value)
+\begin{DoxyCompactList}\small\item\em set the lower value for filter \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a2add4eeeb34fb3a8bd35a1d5da0950a0}\label{class_character___recognition___algorithm_a2add4eeeb34fb3a8bd35a1d5da0950a0}} 
-void {\bfseries set\+\_\+upper\+\_\+bound\+\_\+filter} (double hue, double saturation, double value)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{class_character___recognition___algorithm_a2add4eeeb34fb3a8bd35a1d5da0950a0}{set\+\_\+upper\+\_\+bound\+\_\+filter}} (double hue, double saturation, double value)
+\begin{DoxyCompactList}\small\item\em set the upper value for filter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_character___recognition___algorithm_aeff8a2e07ed905b20d0150b977acd752}\label{class_character___recognition___algorithm_aeff8a2e07ed905b20d0150b977acd752}} 
+void \mbox{\hyperlink{class_character___recognition___algorithm_aeff8a2e07ed905b20d0150b977acd752}{turn\+\_\+image}} (cv\+::\+Mat input, cv\+::\+Mat \&output, double angle)
+\begin{DoxyCompactList}\small\item\em calls rotate image \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a6fda22815d819ef7d0b0cfec4baba47c}\label{class_character___recognition___algorithm_a6fda22815d819ef7d0b0cfec4baba47c}} 
-const double {\bfseries M\+I\+N\+\_\+\+A\+R\+E\+A\+\_\+\+S\+I\+ZE} = 100
+const double {\bfseries M\+I\+N\+\_\+\+A\+R\+E\+A\+\_\+\+S\+I\+ZE} = 200
 \item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a3792c162037a2049d991a1634576d915}\label{class_character___recognition___algorithm_a3792c162037a2049d991a1634576d915}} 
 \mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} {\bfseries filter} = \mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}}()
 \item 
 \mbox{\Hypertarget{class_character___recognition___algorithm_a9c22f95223ecc5cfaf8e0303c30d5379}\label{class_character___recognition___algorithm_a9c22f95223ecc5cfaf8e0303c30d5379}} 
-double {\bfseries delta\+\_\+angle} = 45
-\end{DoxyCompactItemize}
+double \mbox{\hyperlink{class_character___recognition___algorithm_a9c22f95223ecc5cfaf8e0303c30d5379}{delta\+\_\+angle}} = 15
+\begin{DoxyCompactList}\small\item\em angle by which the image is turned each step from 0 to 360 degrees to find the right orientation \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

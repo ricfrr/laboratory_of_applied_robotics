@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['set_5falgo',['set_algo',['../class_digit___recognition.html#a5c83d879c6881693c3606cc5a1bc8ef2',1,'Digit_Recognition']]],
-  ['set_5ffilter',['set_filter',['../class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252',1,'Digit_Recognition']]]
+  ['get_5fregions_5fof_5finterest',['get_regions_of_interest',['../class_digit___recognition.html#acb87e2fb3a72d625170ab8c95ef6828f',1,'Digit_Recognition']]]
 ];

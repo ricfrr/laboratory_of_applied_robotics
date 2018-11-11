@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['set_5falgo',['set_algo',['../class_digit___recognition.html#a5c83d879c6881693c3606cc5a1bc8ef2',1,'Digit_Recognition']]],
-  ['set_5ffilter',['set_filter',['../class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252',1,'Digit_Recognition']]],
-  ['settings',['Settings',['../class_settings.html',1,'']]],
-  ['shape',['Shape',['../class_shape.html',1,'']]],
-  ['square',['Square',['../class_square.html',1,'']]]
+  ['radius',['radius',['../struct_people_data.html#a8b6df3ca122413f40a7ef6b662589b9e',1,'PeopleData']]],
+  ['rotate_5fimage',['rotate_image',['../class_character___recognition___algorithm.html#a4f7714bd67ad5804c909859b8eb5b8c6',1,'Character_Recognition_Algorithm']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5fregions_5fof_5finterest',['get_regions_of_interest',['../class_digit___recognition.html#acb87e2fb3a72d625170ab8c95ef6828f',1,'Digit_Recognition']]]
+  ['convert_5fbgr_5fto_5fhsv',['convert_bgr_to_hsv',['../class_character___recognition___algorithm.html#ab393524887755e6e363d281856b8aa1e',1,'Character_Recognition_Algorithm']]]
 ];
