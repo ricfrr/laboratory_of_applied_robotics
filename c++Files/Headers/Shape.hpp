@@ -12,8 +12,8 @@
 #include <unistd.h>
 
 using namespace cv;
-/*!
- * class for handling all the shapes in the map
+/**
+ \brief class for handling all the shapes in the map
  */
 class Shape
 {

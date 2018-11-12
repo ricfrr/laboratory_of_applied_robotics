@@ -5,8 +5,8 @@
 #include "Shape.hpp"
 
 using namespace cv;
-/*!
- * Class for handling hexagon obstacles
+/**
+ \brief Class for handling hexagon obstacles
  */
 class Hexagon : public Shape
 {

@@ -7,8 +7,8 @@
 
 using namespace cv;
 
-/*!
- * class for handling triangle obstacles
+/**
+ \brief class for handling triangle obstacles
  */
 class Triangle : public Shape {
 

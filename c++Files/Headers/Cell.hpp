@@ -5,8 +5,8 @@
 
 
 using namespace cv;
-/*!
- * Cell class for handling each cell of the map
+/**
+ \brief Cell class for handling each cell of the map
  */
 class Cell
 {

@@ -19,8 +19,8 @@
 #include <string>
 
 using namespace cv;
-/*!
- * class for undistorsion of the images
+/**
+ \brief class for undistorsion of the images
  */
 class Undistorsion {
     

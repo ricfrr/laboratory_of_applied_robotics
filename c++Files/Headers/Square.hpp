@@ -7,8 +7,8 @@
 
 using namespace cv;
 
-/*!
- *  Class for handling square in the map
+/**
+ \brief Class for handling square in the map
  */
 class Square : public Shape {
 

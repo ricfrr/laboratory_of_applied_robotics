@@ -8,8 +8,8 @@
 
 using namespace cv;
 
-/*!
- * class for detecting and saving people
+/**
+ \brief class for detecting and storing people
  */
 class People : public Shape {
 
