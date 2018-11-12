@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['processimage',['processImage',['../class_character___recognition___algorithm.html#ae830baa9ccf7c55ad73c78173188059e',1,'Character_Recognition_Algorithm::processImage()'],['../class_optical___character___recognition.html#ac94cc464313af1a3ad1c66a508826844',1,'Optical_Character_Recognition::processImage()'],['../class_template___character___recognition.html#a0391b26d50bbf8c821f874310b55251d',1,'Template_Character_Recognition::processImage()']]]
+  ['cell',['Cell',['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell']]],
+  ['circle',['Circle',['../class_circle.html#ad1ecfcfc7bf34529c6a6d6c448bf70fe',1,'Circle']]],
+  ['convert_5fbgr_5fto_5fhsv',['convert_bgr_to_hsv',['../class_character___recognition___algorithm.html#ab393524887755e6e363d281856b8aa1e',1,'Character_Recognition_Algorithm']]],
+  ['createmap',['createMap',['../class_map.html#a02537656e91e97077dfdfc5d84c3027b',1,'Map']]]
 ];

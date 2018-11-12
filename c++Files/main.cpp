@@ -30,6 +30,7 @@ int main(int argc, const char *argv[])
     Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
     persp_img = ipm.run(intrinsic_calibration, argv[1], "config/fullCalibration.yml");
 
+//    cv::Mat persp_img = cv::imread(argv[1]);
     // MAP
     Map map = Map();
     map.createMap(persp_img);

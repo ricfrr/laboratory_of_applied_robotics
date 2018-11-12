@@ -1,5 +1,9 @@
 \hypertarget{class_arena}{}\section{Arena Class Reference}
 \label{class_arena}\index{Arena@{Arena}}
+
+
+{\ttfamily \#include $<$Arena.\+hpp$>$}
+
 Inheritance diagram for Arena\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,39 +13,164 @@ Inheritance diagram for Arena\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_arena_aa37acdf43108ab0da04b77bbf79c2f7d}\label{class_arena_aa37acdf43108ab0da04b77bbf79c2f7d}} 
-void {\bfseries find\+Arena} (const Mat \&img)
+\mbox{\hyperlink{class_arena_a74f105bc709d4728fb07f1984abfd345}{Arena}} ()
 \item 
-\mbox{\Hypertarget{class_arena_a67171d93c7aff0f9d8bd3ee0596e9033}\label{class_arena_a67171d93c7aff0f9d8bd3ee0596e9033}} 
-std\+::vector$<$ cv\+::\+Point $>$ {\bfseries get\+Corners} ()
+\mbox{\hyperlink{class_arena_ae21b399e9e3f6b8ac4ecc44d7d1667fc}{$\sim$\+Arena}} ()
 \item 
-\mbox{\Hypertarget{class_arena_a7f822f33ff5810d4d266183e7606c0fe}\label{class_arena_a7f822f33ff5810d4d266183e7606c0fe}} 
-void {\bfseries set\+Corners} (std\+::vector$<$ cv\+::\+Point $>$ corners)
+void \mbox{\hyperlink{class_arena_aa37acdf43108ab0da04b77bbf79c2f7d}{find\+Arena}} (const Mat \&img)
 \item 
-\mbox{\Hypertarget{class_arena_ae7219e6d298213627a0c671e5c5f9536}\label{class_arena_ae7219e6d298213627a0c671e5c5f9536}} 
-cv\+::\+Point {\bfseries get\+Top\+Left} ()
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_arena_a67171d93c7aff0f9d8bd3ee0596e9033}{get\+Corners}} ()
 \item 
-\mbox{\Hypertarget{class_arena_a7ab570cb7821df75c6da9af6491be034}\label{class_arena_a7ab570cb7821df75c6da9af6491be034}} 
-void {\bfseries set\+Top\+Left} (cv\+::\+Point top\+Left)
+void \mbox{\hyperlink{class_arena_a7f822f33ff5810d4d266183e7606c0fe}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
 \item 
-\mbox{\Hypertarget{class_arena_aa417bc8757d66038038ac3f6a9d44860}\label{class_arena_aa417bc8757d66038038ac3f6a9d44860}} 
-cv\+::\+Point {\bfseries get\+Top\+Right} ()
+cv\+::\+Point \mbox{\hyperlink{class_arena_ae7219e6d298213627a0c671e5c5f9536}{get\+Top\+Left}} ()
 \item 
-\mbox{\Hypertarget{class_arena_a82c7fa04e8acf52f6edecc1ee1c38001}\label{class_arena_a82c7fa04e8acf52f6edecc1ee1c38001}} 
-void {\bfseries set\+Top\+Right} (cv\+::\+Point top\+Right)
+void \mbox{\hyperlink{class_arena_a7ab570cb7821df75c6da9af6491be034}{set\+Top\+Left}} (cv\+::\+Point top\+Left)
 \item 
-\mbox{\Hypertarget{class_arena_afdd88e341c385561eafbc73e90e08404}\label{class_arena_afdd88e341c385561eafbc73e90e08404}} 
-cv\+::\+Point {\bfseries get\+Bottom\+Left} ()
+cv\+::\+Point \mbox{\hyperlink{class_arena_aa417bc8757d66038038ac3f6a9d44860}{get\+Top\+Right}} ()
 \item 
-\mbox{\Hypertarget{class_arena_ac546db1983967fcc195369c8a0f1f9e5}\label{class_arena_ac546db1983967fcc195369c8a0f1f9e5}} 
-void {\bfseries set\+Bottom\+Left} (cv\+::\+Point bottom\+Left)
+void \mbox{\hyperlink{class_arena_a82c7fa04e8acf52f6edecc1ee1c38001}{set\+Top\+Right}} (cv\+::\+Point top\+Right)
 \item 
-\mbox{\Hypertarget{class_arena_ac62870a7bfa41baa7d38c4f7373cf3f5}\label{class_arena_ac62870a7bfa41baa7d38c4f7373cf3f5}} 
-cv\+::\+Point {\bfseries get\+Bottom\+Right} ()
+cv\+::\+Point \mbox{\hyperlink{class_arena_afdd88e341c385561eafbc73e90e08404}{get\+Bottom\+Left}} ()
 \item 
-\mbox{\Hypertarget{class_arena_a2207ae5feab0d9ef8a19ab46fdd8685c}\label{class_arena_a2207ae5feab0d9ef8a19ab46fdd8685c}} 
-void {\bfseries set\+Bottom\+Right} (cv\+::\+Point bottom\+Right)
+void \mbox{\hyperlink{class_arena_ac546db1983967fcc195369c8a0f1f9e5}{set\+Bottom\+Left}} (cv\+::\+Point bottom\+Left)
+\item 
+cv\+::\+Point \mbox{\hyperlink{class_arena_ac62870a7bfa41baa7d38c4f7373cf3f5}{get\+Bottom\+Right}} ()
+\item 
+void \mbox{\hyperlink{class_arena_a2207ae5feab0d9ef8a19ab46fdd8685c}{set\+Bottom\+Right}} (cv\+::\+Point bottom\+Right)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_arena}{Arena}} class is able to detect and save the arena given a photo 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_arena_a74f105bc709d4728fb07f1984abfd345}\label{class_arena_a74f105bc709d4728fb07f1984abfd345}} 
+\index{Arena@{Arena}!Arena@{Arena}}
+\index{Arena@{Arena}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{Arena()}{Arena()}}
+{\footnotesize\ttfamily Arena\+::\+Arena (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructor of \mbox{\hyperlink{class_arena}{Arena}} \mbox{\Hypertarget{class_arena_ae21b399e9e3f6b8ac4ecc44d7d1667fc}\label{class_arena_ae21b399e9e3f6b8ac4ecc44d7d1667fc}} 
+\index{Arena@{Arena}!````~Arena@{$\sim$\+Arena}}
+\index{````~Arena@{$\sim$\+Arena}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{$\sim$\+Arena()}{~Arena()}}
+{\footnotesize\ttfamily Arena\+::$\sim$\+Arena (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor of Arene 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_arena_aa37acdf43108ab0da04b77bbf79c2f7d}\label{class_arena_aa37acdf43108ab0da04b77bbf79c2f7d}} 
+\index{Arena@{Arena}!find\+Arena@{find\+Arena}}
+\index{find\+Arena@{find\+Arena}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{find\+Arena()}{findArena()}}
+{\footnotesize\ttfamily void Arena\+::find\+Arena (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+Retrieve and set the cornerns in the \mbox{\hyperlink{class_arena}{Arena}} Object 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the arena \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arena_afdd88e341c385561eafbc73e90e08404}\label{class_arena_afdd88e341c385561eafbc73e90e08404}} 
+\index{Arena@{Arena}!get\+Bottom\+Left@{get\+Bottom\+Left}}
+\index{get\+Bottom\+Left@{get\+Bottom\+Left}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{get\+Bottom\+Left()}{getBottomLeft()}}
+{\footnotesize\ttfamily cv\+::\+Point Arena\+::get\+Bottom\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the bottom left corner \begin{DoxyReturn}{Returns}
+the bottom left corner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arena_ac62870a7bfa41baa7d38c4f7373cf3f5}\label{class_arena_ac62870a7bfa41baa7d38c4f7373cf3f5}} 
+\index{Arena@{Arena}!get\+Bottom\+Right@{get\+Bottom\+Right}}
+\index{get\+Bottom\+Right@{get\+Bottom\+Right}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{get\+Bottom\+Right()}{getBottomRight()}}
+{\footnotesize\ttfamily cv\+::\+Point Arena\+::get\+Bottom\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the bottom right corner of the arena \begin{DoxyReturn}{Returns}
+bottom right corner of the arena 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arena_a67171d93c7aff0f9d8bd3ee0596e9033}\label{class_arena_a67171d93c7aff0f9d8bd3ee0596e9033}} 
+\index{Arena@{Arena}!get\+Corners@{get\+Corners}}
+\index{get\+Corners@{get\+Corners}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Arena\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return a list of corners in a clockwise order \begin{DoxyReturn}{Returns}
+list of corners in a clockwise order 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arena_ae7219e6d298213627a0c671e5c5f9536}\label{class_arena_ae7219e6d298213627a0c671e5c5f9536}} 
+\index{Arena@{Arena}!get\+Top\+Left@{get\+Top\+Left}}
+\index{get\+Top\+Left@{get\+Top\+Left}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{get\+Top\+Left()}{getTopLeft()}}
+{\footnotesize\ttfamily cv\+::\+Point Arena\+::get\+Top\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the top left corner of the arena \begin{DoxyReturn}{Returns}
+return the top left corner of the arena 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arena_aa417bc8757d66038038ac3f6a9d44860}\label{class_arena_aa417bc8757d66038038ac3f6a9d44860}} 
+\index{Arena@{Arena}!get\+Top\+Right@{get\+Top\+Right}}
+\index{get\+Top\+Right@{get\+Top\+Right}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{get\+Top\+Right()}{getTopRight()}}
+{\footnotesize\ttfamily cv\+::\+Point Arena\+::get\+Top\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the top right corner of the arena \begin{DoxyReturn}{Returns}
+return the top right corner of the arena 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_arena_ac546db1983967fcc195369c8a0f1f9e5}\label{class_arena_ac546db1983967fcc195369c8a0f1f9e5}} 
+\index{Arena@{Arena}!set\+Bottom\+Left@{set\+Bottom\+Left}}
+\index{set\+Bottom\+Left@{set\+Bottom\+Left}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{set\+Bottom\+Left()}{setBottomLeft()}}
+{\footnotesize\ttfamily void Arena\+::set\+Bottom\+Left (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{bottom\+Left }\end{DoxyParamCaption})}
+
+set the bottom left corner 
+\begin{DoxyParams}{Parameters}
+{\em bottom\+Left} & bottom left corner of the arena \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arena_a2207ae5feab0d9ef8a19ab46fdd8685c}\label{class_arena_a2207ae5feab0d9ef8a19ab46fdd8685c}} 
+\index{Arena@{Arena}!set\+Bottom\+Right@{set\+Bottom\+Right}}
+\index{set\+Bottom\+Right@{set\+Bottom\+Right}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{set\+Bottom\+Right()}{setBottomRight()}}
+{\footnotesize\ttfamily void Arena\+::set\+Bottom\+Right (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{bottom\+Right }\end{DoxyParamCaption})}
+
+set the bottom right corner 
+\begin{DoxyParams}{Parameters}
+{\em bottom\+Right} & bottom right corner of the arena \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arena_a7f822f33ff5810d4d266183e7606c0fe}\label{class_arena_a7f822f33ff5810d4d266183e7606c0fe}} 
+\index{Arena@{Arena}!set\+Corners@{set\+Corners}}
+\index{set\+Corners@{set\+Corners}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
+{\footnotesize\ttfamily void Arena\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
+
+set the list of corners 
+\begin{DoxyParams}{Parameters}
+{\em corners} & list of corners that have to be setted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arena_a7ab570cb7821df75c6da9af6491be034}\label{class_arena_a7ab570cb7821df75c6da9af6491be034}} 
+\index{Arena@{Arena}!set\+Top\+Left@{set\+Top\+Left}}
+\index{set\+Top\+Left@{set\+Top\+Left}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{set\+Top\+Left()}{setTopLeft()}}
+{\footnotesize\ttfamily void Arena\+::set\+Top\+Left (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{top\+Left }\end{DoxyParamCaption})}
+
+set the top left corner 
+\begin{DoxyParams}{Parameters}
+{\em top\+Left} & top left corner that has to be setted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_arena_a82c7fa04e8acf52f6edecc1ee1c38001}\label{class_arena_a82c7fa04e8acf52f6edecc1ee1c38001}} 
+\index{Arena@{Arena}!set\+Top\+Right@{set\+Top\+Right}}
+\index{set\+Top\+Right@{set\+Top\+Right}!Arena@{Arena}}
+\subsubsection{\texorpdfstring{set\+Top\+Right()}{setTopRight()}}
+{\footnotesize\ttfamily void Arena\+::set\+Top\+Right (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{top\+Right }\end{DoxyParamCaption})}
+
+set the top right corner 
+\begin{DoxyParams}{Parameters}
+{\em top\+Right} & top right corner tha has to be setted \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

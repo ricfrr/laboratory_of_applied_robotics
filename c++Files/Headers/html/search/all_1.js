@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
-  ['cell',['Cell',['../class_cell.html',1,'']]],
-  ['character_5frecognition_5falgorithm',['Character_Recognition_Algorithm',['../class_character___recognition___algorithm.html',1,'']]],
-  ['circle',['Circle',['../class_circle.html',1,'']]]
+  ['best',['best',['../struct_digit_result_distribution.html#a51eaca67148d243afb838b8d93aa6362',1,'DigitResultDistribution']]]
 ];

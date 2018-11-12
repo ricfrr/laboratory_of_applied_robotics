@@ -1,5 +1,9 @@
 \hypertarget{class_triangle}{}\section{Triangle Class Reference}
 \label{class_triangle}\index{Triangle@{Triangle}}
+
+
+{\ttfamily \#include $<$Triangle.\+hpp$>$}
+
 Inheritance diagram for Triangle\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,30 +13,55 @@ Inheritance diagram for Triangle\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_triangle_a0c77555fd0e47f1344c23fa880f43777}\label{class_triangle_a0c77555fd0e47f1344c23fa880f43777}} 
-std\+::vector$<$ cv\+::\+Point $>$ {\bfseries get\+Corners} ()
+\mbox{\hyperlink{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}{Triangle}} ()
 \item 
-\mbox{\Hypertarget{class_triangle_ad2d4cecee7e87e10d8b2787199d784c2}\label{class_triangle_ad2d4cecee7e87e10d8b2787199d784c2}} 
-void {\bfseries set\+Corners} (std\+::vector$<$ cv\+::\+Point $>$ corners)
+\mbox{\hyperlink{class_triangle_a5199760a17454f4dc94c855a57e3a152}{$\sim$\+Triangle}} ()
 \item 
-\mbox{\Hypertarget{class_triangle_a093007fb968affbfb2dbd7af8aa630a9}\label{class_triangle_a093007fb968affbfb2dbd7af8aa630a9}} 
-cv\+::\+Point {\bfseries get\+First\+Corner} ()
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_triangle_a0c77555fd0e47f1344c23fa880f43777}{get\+Corners}} ()
 \item 
-\mbox{\Hypertarget{class_triangle_a72e1915b94d2080fb36189bd99ef0fc6}\label{class_triangle_a72e1915b94d2080fb36189bd99ef0fc6}} 
-void {\bfseries set\+First\+Corner} (cv\+::\+Point firstC)
-\item 
-\mbox{\Hypertarget{class_triangle_a7f851c5d22c1f01278f4a84ee22ad9eb}\label{class_triangle_a7f851c5d22c1f01278f4a84ee22ad9eb}} 
-cv\+::\+Point {\bfseries get\+Second\+Corner} ()
-\item 
-\mbox{\Hypertarget{class_triangle_af9db6776f7e3ab5429de047b9fd1e84d}\label{class_triangle_af9db6776f7e3ab5429de047b9fd1e84d}} 
-void {\bfseries set\+Second\+Corner} (cv\+::\+Point secondC)
-\item 
-\mbox{\Hypertarget{class_triangle_ae159eb9c9cfdb505acaacb8c3b901151}\label{class_triangle_ae159eb9c9cfdb505acaacb8c3b901151}} 
-cv\+::\+Point {\bfseries get\+Third\+Corner} ()
-\item 
-\mbox{\Hypertarget{class_triangle_ab1c730c92808d3b6d6b725fadd40639c}\label{class_triangle_ab1c730c92808d3b6d6b725fadd40639c}} 
-void {\bfseries set\+Third\+Corner} (cv\+::\+Point thirdC)
+void \mbox{\hyperlink{class_triangle_ad2d4cecee7e87e10d8b2787199d784c2}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for handling triangle obstacles 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}\label{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}} 
+\index{Triangle@{Triangle}!Triangle@{Triangle}}
+\index{Triangle@{Triangle}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{Triangle()}{Triangle()}}
+{\footnotesize\ttfamily Triangle\+::\+Triangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of triangle class \mbox{\Hypertarget{class_triangle_a5199760a17454f4dc94c855a57e3a152}\label{class_triangle_a5199760a17454f4dc94c855a57e3a152}} 
+\index{Triangle@{Triangle}!````~Triangle@{$\sim$\+Triangle}}
+\index{````~Triangle@{$\sim$\+Triangle}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{$\sim$\+Triangle()}{~Triangle()}}
+{\footnotesize\ttfamily Triangle\+::$\sim$\+Triangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of triangle class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_triangle_a0c77555fd0e47f1344c23fa880f43777}\label{class_triangle_a0c77555fd0e47f1344c23fa880f43777}} 
+\index{Triangle@{Triangle}!get\+Corners@{get\+Corners}}
+\index{get\+Corners@{get\+Corners}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Triangle\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of corners \begin{DoxyReturn}{Returns}
+list of corners of the triangle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_triangle_ad2d4cecee7e87e10d8b2787199d784c2}\label{class_triangle_ad2d4cecee7e87e10d8b2787199d784c2}} 
+\index{Triangle@{Triangle}!set\+Corners@{set\+Corners}}
+\index{set\+Corners@{set\+Corners}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
+{\footnotesize\ttfamily void Triangle\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
+
+set corners of the triangle 
+\begin{DoxyParams}{Parameters}
+{\em corners} & list of corners \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

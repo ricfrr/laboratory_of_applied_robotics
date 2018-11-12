@@ -27,18 +27,11 @@ public:
     Optical_Character_Recognition();
     ~Optical_Character_Recognition();
     
-    ///demo function for displaying performance of algorithm
-    void processImage(const std::string& filename);
+    std::pair<int,int> detect_digit(cv::Mat &image);
     
-    int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
-    
-    int detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
+    int detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image);
     
     void getResult(tesseract::TessBaseAPI *&ocr, cv::Mat &img, int &result);
-    
-    std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
-    
-    int maxConf = 85;
     
     tesseract::TessBaseAPI * ocr = new tesseract::TessBaseAPI();
     

@@ -88,14 +88,12 @@ void Character_Recognition_Algorithm::rotate_image(cv::Mat &src, double angle, c
     
     cv::warpAffine(src, result, rot, bbox.size(),cv::INTER_LINEAR,
                    cv::BORDER_CONSTANT,
-                   cv::Scalar(255, 255, 255));
+                   cv::Scalar(0, 0, 0));
+                   //cv::Scalar(255, 255, 255));
 }
 
-void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
-    
-    // Display original image
-    displayImage(img, "Original");
-    //cv::waitKey(0);
+
+std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filtered, std::vector<cv::Rect> &boundRect){
     
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
@@ -103,14 +101,11 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     
     //find a filter
     Color_Processing color;
-    std::string filename = "../data/calib/filter_.png"; //the link might has to be adapted
+    std::string filename = "../data/calib/filter_+++.png"; //the link might has to be adapted
     color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;
     
-    
-//    displayImage(hsv_img, "hsv");
-//    cv::waitKey(0);
     
     // Find green regions
     cv::Mat green_mask;
@@ -119,8 +114,6 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
                cv::Scalar(filter.lb[0], filter.lb[1], filter.lb[2]),
                cv::Scalar(filter.ub[0], filter.ub[1], filter.ub[2]));
     
-//    displayImage(green_mask, "GREEN_filter1");
-//    cv::waitKey(0);
     
     // Apply some filtering
     cv::Mat kernel = apply_some_filtering(green_mask);
@@ -129,23 +122,98 @@ void Character_Recognition_Algorithm::preprocessing(cv::Mat &img, cv::Mat &filte
     cv::Mat contours_img;
     boundRect = extract_regions_of_interest(img, green_mask,contours_img);
     
-    //displaying
-//    displayImage(contours_img, "Original");
-//    cv::waitKey(0);
-    
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
-    displayImage(img, "inversion one");
-    displayImage(green_mask, "inversion two");
+
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     
-//    displayImage(filtered, "filtered");
-   // cv::waitKey(0);
-    //displaying some more
-//    displayImage(green_mask_inv, "Numbers");
-//    cv::waitKey(0);
+
+    //cutting out the areas of interest and return them
+    std::vector<cv::Mat> cut_images;
+    std::vector<cv::Rect> rects;
+    for(int i = 0;i<boundRect.size();i++){
+        cv::Mat cut_img = cv::Mat(filtered, boundRect[i]);
+        if (!cut_img.empty()){
+            cut_images.push_back(cut_img);
+            rects.push_back(boundRect[i]);
+        }
+    }
     
+    boundRect = rects;
+    
+    return cut_images;
+}
+
+void Character_Recognition_Algorithm::turn_image(cv::Mat input, cv::Mat & output, double angle){
+    rotate_image(input, angle, output);
+}
+
+double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
+    
+    cv::Vec4f line;
+    
+    cv::Mat gray;
+    cvtColor(image, gray, CV_BGR2GRAY); //perform gray scale conversion.
+    
+    threshold( gray, gray, 100,255,cv::THRESH_BINARY_INV );
+    
+    std::vector<std::vector<cv::Point>> contours;
+    
+    std::vector<cv::Vec4i> hierarchy;
+    
+    cv::findContours(gray, contours, hierarchy,
+                     cv::RETR_CCOMP, cv::CHAIN_APPROX_SIMPLE );
+    
+    //cv::drawContours(gray, contours, -1, cv::Scalar(0, 255, 255), cv::FILLED, 8, hierarchy );
+    
+    std::vector<cv::Point> numbers;
+    for(int i = 0;i<contours.size();i++)
+        for (int j = 0;j<contours[i].size();j++)
+            numbers.push_back(contours[i][j]);
+
+    
+    cv::fitLine(numbers, line, CV_DIST_L1, 0,  0.01,  0.01);
+
+    cv::line(gray, cv::Point(line[2],line[3]), cv::Point(line[2]+100*line[0],line[3]+100*line[1]), cv::Scalar(0,100,200));
+    
+    std::cout << "fitline result " << line << std::endl;
+    
+    double rho = std::sqrt(std::pow(line[3],2) + std::pow(line[2],2));
+    double angle = std::atan2(line[3]/rho, line[2]/rho);
+    
+    
+    //convert rad to deg
+    return (angle) * 57.2958;
+    
+}
+
+void Character_Recognition_Algorithm::prepare_uniform_window(cv::Mat &img){
+    
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
+    
+    cv::resize(img, img, cv::Size(200, 200)); // resize the ROI
+   // cv::imshow("after resizing", img);
+    
+    //cv::adaptiveThreshold(img, img, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 3, 0);
+    cv::threshold( img, img, 80, 255, 1 ); // threshold and binarize the image, to suppress some noise
+   // cv::imshow("after threshold", img);
+    
+    // Apply some additional smoothing and filtering
+    cv::erode(img, img, kernel);
+  //  cv::imshow("after erosion", img);
+    cv::GaussianBlur(img, img, cv::Size(3, 3), 2, 2);
+ //   cv::imshow("after blur", img);
+    cv::erode(img, img, kernel);
+ //   cv::imshow("after erosion2", img);
+    cv::erode(img, img, kernel);
+ //   cv::imshow("after erosion3", img);
+
+    
+//    cv::dilate(img, img, kernel);
+//    cv::imshow("after dilation", img);
+//    cv::erode(img, img, kernel);
+//    cv::imshow("eroding", img);
 }
 
 void Character_Recognition_Algorithm::set_lower_bound_filter(double hue, double saturation, double value){

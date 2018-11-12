@@ -1,5 +1,9 @@
 \hypertarget{class_people}{}\section{People Class Reference}
 \label{class_people}\index{People@{People}}
+
+
+{\ttfamily \#include $<$People.\+hpp$>$}
+
 Inheritance diagram for People\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,12 +13,55 @@ Inheritance diagram for People\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_people_a4c13aebe88654dba21a2a12b8b5943f7}\label{class_people_a4c13aebe88654dba21a2a12b8b5943f7}} 
-void {\bfseries find\+Circles} (const Mat \&img)
+\mbox{\hyperlink{class_people_aae1408eddfd15a5007003ecdf1507941}{People}} ()
 \item 
-\mbox{\Hypertarget{class_people_a0fc4e671ff110314dc0dc65ee150f04c}\label{class_people_a0fc4e671ff110314dc0dc65ee150f04c}} 
-std\+::vector$<$ \mbox{\hyperlink{class_circle}{Circle}} $>$ {\bfseries get\+Circles} ()
+\mbox{\hyperlink{class_people_adae124857f64dadff4e1801410b3dab2}{$\sim$\+People}} ()
+\item 
+void \mbox{\hyperlink{class_people_a4c13aebe88654dba21a2a12b8b5943f7}{find\+Circles}} (const Mat \&img)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_circle}{Circle}} $>$ \mbox{\hyperlink{class_people_a0fc4e671ff110314dc0dc65ee150f04c}{get\+Circles}} ()
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for detecting and saving people 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_people_aae1408eddfd15a5007003ecdf1507941}\label{class_people_aae1408eddfd15a5007003ecdf1507941}} 
+\index{People@{People}!People@{People}}
+\index{People@{People}!People@{People}}
+\subsubsection{\texorpdfstring{People()}{People()}}
+{\footnotesize\ttfamily People\+::\+People (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+oonstructor of people class \mbox{\Hypertarget{class_people_adae124857f64dadff4e1801410b3dab2}\label{class_people_adae124857f64dadff4e1801410b3dab2}} 
+\index{People@{People}!````~People@{$\sim$\+People}}
+\index{````~People@{$\sim$\+People}!People@{People}}
+\subsubsection{\texorpdfstring{$\sim$\+People()}{~People()}}
+{\footnotesize\ttfamily People\+::$\sim$\+People (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of people class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_people_a4c13aebe88654dba21a2a12b8b5943f7}\label{class_people_a4c13aebe88654dba21a2a12b8b5943f7}} 
+\index{People@{People}!find\+Circles@{find\+Circles}}
+\index{find\+Circles@{find\+Circles}!People@{People}}
+\subsubsection{\texorpdfstring{find\+Circles()}{findCircles()}}
+{\footnotesize\ttfamily void People\+::find\+Circles (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+detect circles in the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the map \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_people_a0fc4e671ff110314dc0dc65ee150f04c}\label{class_people_a0fc4e671ff110314dc0dc65ee150f04c}} 
+\index{People@{People}!get\+Circles@{get\+Circles}}
+\index{get\+Circles@{get\+Circles}!People@{People}}
+\subsubsection{\texorpdfstring{get\+Circles()}{getCircles()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_circle}{Circle}}$>$ People\+::get\+Circles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of circle in the map \begin{DoxyReturn}{Returns}
+list of circle 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -64,40 +64,27 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_digit___recognition-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Digit_Recognition Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Class for Recognizing Digits.  
+<p>The <a class="el" href="class_digit___recognition.html" title="The Digit_Recognition class is used to detect digits in the arena and export PeopleData. ">Digit_Recognition</a> class is used to detect digits in the arena and export <a class="el" href="struct_people_data.html" title="a Data object that is beeing used to build a People Object for the map representation ...">PeopleData</a>.  
  <a href="class_digit___recognition.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_digit___recognition_8hpp_source.html">Digit_Recognition.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a183d686f4f9f3ce1ed555e9311d30f56"><td class="memItemLeft" align="right" valign="top"><a id="a183d686f4f9f3ce1ed555e9311d30f56"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Digit_Recognition</b> (DigitRecognitionAlgo algorithm)</td></tr>
+<tr class="memitem:a183d686f4f9f3ce1ed555e9311d30f56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a183d686f4f9f3ce1ed555e9311d30f56">Digit_Recognition</a> (DigitRecognitionAlgo algorithm)</td></tr>
+<tr class="memdesc:a183d686f4f9f3ce1ed555e9311d30f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructing the class with a set DigitRecognitionAlgo type  <a href="#a183d686f4f9f3ce1ed555e9311d30f56">More...</a><br /></td></tr>
 <tr class="separator:a183d686f4f9f3ce1ed555e9311d30f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c83d879c6881693c3606cc5a1bc8ef2"><td class="memItemLeft" align="right" valign="top"><a id="a5c83d879c6881693c3606cc5a1bc8ef2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a5c83d879c6881693c3606cc5a1bc8ef2">set_algo</a> (DigitRecognitionAlgo algorithm)</td></tr>
 <tr class="memdesc:a5c83d879c6881693c3606cc5a1bc8ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">set detection algorithm for digits e.g. tesseract or template matching <br /></td></tr>
 <tr class="separator:a5c83d879c6881693c3606cc5a1bc8ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e96d90018e48c638debc82b66f2662a"><td class="memItemLeft" align="right" valign="top"><a id="a3e96d90018e48c638debc82b66f2662a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a3e96d90018e48c638debc82b66f2662a">run_demo</a> (const std::string filename)</td></tr>
-<tr class="memdesc:a3e96d90018e48c638debc82b66f2662a"><td class="mdescLeft">&#160;</td><td class="mdescRight">run the algorithm on an image containing digits <br /></td></tr>
-<tr class="separator:a3e96d90018e48c638debc82b66f2662a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3ce374dcfcbf4b58b645a7ec95e725"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#adc3ce374dcfcbf4b58b645a7ec95e725">detect_single_digit</a> (cv::Mat &amp;img)</td></tr>
-<tr class="separator:adc3ce374dcfcbf4b58b645a7ec95e725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86fd9273fe2bf09efc1b804d49e370f"><td class="memItemLeft" align="right" valign="top"><a id="ac86fd9273fe2bf09efc1b804d49e370f"></a>
-std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#ac86fd9273fe2bf09efc1b804d49e370f">detect_digits</a> (cv::Mat &amp;img)</td></tr>
-<tr class="memdesc:ac86fd9273fe2bf09efc1b804d49e370f"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a list of digits recognized in an prepared image <br /></td></tr>
-<tr class="separator:ac86fd9273fe2bf09efc1b804d49e370f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8244a36e7b044ef37c768de30ffed4b"><td class="memItemLeft" align="right" valign="top"><a id="af8244a36e7b044ef37c768de30ffed4b"></a>
-std::vector&lt; <a class="el" href="struct_people_data.html">PeopleData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#af8244a36e7b044ef37c768de30ffed4b">detect_peopleData</a> (cv::Mat &amp;img)</td></tr>
-<tr class="memdesc:af8244a36e7b044ef37c768de30ffed4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a list of <a class="el" href="struct_people_data.html">PeopleData</a> Objects recognized in an prepared image <br /></td></tr>
-<tr class="separator:af8244a36e7b044ef37c768de30ffed4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a479e6126291463d9117abc6553c555df"><td class="memItemLeft" align="right" valign="top"><a id="a479e6126291463d9117abc6553c555df"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a479e6126291463d9117abc6553c555df">detect_digit_for_map</a> (cv::Mat &amp;img)</td></tr>
 <tr class="memdesc:a479e6126291463d9117abc6553c555df"><td class="mdescLeft">&#160;</td><td class="mdescRight">detects digit of prepared image and checks if the result was fitting the map requierements <br /></td></tr>
@@ -106,26 +93,62 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 std::vector&lt; <a class="el" href="struct_people_data.html">PeopleData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#aad1207aa02e043af5505c217ef1996b9">detect_digits_for_map</a> (const cv::Mat img_input)</td></tr>
 <tr class="memdesc:aad1207aa02e043af5505c217ef1996b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">detects all the digits of an unprepared images and returns people information <br /></td></tr>
 <tr class="separator:aad1207aa02e043af5505c217ef1996b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68484f6730ee2f0fc2050726c3ff2252"><td class="memItemLeft" align="right" valign="top"><a id="a68484f6730ee2f0fc2050726c3ff2252"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252">set_filter</a> (<a class="el" href="struct_h_s_v_filter_range.html">HSVFilterRange</a> filterRange)</td></tr>
-<tr class="memdesc:a68484f6730ee2f0fc2050726c3ff2252"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a hsv filter for better image recognition results <br /></td></tr>
+<tr class="memitem:a68484f6730ee2f0fc2050726c3ff2252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252">set_filter</a> (<a class="el" href="struct_h_s_v_filter_range.html">HSVFilterRange</a> filterRange)</td></tr>
+<tr class="memdesc:a68484f6730ee2f0fc2050726c3ff2252"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets a hsv filter for better image recognition results  <a href="#a68484f6730ee2f0fc2050726c3ff2252">More...</a><br /></td></tr>
 <tr class="separator:a68484f6730ee2f0fc2050726c3ff2252"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb87e2fb3a72d625170ab8c95ef6828f"><td class="memItemLeft" align="right" valign="top"><a id="acb87e2fb3a72d625170ab8c95ef6828f"></a>
-std::vector&lt; cv::Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#acb87e2fb3a72d625170ab8c95ef6828f">get_regions_of_interest</a> (cv::Mat &amp;img)</td></tr>
-<tr class="memdesc:acb87e2fb3a72d625170ab8c95ef6828f"><td class="mdescLeft">&#160;</td><td class="mdescRight">extracts the rect information of regions where the filter was applied <br /></td></tr>
+<tr class="memitem:acb87e2fb3a72d625170ab8c95ef6828f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#acb87e2fb3a72d625170ab8c95ef6828f">get_regions_of_interest</a> (cv::Mat &amp;img)</td></tr>
+<tr class="memdesc:acb87e2fb3a72d625170ab8c95ef6828f"><td class="mdescLeft">&#160;</td><td class="mdescRight">extracts the rect information of regions where the filter was applied  <a href="#acb87e2fb3a72d625170ab8c95ef6828f">More...</a><br /></td></tr>
 <tr class="separator:acb87e2fb3a72d625170ab8c95ef6828f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:aae57bd40fa8864ed5085beb98aa22fcd"><td class="memItemLeft" align="right" valign="top"><a id="aae57bd40fa8864ed5085beb98aa22fcd"></a>
+DigitRecognitionAlgo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_digit___recognition.html#aae57bd40fa8864ed5085beb98aa22fcd">picked_algorithm</a></td></tr>
+<tr class="memdesc:aae57bd40fa8864ed5085beb98aa22fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">the algorithm typed used to detect digits <br /></td></tr>
+<tr class="separator:aae57bd40fa8864ed5085beb98aa22fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for Recognizing Digits. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="adc3ce374dcfcbf4b58b645a7ec95e725"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc3ce374dcfcbf4b58b645a7ec95e725">&#9670;&nbsp;</a></span>detect_single_digit()</h2>
+<div class="textblock"><p>The <a class="el" href="class_digit___recognition.html" title="The Digit_Recognition class is used to detect digits in the arena and export PeopleData. ">Digit_Recognition</a> class is used to detect digits in the arena and export <a class="el" href="struct_people_data.html" title="a Data object that is beeing used to build a People Object for the map representation ...">PeopleData</a>. </p>
+<p>The <a class="el" href="class_digit___recognition.html" title="The Digit_Recognition class is used to detect digits in the arena and export PeopleData. ">Digit_Recognition</a> class is used to detect digits in the arena and export <a class="el" href="struct_people_data.html" title="a Data object that is beeing used to build a People Object for the map representation ...">PeopleData</a>. The class contains a <a class="el" href="class_character___recognition___algorithm.html" title="abstract class for character recognition algorithms ">Character_Recognition_Algorithm</a> member that is used to detect digits. Changing the DigitRecognitionAlgo type results in the use of another implementation of <a class="el" href="class_character___recognition___algorithm.html" title="abstract class for character recognition algorithms ">Character_Recognition_Algorithm</a> derived classes. New types of <a class="el" href="class_character___recognition___algorithm.html" title="abstract class for character recognition algorithms ">Character_Recognition_Algorithm</a> subclasses can be added to improve digit recognition performance over time. The class contains <a class="el" href="struct_h_s_v_filter_range.html">HSVFilterRange</a> object that is able to automatically construct a color filter from a given input image. When detect_digit_for_map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a <a class="el" href="struct_people_data.html" title="a Data object that is beeing used to build a People Object for the map representation ...">PeopleData</a> object that can be used to create <a class="el" href="class_people.html">People</a> objects and feed the map. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_people.html">People</a> </dd>
+<dd>
+<a class="el" href="class_map.html">Map</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a183d686f4f9f3ce1ed555e9311d30f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183d686f4f9f3ce1ed555e9311d30f56">&#9670;&nbsp;</a></span>Digit_Recognition()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Digit_Recognition::detect_single_digit </td>
+          <td class="memname">Digit_Recognition::Digit_Recognition </td>
+          <td>(</td>
+          <td class="paramtype">DigitRecognitionAlgo&#160;</td>
+          <td class="paramname"><em>algorithm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructing the class with a set DigitRecognitionAlgo type </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">algorithm</td><td>a DigitRecognitionAlgo enum type that specifies the type of <a class="el" href="class_character___recognition___algorithm.html" title="abstract class for character recognition algorithms ">Character_Recognition_Algorithm</a> used to perform the recognition of the digit </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Optical_Recognition_Algorithm, <a class="el" href="class_template___character___recognition.html">Template_Character_Recognition</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acb87e2fb3a72d625170ab8c95ef6828f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb87e2fb3a72d625170ab8c95ef6828f">&#9670;&nbsp;</a></span>get_regions_of_interest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;cv::Rect&gt; Digit_Recognition::get_regions_of_interest </td>
           <td>(</td>
           <td class="paramtype">cv::Mat &amp;&#160;</td>
           <td class="paramname"><em>img</em></td><td>)</td>
@@ -133,7 +156,35 @@ std::vector&lt; cv::Rect &gt;&#160;</td><td class="memItemRight" valign="bottom"
         </tr>
       </table>
 </div><div class="memdoc">
-<p>detect a single digit in an prepared image will return first detected digit </p>
+
+<p>extracts the rect information of regions where the filter was applied </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of cv::Rect objects containing information about location and size of the digits in tne arg image </dd></dl>
+
+</div>
+</div>
+<a id="a68484f6730ee2f0fc2050726c3ff2252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68484f6730ee2f0fc2050726c3ff2252">&#9670;&nbsp;</a></span>set_filter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Digit_Recognition::set_filter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_h_s_v_filter_range.html">HSVFilterRange</a>&#160;</td>
+          <td class="paramname"><em>filterRange</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets a hsv filter for better image recognition results </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filterRange</td><td>a <a class="el" href="struct_h_s_v_filter_range.html">HSVFilterRange</a> object that automatically creates a filter based on an input image </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
