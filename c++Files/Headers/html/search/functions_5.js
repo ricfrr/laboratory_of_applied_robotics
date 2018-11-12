@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['find_5fblack_5fthreshold',['find_black_threshold',['../class_color___processing.html#aff93a009843ca7762732984ef57375b9',1,'Color_Processing']]],
   ['findarena',['findArena',['../class_arena.html#aa37acdf43108ab0da04b77bbf79c2f7d',1,'Arena']]],
   ['findcircles',['findCircles',['../class_people.html#a4c13aebe88654dba21a2a12b8b5943f7',1,'People']]],
   ['findexitpoint',['findExitPoint',['../class_exit_point.html#a2762c0c61bbe71a1a292b86e9517e860',1,'ExitPoint']]],

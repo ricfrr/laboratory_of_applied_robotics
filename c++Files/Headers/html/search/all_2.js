@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['calibrate_5fcolor',['calibrate_color',['../class_color___processing.html#acb962976dba3538eabcf5812951a023e',1,'Color_Processing']]],
   ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
   ['cell',['Cell',['../class_cell.html',1,'Cell'],['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()']]],
   ['center',['center',['../struct_people_data.html#a9744c97bd0d9b4582452eb8afec15b05',1,'PeopleData']]],

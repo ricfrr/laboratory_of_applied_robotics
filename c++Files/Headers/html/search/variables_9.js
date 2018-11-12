@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['three',['three',['../struct_digit_result_distribution.html#a7577349008e126903118cfd374098b13',1,'DigitResultDistribution']]],
-  ['two',['two',['../struct_digit_result_distribution.html#a56239fa561bbf02f884b927537e4e641',1,'DigitResultDistribution']]]
+  ['radius',['radius',['../struct_people_data.html#a8b6df3ca122413f40a7ef6b662589b9e',1,'PeopleData']]],
+  ['range',['range',['../class_color___processing.html#a5769c226ab5a68929b0b5894d35dbb57',1,'Color_Processing']]]
 ];
