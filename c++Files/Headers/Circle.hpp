@@ -40,23 +40,9 @@ class Circle : public Shape
      * @param center_c center of the circle
      */
     void setCenter(cv::Point center_c);
-    /*!
-     * return the digit of the circle
-     * @return the digit
-     */
-    int getDigit();
-    /*!
-     * set the digit of the circle 
-     * @param digit_i digit of the circle
-     */
-    void setDigit(int digit_i);
     
-   
-
-
-  private:
     cv::Point center;
-    int radius, digit;
+    double radius;
 };
 
 #endif /* Circle_hpp */

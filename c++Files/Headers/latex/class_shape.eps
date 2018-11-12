@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 1184.210526
+%%BoundingBox: 0 0 500 131.578947
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.422222 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 3.800000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 9 def
-/cols 2 def
+/rows 3 def
+/cols 6 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -174,14 +174,16 @@
 boxfont setfont
 1 boundaspect scale
 (Shape) cw
-(Arena) cw
 (Circle) cw
 (Hexagon) cw
 (Obstacle) cw
 (Pentagon) cw
-(People) cw
 (Rectangle) cw
 (Triangle) cw
+(People) cw
+(Arena) cw
+(ExitPoint) cw
+(Square) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -193,36 +195,47 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Shape) 0.000000 8.000000 box
- (Arena) 1.000000 7.000000 box
- (Circle) 1.000000 6.000000 box
- (Hexagon) 1.000000 5.000000 box
- (Obstacle) 1.000000 4.000000 box
- (Pentagon) 1.000000 3.000000 box
- (People) 1.000000 2.000000 box
- (Rectangle) 1.000000 1.000000 box
-1.000000 1.000000 mark
- (Triangle) 1.000000 0.000000 box
+ (Shape) 2.500000 2.000000 box
+ (Circle) 0.000000 1.000000 box
+ (Hexagon) 1.000000 1.000000 box
+ (Obstacle) 2.000000 1.000000 box
+ (Pentagon) 3.000000 1.000000 box
+ (Rectangle) 4.000000 1.000000 box
+ (Triangle) 5.000000 1.000000 box
+ (People) 0.000000 0.000000 box
+ (Arena) 3.000000 0.000000 box
+ (ExitPoint) 4.000000 0.000000 box
+ (Square) 5.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-1 0.000000 7.250000 out
+1 2.500000 1.250000 out
 solid
-0 0.000000 7.500000 hedge
+0.000000 5.000000 2.000000 conn
 solid
-0 0.000000 6.500000 hedge
+0 0.000000 1.750000 in
 solid
-0 0.000000 5.500000 hedge
+1 0.000000 0.250000 out
 solid
-0 0.000000 4.500000 hedge
+0 1.000000 1.750000 in
 solid
-0 0.000000 3.500000 hedge
+0 2.000000 1.750000 in
 solid
-0 0.000000 2.500000 hedge
+0 3.000000 1.750000 in
 solid
-0 0.000000 1.500000 hedge
+0 4.000000 1.750000 in
 solid
-0 0.000000 0.500000 hedge
+1 4.000000 0.250000 out
 solid
-0.000000 8.000000 0.500000 vedge
+3.000000 5.000000 1.000000 conn
+solid
+0 5.000000 1.750000 in
+solid
+0 0.000000 0.750000 in
+solid
+0 3.000000 0.750000 in
+solid
+0 4.000000 0.750000 in
+solid
+0 5.000000 0.750000 in

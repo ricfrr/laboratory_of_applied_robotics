@@ -16,26 +16,8 @@
 //delete every using namespace std line in the previous code to compile this code
 #include "Optical_Character_Recognition.hpp"
 #include "Template_Character_Recognition.hpp"
+#include "People.hpp"
 
-/// \brief a Data object that is beeing used to build a People Object for the map representation
-/// \see People.hpp
-struct PeopleData {
-    /// radius of the circle
-    double radius;
-    /// center of the circle in the source image
-    cv::Point center;
-    /// detected digit
-    int digit;
-    /// confidence that digit is correct
-    int confidence;
-    
-    PeopleData(std::pair<int,int> digit, cv::Rect rect){
-        this->digit = digit.first;
-        this->radius = std::min(rect.height,rect.width);
-        this->center = cv::Point(rect.x + rect.width/2, rect.y + rect.height/2);
-        this->confidence = digit.second;
-    }
-};
 
 /// \brief different algorithms for recognizing digits
 enum DigitRecognitionAlgo {
@@ -44,13 +26,13 @@ enum DigitRecognitionAlgo {
 };
 
 /**
- \brief The Digit_Recognition class is used to detect digits in the arena and export PeopleData.
+ \brief The Digit_Recognition class is used to detect digits in the arena and export People objects.
  
- \discussion The Digit_Recognition class is used to detect digits in the arena and export PeopleData.
+ \discussion The Digit_Recognition class is used to detect digits in the arena and export People objects.
  The class contains a Character_Recognition_Algorithm member that is used to detect digits. Changing the DigitRecognitionAlgo type results in the use of another implementation of Character_Recognition_Algorithm derived classes.
  New types of Character_Recognition_Algorithm subclasses can be added to improve digit recognition performance over time.
  The class contains HSVFilterRange object that is able to automatically construct a color filter from a given input image.
- When detect_digit_for_map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a PeopleData object that can be used to create People objects and feed the map.
+ When detect_digit_for_map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a People object that can be used to create the map.
  \see People
  \see Map
  */
@@ -71,7 +53,7 @@ public:
     int detect_digit_for_map(cv::Mat &img);
     
     ///detects all the digits of an unprepared images and returns people information
-    std::vector<PeopleData> detect_digits_for_map(const cv::Mat img_input);
+    std::vector<People> detect_digits_for_map(const cv::Mat img_input);
     
     /// \brief sets a hsv filter for better image recognition results
     /// \param filterRange a HSVFilterRange object that automatically creates a filter based on an input image
@@ -91,6 +73,68 @@ private:
     
     ///checks if the detected digit is between 1 and 4
     bool is_valid(int &detectedDigit);
+};
+
+/**
+ \brief Helper object to find people in the map
+ */
+struct PeopleStorage {
+    
+    PeopleStorage(const Mat &img){
+        findCircles(img);
+    }
+    
+    PeopleStorage(){};
+    
+    
+    ///detected People
+    std::vector<People> circles;
+    
+    /*!
+     * detect circles in the map
+     * @param img image of the map
+     */
+    void findCircles(const Mat &img){
+        Digit_Recognition dg_recognition = Digit_Recognition();
+        
+        std::vector<People> data = dg_recognition.detect_digits_for_map(img);
+        for (int i = 0; i < data.size(); i++)
+        {
+            std::string conf;
+            
+            if(data[i].confidence > 75)
+                conf = " with high confidence";
+            else if (data[i].confidence > 50)
+                conf = " with medium confidence";
+            else if (data[i].confidence > 25)
+                conf = " with low confidence";
+            else
+                conf = " with extremely low confidence";
+            
+            std::cout << "detected a guy called " << data[i].name << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << std::endl;
+            
+            circles.push_back(data[i]);
+        }
+    }
+    
+    ///extract people information as Circle objects
+    std::vector<Circle> getCircles(){
+        
+        std::vector<Circle> circle_vector;
+        
+        for(int i=0; i<this->circles.size(); i++){
+            cv::Point center;
+            center.x = circles[i].center.x;
+            center.y = circles[i].center.y;
+            Circle circle_d = Circle();
+            circle_d.setCenter(center);
+            circle_d.setRadius(circles[i].radius/2);
+            circle_vector.push_back(circle_d);
+        }
+        
+        return circle_vector;
+    }
+    
 };
 
 #endif /* Digit_Recognition_hpp */

@@ -2,8 +2,6 @@
 #define People_hpp
 
 #include "Circle.hpp"
-#include "Shape.hpp"
-#include "Digit_Recognition.hpp"
 #include <vector>
 
 using namespace cv;
@@ -11,31 +9,27 @@ using namespace cv;
 /**
  \brief class for detecting and storing people
  */
-class People : public Shape {
+class People : public Circle {
 
 public:
     /*!
-     * oonstructor of people class
+     * constructor of people class
      */
     People();
+    People(std::pair<int,int> digit, cv::Rect rect);
     /*!
      * destructor of people class
      */
     ~People();
-    /*!
-     * detect circles in the map
-     * @param img image of the map
-     */
-    void findCircles(const Mat &img); // return a list of Peoples
-    /*!
-     * return the list of circle in the map
-     * @return list of circle
-     */
-    std::vector<Circle> getCircles();
+    
+    /// digit
+    int name;
+    /// confidence that name is correct
+    int confidence;
+    
 
 private:
     const int epsilon_approx = 7;
-    std::vector<Circle> circles;
 
 };
 

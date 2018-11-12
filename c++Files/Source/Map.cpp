@@ -131,17 +131,17 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
     return false;
 };
 
-void Map::checkPeople(Cell &cell, People people)
+void Map::checkPeople(Cell &cell, PeopleStorage &people)
 {
 
-    std::vector<Circle> circles = people.getCircles();
+    std::vector<People> circles = people.circles;
     std::vector<cv::Point> cell_corners = cell.getCorners();
-    //std::cout<<"circles size : "<<circles.size()<<" cell_corner : "<<cell_corners.size()<<std::endl;
+
     for (int i = 0; i < circles.size(); i++)
     {
         if (circleContact(cell_corners, circles[i]))
         {
-            cell.setRescue(circles[i].getDigit());
+            cell.setRescue(circles[i].name);
             circles[i].setCell(cell);
         }
     }

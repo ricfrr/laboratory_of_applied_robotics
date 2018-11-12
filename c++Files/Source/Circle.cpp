@@ -25,12 +25,3 @@ void Circle::setCenter(cv::Point center_c)
 {
     center = center_c;
 };
-
-int Circle::getDigit()
-{
-    return digit;
-};
-void Circle::setDigit(int digit_i)
-{
-    digit = digit_i;
-};

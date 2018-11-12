@@ -77,7 +77,7 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
     return results;
 }
 
-std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
+std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
     //*** new Marvin
     
@@ -88,7 +88,7 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
     
     std::vector<cv::Mat> digit_images = this->algorithm->preprocessing(source, filtered, rects);
     
-    std::vector<PeopleData> results;
+    std::vector<People> results;
     
     if(digit_images.size() != rects.size())
         std::runtime_error("too many rects and not enough digits");
@@ -161,11 +161,11 @@ std::vector<PeopleData> Digit_Recognition::detect_digits_for_map(const cv::Mat i
         
         //create the people data
         if(digit.first > 0 && digit.first <= 4)
-            results.push_back(PeopleData(digit,rects[i]));
+            results.push_back(People(digit,rects[i]));
         else if (digit.first == 7)
-            results.push_back(PeopleData({1,1},rects[i]));
+            results.push_back(People({1,1},rects[i]));
         else
-            results.push_back(PeopleData({0,0},rects[i]));
+            results.push_back(People({0,0},rects[i]));
             
     }
     

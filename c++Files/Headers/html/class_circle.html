@@ -64,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_circle-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Circle Class Reference</div>  </div>
@@ -80,7 +81,8 @@ Inheritance diagram for Circle:</div>
  <div class="center">
   <img src="class_circle.png" usemap="#Circle_map" alt=""/>
   <map id="Circle_map" name="Circle_map">
-<area href="class_shape.html" title="class for handling all the shapes in the map " alt="Shape" shape="rect" coords="0,0,48,24"/>
+<area href="class_shape.html" title="class for handling all the shapes in the map " alt="Shape" shape="rect" coords="0,0,51,24"/>
+<area href="class_people.html" title="class for detecting and storing people " alt="People" shape="rect" coords="0,112,51,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -98,19 +100,24 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a60d1af499a6ad295f9f2955c4409dddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a242599150a3623ea837fcb599214e33b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_circle.html#a242599150a3623ea837fcb599214e33b">setCenter</a> (cv::Point center_c)</td></tr>
 <tr class="separator:a242599150a3623ea837fcb599214e33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50656c826a70e13fa75eb696a0dd3123"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_circle.html#a50656c826a70e13fa75eb696a0dd3123">getDigit</a> ()</td></tr>
-<tr class="separator:a50656c826a70e13fa75eb696a0dd3123"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a187d5c4d66124603abb89f57552b6c4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_circle.html#a187d5c4d66124603abb89f57552b6c4c">setDigit</a> (int digit_i)</td></tr>
-<tr class="separator:a187d5c4d66124603abb89f57552b6c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_shape"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_shape')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_shape.html">Shape</a></td></tr>
 <tr class="memitem:aaa8d87171e65e0d8ba3c5459978992a7 inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#aaa8d87171e65e0d8ba3c5459978992a7">Shape</a> ()</td></tr>
 <tr class="separator:aaa8d87171e65e0d8ba3c5459978992a7 inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a935afc9e576015f967d90de56977167d inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#a935afc9e576015f967d90de56977167d">~Shape</a> ()</td></tr>
 <tr class="separator:a935afc9e576015f967d90de56977167d inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f07382e9173d32feaa737fe57560c9c inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#a9f07382e9173d32feaa737fe57560c9c">setCell</a> (<a class="el" href="class_cell.html">Cell</a> cell_i)</td></tr>
-<tr class="separator:a9f07382e9173d32feaa737fe57560c9c inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1951cad2df16392cab74b472020b851 inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cell.html">Cell</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#ad1951cad2df16392cab74b472020b851">getCell</a> ()</td></tr>
-<tr class="separator:ad1951cad2df16392cab74b472020b851 inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af40ad140cf111c7d50923fbe140da9ad inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#af40ad140cf111c7d50923fbe140da9ad">setCell</a> (<a class="el" href="class_cell.html">Cell</a> &amp;cell_i)</td></tr>
+<tr class="separator:af40ad140cf111c7d50923fbe140da9ad inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f76c3ebe64d63910fc10e9c04ae3685 inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#a2f76c3ebe64d63910fc10e9c04ae3685">getCell</a> ()</td></tr>
+<tr class="separator:a2f76c3ebe64d63910fc10e9c04ae3685 inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae7e2ec7201690ce54e41c16a1375ff27"><td class="memItemLeft" align="right" valign="top"><a id="ae7e2ec7201690ce54e41c16a1375ff27"></a>
+cv::Point&#160;</td><td class="memItemRight" valign="bottom"><b>center</b></td></tr>
+<tr class="separator:ae7e2ec7201690ce54e41c16a1375ff27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0212ba705f57d762bd6b202e3d10ed"><td class="memItemLeft" align="right" valign="top"><a id="a5a0212ba705f57d762bd6b202e3d10ed"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>radius</b></td></tr>
+<tr class="separator:a5a0212ba705f57d762bd6b202e3d10ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_circle.html" title="Circle class is able to detect and save the arena given a photo. ">Circle</a> class is able to detect and save the arena given a photo. </p>
@@ -170,24 +177,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a50656c826a70e13fa75eb696a0dd3123"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50656c826a70e13fa75eb696a0dd3123">&#9670;&nbsp;</a></span>getDigit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Circle::getDigit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>return the digit of the circle </p><dl class="section return"><dt>Returns</dt><dd>the digit </dd></dl>
-
-</div>
-</div>
 <a id="adfc2e5e026f5d80215563cc42260a237"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfc2e5e026f5d80215563cc42260a237">&#9670;&nbsp;</a></span>getRadius()</h2>
 
@@ -224,30 +213,6 @@ Public Member Functions</h2></td></tr>
 <p>set the center of the circle </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">center_c</td><td>center of the circle </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a187d5c4d66124603abb89f57552b6c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a187d5c4d66124603abb89f57552b6c4c">&#9670;&nbsp;</a></span>setDigit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Circle::setDigit </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>digit_i</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>set the digit of the circle </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">digit_i</td><td>digit of the circle </td></tr>
   </table>
   </dd>
 </dl>

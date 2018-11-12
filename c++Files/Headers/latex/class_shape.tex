@@ -12,7 +12,7 @@ class for handling all the shapes in the map
 Inheritance diagram for Shape\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=9.000000cm]{class_shape}
+\includegraphics[height=3.000000cm]{class_shape}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -22,9 +22,9 @@ Inheritance diagram for Shape\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_shape_a935afc9e576015f967d90de56977167d}{$\sim$\+Shape}} ()
 \item 
-void \mbox{\hyperlink{class_shape_a9f07382e9173d32feaa737fe57560c9c}{set\+Cell}} (\mbox{\hyperlink{class_cell}{Cell}} cell\+\_\+i)
+void \mbox{\hyperlink{class_shape_af40ad140cf111c7d50923fbe140da9ad}{set\+Cell}} (\mbox{\hyperlink{class_cell}{Cell}} \&cell\+\_\+i)
 \item 
-std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $>$ \mbox{\hyperlink{class_shape_ad1951cad2df16392cab74b472020b851}{get\+Cell}} ()
+std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ \mbox{\hyperlink{class_shape_a2f76c3ebe64d63910fc10e9c04ae3685}{get\+Cell}} ()
 \end{DoxyCompactItemize}
 
 
@@ -47,20 +47,20 @@ constructor of the shape class \mbox{\Hypertarget{class_shape_a935afc9e576015f96
 destructor of the shape class 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_shape_ad1951cad2df16392cab74b472020b851}\label{class_shape_ad1951cad2df16392cab74b472020b851}} 
+\mbox{\Hypertarget{class_shape_a2f76c3ebe64d63910fc10e9c04ae3685}\label{class_shape_a2f76c3ebe64d63910fc10e9c04ae3685}} 
 \index{Shape@{Shape}!get\+Cell@{get\+Cell}}
 \index{get\+Cell@{get\+Cell}!Shape@{Shape}}
 \subsubsection{\texorpdfstring{get\+Cell()}{getCell()}}
-{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_cell}{Cell}}$>$ Shape\+::get\+Cell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$ Shape\+::get\+Cell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 return the cell which is connected \begin{DoxyReturn}{Returns}
 the cell which is connected 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_shape_a9f07382e9173d32feaa737fe57560c9c}\label{class_shape_a9f07382e9173d32feaa737fe57560c9c}} 
+\mbox{\Hypertarget{class_shape_af40ad140cf111c7d50923fbe140da9ad}\label{class_shape_af40ad140cf111c7d50923fbe140da9ad}} 
 \index{Shape@{Shape}!set\+Cell@{set\+Cell}}
 \index{set\+Cell@{set\+Cell}!Shape@{Shape}}
 \subsubsection{\texorpdfstring{set\+Cell()}{setCell()}}
-{\footnotesize\ttfamily void Shape\+::set\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cell}{Cell}}}]{cell\+\_\+i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Shape\+::set\+Cell (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_cell}{Cell}} \&}]{cell\+\_\+i }\end{DoxyParamCaption})}
 
 connect a cell to the shape 
 \begin{DoxyParams}{Parameters}

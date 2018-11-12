@@ -13,6 +13,7 @@
 #include "Circle.hpp"
 #include "Settings.hpp"
 #include <vector>
+#include "Digit_Recognition.hpp"
 
 
 using namespace cv;
@@ -51,13 +52,13 @@ private:
 
     void checkObstacles(Cell &cell, Obstacle obstacles);
 
-    void checkPeople(Cell &cell, People people);
+    void checkPeople(Cell &cell, PeopleStorage &people);
 
 
     ExitPoint exit_point;
     Obstacle obstacles;
     Arena arena;
-    People people;
+    PeopleStorage people;
     Settings setting;
 
     std::vector<std::vector<Cell>> grid;
