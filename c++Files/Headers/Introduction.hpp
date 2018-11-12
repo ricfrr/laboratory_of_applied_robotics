@@ -10,17 +10,35 @@
 #define Introduction_hpp
 
 /*! \mainpage Laboratory of Applied Robotics Documentation
- * Authors:
- * Riccardo
- * Marvin
  *
- * \section intro_sec Introduction
+ * Authors: \n
+ * Riccardo Franceschini,
+ * Marvin Mouroum \n
  *
- * This is the introduction.
+ * \section Robotic-Mapping
  *
- * \section install_sec Installation
+ * \image html LAR_img/LAR_img.001.jpeg
+ * \image html LAR_img/LAR_img.002.jpeg
+ * \image html LAR_img/LAR_img.003.jpeg
+ * \image html LAR_img/LAR_img.004.jpeg
+ * \image html LAR_img/LAR_img.005.jpeg
+ * \image html LAR_img/LAR_img.006.jpeg
+ * \image html LAR_img/LAR_img.007.jpeg
+ * \image html LAR_img/LAR_img.008.jpeg
+ * \image html LAR_img/LAR_img.009.jpeg
+ * \image html LAR_img/LAR_img.010.jpeg
+ * \image html LAR_img/LAR_img.010.jpeg
+ * \image html LAR_img/LAR_img.011.jpeg
+ * \image html LAR_img/LAR_img.012.jpeg
+ * \image html LAR_img/LAR_img.013.jpeg
+ * \image html LAR_img/LAR_img.014.jpeg
+ * \image html LAR_img/LAR_img.015.jpeg
+ * \image html LAR_img/LAR_img.016.jpeg
+ * \image html LAR_img/LAR_img.017.jpeg
+ * \image html LAR_img/LAR_img.018.jpeg
  *
- * \subsection step1 Step 1: Opening the box
+ * \section  Path-Planning
+ *
  *
  * etc...
  */
