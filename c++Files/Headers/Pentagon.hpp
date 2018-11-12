@@ -7,8 +7,8 @@
 
 using namespace cv;
 
-/*!
- * Class for hadling pentagon obstacles in the map
+/**
+ \brief Class for hadling pentagon obstacles in the map
  */
 class Pentagon : public Shape {
 

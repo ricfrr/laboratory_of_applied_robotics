@@ -5,8 +5,8 @@
 #include <vector>
 
 using namespace cv;
-/*!
-  * Arena class is able to detect and save the arena given a photo
+/**
+  \brief Arena class is able to detect and save the arena given a photo
 */
 class Arena : public Shape
 {

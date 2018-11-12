@@ -4,8 +4,8 @@
 #include <vector>
 
 using namespace cv;
-/*!
-  * Circle class is able to detect and save the arena given a photo
+/**
+  \brief Circle class is able to detect and save the arena given a photo
 */
 class Circle : public Shape
 {

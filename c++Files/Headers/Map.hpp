@@ -17,8 +17,8 @@
 
 using namespace cv;
 
-/*!
- * Class for handling the map
+/**
+ \brief Class for handling the map
  */
 class Map {
 

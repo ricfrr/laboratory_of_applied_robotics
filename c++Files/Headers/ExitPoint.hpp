@@ -4,8 +4,8 @@
 #include <vector>
 
 using namespace cv;
-/*!
-  * ExitPoint class is able to detect and save the exit point given a photo
+/**
+  \brief ExitPoint class is able to detect and save the exit point given a photo
 */
 class ExitPoint : public Shape
 {

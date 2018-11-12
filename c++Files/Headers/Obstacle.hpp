@@ -9,8 +9,8 @@
 #include <vector>
 
 using namespace cv;
-/*!
- * class for handling obstacles in the map
+/**
+ \brief class for handling obstacles in the map
  */
 class Obstacle : public Shape {
 
