@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['get_5fregions_5fof_5finterest',['get_regions_of_interest',['../class_digit___recognition.html#acb87e2fb3a72d625170ab8c95ef6828f',1,'Digit_Recognition']]]
+  ['eight',['eight',['../struct_digit_result_distribution.html#a787381e6fbbad76f45ddfe1d63281532',1,'DigitResultDistribution']]],
+  ['exitpoint',['ExitPoint',['../class_exit_point.html',1,'ExitPoint'],['../class_exit_point.html#ae472f935e952356c9bfe64298474d523',1,'ExitPoint::ExitPoint()']]],
+  ['extract_5fregions_5fof_5finterest',['extract_regions_of_interest',['../class_character___recognition___algorithm.html#a21924694ba0aacb82054ea33191cb52a',1,'Character_Recognition_Algorithm']]]
 ];

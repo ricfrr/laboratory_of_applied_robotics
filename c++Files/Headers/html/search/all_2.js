@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['detect_5fdigit',['detect_digit',['../class_character___recognition___algorithm.html#ad360b10ac65fe20b42607ef9568052a3',1,'Character_Recognition_Algorithm::detect_digit()'],['../class_optical___character___recognition.html#a46af55e1f0a92cc025b8fdc5a48be671',1,'Optical_Character_Recognition::detect_digit()'],['../class_template___character___recognition.html#aa55d0eb825a758f696c96f9e309860f7',1,'Template_Character_Recognition::detect_digit()']]],
-  ['detect_5fdigit_5ffor_5fmap',['detect_digit_for_map',['../class_digit___recognition.html#a479e6126291463d9117abc6553c555df',1,'Digit_Recognition']]],
-  ['detect_5fdigits',['detect_digits',['../class_digit___recognition.html#ac86fd9273fe2bf09efc1b804d49e370f',1,'Digit_Recognition']]],
-  ['detect_5fdigits_5ffor_5fmap',['detect_digits_for_map',['../class_digit___recognition.html#aad1207aa02e043af5505c217ef1996b9',1,'Digit_Recognition']]],
-  ['detect_5fpeopledata',['detect_peopleData',['../class_digit___recognition.html#af8244a36e7b044ef37c768de30ffed4b',1,'Digit_Recognition']]],
-  ['detect_5fsingle_5fdigit',['detect_single_digit',['../class_digit___recognition.html#adc3ce374dcfcbf4b58b645a7ec95e725',1,'Digit_Recognition']]],
-  ['digit_5frecognition',['Digit_Recognition',['../class_digit___recognition.html',1,'']]],
-  ['digitresultdistribution',['DigitResultDistribution',['../struct_digit_result_distribution.html',1,'']]]
+  ['calibrate_5fcolor',['calibrate_color',['../class_color___processing.html#acb962976dba3538eabcf5812951a023e',1,'Color_Processing']]],
+  ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
+  ['cell',['Cell',['../class_cell.html',1,'Cell'],['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()']]],
+  ['center',['center',['../struct_people_data.html#a9744c97bd0d9b4582452eb8afec15b05',1,'PeopleData']]],
+  ['character_5frecognition_5falgorithm',['Character_Recognition_Algorithm',['../class_character___recognition___algorithm.html',1,'']]],
+  ['circle',['Circle',['../class_circle.html',1,'Circle'],['../class_circle.html#ad1ecfcfc7bf34529c6a6d6c448bf70fe',1,'Circle::Circle()']]],
+  ['color_5fprocessing',['Color_Processing',['../class_color___processing.html',1,'']]],
+  ['confidence',['confidence',['../struct_people_data.html#a7c8aeadac63a7d20a5f8ca43f4f54237',1,'PeopleData']]],
+  ['convert_5fbgr_5fto_5fhsv',['convert_bgr_to_hsv',['../class_character___recognition___algorithm.html#ab393524887755e6e363d281856b8aa1e',1,'Character_Recognition_Algorithm']]],
+  ['createmap',['createMap',['../class_map.html#a02537656e91e97077dfdfc5d84c3027b',1,'Map']]]
 ];

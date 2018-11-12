@@ -1,5 +1,9 @@
 \hypertarget{class_obstacle}{}\section{Obstacle Class Reference}
 \label{class_obstacle}\index{Obstacle@{Obstacle}}
+
+
+{\ttfamily \#include $<$Obstacle.\+hpp$>$}
+
 Inheritance diagram for Obstacle\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,21 +13,88 @@ Inheritance diagram for Obstacle\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_obstacle_ae333b23b742b38e50be13bc7aec2da5b}\label{class_obstacle_ae333b23b742b38e50be13bc7aec2da5b}} 
-void {\bfseries find\+Obstacles} (const Mat \&img)
+\mbox{\hyperlink{class_obstacle_a8f734072321fa06a7b7dae2d5f50f352}{Obstacle}} ()
 \item 
-\mbox{\Hypertarget{class_obstacle_a4b995e62a7aece596b2e42c63cdf5e28}\label{class_obstacle_a4b995e62a7aece596b2e42c63cdf5e28}} 
-std\+::vector$<$ \mbox{\hyperlink{class_triangle}{Triangle}} $>$ {\bfseries get\+Triangles} ()
+\mbox{\hyperlink{class_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}{$\sim$\+Obstacle}} ()
 \item 
-\mbox{\Hypertarget{class_obstacle_a53daef38dbe68e85696abc8ed03cf4b2}\label{class_obstacle_a53daef38dbe68e85696abc8ed03cf4b2}} 
-std\+::vector$<$ \mbox{\hyperlink{class_square}{Square}} $>$ {\bfseries get\+Squares} ()
+void \mbox{\hyperlink{class_obstacle_ae333b23b742b38e50be13bc7aec2da5b}{find\+Obstacles}} (const Mat \&img)
 \item 
-\mbox{\Hypertarget{class_obstacle_a2a3f85aa41ff39922c3994154fa8a7c1}\label{class_obstacle_a2a3f85aa41ff39922c3994154fa8a7c1}} 
-std\+::vector$<$ \mbox{\hyperlink{class_pentagon}{Pentagon}} $>$ {\bfseries get\+Pentagons} ()
+std\+::vector$<$ \mbox{\hyperlink{class_triangle}{Triangle}} $>$ \mbox{\hyperlink{class_obstacle_a4b995e62a7aece596b2e42c63cdf5e28}{get\+Triangles}} ()
 \item 
-\mbox{\Hypertarget{class_obstacle_a472a93843d84f1275c5b9cd57aa53850}\label{class_obstacle_a472a93843d84f1275c5b9cd57aa53850}} 
-std\+::vector$<$ \mbox{\hyperlink{class_hexagon}{Hexagon}} $>$ {\bfseries get\+Hexagons} ()
+std\+::vector$<$ \mbox{\hyperlink{class_square}{Square}} $>$ \mbox{\hyperlink{class_obstacle_a53daef38dbe68e85696abc8ed03cf4b2}{get\+Squares}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_pentagon}{Pentagon}} $>$ \mbox{\hyperlink{class_obstacle_a2a3f85aa41ff39922c3994154fa8a7c1}{get\+Pentagons}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_hexagon}{Hexagon}} $>$ \mbox{\hyperlink{class_obstacle_a472a93843d84f1275c5b9cd57aa53850}{get\+Hexagons}} ()
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for handling obstacles in the map 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_obstacle_a8f734072321fa06a7b7dae2d5f50f352}\label{class_obstacle_a8f734072321fa06a7b7dae2d5f50f352}} 
+\index{Obstacle@{Obstacle}!Obstacle@{Obstacle}}
+\index{Obstacle@{Obstacle}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{Obstacle()}{Obstacle()}}
+{\footnotesize\ttfamily Obstacle\+::\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+contstructor of the \mbox{\hyperlink{class_obstacle}{Obstacle}} class \mbox{\Hypertarget{class_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}\label{class_obstacle_af2f9cc9c6cff75dca0974fd5ac4f71a9}} 
+\index{Obstacle@{Obstacle}!````~Obstacle@{$\sim$\+Obstacle}}
+\index{````~Obstacle@{$\sim$\+Obstacle}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{$\sim$\+Obstacle()}{~Obstacle()}}
+{\footnotesize\ttfamily Obstacle\+::$\sim$\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of the \mbox{\hyperlink{class_obstacle}{Obstacle}} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_obstacle_ae333b23b742b38e50be13bc7aec2da5b}\label{class_obstacle_ae333b23b742b38e50be13bc7aec2da5b}} 
+\index{Obstacle@{Obstacle}!find\+Obstacles@{find\+Obstacles}}
+\index{find\+Obstacles@{find\+Obstacles}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{find\+Obstacles()}{findObstacles()}}
+{\footnotesize\ttfamily void Obstacle\+::find\+Obstacles (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+retrieve the obstacles given a photo of the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_obstacle_a472a93843d84f1275c5b9cd57aa53850}\label{class_obstacle_a472a93843d84f1275c5b9cd57aa53850}} 
+\index{Obstacle@{Obstacle}!get\+Hexagons@{get\+Hexagons}}
+\index{get\+Hexagons@{get\+Hexagons}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{get\+Hexagons()}{getHexagons()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_hexagon}{Hexagon}}$>$ Obstacle\+::get\+Hexagons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the hexagons obstacles \begin{DoxyReturn}{Returns}
+list of the hexagons obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_obstacle_a2a3f85aa41ff39922c3994154fa8a7c1}\label{class_obstacle_a2a3f85aa41ff39922c3994154fa8a7c1}} 
+\index{Obstacle@{Obstacle}!get\+Pentagons@{get\+Pentagons}}
+\index{get\+Pentagons@{get\+Pentagons}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{get\+Pentagons()}{getPentagons()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_pentagon}{Pentagon}}$>$ Obstacle\+::get\+Pentagons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the pentagons obstacles \begin{DoxyReturn}{Returns}
+list of the pentagons obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_obstacle_a53daef38dbe68e85696abc8ed03cf4b2}\label{class_obstacle_a53daef38dbe68e85696abc8ed03cf4b2}} 
+\index{Obstacle@{Obstacle}!get\+Squares@{get\+Squares}}
+\index{get\+Squares@{get\+Squares}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{get\+Squares()}{getSquares()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_square}{Square}}$>$ Obstacle\+::get\+Squares (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the squares obstacles \begin{DoxyReturn}{Returns}
+list of the squares obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_obstacle_a4b995e62a7aece596b2e42c63cdf5e28}\label{class_obstacle_a4b995e62a7aece596b2e42c63cdf5e28}} 
+\index{Obstacle@{Obstacle}!get\+Triangles@{get\+Triangles}}
+\index{get\+Triangles@{get\+Triangles}!Obstacle@{Obstacle}}
+\subsubsection{\texorpdfstring{get\+Triangles()}{getTriangles()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_triangle}{Triangle}}$>$ Obstacle\+::get\+Triangles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the triangles obstacles \begin{DoxyReturn}{Returns}
+list of the triangles obstacles 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

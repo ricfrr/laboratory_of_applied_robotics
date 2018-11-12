@@ -18,26 +18,17 @@ Inheritance diagram for Optical\+\_\+\+Character\+\_\+\+Recognition\+:\begin{fig
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_optical___character___recognition_ac94cc464313af1a3ad1c66a508826844}\label{class_optical___character___recognition_ac94cc464313af1a3ad1c66a508826844}} 
-void \mbox{\hyperlink{class_optical___character___recognition_ac94cc464313af1a3ad1c66a508826844}{process\+Image}} (const std\+::string \&filename)
-\begin{DoxyCompactList}\small\item\em demo function for displaying performance of algorithm \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_optical___character___recognition_a46af55e1f0a92cc025b8fdc5a48be671}\label{class_optical___character___recognition_a46af55e1f0a92cc025b8fdc5a48be671}} 
-int \mbox{\hyperlink{class_optical___character___recognition_a46af55e1f0a92cc025b8fdc5a48be671}{detect\+\_\+digit}} (cv\+::\+Mat \&image, cv\+::\+Rect \&rect, cv\+::\+Mat \&R\+OI)
+\mbox{\Hypertarget{class_optical___character___recognition_a8c405870698dce101accb38045f7cc33}\label{class_optical___character___recognition_a8c405870698dce101accb38045f7cc33}} 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_optical___character___recognition_a8c405870698dce101accb38045f7cc33}{detect\+\_\+digit}} (cv\+::\+Mat \&image)
 \begin{DoxyCompactList}\small\item\em the (virtual) function that runs the recognition engine \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_optical___character___recognition_a7bd6b6526dd287611d8bf1cd3a157796}\label{class_optical___character___recognition_a7bd6b6526dd287611d8bf1cd3a157796}} 
-int {\bfseries detect\+\_\+digit} (tesseract\+::\+Tess\+Base\+A\+PI $\ast$\&O\+CR, cv\+::\+Mat \&image, cv\+::\+Rect \&rect, cv\+::\+Mat \&R\+OI)
+\mbox{\Hypertarget{class_optical___character___recognition_a98c90cdc763d0807fff61924812f4258}\label{class_optical___character___recognition_a98c90cdc763d0807fff61924812f4258}} 
+int {\bfseries detect\+\_\+digit} (tesseract\+::\+Tess\+Base\+A\+PI $\ast$\&O\+CR, cv\+::\+Mat \&image)
 \item 
 \mbox{\Hypertarget{class_optical___character___recognition_a206d7717fa04e0b46564f56fe0c27479}\label{class_optical___character___recognition_a206d7717fa04e0b46564f56fe0c27479}} 
 void {\bfseries get\+Result} (tesseract\+::\+Tess\+Base\+A\+PI $\ast$\&ocr, cv\+::\+Mat \&img, int \&result)
-\item 
-\mbox{\Hypertarget{class_optical___character___recognition_a011e000a7288f133cdf99cee0c31657a}\label{class_optical___character___recognition_a011e000a7288f133cdf99cee0c31657a}} 
-std\+::vector$<$ std\+::pair$<$ int, cv\+::\+Rect $>$ $>$ {\bfseries detection\+\_\+algorithm} (std\+::vector$<$ cv\+::\+Rect $>$ \&bound\+Rect, cv\+::\+Mat \&filtered)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_optical___character___recognition_aa23b2e408dcd91e50176fb71ae38fc96}\label{class_optical___character___recognition_aa23b2e408dcd91e50176fb71ae38fc96}} 
-int {\bfseries max\+Conf} = 80
 \item 
 \mbox{\Hypertarget{class_optical___character___recognition_ad3fdb2f00dd03892c0e25ace9795ed42}\label{class_optical___character___recognition_ad3fdb2f00dd03892c0e25ace9795ed42}} 
 tesseract\+::\+Tess\+Base\+A\+PI $\ast$ {\bfseries ocr} = new tesseract\+::\+Tess\+Base\+A\+PI()

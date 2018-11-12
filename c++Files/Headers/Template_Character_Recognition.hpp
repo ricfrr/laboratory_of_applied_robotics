@@ -27,11 +27,7 @@ public:
     
     const std::string template_path = "../data/template/";
     
-    void processImage(const std::string& filename);
-    
-    int detect_digit(cv::Mat &image, cv::Rect &rect, cv::Mat &ROI);
-    
-    std::vector<std::pair<int,cv::Rect>> detection_algorithm(std::vector<cv::Rect> &boundRect, cv::Mat &filtered);
+    std::pair<int,int> detect_digit(cv::Mat &image);
     
     int getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI);
 };

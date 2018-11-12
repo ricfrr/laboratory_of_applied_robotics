@@ -1,17 +1,63 @@
 \hypertarget{class_undistorsion}{}\section{Undistorsion Class Reference}
 \label{class_undistorsion}\index{Undistorsion@{Undistorsion}}
+
+
+{\ttfamily \#include $<$Undistortion.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_undistorsion_a447aceee5716c408a3ed662111525cf9}\label{class_undistorsion_a447aceee5716c408a3ed662111525cf9}} 
-{\bfseries Undistorsion} (std\+::string calibration\+\_\+filename)
+\mbox{\hyperlink{class_undistorsion_a447aceee5716c408a3ed662111525cf9}{Undistorsion}} (std\+::string calibration\+\_\+filename)
 \item 
-\mbox{\Hypertarget{class_undistorsion_ac398f8632efd4a268fc1a739db16c2d6}\label{class_undistorsion_ac398f8632efd4a268fc1a739db16c2d6}} 
-void {\bfseries process\+Video} ()
+\mbox{\hyperlink{class_undistorsion_adc5adf65c7ee3f5668bafd8eeaf31eb4}{$\sim$\+Undistorsion}} ()
 \item 
-\mbox{\Hypertarget{class_undistorsion_a00c36a6d87702b119e87ca0ff003c92f}\label{class_undistorsion_a00c36a6d87702b119e87ca0ff003c92f}} 
-void {\bfseries undistort\+\_\+image} (cv\+::\+Mat frame, cv\+::\+Mat frame\+Undist, Input\+Array camera\+Matrix, Input\+Array dist\+Coeffs, Input\+Array new\+Camera\+Matrix=no\+Array())
+void \mbox{\hyperlink{class_undistorsion_a00c36a6d87702b119e87ca0ff003c92f}{undistort\+\_\+image}} (cv\+::\+Mat frame, cv\+::\+Mat frame\+Undist, Input\+Array camera\+Matrix, Input\+Array dist\+Coeffs, Input\+Array new\+Camera\+Matrix=no\+Array())
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for undistorsion of the images 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_undistorsion_a447aceee5716c408a3ed662111525cf9}\label{class_undistorsion_a447aceee5716c408a3ed662111525cf9}} 
+\index{Undistorsion@{Undistorsion}!Undistorsion@{Undistorsion}}
+\index{Undistorsion@{Undistorsion}!Undistorsion@{Undistorsion}}
+\subsubsection{\texorpdfstring{Undistorsion()}{Undistorsion()}}
+{\footnotesize\ttfamily Undistorsion\+::\+Undistorsion (\begin{DoxyParamCaption}\item[{std\+::string}]{calibration\+\_\+filename }\end{DoxyParamCaption})}
+
+construcor of the Undistorion class 
+\begin{DoxyParams}{Parameters}
+{\em calibration\+\_\+filename} & name of the calibration file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_undistorsion_adc5adf65c7ee3f5668bafd8eeaf31eb4}\label{class_undistorsion_adc5adf65c7ee3f5668bafd8eeaf31eb4}} 
+\index{Undistorsion@{Undistorsion}!````~Undistorsion@{$\sim$\+Undistorsion}}
+\index{````~Undistorsion@{$\sim$\+Undistorsion}!Undistorsion@{Undistorsion}}
+\subsubsection{\texorpdfstring{$\sim$\+Undistorsion()}{~Undistorsion()}}
+{\footnotesize\ttfamily Undistorsion\+::$\sim$\+Undistorsion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of the Undistortion class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_undistorsion_a00c36a6d87702b119e87ca0ff003c92f}\label{class_undistorsion_a00c36a6d87702b119e87ca0ff003c92f}} 
+\index{Undistorsion@{Undistorsion}!undistort\+\_\+image@{undistort\+\_\+image}}
+\index{undistort\+\_\+image@{undistort\+\_\+image}!Undistorsion@{Undistorsion}}
+\subsubsection{\texorpdfstring{undistort\+\_\+image()}{undistort\_image()}}
+{\footnotesize\ttfamily void Undistorsion\+::undistort\+\_\+image (\begin{DoxyParamCaption}\item[{cv\+::\+Mat}]{frame,  }\item[{cv\+::\+Mat}]{frame\+Undist,  }\item[{Input\+Array}]{camera\+Matrix,  }\item[{Input\+Array}]{dist\+Coeffs,  }\item[{Input\+Array}]{new\+Camera\+Matrix = {\ttfamily noArray()} }\end{DoxyParamCaption})}
+
+function that undistort the image 
+\begin{DoxyParams}{Parameters}
+{\em frame} & \\
+\hline
+{\em frame\+Undist} & \\
+\hline
+{\em camera\+Matrix} & \\
+\hline
+{\em dist\+Coeffs} & \\
+\hline
+{\em new\+Camera\+Matrix} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

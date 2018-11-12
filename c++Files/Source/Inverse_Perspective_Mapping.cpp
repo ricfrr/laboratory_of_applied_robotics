@@ -188,7 +188,9 @@ Mat Inverse_Perspective_Mapping::findTransform(
 
     //undistort the image based on the calibration
     undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-
+//    imshow("origin", original_image);
+//    imshow("undistored", calib_image);
+//    waitKey(0);
     // find corners
     std::vector<cv::Point> corners = findCorners(calib_image);
 
@@ -197,6 +199,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
+
     pts_dst.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
     pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, settings.GAP_PERSP));
     pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
@@ -209,6 +212,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
     reTransform(im_dst,pixel_scale);
     persp_img = im_dst;
     //imshow("sec persp", im_dst);
+    imwrite("sec_persp.png", im_dst);
     //waitKey(0);
     return tform;
 }

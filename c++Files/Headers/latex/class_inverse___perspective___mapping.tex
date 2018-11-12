@@ -1,29 +1,119 @@
 \hypertarget{class_inverse___perspective___mapping}{}\section{Inverse\+\_\+\+Perspective\+\_\+\+Mapping Class Reference}
 \label{class_inverse___perspective___mapping}\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+
+
+{\ttfamily \#include $<$Inverse\+\_\+\+Perspective\+\_\+\+Mapping.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_inverse___perspective___mapping_a60f8dbac68fadb20b085bfbcef293480}\label{class_inverse___perspective___mapping_a60f8dbac68fadb20b085bfbcef293480}} 
-void {\bfseries load\+Coefficients} (const std\+::string \&filename, cv\+::\+Mat \&camera\+\_\+matrix, cv\+::\+Mat \&dist\+\_\+coeffs)
+\mbox{\hyperlink{class_inverse___perspective___mapping_a9c3733e22a6516e932a2197196c999f2}{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}} ()
 \item 
+\mbox{\hyperlink{class_inverse___perspective___mapping_a9f1588ec3a84a4c664ae33c1fd3693df}{$\sim$\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping}} ()
+\item 
+void \mbox{\hyperlink{class_inverse___perspective___mapping_a60f8dbac68fadb20b085bfbcef293480}{load\+Coefficients}} (const std\+::string \&filename, cv\+::\+Mat \&camera\+\_\+matrix, cv\+::\+Mat \&dist\+\_\+coeffs)
+\item 
+Mat \mbox{\hyperlink{class_inverse___perspective___mapping_aa4444fc0f5e10cab7f408d6679be73db}{find\+Transform}} (const std\+::string \&calib\+\_\+image\+\_\+name, const cv\+::\+Mat \&camera\+\_\+matrix, const cv\+::\+Mat \&dist\+\_\+coeffs, double \&pixel\+\_\+scale, cv\+::\+Mat \&persp\+\_\+img)
+\item 
+void \mbox{\hyperlink{class_inverse___perspective___mapping_abdea95329f3868f2a0875832a67f1076}{store\+All\+Parameters}} (const std\+::string \&filename, const cv\+::\+Mat \&camera\+\_\+matrix, const cv\+::\+Mat \&dist\+\_\+coeffs, double pixel\+\_\+scale, const Mat \&persp\+\_\+transf)
+\item 
+cv\+::\+Mat \mbox{\hyperlink{class_inverse___perspective___mapping_ad95385fefc56350a732760d7c68fe6a3}{run}} (std\+::string intrinsic\+\_\+conf, std\+::string image, std\+::string outputfilename)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+produce a perspective transformation around the arena given a photo 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_inverse___perspective___mapping_a9c3733e22a6516e932a2197196c999f2}\label{class_inverse___perspective___mapping_a9c3733e22a6516e932a2197196c999f2}} 
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{Inverse\+\_\+\+Perspective\+\_\+\+Mapping()}{Inverse\_Perspective\_Mapping()}}
+{\footnotesize\ttfamily Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of inverse perspective mapping class \mbox{\Hypertarget{class_inverse___perspective___mapping_a9f1588ec3a84a4c664ae33c1fd3693df}\label{class_inverse___perspective___mapping_a9f1588ec3a84a4c664ae33c1fd3693df}} 
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!````~Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{$\sim$\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\index{````~Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{$\sim$\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{$\sim$\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping()}{~Inverse\_Perspective\_Mapping()}}
+{\footnotesize\ttfamily Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::$\sim$\+Inverse\+\_\+\+Perspective\+\_\+\+Mapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of inverse perspective mapping class 
+
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_inverse___perspective___mapping_aa4444fc0f5e10cab7f408d6679be73db}\label{class_inverse___perspective___mapping_aa4444fc0f5e10cab7f408d6679be73db}} 
-Mat {\bfseries find\+Transform} (const std\+::string \&calib\+\_\+image\+\_\+name, const cv\+::\+Mat \&camera\+\_\+matrix, const cv\+::\+Mat \&dist\+\_\+coeffs, double \&pixel\+\_\+scale, cv\+::\+Mat \&persp\+\_\+img)
-\item 
-\mbox{\Hypertarget{class_inverse___perspective___mapping_abdea95329f3868f2a0875832a67f1076}\label{class_inverse___perspective___mapping_abdea95329f3868f2a0875832a67f1076}} 
-void {\bfseries store\+All\+Parameters} (const std\+::string \&filename, const cv\+::\+Mat \&camera\+\_\+matrix, const cv\+::\+Mat \&dist\+\_\+coeffs, double pixel\+\_\+scale, const Mat \&persp\+\_\+transf)
-\item 
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!find\+Transform@{find\+Transform}}
+\index{find\+Transform@{find\+Transform}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{find\+Transform()}{findTransform()}}
+{\footnotesize\ttfamily Mat Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::find\+Transform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{calib\+\_\+image\+\_\+name,  }\item[{const cv\+::\+Mat \&}]{camera\+\_\+matrix,  }\item[{const cv\+::\+Mat \&}]{dist\+\_\+coeffs,  }\item[{double \&}]{pixel\+\_\+scale,  }\item[{cv\+::\+Mat \&}]{persp\+\_\+img }\end{DoxyParamCaption})}
+
+function to determine the perspective transformation of a rectangle on the ground plane 
+\begin{DoxyParams}{Parameters}
+{\em calib\+\_\+image\+\_\+name} & image \\
+\hline
+{\em camera\+\_\+matrix} & camera matrix \\
+\hline
+{\em dist\+\_\+coeffs} & distortion coefficents \\
+\hline
+{\em pixel\+\_\+scale} & pixel scaling \\
+\hline
+{\em persp\+\_\+img} & image after trasformation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_inverse___perspective___mapping_a60f8dbac68fadb20b085bfbcef293480}\label{class_inverse___perspective___mapping_a60f8dbac68fadb20b085bfbcef293480}} 
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!load\+Coefficients@{load\+Coefficients}}
+\index{load\+Coefficients@{load\+Coefficients}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{load\+Coefficients()}{loadCoefficients()}}
+{\footnotesize\ttfamily void Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::load\+Coefficients (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{cv\+::\+Mat \&}]{camera\+\_\+matrix,  }\item[{cv\+::\+Mat \&}]{dist\+\_\+coeffs }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & intrinsic calibration file name \\
+\hline
+{\em camera\+\_\+matrix} & camerat matrix file \\
+\hline
+{\em dist\+\_\+coeffs} & distortion coefficients \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_inverse___perspective___mapping_ad95385fefc56350a732760d7c68fe6a3}\label{class_inverse___perspective___mapping_ad95385fefc56350a732760d7c68fe6a3}} 
-cv\+::\+Mat {\bfseries run} (std\+::string intrinsic\+\_\+conf, std\+::string image, std\+::string outputfilename)
-\end{DoxyCompactItemize}
-\subsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_inverse___perspective___mapping_ac329ac1aeac8b367c0c57b181b43244b}\label{class_inverse___perspective___mapping_ac329ac1aeac8b367c0c57b181b43244b}} 
-\mbox{\hyperlink{struct_user_data}{User\+Data}} $\ast$ {\bfseries data} = new \mbox{\hyperlink{struct_user_data}{User\+Data}}
-\item 
-\mbox{\Hypertarget{class_inverse___perspective___mapping_acb3b0ab469c2cd78d41ad0fd8c042767}\label{class_inverse___perspective___mapping_acb3b0ab469c2cd78d41ad0fd8c042767}} 
-std\+::string {\bfseries outputfilename}
-\end{DoxyCompactItemize}
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!run@{run}}
+\index{run@{run}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily cv\+::\+Mat Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::run (\begin{DoxyParamCaption}\item[{std\+::string}]{intrinsic\+\_\+conf,  }\item[{std\+::string}]{image,  }\item[{std\+::string}]{outputfilename }\end{DoxyParamCaption})}
+
+perform a perspective transformation 
+\begin{DoxyParams}{Parameters}
+{\em intrinsic\+\_\+conf} & \\
+\hline
+{\em image} & \\
+\hline
+{\em outputfilename} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the image after transformation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_inverse___perspective___mapping_abdea95329f3868f2a0875832a67f1076}\label{class_inverse___perspective___mapping_abdea95329f3868f2a0875832a67f1076}} 
+\index{Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}!store\+All\+Parameters@{store\+All\+Parameters}}
+\index{store\+All\+Parameters@{store\+All\+Parameters}!Inverse\+\_\+\+Perspective\+\_\+\+Mapping@{Inverse\+\_\+\+Perspective\+\_\+\+Mapping}}
+\subsubsection{\texorpdfstring{store\+All\+Parameters()}{storeAllParameters()}}
+{\footnotesize\ttfamily void Inverse\+\_\+\+Perspective\+\_\+\+Mapping\+::store\+All\+Parameters (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{const cv\+::\+Mat \&}]{camera\+\_\+matrix,  }\item[{const cv\+::\+Mat \&}]{dist\+\_\+coeffs,  }\item[{double}]{pixel\+\_\+scale,  }\item[{const Mat \&}]{persp\+\_\+transf }\end{DoxyParamCaption})}
+
+Store all the parameters to a file, for a later use, using the File\+Storage class methods 
+\begin{DoxyParams}{Parameters}
+{\em filename} & \\
+\hline
+{\em camera\+\_\+matrix} & \\
+\hline
+{\em dist\+\_\+coeffs} & \\
+\hline
+{\em pixel\+\_\+scale} & \\
+\hline
+{\em persp\+\_\+transf} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

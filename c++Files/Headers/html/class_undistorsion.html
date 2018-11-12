@@ -69,19 +69,120 @@ $(function() {
 <div class="title">Undistorsion Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_undistortion_8hpp_source.html">Undistortion.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a447aceee5716c408a3ed662111525cf9"><td class="memItemLeft" align="right" valign="top"><a id="a447aceee5716c408a3ed662111525cf9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Undistorsion</b> (std::string calibration_filename)</td></tr>
+<tr class="memitem:a447aceee5716c408a3ed662111525cf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_undistorsion.html#a447aceee5716c408a3ed662111525cf9">Undistorsion</a> (std::string calibration_filename)</td></tr>
 <tr class="separator:a447aceee5716c408a3ed662111525cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac398f8632efd4a268fc1a739db16c2d6"><td class="memItemLeft" align="right" valign="top"><a id="ac398f8632efd4a268fc1a739db16c2d6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>processVideo</b> ()</td></tr>
-<tr class="separator:ac398f8632efd4a268fc1a739db16c2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00c36a6d87702b119e87ca0ff003c92f"><td class="memItemLeft" align="right" valign="top"><a id="a00c36a6d87702b119e87ca0ff003c92f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>undistort_image</b> (cv::Mat frame, cv::Mat frameUndist, InputArray cameraMatrix, InputArray distCoeffs, InputArray newCameraMatrix=noArray())</td></tr>
+<tr class="memitem:adc5adf65c7ee3f5668bafd8eeaf31eb4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_undistorsion.html#adc5adf65c7ee3f5668bafd8eeaf31eb4">~Undistorsion</a> ()</td></tr>
+<tr class="separator:adc5adf65c7ee3f5668bafd8eeaf31eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c36a6d87702b119e87ca0ff003c92f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_undistorsion.html#a00c36a6d87702b119e87ca0ff003c92f">undistort_image</a> (cv::Mat frame, cv::Mat frameUndist, InputArray cameraMatrix, InputArray distCoeffs, InputArray newCameraMatrix=noArray())</td></tr>
 <tr class="separator:a00c36a6d87702b119e87ca0ff003c92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>class for undistorsion of the images </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a447aceee5716c408a3ed662111525cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447aceee5716c408a3ed662111525cf9">&#9670;&nbsp;</a></span>Undistorsion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Undistorsion::Undistorsion </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>calibration_filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>construcor of the Undistorion class </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">calibration_filename</td><td>name of the calibration file </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adc5adf65c7ee3f5668bafd8eeaf31eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc5adf65c7ee3f5668bafd8eeaf31eb4">&#9670;&nbsp;</a></span>~Undistorsion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Undistorsion::~Undistorsion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>destructor of the Undistortion class </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a00c36a6d87702b119e87ca0ff003c92f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c36a6d87702b119e87ca0ff003c92f">&#9670;&nbsp;</a></span>undistort_image()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Undistorsion::undistort_image </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat&#160;</td>
+          <td class="paramname"><em>frame</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Mat&#160;</td>
+          <td class="paramname"><em>frameUndist</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputArray&#160;</td>
+          <td class="paramname"><em>cameraMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputArray&#160;</td>
+          <td class="paramname"><em>distCoeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputArray&#160;</td>
+          <td class="paramname"><em>newCameraMatrix</em> = <code>noArray()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>function that undistort the image </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frame</td><td></td></tr>
+    <tr><td class="paramname">frameUndist</td><td></td></tr>
+    <tr><td class="paramname">cameraMatrix</td><td></td></tr>
+    <tr><td class="paramname">distCoeffs</td><td></td></tr>
+    <tr><td class="paramname">newCameraMatrix</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_undistortion_8hpp_source.html">Undistortion.hpp</a></li>
 </ul>

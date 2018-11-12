@@ -2,7 +2,7 @@
 \label{class_digit___recognition}\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
 
 
-Class for Recognizing Digits.  
+The \mbox{\hyperlink{class_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{struct_people_data}{People\+Data}}.  
 
 
 
@@ -12,48 +12,90 @@ Class for Recognizing Digits.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}\label{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}} 
-{\bfseries Digit\+\_\+\+Recognition} (Digit\+Recognition\+Algo algorithm)
-\item 
+\mbox{\hyperlink{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}{Digit\+\_\+\+Recognition}} (Digit\+Recognition\+Algo algorithm)
+\begin{DoxyCompactList}\small\item\em constructing the class with a set Digit\+Recognition\+Algo type \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}\label{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}} 
 void \mbox{\hyperlink{class_digit___recognition_a5c83d879c6881693c3606cc5a1bc8ef2}{set\+\_\+algo}} (Digit\+Recognition\+Algo algorithm)
 \begin{DoxyCompactList}\small\item\em set detection algorithm for digits e.\+g. tesseract or template matching \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}\label{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}} 
-void \mbox{\hyperlink{class_digit___recognition_a3e96d90018e48c638debc82b66f2662a}{run\+\_\+demo}} (const std\+::string filename)
-\begin{DoxyCompactList}\small\item\em run the algorithm on an image containing digits \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}{detect\+\_\+single\+\_\+digit}} (cv\+::\+Mat \&img)
-\item 
-\mbox{\Hypertarget{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}\label{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}} 
-std\+::vector$<$ int $>$ \mbox{\hyperlink{class_digit___recognition_ac86fd9273fe2bf09efc1b804d49e370f}{detect\+\_\+digits}} (cv\+::\+Mat \&img)
-\begin{DoxyCompactList}\small\item\em returns a list of digits recognized in an prepared image \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}\label{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}} 
-std\+::vector$<$ \mbox{\hyperlink{struct_people_data}{People\+Data}} $>$ \mbox{\hyperlink{class_digit___recognition_af8244a36e7b044ef37c768de30ffed4b}{detect\+\_\+people\+Data}} (cv\+::\+Mat \&img)
-\begin{DoxyCompactList}\small\item\em returns a list of \mbox{\hyperlink{struct_people_data}{People\+Data}} Objects recognized in an prepared image \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_digit___recognition_a479e6126291463d9117abc6553c555df}\label{class_digit___recognition_a479e6126291463d9117abc6553c555df}} 
 int \mbox{\hyperlink{class_digit___recognition_a479e6126291463d9117abc6553c555df}{detect\+\_\+digit\+\_\+for\+\_\+map}} (cv\+::\+Mat \&img)
 \begin{DoxyCompactList}\small\item\em detects digit of prepared image and checks if the result was fitting the map requierements \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}\label{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}} 
 std\+::vector$<$ \mbox{\hyperlink{struct_people_data}{People\+Data}} $>$ \mbox{\hyperlink{class_digit___recognition_aad1207aa02e043af5505c217ef1996b9}{detect\+\_\+digits\+\_\+for\+\_\+map}} (const cv\+::\+Mat img\+\_\+input)
 \begin{DoxyCompactList}\small\item\em detects all the digits of an unprepared images and returns people information \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}\label{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}} 
 void \mbox{\hyperlink{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}{set\+\_\+filter}} (\mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} filter\+Range)
 \begin{DoxyCompactList}\small\item\em sets a hsv filter for better image recognition results \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}\label{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}} 
 std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}{get\+\_\+regions\+\_\+of\+\_\+interest}} (cv\+::\+Mat \&img)
 \begin{DoxyCompactList}\small\item\em extracts the rect information of regions where the filter was applied \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_digit___recognition_aae57bd40fa8864ed5085beb98aa22fcd}\label{class_digit___recognition_aae57bd40fa8864ed5085beb98aa22fcd}} 
+Digit\+Recognition\+Algo \mbox{\hyperlink{class_digit___recognition_aae57bd40fa8864ed5085beb98aa22fcd}{picked\+\_\+algorithm}}
+\begin{DoxyCompactList}\small\item\em the algorithm typed used to detect digits \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Class for Recognizing Digits. 
+The \mbox{\hyperlink{class_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{struct_people_data}{People\+Data}}. 
+
+The \mbox{\hyperlink{class_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{struct_people_data}{People\+Data}}. The class contains a \mbox{\hyperlink{class_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} member that is used to detect digits. Changing the Digit\+Recognition\+Algo type results in the use of another implementation of \mbox{\hyperlink{class_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} derived classes. New types of \mbox{\hyperlink{class_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} subclasses can be added to improve digit recognition performance over time. The class contains \mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} object that is able to automatically construct a color filter from a given input image. When detect\+\_\+digit\+\_\+for\+\_\+map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a \mbox{\hyperlink{struct_people_data}{People\+Data}} object that can be used to create \mbox{\hyperlink{class_people}{People}} objects and feed the map. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_people}{People}} 
+
+\mbox{\hyperlink{class_map}{Map}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}\label{class_digit___recognition_a183d686f4f9f3ce1ed555e9311d30f56}} 
+\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+\subsubsection{\texorpdfstring{Digit\+\_\+\+Recognition()}{Digit\_Recognition()}}
+{\footnotesize\ttfamily Digit\+\_\+\+Recognition\+::\+Digit\+\_\+\+Recognition (\begin{DoxyParamCaption}\item[{Digit\+Recognition\+Algo}]{algorithm }\end{DoxyParamCaption})}
+
+
+
+constructing the class with a set Digit\+Recognition\+Algo type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em algorithm} & a Digit\+Recognition\+Algo enum type that specifies the type of \mbox{\hyperlink{class_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} used to perform the recognition of the digit \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Optical\+\_\+\+Recognition\+\_\+\+Algorithm, \mbox{\hyperlink{class_template___character___recognition}{Template\+\_\+\+Character\+\_\+\+Recognition}} 
+\end{DoxySeeAlso}
+
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}\label{class_digit___recognition_adc3ce374dcfcbf4b58b645a7ec95e725}} 
-\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!detect\+\_\+single\+\_\+digit@{detect\+\_\+single\+\_\+digit}}
-\index{detect\+\_\+single\+\_\+digit@{detect\+\_\+single\+\_\+digit}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
-\subsubsection{\texorpdfstring{detect\+\_\+single\+\_\+digit()}{detect\_single\_digit()}}
-{\footnotesize\ttfamily int Digit\+\_\+\+Recognition\+::detect\+\_\+single\+\_\+digit (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{img }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}\label{class_digit___recognition_acb87e2fb3a72d625170ab8c95ef6828f}} 
+\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!get\+\_\+regions\+\_\+of\+\_\+interest@{get\+\_\+regions\+\_\+of\+\_\+interest}}
+\index{get\+\_\+regions\+\_\+of\+\_\+interest@{get\+\_\+regions\+\_\+of\+\_\+interest}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+\subsubsection{\texorpdfstring{get\+\_\+regions\+\_\+of\+\_\+interest()}{get\_regions\_of\_interest()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Rect$>$ Digit\+\_\+\+Recognition\+::get\+\_\+regions\+\_\+of\+\_\+interest (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{img }\end{DoxyParamCaption})}
 
-detect a single digit in an prepared image will return first detected digit 
+
+
+extracts the rect information of regions where the filter was applied 
+
+\begin{DoxyReturn}{Returns}
+a vector of cv\+::\+Rect objects containing information about location and size of the digits in tne arg image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}\label{class_digit___recognition_a68484f6730ee2f0fc2050726c3ff2252}} 
+\index{Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}!set\+\_\+filter@{set\+\_\+filter}}
+\index{set\+\_\+filter@{set\+\_\+filter}!Digit\+\_\+\+Recognition@{Digit\+\_\+\+Recognition}}
+\subsubsection{\texorpdfstring{set\+\_\+filter()}{set\_filter()}}
+{\footnotesize\ttfamily void Digit\+\_\+\+Recognition\+::set\+\_\+filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}}}]{filter\+Range }\end{DoxyParamCaption})}
+
+
+
+sets a hsv filter for better image recognition results 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter\+Range} & a \mbox{\hyperlink{struct_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} object that automatically creates a filter based on an input image \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

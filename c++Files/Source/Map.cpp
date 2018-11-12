@@ -24,6 +24,8 @@ void Map::createMap(const Mat &img)
 void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                          Obstacle &obstacles)
 {
+    bool debug = false;
+    
     // initalize cells with pixel coordinates and empty value
     int temp_x = 0;
     int temp_y = 0;
@@ -60,7 +62,8 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             {
                 arena.setCell(cell);
                 cell.setBorder();
-                std::cout << "b";
+                if(debug)
+                    std::cout << "b";
             }
             else
             {
@@ -70,7 +73,8 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 {
                     exit_point.setCell(cell);
                     cell.setExit();
-                    std::cout << "\033[1;34mx\033[0m";
+                    if(debug)
+                        std::cout << "\033[1;34mx\033[0m";
                 }
             }
             if (cell.isEmpty())
@@ -78,7 +82,8 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 checkObstacles(cell, obstacles);
                 if (cell.isObstacle())
                 {
-                    std::cout << "\033[1;31mo\033[0m";
+                    if(debug)
+                        std::cout << "\033[1;31mo\033[0m";
                 }
             }
             if (cell.isEmpty())
@@ -86,19 +91,22 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 checkPeople(cell, people);
                 if (cell.isRescue())
                 {
-                    std::cout << "\033[1;36mr\033[0m";
+                    if(debug)
+                        std::cout << "\033[1;36mr\033[0m";
                 }
             }
             if (cell.isEmpty())
             {
-                std::cout << "\033[1;32me\033[0m";
+                if(debug)
+                    std::cout << "\033[1;32me\033[0m";
             }
             temp_vec.push_back(cell);
             temp_x = temp_x + x_incr;
         }
         temp_y = temp_y + y_incr;
         temp_x = 0;
-        std::cout << std::endl;
+        if(debug)
+            std::cout << std::endl;
         grid.push_back(temp_vec);
     }
     std::cout << "---- DONE ----" << std::endl;
