@@ -185,7 +185,7 @@ public:
     void turn_image(cv::Mat input, cv::Mat & output, double angle);
     
     ///angle by which the image is turned each step from 0 to 360 degrees to find the right orientation
-    double delta_angle = 15;
+    double delta_angle = 30;
 };
 
 #endif /* Character_Recognition_Algorithm_hpp */

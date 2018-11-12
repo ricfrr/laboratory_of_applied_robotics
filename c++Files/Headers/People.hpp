@@ -22,9 +22,9 @@ public:
      */
     ~People();
     
-    /// digit
+    /// People have names - represented by a digit
     int name;
-    /// confidence that name is correct
+    /// confidence that name is the correct digit
     int confidence;
     
 
