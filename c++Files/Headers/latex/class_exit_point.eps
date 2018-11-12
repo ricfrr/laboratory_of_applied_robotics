@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 882.352941
+%%BoundingBox: 0 0 500 789.473684
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.566667 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.633333 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -174,7 +174,7 @@
 boxfont setfont
 1 boundaspect scale
 (ExitPoint) cw
-(Square) cw
+(Rectangle) cw
 (Shape) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -188,7 +188,7 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (ExitPoint) 0.000000 0.000000 box
- (Square) 0.000000 1.000000 box
+ (Rectangle) 0.000000 1.000000 box
  (Shape) 0.000000 2.000000 box
 
 % ----- relations -----

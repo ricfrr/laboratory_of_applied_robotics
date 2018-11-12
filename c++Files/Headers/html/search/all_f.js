@@ -10,7 +10,7 @@ var searchData=
   ['setbottomright',['setBottomRight',['../class_arena.html#a2207ae5feab0d9ef8a19ab46fdd8685c',1,'Arena::setBottomRight()'],['../class_cell.html#ae68ff90cfde34cec208e8e74ce3f2745',1,'Cell::setBottomRight()']]],
   ['setcell',['setCell',['../class_shape.html#a9f07382e9173d32feaa737fe57560c9c',1,'Shape']]],
   ['setcenter',['setCenter',['../class_circle.html#a242599150a3623ea837fcb599214e33b',1,'Circle']]],
-  ['setcorners',['setCorners',['../class_arena.html#a7f822f33ff5810d4d266183e7606c0fe',1,'Arena::setCorners()'],['../class_cell.html#a6d1ad0f2766cdd641ba0e65f8b3c9555',1,'Cell::setCorners()'],['../class_hexagon.html#a1b5cdb94637901f346373429660af3b1',1,'Hexagon::setCorners()'],['../class_pentagon.html#a42c8df4cbb1fcf985c96c9886a21c70a',1,'Pentagon::setCorners()'],['../class_square.html#a84c4995b49318b5191a4fe3739e4f081',1,'Square::setCorners()'],['../class_triangle.html#ad2d4cecee7e87e10d8b2787199d784c2',1,'Triangle::setCorners()']]],
+  ['setcorners',['setCorners',['../class_arena.html#a7f822f33ff5810d4d266183e7606c0fe',1,'Arena::setCorners()'],['../class_cell.html#a6d1ad0f2766cdd641ba0e65f8b3c9555',1,'Cell::setCorners()'],['../class_hexagon.html#a1b5cdb94637901f346373429660af3b1',1,'Hexagon::setCorners()'],['../class_pentagon.html#a42c8df4cbb1fcf985c96c9886a21c70a',1,'Pentagon::setCorners()'],['../class_rectangle.html#abd4c59ad5fa7010563f2efb95c553b24',1,'Rectangle::setCorners()'],['../class_triangle.html#ad2d4cecee7e87e10d8b2787199d784c2',1,'Triangle::setCorners()']]],
   ['setdigit',['setDigit',['../class_circle.html#a187d5c4d66124603abb89f57552b6c4c',1,'Circle']]],
   ['setempty',['setEmpty',['../class_cell.html#a6047939b792e819bc2330151ff98864f',1,'Cell']]],
   ['setexit',['setExit',['../class_cell.html#a9fa0a3c17d798320c78bffe44411008e',1,'Cell']]],
@@ -24,7 +24,7 @@ var searchData=
   ['shape',['Shape',['../class_shape.html',1,'Shape'],['../class_shape.html#aaa8d87171e65e0d8ba3c5459978992a7',1,'Shape::Shape()']]],
   ['showundistorsed',['showUndistorsed',['../class_settings.html#a935d6f27ee454e9fee63f8b662f48a06',1,'Settings']]],
   ['six',['six',['../struct_digit_result_distribution.html#a6f41149ee35dc44af32773a52cf75148',1,'DigitResultDistribution']]],
-  ['square',['Square',['../class_square.html',1,'Square'],['../class_square.html#a3dc7ff9aefc2725172b5d3153973d243',1,'Square::Square()']]],
+  ['square',['Square',['../class_square.html',1,'']]],
   ['squaresize',['squareSize',['../class_settings.html#a6c94708776ad1ce258fc44f2101f5941',1,'Settings']]],
   ['storeallparameters',['storeAllParameters',['../class_inverse___perspective___mapping.html#abdea95329f3868f2a0875832a67f1076',1,'Inverse_Perspective_Mapping']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['settings',['Settings',['../class_settings.html',1,'']]],
-  ['shape',['Shape',['../class_shape.html',1,'']]],
-  ['square',['Square',['../class_square.html',1,'']]]
+  ['rectangle',['Rectangle',['../class_rectangle.html',1,'']]]
 ];

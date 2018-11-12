@@ -113,55 +113,55 @@ void Arena::findArena(const Mat &img)
 
 }
 
-std::vector<cv::Point> Arena::getCorners()
-{
-    std::vector<cv::Point> corners;
-    corners.push_back(Arena::getTopLeft());
-    corners.push_back(Arena::getTopRight());
-    corners.push_back(Arena::getBottomRight());
-    corners.push_back(Arena::getBottomLeft());
-    return corners;
-};
+//std::vector<cv::Point> Arena::getCorners()
+//{
+//    std::vector<cv::Point> corners;
+//    corners.push_back(Arena::getTopLeft());
+//    corners.push_back(Arena::getTopRight());
+//    corners.push_back(Arena::getBottomRight());
+//    corners.push_back(Arena::getBottomLeft());
+//    return corners;
+//};
+////
+//void Arena::setCorners(std::vector<cv::Point> corners)
+//{
+//    int half_h = settings.IMG_LENGHT/2;
+//    int half_w = settings.IMG_WIDTH/2;
+//    for (int i = 0; i < corners.size(); i++)
+//    {
+//        if (corners[i].x< half_w)
+//        {
+//            if (corners[i].y < half_h)
+//            {
+//                setTopLeft(corners[i]);
+//            }
+//            else
+//            {
+//                setBottomLeft(corners[i]);
+//            }
+//        }
+//        else
+//        {
+//            if (corners[i].y< half_h)
+//            {
+//                setTopRight(corners[i]);
+//            }
+//            else
+//            {
+//                setBottomRight(corners[i]);
+//            }
+//        }
+//    }
+//};
 //
-void Arena::setCorners(std::vector<cv::Point> corners)
-{
-    int half_h = settings.IMG_LENGHT/2;
-    int half_w = settings.IMG_WIDTH/2;
-    for (int i = 0; i < corners.size(); i++)
-    {
-        if (corners[i].x< half_w)
-        {
-            if (corners[i].y < half_h)
-            {
-                setTopLeft(corners[i]);
-            }
-            else
-            {
-                setBottomLeft(corners[i]);
-            }
-        }
-        else
-        {
-            if (corners[i].y< half_h)
-            {
-                setTopRight(corners[i]);
-            }
-            else
-            {
-                setBottomRight(corners[i]);
-            }
-        }
-    }
-};
-
-cv::Point Arena::getTopLeft() { return top_left; };
-void Arena::setTopLeft(cv::Point topLeft) { top_left = topLeft; };
-
-cv::Point Arena::getTopRight() { return top_right; };
-void Arena::setTopRight(cv::Point topRight) { top_right = topRight; };
-
-cv::Point Arena::getBottomLeft() { return bottom_left; };
-void Arena::setBottomLeft(cv::Point bottomLeft) { bottom_left = bottomLeft; };
-
-cv::Point Arena::getBottomRight() { return bottom_right; };
-void Arena::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; };
+//cv::Point Arena::getTopLeft() { return top_left; };
+//void Arena::setTopLeft(cv::Point topLeft) { top_left = topLeft; };
+//
+//cv::Point Arena::getTopRight() { return top_right; };
+//void Arena::setTopRight(cv::Point topRight) { top_right = topRight; };
+//
+//cv::Point Arena::getBottomLeft() { return bottom_left; };
+//void Arena::setBottomLeft(cv::Point bottomLeft) { bottom_left = bottomLeft; };
+//
+//cv::Point Arena::getBottomRight() { return bottom_right; };
+//void Arena::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; };

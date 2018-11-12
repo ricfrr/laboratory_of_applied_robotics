@@ -10,8 +10,8 @@ var searchData=
   ['_7eobstacle',['~Obstacle',['../class_obstacle.html#af2f9cc9c6cff75dca0974fd5ac4f71a9',1,'Obstacle']]],
   ['_7epentagon',['~Pentagon',['../class_pentagon.html#a500031431177cee506fd7f0517d84753',1,'Pentagon']]],
   ['_7epeople',['~People',['../class_people.html#adae124857f64dadff4e1801410b3dab2',1,'People']]],
+  ['_7erectangle',['~Rectangle',['../class_rectangle.html#a494c076b13aadf26efdce07d23c61ddd',1,'Rectangle']]],
   ['_7eshape',['~Shape',['../class_shape.html#a935afc9e576015f967d90de56977167d',1,'Shape']]],
-  ['_7esquare',['~Square',['../class_square.html#a90af7ce1060cff7b717ceddb333846b8',1,'Square']]],
   ['_7etriangle',['~Triangle',['../class_triangle.html#a5199760a17454f4dc94c855a57e3a152',1,'Triangle']]],
   ['_7eundistorsion',['~Undistorsion',['../class_undistorsion.html#adc5adf65c7ee3f5668bafd8eeaf31eb4',1,'Undistorsion']]]
 ];
