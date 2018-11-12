@@ -69,19 +69,115 @@ $(function() {
 <div class="title">Calibration_Instrinsic Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>function that helps calibrating the camera resulting in an undistortion matrix  
+ <a href="class_calibration___instrinsic.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_calibration___intrinsic_8hpp_source.html">Calibration_Intrinsic.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a65d585bbfe48d2c1cedbc0f1b43b05d5"><td class="memItemLeft" align="right" valign="top"><a id="a65d585bbfe48d2c1cedbc0f1b43b05d5"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>performCalibration</b> (const std::string cali_config)</td></tr>
+<tr class="memitem:a65d585bbfe48d2c1cedbc0f1b43b05d5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calibration___instrinsic.html#a65d585bbfe48d2c1cedbc0f1b43b05d5">performCalibration</a> (const std::string cali_config)</td></tr>
 <tr class="separator:a65d585bbfe48d2c1cedbc0f1b43b05d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8de03a03a709d52c9ac4e076e99072e"><td class="memItemLeft" align="right" valign="top"><a id="aa8de03a03a709d52c9ac4e076e99072e"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibrationAndSave</b> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints)</td></tr>
+<tr class="memitem:aa8de03a03a709d52c9ac4e076e99072e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_calibration___instrinsic.html#aa8de03a03a709d52c9ac4e076e99072e">runCalibrationAndSave</a> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints)</td></tr>
 <tr class="separator:aa8de03a03a709d52c9ac4e076e99072e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec65e62022a78dd3c200ab613d4e1256"><td class="memItemLeft" align="right" valign="top"><a id="aec65e62022a78dd3c200ab613d4e1256"></a>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibration</b> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size &amp;imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints, std::vector&lt; Mat &gt; &amp;rvecs, std::vector&lt; Mat &gt; &amp;tvecs, std::vector&lt; float &gt; &amp;reprojErrs, double &amp;totalAvgErr)</td></tr>
 <tr class="separator:aec65e62022a78dd3c200ab613d4e1256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>function that helps calibrating the camera resulting in an undistortion matrix </p>
+<p>This class can be used to calibrate the distortion matrix. Given initial settings from a <a class="el" href="class_settings.html">Settings</a> object and the opencv chessboard calibration tool it performs the calibration and saves the results in an external file.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="_settings_8hpp_source.html">Settings.hpp</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a65d585bbfe48d2c1cedbc0f1b43b05d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d585bbfe48d2c1cedbc0f1b43b05d5">&#9670;&nbsp;</a></span>performCalibration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Calibration_Instrinsic::performCalibration </td>
+          <td>(</td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>cali_config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>performs caliration and saves it to the filename indicated in the argument </p><ul>
+<li>cali_config filename of finished calibration file </li>
+</ul>
+
+</div>
+</div>
+<a id="aa8de03a03a709d52c9ac4e076e99072e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8de03a03a709d52c9ac4e076e99072e">&#9670;&nbsp;</a></span>runCalibrationAndSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool Calibration_Instrinsic::runCalibrationAndSave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_settings.html">Settings</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Size&#160;</td>
+          <td class="paramname"><em>imageSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat &amp;&#160;</td>
+          <td class="paramname"><em>cameraMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Mat &amp;&#160;</td>
+          <td class="paramname"><em>distCoeffs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; Point2f &gt; &gt;&#160;</td>
+          <td class="paramname"><em>imagePoints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Uses <a class="el" href="class_settings.html">Settings</a> object to run and save the calibration </p><ul>
+<li>s <a class="el" href="class_settings.html">Settings</a> object with information about chessboard and so on </li>
+<li>imageSize </li>
+<li>cameraMatrix </li>
+</ul>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_calibration___intrinsic_8hpp_source.html">Calibration_Intrinsic.hpp</a></li>
 </ul>

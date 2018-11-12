@@ -8,6 +8,7 @@ var searchData=
   ['getcircles',['getCircles',['../class_people.html#a0fc4e671ff110314dc0dc65ee150f04c',1,'People']]],
   ['getcorners',['getCorners',['../class_arena.html#a67171d93c7aff0f9d8bd3ee0596e9033',1,'Arena::getCorners()'],['../class_cell.html#a03becce6b307d86848e9563eb08ac2b3',1,'Cell::getCorners()'],['../class_exit_point.html#ac26a595a35b370cf7375874395715af0',1,'ExitPoint::getCorners()'],['../class_hexagon.html#aa12df068505254931530cbe74ac85ad0',1,'Hexagon::getCorners()'],['../class_pentagon.html#ab38482973f796da34cd9ac62cefb1491',1,'Pentagon::getCorners()'],['../class_square.html#a53b1e1223e97676db711dd75f2daa508',1,'Square::getCorners()'],['../class_triangle.html#a0c77555fd0e47f1344c23fa880f43777',1,'Triangle::getCorners()']]],
   ['getdigit',['getDigit',['../class_cell.html#a335c410074aaac9bb5594ea8adf648ff',1,'Cell::getDigit()'],['../class_circle.html#a50656c826a70e13fa75eb696a0dd3123',1,'Circle::getDigit()']]],
+  ['getfilter',['getFilter',['../class_color___processing.html#a1b6c44ee9495d9d453545b57640be8cd',1,'Color_Processing']]],
   ['gethexagons',['getHexagons',['../class_obstacle.html#a472a93843d84f1275c5b9cd57aa53850',1,'Obstacle']]],
   ['getpentagons',['getPentagons',['../class_obstacle.html#a2a3f85aa41ff39922c3994154fa8a7c1',1,'Obstacle']]],
   ['getradius',['getRadius',['../class_circle.html#adfc2e5e026f5d80215563cc42260a237',1,'Circle']]],

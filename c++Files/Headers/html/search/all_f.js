@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['saved_5fquality',['saved_quality',['../struct_h_s_v_filter_range.html#a5ded3fde3f4b37d5e0de6f40fd508271',1,'HSVFilterRange']]],
   ['set_5falgo',['set_algo',['../class_digit___recognition.html#a5c83d879c6881693c3606cc5a1bc8ef2',1,'Digit_Recognition']]],
   ['set_5ffilter',['set_filter',['../class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252',1,'Digit_Recognition']]],
   ['set_5flower_5fbound_5ffilter',['set_lower_bound_filter',['../class_character___recognition___algorithm.html#a06c2a31ba8f4ab6e3aacea6b643a4d7d',1,'Character_Recognition_Algorithm']]],

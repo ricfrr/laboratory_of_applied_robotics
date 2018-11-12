@@ -1,5 +1,14 @@
 \hypertarget{struct_h_s_v_filter_range}{}\section{H\+S\+V\+Filter\+Range Struct Reference}
 \label{struct_h_s_v_filter_range}\index{H\+S\+V\+Filter\+Range@{H\+S\+V\+Filter\+Range}}
+
+
+A structure that helps creating a color filter.  
+
+
+
+
+{\ttfamily \#include $<$Color\+\_\+\+Processing.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,15 +19,20 @@
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{struct_h_s_v_filter_range_a1c5b705f9992e014fd4dd7085e078c9d}\label{struct_h_s_v_filter_range_a1c5b705f9992e014fd4dd7085e078c9d}} 
-cv\+::\+Scalar {\bfseries ub} = cv\+::\+Scalar(90, 255, 255)
-\item 
+cv\+::\+Scalar \mbox{\hyperlink{struct_h_s_v_filter_range_a1c5b705f9992e014fd4dd7085e078c9d}{ub}} = cv\+::\+Scalar(90, 255, 255)
+\begin{DoxyCompactList}\small\item\em the upper bound of the filter \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{struct_h_s_v_filter_range_a0c5c2a10fb591c4dd1512ae81e1032a4}\label{struct_h_s_v_filter_range_a0c5c2a10fb591c4dd1512ae81e1032a4}} 
-cv\+::\+Scalar {\bfseries lb} = cv\+::\+Scalar(48, 53, 102)
-\item 
+cv\+::\+Scalar \mbox{\hyperlink{struct_h_s_v_filter_range_a0c5c2a10fb591c4dd1512ae81e1032a4}{lb}} = cv\+::\+Scalar(48, 53, 102)
+\begin{DoxyCompactList}\small\item\em the lower bound of the filter \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{struct_h_s_v_filter_range_a5ded3fde3f4b37d5e0de6f40fd508271}\label{struct_h_s_v_filter_range_a5ded3fde3f4b37d5e0de6f40fd508271}} 
-std\+::string {\bfseries saved\+\_\+quality} = \char`\"{}bad\char`\"{}
-\end{DoxyCompactItemize}
+std\+::string \mbox{\hyperlink{struct_h_s_v_filter_range_a5ded3fde3f4b37d5e0de6f40fd508271}{saved\+\_\+quality}} = \char`\"{}bad\char`\"{}
+\begin{DoxyCompactList}\small\item\em the saved tag \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+A structure that helps creating a color filter. 
+
+This structure contains several filter values for a given tag. It is able to store different values and dynamically change to another filter while keeping another filter in the back up. This allows the use of different filters to find a fitting one for a specific image 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

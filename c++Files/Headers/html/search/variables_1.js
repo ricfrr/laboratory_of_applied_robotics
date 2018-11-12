@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['delta_5fangle',['delta_angle',['../class_character___recognition___algorithm.html#a9c22f95223ecc5cfaf8e0303c30d5379',1,'Character_Recognition_Algorithm']]],
-  ['digit',['digit',['../struct_people_data.html#ac67414ff2db4d485a431b7a93cc02298',1,'PeopleData']]]
+  ['center',['center',['../struct_people_data.html#a9744c97bd0d9b4582452eb8afec15b05',1,'PeopleData']]],
+  ['confidence',['confidence',['../struct_people_data.html#a7c8aeadac63a7d20a5f8ca43f4f54237',1,'PeopleData']]]
 ];
