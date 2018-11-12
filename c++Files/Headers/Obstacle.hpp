@@ -1,6 +1,7 @@
 #ifndef Obstacle_hpp
 #define Obstacle_hpp
 
+#include "Rectangle.hpp"
 #include "Square.hpp"
 #include "Triangle.hpp"
 #include "Pentagon.hpp"
