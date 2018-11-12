@@ -140,8 +140,7 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
         while(angle2 < 360){
             
             if (digit.second > this->algorithm->suf_conf - 10 &&
-                digit.first >= 1 &&
-                digit.first <= 4)
+                is_valid(digit.first))
                 break;
             
             cv::Mat result;
@@ -163,7 +162,7 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
         }
         
         //create the people data
-        if(digit.first > 0 && digit.first <= 4)
+        if(is_valid(digit.first))
             results.push_back(People(digit,rects[i]));
         else if (digit.first == 7)
             results.push_back(People({1,1},rects[i]));

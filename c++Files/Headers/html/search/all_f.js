@@ -25,5 +25,6 @@ var searchData=
   ['six',['six',['../struct_digit_result_distribution.html#a6f41149ee35dc44af32773a52cf75148',1,'DigitResultDistribution']]],
   ['square',['Square',['../class_square.html',1,'']]],
   ['squaresize',['squareSize',['../class_settings.html#a6c94708776ad1ce258fc44f2101f5941',1,'Settings']]],
-  ['storeallparameters',['storeAllParameters',['../class_inverse___perspective___mapping.html#abdea95329f3868f2a0875832a67f1076',1,'Inverse_Perspective_Mapping']]]
+  ['storeallparameters',['storeAllParameters',['../class_inverse___perspective___mapping.html#abdea95329f3868f2a0875832a67f1076',1,'Inverse_Perspective_Mapping']]],
+  ['suf_5fconf',['suf_conf',['../class_character___recognition___algorithm.html#abf3ec6a778fa4d44ffa74c701acebfb0',1,'Character_Recognition_Algorithm']]]
 ];
