@@ -186,6 +186,9 @@ public:
     
     ///angle by which the image is turned each step from 0 to 360 degrees to find the right orientation
     double delta_angle = 30;
+    
+    ///sufficient confidence value to stop the rotating wheel of the digit recognition
+    unsigned int suf_conf = 80;
 };
 
 #endif /* Character_Recognition_Algorithm_hpp */

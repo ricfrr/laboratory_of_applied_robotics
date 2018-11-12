@@ -138,7 +138,10 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
         double angle2 = this->algorithm->delta_angle;
         
         while(angle2 < 360){
-            if (digit.second > 70 && digit.first >= 1 && digit.first <= 4)
+            
+            if (digit.second > this->algorithm->suf_conf - 10 &&
+                digit.first >= 1 &&
+                digit.first <= 4)
                 break;
             
             cv::Mat result;
@@ -155,7 +158,7 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
             if(digit.second < digit_4.second)
                 digit = digit_4;
             
-            if(digit.second > 80)
+            if(digit.second > this->algorithm->suf_conf )
                 break;
         }
         
