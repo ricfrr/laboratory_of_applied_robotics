@@ -12,7 +12,7 @@
 Inheritance diagram for Exit\+Point\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_exit_point}
+\includegraphics[height=3.000000cm]{class_exit_point}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -23,27 +23,8 @@ Inheritance diagram for Exit\+Point\+:\begin{figure}[H]
 \mbox{\hyperlink{class_exit_point_aa764fee5b37cb7dbda6f2fde39ffbc05}{$\sim$\+Exit\+Point}} ()
 \item 
 void \mbox{\hyperlink{class_exit_point_a2762c0c61bbe71a1a292b86e9517e860}{find\+Exit\+Point}} (const Mat \&img)
-\item 
-std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_exit_point_ac26a595a35b370cf7375874395715af0}{get\+Corners}} ()
-\item 
-void \mbox{\hyperlink{class_exit_point_aff4341c31734d77224b1251988949430}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
-\item 
-cv\+::\+Point \mbox{\hyperlink{class_exit_point_ad373de21603871832e10568631ef3cda}{get\+Top\+Left}} ()
-\item 
-void \mbox{\hyperlink{class_exit_point_a31c88803968c8b215062b97b699721e2}{set\+Top\+Left}} (cv\+::\+Point top\+Left)
-\item 
-cv\+::\+Point \mbox{\hyperlink{class_exit_point_a448716aa575ba751f72ab0f437b6a138}{get\+Top\+Right}} ()
-\item 
-void \mbox{\hyperlink{class_exit_point_ae27c395eb18321cb120b99ffbed6028a}{set\+Top\+Right}} (cv\+::\+Point top\+Right)
-\item 
-cv\+::\+Point \mbox{\hyperlink{class_exit_point_a51ac01267f39908e468ec859ba8d3096}{get\+Bottom\+Left}} ()
-\item 
-void \mbox{\hyperlink{class_exit_point_a22bf3a433b3567d36463699e16aaa86b}{set\+Bottom\+Left}} (cv\+::\+Point bottom\+Left)
-\item 
-cv\+::\+Point \mbox{\hyperlink{class_exit_point_a7a0e9d613aa361083bd4bf91f2080398}{get\+Bottom\+Right}} ()
-\item 
-void \mbox{\hyperlink{class_exit_point_afe10f2b0cf00b654dc1c95183462ed1a}{set\+Bottom\+Right}} (cv\+::\+Point bottom\+Right)
 \end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
@@ -74,106 +55,6 @@ destructor of the \mbox{\hyperlink{class_exit_point}{Exit\+Point}} class
 retrieve and set the corners in the \mbox{\hyperlink{class_exit_point}{Exit\+Point}} object 
 \begin{DoxyParams}{Parameters}
 {\em img} & image of the arena \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_exit_point_a51ac01267f39908e468ec859ba8d3096}\label{class_exit_point_a51ac01267f39908e468ec859ba8d3096}} 
-\index{Exit\+Point@{Exit\+Point}!get\+Bottom\+Left@{get\+Bottom\+Left}}
-\index{get\+Bottom\+Left@{get\+Bottom\+Left}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{get\+Bottom\+Left()}{getBottomLeft()}}
-{\footnotesize\ttfamily cv\+::\+Point Exit\+Point\+::get\+Bottom\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-return the bottom left corner \begin{DoxyReturn}{Returns}
-the bottom left corner 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_exit_point_a7a0e9d613aa361083bd4bf91f2080398}\label{class_exit_point_a7a0e9d613aa361083bd4bf91f2080398}} 
-\index{Exit\+Point@{Exit\+Point}!get\+Bottom\+Right@{get\+Bottom\+Right}}
-\index{get\+Bottom\+Right@{get\+Bottom\+Right}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{get\+Bottom\+Right()}{getBottomRight()}}
-{\footnotesize\ttfamily cv\+::\+Point Exit\+Point\+::get\+Bottom\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-return the bottom right corner of the exit point \begin{DoxyReturn}{Returns}
-bottom right corner of the exit point 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_exit_point_ac26a595a35b370cf7375874395715af0}\label{class_exit_point_ac26a595a35b370cf7375874395715af0}} 
-\index{Exit\+Point@{Exit\+Point}!get\+Corners@{get\+Corners}}
-\index{get\+Corners@{get\+Corners}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
-{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Exit\+Point\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-return a list of corners in a clockwise order \begin{DoxyReturn}{Returns}
-list of corners in a clockwise order 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_exit_point_ad373de21603871832e10568631ef3cda}\label{class_exit_point_ad373de21603871832e10568631ef3cda}} 
-\index{Exit\+Point@{Exit\+Point}!get\+Top\+Left@{get\+Top\+Left}}
-\index{get\+Top\+Left@{get\+Top\+Left}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{get\+Top\+Left()}{getTopLeft()}}
-{\footnotesize\ttfamily cv\+::\+Point Exit\+Point\+::get\+Top\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-return the top left corner of the exit point \begin{DoxyReturn}{Returns}
-return the top left corner of the exit point 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_exit_point_a448716aa575ba751f72ab0f437b6a138}\label{class_exit_point_a448716aa575ba751f72ab0f437b6a138}} 
-\index{Exit\+Point@{Exit\+Point}!get\+Top\+Right@{get\+Top\+Right}}
-\index{get\+Top\+Right@{get\+Top\+Right}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{get\+Top\+Right()}{getTopRight()}}
-{\footnotesize\ttfamily cv\+::\+Point Exit\+Point\+::get\+Top\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-return the top right corner of the exit point \begin{DoxyReturn}{Returns}
-return the top right corner of the exit point 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_exit_point_a22bf3a433b3567d36463699e16aaa86b}\label{class_exit_point_a22bf3a433b3567d36463699e16aaa86b}} 
-\index{Exit\+Point@{Exit\+Point}!set\+Bottom\+Left@{set\+Bottom\+Left}}
-\index{set\+Bottom\+Left@{set\+Bottom\+Left}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{set\+Bottom\+Left()}{setBottomLeft()}}
-{\footnotesize\ttfamily void Exit\+Point\+::set\+Bottom\+Left (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{bottom\+Left }\end{DoxyParamCaption})}
-
-set the bottom left corner 
-\begin{DoxyParams}{Parameters}
-{\em bottom\+Left} & bottom left corner of the exit point \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_exit_point_afe10f2b0cf00b654dc1c95183462ed1a}\label{class_exit_point_afe10f2b0cf00b654dc1c95183462ed1a}} 
-\index{Exit\+Point@{Exit\+Point}!set\+Bottom\+Right@{set\+Bottom\+Right}}
-\index{set\+Bottom\+Right@{set\+Bottom\+Right}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{set\+Bottom\+Right()}{setBottomRight()}}
-{\footnotesize\ttfamily void Exit\+Point\+::set\+Bottom\+Right (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{bottom\+Right }\end{DoxyParamCaption})}
-
-set the bottom right corner 
-\begin{DoxyParams}{Parameters}
-{\em bottom\+Right} & bottom right corner of the exit point \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_exit_point_aff4341c31734d77224b1251988949430}\label{class_exit_point_aff4341c31734d77224b1251988949430}} 
-\index{Exit\+Point@{Exit\+Point}!set\+Corners@{set\+Corners}}
-\index{set\+Corners@{set\+Corners}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
-{\footnotesize\ttfamily void Exit\+Point\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
-
-set the list of corners 
-\begin{DoxyParams}{Parameters}
-{\em corners} & list of corners that have to be setted \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_exit_point_a31c88803968c8b215062b97b699721e2}\label{class_exit_point_a31c88803968c8b215062b97b699721e2}} 
-\index{Exit\+Point@{Exit\+Point}!set\+Top\+Left@{set\+Top\+Left}}
-\index{set\+Top\+Left@{set\+Top\+Left}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{set\+Top\+Left()}{setTopLeft()}}
-{\footnotesize\ttfamily void Exit\+Point\+::set\+Top\+Left (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{top\+Left }\end{DoxyParamCaption})}
-
-set the top left corner 
-\begin{DoxyParams}{Parameters}
-{\em top\+Left} & top left corner that has to be setted \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_exit_point_ae27c395eb18321cb120b99ffbed6028a}\label{class_exit_point_ae27c395eb18321cb120b99ffbed6028a}} 
-\index{Exit\+Point@{Exit\+Point}!set\+Top\+Right@{set\+Top\+Right}}
-\index{set\+Top\+Right@{set\+Top\+Right}!Exit\+Point@{Exit\+Point}}
-\subsubsection{\texorpdfstring{set\+Top\+Right()}{setTopRight()}}
-{\footnotesize\ttfamily void Exit\+Point\+::set\+Top\+Right (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{top\+Right }\end{DoxyParamCaption})}
-
-set the top right corner 
-\begin{DoxyParams}{Parameters}
-{\em top\+Right} & top right corner tha has to be setted \\
 \hline
 \end{DoxyParams}
 

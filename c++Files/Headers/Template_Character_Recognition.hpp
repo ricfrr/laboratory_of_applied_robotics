@@ -19,16 +19,22 @@
 
 #include "Character_Recognition_Algorithm.hpp"
 
+/**
+ \brief Class that performs the Template Matching Method to identify characters
+ */
 class Template_Character_Recognition: public Character_Recognition_Algorithm {
     
 public:
     Template_Character_Recognition();
     ~Template_Character_Recognition();
     
+    ///path to templates
     const std::string template_path = "../data/template/";
     
+    ///detect a digit in a prepared image
     std::pair<int,int> detect_digit(cv::Mat &image);
     
+private:
     int getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI);
 };
 #endif /* Template_Character_Recognition_hpp */

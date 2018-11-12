@@ -24,7 +24,7 @@
 using namespace cv;
 
 /*!
- * produce a perspective transformation around the arena given a photo
+ * \brief produce a perspective transformation around the arena given a photo
  */
 class Inverse_Perspective_Mapping {
 public:

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['input',['input',['../class_settings.html#a8696deae231b0efe48f1d069a4145ee6',1,'Settings']]],
   ['inverse_5fperspective_5fmapping',['Inverse_Perspective_Mapping',['../class_inverse___perspective___mapping.html',1,'Inverse_Perspective_Mapping'],['../class_inverse___perspective___mapping.html#a9c3733e22a6516e932a2197196c999f2',1,'Inverse_Perspective_Mapping::Inverse_Perspective_Mapping()']]],
   ['invert_5fmasked_5fimage',['invert_masked_image',['../class_character___recognition___algorithm.html#a75ff23b5b2722c9c572091755985e137',1,'Character_Recognition_Algorithm']]],
   ['isborder',['isBorder',['../class_cell.html#a34d62b7c65fd85f356bd9e2c3058edcb',1,'Cell']]],

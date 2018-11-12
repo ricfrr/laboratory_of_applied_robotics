@@ -1,5 +1,14 @@
 \hypertarget{class_template___character___recognition}{}\section{Template\+\_\+\+Character\+\_\+\+Recognition Class Reference}
 \label{class_template___character___recognition}\index{Template\+\_\+\+Character\+\_\+\+Recognition@{Template\+\_\+\+Character\+\_\+\+Recognition}}
+
+
+Class that performs the Template Matching Method to identify characters.  
+
+
+
+
+{\ttfamily \#include $<$Template\+\_\+\+Character\+\_\+\+Recognition.\+hpp$>$}
+
 Inheritance diagram for Template\+\_\+\+Character\+\_\+\+Recognition\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,17 +20,17 @@ Inheritance diagram for Template\+\_\+\+Character\+\_\+\+Recognition\+:\begin{fi
 \item 
 \mbox{\Hypertarget{class_template___character___recognition_af41bc392058896b69802f690e42661dc}\label{class_template___character___recognition_af41bc392058896b69802f690e42661dc}} 
 std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_template___character___recognition_af41bc392058896b69802f690e42661dc}{detect\+\_\+digit}} (cv\+::\+Mat \&image)
-\begin{DoxyCompactList}\small\item\em the (virtual) function that runs the recognition engine \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_template___character___recognition_a0af8778b93c92849d3413f2b3d0333bd}\label{class_template___character___recognition_a0af8778b93c92849d3413f2b3d0333bd}} 
-int {\bfseries get\+Result} (std\+::vector$<$ cv\+::\+Mat $>$ \&templ\+R\+O\+Is, cv\+::\+Mat \&R\+OI)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em detect a digit in a prepared image \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_template___character___recognition_aa4cb4d3779f7d7a65ae5811f78be880b}\label{class_template___character___recognition_aa4cb4d3779f7d7a65ae5811f78be880b}} 
-const std\+::string {\bfseries template\+\_\+path} = \char`\"{}../data/template/\char`\"{}
-\end{DoxyCompactItemize}
+const std\+::string \mbox{\hyperlink{class_template___character___recognition_aa4cb4d3779f7d7a65ae5811f78be880b}{template\+\_\+path}} = \char`\"{}../data/template/\char`\"{}
+\begin{DoxyCompactList}\small\item\em path to templates \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Class that performs the Template Matching Method to identify characters. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -10,7 +10,6 @@
 #include "Headers/Calibration_Intrinsic.hpp"
 #include "Headers/Undistortion.hpp"
 #include "Headers/Inverse_Perspective_Mapping.hpp"
-#include "Headers/Image_Processing.hpp"
 #include "Headers/Arena.hpp"
 #include "Headers/ExitPoint.hpp"
 #include "Headers/Map.hpp"

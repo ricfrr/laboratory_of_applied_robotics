@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 1369.863014
+%%BoundingBox: 0 0 500 1232.876712
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 0.365000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.405556 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 10 def
+/rows 9 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -176,7 +176,6 @@ boxfont setfont
 (Shape) cw
 (Arena) cw
 (Circle) cw
-(ExitPoint) cw
 (Hexagon) cw
 (Obstacle) cw
 (Pentagon) cw
@@ -194,23 +193,21 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (Shape) 0.000000 9.000000 box
- (Arena) 1.000000 8.000000 box
- (Circle) 1.000000 7.000000 box
- (ExitPoint) 1.000000 6.000000 box
+ (Shape) 0.000000 8.000000 box
+ (Arena) 1.000000 7.000000 box
+ (Circle) 1.000000 6.000000 box
  (Hexagon) 1.000000 5.000000 box
  (Obstacle) 1.000000 4.000000 box
  (Pentagon) 1.000000 3.000000 box
  (People) 1.000000 2.000000 box
  (Square) 1.000000 1.000000 box
+1.000000 1.000000 mark
  (Triangle) 1.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-1 0.000000 8.250000 out
-solid
-0 0.000000 8.500000 hedge
+1 0.000000 7.250000 out
 solid
 0 0.000000 7.500000 hedge
 solid
@@ -228,4 +225,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 9.000000 0.500000 vedge
+0.000000 8.000000 0.500000 vedge

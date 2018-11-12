@@ -17,6 +17,8 @@
  *
  * \section Robotic-Mapping
  *
+ * The robotic mapping process is presented in the following slides. All relevant classes and methods will be shown and the theoretic aspects will be visualized. \n
+ *
  * \image html LAR_img/LAR_img.001.jpeg
  * \image html LAR_img/LAR_img.002.jpeg
  * \image html LAR_img/LAR_img.003.jpeg

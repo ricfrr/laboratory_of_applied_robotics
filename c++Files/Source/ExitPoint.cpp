@@ -64,68 +64,68 @@ void ExitPoint::findExitPoint(const Mat &img)
 
 }
 
-std::vector<cv::Point> ExitPoint::getCorners()
-{
-    std::vector<cv::Point> corners;
-    corners.push_back(ExitPoint::getTopLeft());
-    corners.push_back(ExitPoint::getTopRight());
-    corners.push_back(ExitPoint::getBottomRight());
-    corners.push_back(ExitPoint::getBottomLeft());
-    return corners;
-};
+//std::vector<cv::Point> ExitPoint::getCorners()
+//{
+//    std::vector<cv::Point> corners;
+//    corners.push_back(ExitPoint::getTopLeft());
+//    corners.push_back(ExitPoint::getTopRight());
+//    corners.push_back(ExitPoint::getBottomRight());
+//    corners.push_back(ExitPoint::getBottomLeft());
+//    return corners;
+//};
 //
-void ExitPoint::findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners)
-{
-    for (int i = 0; i < corners.size(); i++)
-    {
-        half_h = half_h + corners[i].y;
-        half_w = half_w + corners[i].x;
-    }
-    half_h = half_h / corners.size();
-    half_w = half_w / corners.size();
-}
+//void ExitPoint::findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners)
+//{
+//    for (int i = 0; i < corners.size(); i++)
+//    {
+//        half_h = half_h + corners[i].y;
+//        half_w = half_w + corners[i].x;
+//    }
+//    half_h = half_h / corners.size();
+//    half_w = half_w / corners.size();
+//}
 
-void ExitPoint::setCorners(std::vector<cv::Point> corners)
-{
-    int half_h = 0;
-    int half_w = 0;
-    findHalf(half_h, half_w, corners);
+//void ExitPoint::setCorners(std::vector<cv::Point> corners)
+//{
+//    int half_h = 0;
+//    int half_w = 0;
+//    findHalf(half_h, half_w, corners);
+//
+//    for (int i = 0; i < corners.size(); i++)
+//    {
+//        if (corners[i].x < half_w)
+//        {
+//            if (corners[i].y < half_h)
+//            {
+//                setTopLeft(corners[i]);
+//            }
+//            else
+//            {
+//                setBottomLeft(corners[i]);
+//            }
+//        }
+//        else
+//        {
+//            if (corners[i].y < half_h)
+//            {
+//                setTopRight(corners[i]);
+//            }
+//            else
+//            {
+//                setBottomRight(corners[i]);
+//            }
+//        }
+//    }
+//};
 
-    for (int i = 0; i < corners.size(); i++)
-    {
-        if (corners[i].x < half_w)
-        {
-            if (corners[i].y < half_h)
-            {
-                setTopLeft(corners[i]);
-            }
-            else
-            {
-                setBottomLeft(corners[i]);
-            }
-        }
-        else
-        {
-            if (corners[i].y < half_h)
-            {
-                setTopRight(corners[i]);
-            }
-            else
-            {
-                setBottomRight(corners[i]);
-            }
-        }
-    }
-};
-
-cv::Point ExitPoint::getTopLeft() { return top_left; };
-void ExitPoint::setTopLeft(cv::Point topLeft) { top_left = topLeft; };
-
-cv::Point ExitPoint::getTopRight() { return top_right; };
-void ExitPoint::setTopRight(cv::Point topRight) { top_right = topRight; };
-
-cv::Point ExitPoint::getBottomLeft() { return bottom_left; };
-void ExitPoint::setBottomLeft(cv::Point bottomLeft) { bottom_left = bottomLeft; };
-
-cv::Point ExitPoint::getBottomRight() { return bottom_right; };
-void ExitPoint::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; };
+//cv::Point ExitPoint::getTopLeft() { return top_left; };
+//void ExitPoint::setTopLeft(cv::Point topLeft) { top_left = topLeft; };
+//
+//cv::Point ExitPoint::getTopRight() { return top_right; };
+//void ExitPoint::setTopRight(cv::Point topRight) { top_right = topRight; };
+//
+//cv::Point ExitPoint::getBottomLeft() { return bottom_left; };
+//void ExitPoint::setBottomLeft(cv::Point bottomLeft) { bottom_left = bottomLeft; };
+//
+//cv::Point ExitPoint::getBottomRight() { return bottom_right; };
+//void ExitPoint::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; };

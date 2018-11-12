@@ -33,9 +33,6 @@ public:
      */
     void setCorners(std::vector<cv::Point> corners);
 
-
-
-private:
     cv::Point getTopLeft();
 
     void setTopLeft(cv::Point topLeft);

@@ -1,7 +1,11 @@
 var searchData=
 [
+  ['calibfixprincipalpoint',['calibFixPrincipalPoint',['../class_settings.html#a44397eea3f08a0c78808c38bdd716594',1,'Settings']]],
   ['calibrate_5fcolor',['calibrate_color',['../class_color___processing.html#acb962976dba3538eabcf5812951a023e',1,'Color_Processing']]],
   ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
+  ['calibrationpattern',['calibrationPattern',['../class_settings.html#a94551b7ffe8ac60311b035b2905e9498',1,'Settings']]],
+  ['calibzerotangentdist',['calibZeroTangentDist',['../class_settings.html#a4bc7ff147d74721a3587ce6fcb64ef32',1,'Settings']]],
+  ['cameraid',['cameraID',['../class_settings.html#af32a5ff06192bde106c934e0361bcd7e',1,'Settings']]],
   ['cell',['Cell',['../class_cell.html',1,'Cell'],['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()']]],
   ['center',['center',['../struct_people_data.html#a9744c97bd0d9b4582452eb8afec15b05',1,'PeopleData']]],
   ['character_5frecognition_5falgorithm',['Character_Recognition_Algorithm',['../class_character___recognition___algorithm.html',1,'']]],

@@ -70,6 +70,11 @@ $(function() {
 <div class="title">Template_Character_Recognition Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that performs the Template Matching Method to identify characters.  
+ <a href="class_template___character___recognition.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_template___character___recognition_8hpp_source.html">Template_Character_Recognition.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Template_Character_Recognition:</div>
 <div class="dyncontent">
@@ -84,11 +89,8 @@ Inheritance diagram for Template_Character_Recognition:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af41bc392058896b69802f690e42661dc"><td class="memItemLeft" align="right" valign="top"><a id="af41bc392058896b69802f690e42661dc"></a>
 std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template___character___recognition.html#af41bc392058896b69802f690e42661dc">detect_digit</a> (cv::Mat &amp;image)</td></tr>
-<tr class="memdesc:af41bc392058896b69802f690e42661dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">the (virtual) function that runs the recognition engine <br /></td></tr>
+<tr class="memdesc:af41bc392058896b69802f690e42661dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">detect a digit in a prepared image <br /></td></tr>
 <tr class="separator:af41bc392058896b69802f690e42661dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0af8778b93c92849d3413f2b3d0333bd"><td class="memItemLeft" align="right" valign="top"><a id="a0af8778b93c92849d3413f2b3d0333bd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getResult</b> (std::vector&lt; cv::Mat &gt; &amp;templROIs, cv::Mat &amp;ROI)</td></tr>
-<tr class="separator:a0af8778b93c92849d3413f2b3d0333bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character___recognition___algorithm"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character___recognition___algorithm')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character___recognition___algorithm.html">Character_Recognition_Algorithm</a></td></tr>
 <tr class="memitem:ae6fbf353044a0d3d1c4703bff3a46080 inherit pub_methods_class_character___recognition___algorithm"><td class="memItemLeft" align="right" valign="top"><a id="ae6fbf353044a0d3d1c4703bff3a46080"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character___recognition___algorithm.html#ae6fbf353044a0d3d1c4703bff3a46080">displayImage</a> (cv::Mat &amp;image, std::string windowTitle)</td></tr>
@@ -150,7 +152,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa4cb4d3779f7d7a65ae5811f78be880b"><td class="memItemLeft" align="right" valign="top"><a id="aa4cb4d3779f7d7a65ae5811f78be880b"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>template_path</b> = &quot;../data/template/&quot;</td></tr>
+const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_template___character___recognition.html#aa4cb4d3779f7d7a65ae5811f78be880b">template_path</a> = &quot;../data/template/&quot;</td></tr>
+<tr class="memdesc:aa4cb4d3779f7d7a65ae5811f78be880b"><td class="mdescLeft">&#160;</td><td class="mdescRight">path to templates <br /></td></tr>
 <tr class="separator:aa4cb4d3779f7d7a65ae5811f78be880b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_character___recognition___algorithm"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_character___recognition___algorithm')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_character___recognition___algorithm.html">Character_Recognition_Algorithm</a></td></tr>
 <tr class="memitem:a6fda22815d819ef7d0b0cfec4baba47c inherit pub_attribs_class_character___recognition___algorithm"><td class="memItemLeft" align="right" valign="top"><a id="a6fda22815d819ef7d0b0cfec4baba47c"></a>
@@ -164,7 +167,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memdesc:a9c22f95223ecc5cfaf8e0303c30d5379 inherit pub_attribs_class_character___recognition___algorithm"><td class="mdescLeft">&#160;</td><td class="mdescRight">angle by which the image is turned each step from 0 to 360 degrees to find the right orientation <br /></td></tr>
 <tr class="separator:a9c22f95223ecc5cfaf8e0303c30d5379 inherit pub_attribs_class_character___recognition___algorithm"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that performs the Template Matching Method to identify characters. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_template___character___recognition_8hpp_source.html">Template_Character_Recognition.hpp</a></li>
 </ul>
 </div><!-- contents -->

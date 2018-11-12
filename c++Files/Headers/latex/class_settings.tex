@@ -1,5 +1,14 @@
 \hypertarget{class_settings}{}\section{Settings Class Reference}
 \label{class_settings}\index{Settings@{Settings}}
+
+
+A data structure that stores important information for calibrating a camera.  
+
+
+
+
+{\ttfamily \#include $<$Settings.\+hpp$>$}
+
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,65 +57,65 @@ static bool {\bfseries is\+List\+Of\+Images} (const std\+::string \&filename)
 Size {\bfseries board\+Size}
 \item 
 \mbox{\Hypertarget{class_settings_a94551b7ffe8ac60311b035b2905e9498}\label{class_settings_a94551b7ffe8ac60311b035b2905e9498}} 
-Pattern {\bfseries calibration\+Pattern}
-\item 
+Pattern \mbox{\hyperlink{class_settings_a94551b7ffe8ac60311b035b2905e9498}{calibration\+Pattern}}
+\begin{DoxyCompactList}\small\item\em The size of the board -\/$>$ Number of items by width and height. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a6c94708776ad1ce258fc44f2101f5941}\label{class_settings_a6c94708776ad1ce258fc44f2101f5941}} 
-float {\bfseries square\+Size}
-\item 
+float \mbox{\hyperlink{class_settings_a6c94708776ad1ce258fc44f2101f5941}{square\+Size}}
+\begin{DoxyCompactList}\small\item\em One of the Chessboard, circles, or asymmetric circle pattern. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a7e6654cd0e51791ed687eaa85f8fc143}\label{class_settings_a7e6654cd0e51791ed687eaa85f8fc143}} 
-int {\bfseries nr\+Frames}
-\item 
+int \mbox{\hyperlink{class_settings_a7e6654cd0e51791ed687eaa85f8fc143}{nr\+Frames}}
+\begin{DoxyCompactList}\small\item\em The size of a square in your defined unit (point, millimeter,etc). \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_af55c910308a0d773055d0b19261bb3b8}\label{class_settings_af55c910308a0d773055d0b19261bb3b8}} 
-float {\bfseries aspect\+Ratio}
-\item 
+float \mbox{\hyperlink{class_settings_af55c910308a0d773055d0b19261bb3b8}{aspect\+Ratio}}
+\begin{DoxyCompactList}\small\item\em The number of frames to use from the input for calibration. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a5fe947366441009187d633f9e4663256}\label{class_settings_a5fe947366441009187d633f9e4663256}} 
-int {\bfseries delay}
-\item 
+int \mbox{\hyperlink{class_settings_a5fe947366441009187d633f9e4663256}{delay}}
+\begin{DoxyCompactList}\small\item\em The aspect ratio. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a53ac449815682c6bfae7e50944ba0565}\label{class_settings_a53ac449815682c6bfae7e50944ba0565}} 
-bool {\bfseries write\+Points}
-\item 
+bool \mbox{\hyperlink{class_settings_a53ac449815682c6bfae7e50944ba0565}{write\+Points}}
+\begin{DoxyCompactList}\small\item\em In case of a video input. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a1cee56847e08f49c90d2f7e2b0511197}\label{class_settings_a1cee56847e08f49c90d2f7e2b0511197}} 
-bool {\bfseries write\+Extrinsics}
-\item 
+bool \mbox{\hyperlink{class_settings_a1cee56847e08f49c90d2f7e2b0511197}{write\+Extrinsics}}
+\begin{DoxyCompactList}\small\item\em Write detected feature points. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a4bc7ff147d74721a3587ce6fcb64ef32}\label{class_settings_a4bc7ff147d74721a3587ce6fcb64ef32}} 
-bool {\bfseries calib\+Zero\+Tangent\+Dist}
-\item 
+bool \mbox{\hyperlink{class_settings_a4bc7ff147d74721a3587ce6fcb64ef32}{calib\+Zero\+Tangent\+Dist}}
+\begin{DoxyCompactList}\small\item\em Write extrinsic parameters. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a44397eea3f08a0c78808c38bdd716594}\label{class_settings_a44397eea3f08a0c78808c38bdd716594}} 
-bool {\bfseries calib\+Fix\+Principal\+Point}
-\item 
+bool \mbox{\hyperlink{class_settings_a44397eea3f08a0c78808c38bdd716594}{calib\+Fix\+Principal\+Point}}
+\begin{DoxyCompactList}\small\item\em Assume zero tangential distortion. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_ab6304f260b315d2820f755e1c3a052b5}\label{class_settings_ab6304f260b315d2820f755e1c3a052b5}} 
-bool {\bfseries flip\+Vertical}
-\item 
+bool \mbox{\hyperlink{class_settings_ab6304f260b315d2820f755e1c3a052b5}{flip\+Vertical}}
+\begin{DoxyCompactList}\small\item\em Fix the principal point at the center. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_ab2fec20428d21ea867cc044c0a583cf1}\label{class_settings_ab2fec20428d21ea867cc044c0a583cf1}} 
-std\+::string {\bfseries output\+File\+Name}
-\item 
+std\+::string \mbox{\hyperlink{class_settings_ab2fec20428d21ea867cc044c0a583cf1}{output\+File\+Name}}
+\begin{DoxyCompactList}\small\item\em Flip the captured images around the horizontal axis. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a935d6f27ee454e9fee63f8b662f48a06}\label{class_settings_a935d6f27ee454e9fee63f8b662f48a06}} 
-bool {\bfseries show\+Undistorsed}
-\item 
+bool \mbox{\hyperlink{class_settings_a935d6f27ee454e9fee63f8b662f48a06}{show\+Undistorsed}}
+\begin{DoxyCompactList}\small\item\em The name of the file where to write. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a8696deae231b0efe48f1d069a4145ee6}\label{class_settings_a8696deae231b0efe48f1d069a4145ee6}} 
-std\+::string {\bfseries input}
-\item 
+std\+::string \mbox{\hyperlink{class_settings_a8696deae231b0efe48f1d069a4145ee6}{input}}
+\begin{DoxyCompactList}\small\item\em Show undistorted images after calibration. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_ac8f271630d54f9d0c718ea0130972d44}\label{class_settings_ac8f271630d54f9d0c718ea0130972d44}} 
-bool {\bfseries use\+Fisheye}
-\item 
+bool \mbox{\hyperlink{class_settings_ac8f271630d54f9d0c718ea0130972d44}{use\+Fisheye}}
+\begin{DoxyCompactList}\small\item\em The input -\/$>$ \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a25242813ee2c5e111ce48fe1f7f85e7b}\label{class_settings_a25242813ee2c5e111ce48fe1f7f85e7b}} 
-bool {\bfseries fix\+K1}
-\item 
+bool \mbox{\hyperlink{class_settings_a25242813ee2c5e111ce48fe1f7f85e7b}{fix\+K1}}
+\begin{DoxyCompactList}\small\item\em use fisheye camera model for calibration \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_abad0b643dc5a39d493a6343d38f41578}\label{class_settings_abad0b643dc5a39d493a6343d38f41578}} 
-bool {\bfseries fix\+K2}
-\item 
+bool \mbox{\hyperlink{class_settings_abad0b643dc5a39d493a6343d38f41578}{fix\+K2}}
+\begin{DoxyCompactList}\small\item\em fix K1 distortion coefficient \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a433fca3c377d42f1c7d43e35a286913f}\label{class_settings_a433fca3c377d42f1c7d43e35a286913f}} 
-bool {\bfseries fix\+K3}
-\item 
+bool \mbox{\hyperlink{class_settings_a433fca3c377d42f1c7d43e35a286913f}{fix\+K3}}
+\begin{DoxyCompactList}\small\item\em fix K2 distortion coefficient \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_ac993998a56cebe0593cb74fe39858d31}\label{class_settings_ac993998a56cebe0593cb74fe39858d31}} 
-bool {\bfseries fix\+K4}
-\item 
+bool \mbox{\hyperlink{class_settings_ac993998a56cebe0593cb74fe39858d31}{fix\+K4}}
+\begin{DoxyCompactList}\small\item\em fix K3 distortion coefficient \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_a4d0d37eef5f3033a8aabc3f09ee29a03}\label{class_settings_a4d0d37eef5f3033a8aabc3f09ee29a03}} 
-bool {\bfseries fix\+K5}
-\item 
+bool \mbox{\hyperlink{class_settings_a4d0d37eef5f3033a8aabc3f09ee29a03}{fix\+K5}}
+\begin{DoxyCompactList}\small\item\em fix K4 distortion coefficient \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_af32a5ff06192bde106c934e0361bcd7e}\label{class_settings_af32a5ff06192bde106c934e0361bcd7e}} 
-int {\bfseries camera\+ID}
-\item 
+int \mbox{\hyperlink{class_settings_af32a5ff06192bde106c934e0361bcd7e}{camera\+ID}}
+\begin{DoxyCompactList}\small\item\em fix K5 distortion coefficient \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_settings_ab3f8f916639b93c3b5079facfe395078}\label{class_settings_ab3f8f916639b93c3b5079facfe395078}} 
 std\+::vector$<$ std\+::string $>$ {\bfseries image\+List}
 \item 
@@ -140,6 +149,14 @@ int {\bfseries N\+\_\+\+C\+O\+L\+\_\+\+M\+AP} =200
 \mbox{\Hypertarget{class_settings_a08b59baafe94e711e02075edc9febfa6}\label{class_settings_a08b59baafe94e711e02075edc9febfa6}} 
 int {\bfseries G\+A\+P\+\_\+\+P\+E\+R\+SP} =15
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A data structure that stores important information for calibrating a camera. 
+
+It decides which input stream and calibration method will be used. It can be used to construct the Calibration\+\_\+\+Intrinsic object. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_calibration___instrinsic}{Calibration\+\_\+\+Instrinsic}} 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
