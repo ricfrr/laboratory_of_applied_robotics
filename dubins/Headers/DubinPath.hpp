@@ -38,7 +38,7 @@ private:
     //
     double mod2pi(double ang);
 
-    double PI = 3.14159265358979323846;
+    double PI = M_PI;
 
     // compute all the possibilities
     void LSL();
