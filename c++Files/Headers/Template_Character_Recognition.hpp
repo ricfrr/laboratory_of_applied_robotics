@@ -35,6 +35,8 @@ public:
     std::pair<int,int> detect_digit(cv::Mat &image);
     
 private:
-    int getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI);
+    std::pair<int,int> getResult(std::vector<cv::Mat> &templROIs, cv::Mat &image);
+    
+    int thres_score = 300000000;
 };
 #endif /* Template_Character_Recognition_hpp */

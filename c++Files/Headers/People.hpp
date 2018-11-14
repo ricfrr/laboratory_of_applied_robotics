@@ -7,7 +7,10 @@
 using namespace cv;
 
 /**
- \brief class for detecting and storing people
+ \brief class for representing people in the map that have to be collected
+ 
+ \discussion People are round objects with green background that need to be collected before exiting the map.
+ People have a unique identifier given by a digit. This identifier is their name. People inherit all shape characteristics of Circles, because their have circular shapes. In addition to their name and form people have a confidence level assigned to them indicating how confident the character recognition algorithm was when detecting their name.
  */
 class People : public Circle {
 

@@ -116,6 +116,19 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
 //        cv::imshow("orientation_2", orientation_2);
 //        cv::waitKey(0);
         
+//        set_algo(templateMatching);
+        
+        if(this->picked_algorithm == templateMatching){
+            cv::bitwise_not(orientation_0, orientation_0);
+            cv::bitwise_not(orientation_1, orientation_1);
+            cv::bitwise_not(orientation_2, orientation_2);
+            
+//            cv::imshow("orientation_0", orientation_0);
+//            cv::imshow("orientation_1", orientation_1);
+//            cv::imshow("orientation_2", orientation_2);
+//            cv::waitKey(0);
+        }
+        
         //detect the digit
         std::pair<int,int> digit_0 = this->algorithm->detect_digit(orientation_0);
         std::cout << "result for orientation_0 " << digit_0.first << std::endl;

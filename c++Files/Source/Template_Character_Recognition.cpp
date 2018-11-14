@@ -15,13 +15,14 @@ Template_Character_Recognition::Template_Character_Recognition(){
 Template_Character_Recognition::~Template_Character_Recognition(){}
 
 
-int Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, cv::Mat &ROI){
+std::pair<int,int> Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, cv::Mat &image){
     // Find the template digit with the best matching
     double maxScore = 0;
     int maxIdx = -99;
+    
     for (int j=0; j<templROIs.size(); ++j) {
         cv::Mat result;
-        cv::matchTemplate(ROI, templROIs[j], result, cv::TM_CCOEFF);
+        cv::matchTemplate(image, templROIs[j], result, cv::TM_CCOEFF);
         double score;
         cv::minMaxLoc(result, nullptr, &score);
         if (score > maxScore) {
@@ -32,16 +33,29 @@ int Template_Character_Recognition::getResult(std::vector<cv::Mat> &templROIs, c
     
     //wanna have a high maxScore = ressemblance
     //empirical tested this number to be a good fit
-    if (maxScore < 625000000){
-        return -99;
+    if (maxScore < thres_score/2){
+        return {-99,maxScore/(thres_score)};
     }
 //    else {
 //        std::cout << "detected digit with max score " << std::to_string(maxScore) << std::endl;
 //    }
-    return maxIdx;
+    return {maxIdx,maxScore/(thres_score)};
 }
 
 std::pair<int,int> Template_Character_Recognition::detect_digit(cv::Mat &image){
+    
+        // Load digits template images
+        std::vector<cv::Mat> templROIs;
+        for (int i=0; i<=9; ++i) {
+            templROIs.emplace_back(cv::imread(template_path + std::to_string(i) + ".png"));
+        }
+    
+//     Find the template digit with the best matching
+            std::pair<int,int> result = getResult(templROIs, image);
+    
+            //std::cout << "Best fitting template: " << maxIdx << std::endl;
+    
+        return result;
     
 //    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2*2) + 1, (2*2)+1));
 //
@@ -72,6 +86,5 @@ std::pair<int,int> Template_Character_Recognition::detect_digit(cv::Mat &image){
 //        //std::cout << "Best fitting template: " << maxIdx << std::endl;
 //
 //    return maxIdx;
-    
-    return {0,0};
+
 }
