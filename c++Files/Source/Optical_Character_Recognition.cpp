@@ -20,7 +20,7 @@ Optical_Character_Recognition::Optical_Character_Recognition(){
 }
 
 Optical_Character_Recognition::~Optical_Character_Recognition(){
-    ocr->End();
+    delete ocr;
 }
 
 int Optical_Character_Recognition::detect_digit(tesseract::TessBaseAPI *&OCR, cv::Mat &image){
