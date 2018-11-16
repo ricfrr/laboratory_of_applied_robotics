@@ -3,24 +3,29 @@
 
 #include <vector>
 
-#include "Shape.hpp"
+#include "Polygon.hpp"
 
 using namespace cv;
 
 /**
  \brief Class for hadling pentagon obstacles in the map
  */
-class Pentagon : public Shape {
+class Pentagon : public Polygon {
 
 public:
     /*!
      * constructor of Pentagon class
      */
     Pentagon();
+    
+    Pentagon(std::vector<cv::Point> points);
+    
     /*!
      * destructor of Pentagon class
      */
     ~Pentagon();
+    
+    void assign_points();
 
     /*!
      * return the list of corners of the pentagons

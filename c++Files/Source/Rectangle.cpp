@@ -4,6 +4,11 @@ Rectangle::Rectangle()
 {
     // creator
 }
+
+Rectangle::Rectangle(std::vector<cv::Point> points): Polygon(points){
+    assign_points();
+}
+
 Rectangle::~Rectangle()
 {
     // nada
@@ -74,3 +79,16 @@ void Rectangle::setBottomLeft(cv::Point bottomLeft) { bottom_left = bottomLeft; 
 
 cv::Point Rectangle::getBottomRight() { return bottom_right; };
 void Rectangle::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; };
+
+void Rectangle::assign_points(){
+    
+    if(this->points.size() != 4)
+        std::runtime_error("not a rectabgle");
+
+    setCorners(this->points);
+    
+//    this->top_left      = points[0];
+//    this->top_right     = points[1];
+//    this->bottom_right  = points[2];
+//    this->bottom_right  = points[3];
+}

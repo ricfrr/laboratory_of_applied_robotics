@@ -173,9 +173,10 @@
 
 boxfont setfont
 1 boundaspect scale
-(Rectangle) cw
 (Polygon) cw
 (Shape) cw
+(Hexagon) cw
+(Rectangle) cw
 (Arena) cw
 (ExitPoint) cw
 (Square) cw
@@ -190,9 +191,10 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
+ (Polygon) 0.500000 2.000000 box
+ (Shape) 0.500000 3.000000 box
+ (Hexagon) 0.000000 1.000000 box
  (Rectangle) 1.000000 1.000000 box
- (Polygon) 1.000000 2.000000 box
- (Shape) 1.000000 3.000000 box
  (Arena) 0.000000 0.000000 box
  (ExitPoint) 1.000000 0.000000 box
  (Square) 2.000000 0.000000 box
@@ -200,13 +202,17 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-0 1.000000 1.000000 out
+0 0.500000 2.000000 out
 solid
-1 1.000000 2.000000 in
+1 0.500000 3.000000 in
 solid
-0 1.000000 2.000000 out
+1 0.500000 1.250000 out
 solid
-1 1.000000 3.000000 in
+0.000000 1.000000 2.000000 conn
+solid
+0 0.000000 1.750000 in
+solid
+0 1.000000 1.750000 in
 solid
 1 1.000000 0.250000 out
 solid

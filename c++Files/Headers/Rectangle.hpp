@@ -3,20 +3,23 @@
 
 #include <vector>
 
-#include "Shape.hpp"
+#include "Polygon.hpp"
 
 using namespace cv;
 
 /**
  \brief Class for handling square in the map
  */
-class Rectangle : public Shape {
+class Rectangle : public Polygon {
 
 public:
     /*!
      * constructor of square class
      */
     Rectangle();
+    
+    Rectangle(std::vector<cv::Point> points);
+    
     /*!
      * destructor of square class
      */
@@ -52,6 +55,9 @@ public:
                   const std::vector<cv::Point> &corners);
 
     cv::Point top_left, top_right, bottom_left, bottom_right;
+    
+    ///assignes points to 1., 2., 3 etc point.
+    void assign_points();
 };
 
 #endif /* Rectangle_hpp */

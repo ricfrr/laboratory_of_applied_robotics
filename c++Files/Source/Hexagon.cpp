@@ -4,9 +4,23 @@ Hexagon::Hexagon()
 {
     // creator
 }
+
+Hexagon::Hexagon(std::vector<cv::Point> points): Polygon(points){
+    assign_points();
+}
+
 Hexagon::~Hexagon()
 {
     // nada
+}
+
+void Hexagon::assign_points(){
+    
+    if(this->points.size() != 6)
+        std::runtime_error("not a hexagon");
+    
+    setCorners(this->points);
+    
 }
 
 void Hexagon::setCorners(std::vector<cv::Point> corners)

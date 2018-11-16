@@ -3,8 +3,26 @@
 Pentagon::Pentagon() {
   // creator
 }
+
+Pentagon::Pentagon(std::vector<cv::Point> points): Polygon(points){
+    assign_points();
+}
+
 Pentagon::~Pentagon() {
   // nada
+}
+
+void Pentagon::assign_points(){
+    
+    if(this->points.size() != 5)
+        std::runtime_error("not a pentagon");
+    
+    setCorners(this->points);
+    
+    //    this->top_left      = points[0];
+    //    this->top_right     = points[1];
+    //    this->bottom_right  = points[2];
+    //    this->bottom_right  = points[3];
 }
 
 void Pentagon::setCorners(std::vector<cv::Point> corners) {

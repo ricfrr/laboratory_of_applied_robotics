@@ -2,13 +2,13 @@
 #define Hexagon_hpp
 #include <vector>
 
-#include "Shape.hpp"
+#include "Polygon.hpp"
 
 using namespace cv;
 /**
  \brief Class for handling hexagon obstacles
  */
-class Hexagon : public Shape
+class Hexagon : public Polygon
 {
 
   public:
@@ -16,6 +16,9 @@ class Hexagon : public Shape
      * constructor of the Hexagon class
      */
     Hexagon();
+    
+    Hexagon(std::vector<cv::Point> points);
+    
     /*!
      * destructor of the Hexagon class
      */
@@ -31,6 +34,8 @@ class Hexagon : public Shape
      * @param corners list of corners
      */
     void setCorners(std::vector<cv::Point> corners);
+    
+    void assign_points();
 
 
   private:
