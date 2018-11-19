@@ -4,18 +4,19 @@
 
 
 #include "../Headers/DubinPath.hpp"
+#include "../Headers/CircularLine.hpp"
 
 
-DubinPath::DubinPath(Car car_i) {
-    car = car_i;
+DubinPath::DubinPath(PathCoordinates path_coordinates_i) {
+    path_coordinates = path_coordinates_i;
 };
 
 DubinPath::~DubinPath() {
 
 };
 
-void DubinPath::dubinShortestPath() {
-    scaleToStandard(car);
+std::vector<Line> DubinPath::dubinShortestPath() {
+    scaleToStandard(path_coordinates);
     LSL();
     RSR();
     LSR();
@@ -24,8 +25,9 @@ void DubinPath::dubinShortestPath() {
     LRL();
     double L = std::numeric_limits<double>::infinity();
     double Lcur = 0;
-    PossiblePath path;
+    PossibleDubinPath path;
     int pidx = -1;
+    std::vector<Line> lines;
     for (int i = 0; i < possiblePaths.size(); i++) {
         Lcur = possiblePaths[i].sc_s1 + possiblePaths[i].sc_s2 + possiblePaths[i].sc_s3;
         if (possiblePaths[i].ok && Lcur < L) {
@@ -40,38 +42,66 @@ void DubinPath::dubinShortestPath() {
 
     if (pidx > 0) {
         std::vector<double> rescaled = scaleFromStandard(std_conf.lambda, path.sc_s1, path.sc_s2, path.sc_s3);
-        dubinsCurve(car.getInitialPosition().getCoordinates().x, car.getInitialPosition().getCoordinates().y,
-                    car.getInitialPosition().getOrientation(), rescaled[0], rescaled[1], rescaled[2],
-                    path.signs[0] * car.getMaxCurvature(), path.signs[1] * car.getMaxCurvature(),
-                    path.signs[2] * car.getMaxCurvature());
+        lines = dubinsCurve(path_coordinates.getInitialPosition().getCoordinates().x,
+                            path_coordinates.getInitialPosition().getCoordinates().y,
+                            path_coordinates.getInitialPosition().getOrientation(), rescaled[0], rescaled[1],
+                            rescaled[2],
+                            path.signs[0] * path_coordinates.getMaxCurvature(),
+                            path.signs[1] * path_coordinates.getMaxCurvature(),
+                            path.signs[2] * path_coordinates.getMaxCurvature());
         // check the correctness of the algorithm
         //TODO
     }
+    return lines;
 
 };
 
-void DubinPath::dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1,
-                            double k2) {
+std::vector<Line>
+DubinPath::dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1,
+                       double k2) {
     // set first arc
     cv::Point2d coord1 = cv::Point2d(x0, y0);
     Position pos1 = Position(coord1, th0);
-    arc1 = DubinArc(pos1,k0,s1);
+    std::vector<Line> lines;
+    Line arc1;
+    if (k0 == 0) {
+        arc1 = StraightLine(pos1, s1); //straight line
+        lines.push_back(arc1);
+    } else {
+        arc1 = CircularLine(pos1, k0, s1);
+        lines.push_back(arc1);
+    }
     //set second arc
-    cv::Point2d coord2 = cv::Point2d(arc1.getFinalPosition().getCoordinates().x, arc1.getFinalPosition().getCoordinates().y);
-    Position pos2 = Position(coord2, arc1.getFinalPosition().getOrientation());
-    arc2 = DubinArc(pos2, k1, s2);
+    cv::Point2d coord2 = cv::Point2d(arc1.getEndPoint().getCoordinates().x, arc1.getEndPoint().getCoordinates().y);
+    Position pos2 = Position(coord2, arc1.getEndPoint().getOrientation());
+    Line arc2;
+    if (k1 == 0) {
+        arc2 = StraightLine(pos2, s2); //straight line
+        lines.push_back(arc2);
+    } else {
+        arc2 = CircularLine(pos2, k1, s2);
+        lines.push_back(arc2);
+    }
     // set third arc
-    cv::Point2d coord3 = cv::Point2d(arc2.getFinalPosition().getCoordinates().x, arc2.getFinalPosition().getCoordinates().y);
-    Position pos3 = Position(coord3, arc2.getFinalPosition().getOrientation());
-    arc3 = DubinArc(pos3, k2, s3);
-    // set length
-    length = arc1.getLength() + arc2.getLength() + arc3.getLength();
+    cv::Point2d coord3 = cv::Point2d(arc2.getEndPoint().getCoordinates().x, arc2.getEndPoint().getCoordinates().y);
+    Position pos3 = Position(coord3, arc2.getEndPoint().getOrientation());
+    Line arc3;
+    if (k2 == 0) {
+        arc3 = StraightLine(pos3, s3); //straight line
+        lines.push_back(arc3);
+    } else {
+        arc3 = CircularLine(pos3, k2, s3);
+        lines.push_back(arc3);
+    }
+    return lines;
 }
 
 
-void DubinPath::scaleToStandard(Car car) {
-    double dx = car.getFinalPosition().getCoordinates().x - car.getInitialPosition().getCoordinates().x;
-    double dy = car.getFinalPosition().getCoordinates().y - car.getInitialPosition().getCoordinates().y;
+void DubinPath::scaleToStandard(PathCoordinates path_coordinates) {
+    double dx = path_coordinates.getFinalPosition().getCoordinates().x -
+                path_coordinates.getInitialPosition().getCoordinates().x;
+    double dy = path_coordinates.getFinalPosition().getCoordinates().y -
+                path_coordinates.getInitialPosition().getCoordinates().y;
     double phi = atan2(dy, dx);
     double lambda = hypot(dx, dy);
 
@@ -80,15 +110,15 @@ void DubinPath::scaleToStandard(Car car) {
 
     // arc1 only for the function mod2pi
     lambda = lambda / 2;
-    std_conf.sc_th0 = mod2pi(car.getInitialPosition().getOrientation() - phi);
-    std_conf.sc_thf = mod2pi(car.getFinalPosition().getOrientation() - phi);
-    std_conf.sc_Kmax = car.getMaxCurvature() * lambda;
+    std_conf.sc_th0 = mod2pi(path_coordinates.getInitialPosition().getOrientation() - phi);
+    std_conf.sc_thf = mod2pi(path_coordinates.getFinalPosition().getOrientation() - phi);
+    std_conf.sc_Kmax = path_coordinates.getMaxCurvature() * lambda;
 
     std_conf.lambda = lambda;
 }
 
 void DubinPath::LSL() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_thf) - cos(std_conf.sc_th0);
     double S = 2.0 * std_conf.sc_Kmax + sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
@@ -113,7 +143,7 @@ void DubinPath::LSL() {
 }
 
 void DubinPath::RSR() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) - cos(std_conf.sc_thf);
     double S = 2.0 * std_conf.sc_Kmax + sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
@@ -137,7 +167,7 @@ void DubinPath::RSR() {
 }
 
 void DubinPath::LSR() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) + cos(std_conf.sc_thf);
     double S = 2.0 * std_conf.sc_Kmax + sin(std_conf.sc_th0) + sin(std_conf.sc_thf);
@@ -162,7 +192,7 @@ void DubinPath::LSR() {
 }
 
 void DubinPath::RSL() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) + cos(std_conf.sc_thf);
     double S = 2.0 * std_conf.sc_Kmax - sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
@@ -187,7 +217,7 @@ void DubinPath::RSL() {
 }
 
 void DubinPath::RLR() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) - cos(std_conf.sc_thf);
     double S = 2.0 * std_conf.sc_Kmax - sin(std_conf.sc_th0) + sin(std_conf.sc_thf);
@@ -201,7 +231,7 @@ void DubinPath::RLR() {
         possiblePath.sc_s3 = 0;
         possiblePaths.push_back(possiblePath);
     } else {
-        possiblePath.sc_s2 = invK * mod2pi(2 * PI - acos(temp2));
+        possiblePath.sc_s2 = invK * mod2pi(2 * M_PI - acos(temp2));
         possiblePath.sc_s1 = invK * mod2pi(std_conf.sc_th0 - temp1 + 0.5 * possiblePath.sc_s2 * std_conf.sc_Kmax);
         possiblePath.sc_s3 = invK * mod2pi(std_conf.sc_th0 - std_conf.sc_thf +
                                            std_conf.sc_Kmax * (possiblePath.sc_s2 - possiblePath.sc_s1));
@@ -212,7 +242,7 @@ void DubinPath::RLR() {
 }
 
 void DubinPath::LRL() {
-    PossiblePath possiblePath;
+    PossibleDubinPath possiblePath;
     double invK = 1. / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_thf) - cos(std_conf.sc_th0);
     double S = 2 * std_conf.sc_Kmax + sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
@@ -226,7 +256,7 @@ void DubinPath::LRL() {
         possiblePath.sc_s3 = 0;
         possiblePaths.push_back(possiblePath);
     } else {
-        possiblePath.sc_s2 = invK * mod2pi(2 * PI - acos(temp2));
+        possiblePath.sc_s2 = invK * mod2pi(2 * M_PI - acos(temp2));
         possiblePath.sc_s1 = invK * mod2pi(temp1 - std_conf.sc_th0 + 0.5 * possiblePath.sc_s2 * std_conf.sc_Kmax);
         possiblePath.sc_s3 = invK * mod2pi(std_conf.sc_thf - std_conf.sc_th0 +
                                            std_conf.sc_Kmax * (possiblePath.sc_s2 - possiblePath.sc_s1));
@@ -238,12 +268,12 @@ void DubinPath::LRL() {
 
 
 double DubinPath::mod2pi(double ang) {
-    double out=ang;
+    double out = ang;
     while (out < 0.0) {
-        out = out + 2.0 * PI;
+        out = out + 2.0 * M_PI;
     }
-    while (out >= 2.0 * PI) {
-        out = out - 2.0 * PI;
+    while (out >= 2.0 * M_PI) {
+        out = out - 2.0 * M_PI;
     }
     return out;
 };

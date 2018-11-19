@@ -2,18 +2,18 @@
 #define PossiblePath_hpp
 
 #include <opencv2/core/core.hpp>
-#include "Car.hpp"
+#include "PathCoordinates.hpp"
 #include "DubinArc.hpp"
 
 using namespace cv;
 
-class PossiblePath {
+class PossibleDubinPath {
 
 public:
 
-    PossiblePath();
+    PossibleDubinPath();
 
-    ~PossiblePath();
+    ~PossibleDubinPath();
 
     bool ok;
     double sc_s1;

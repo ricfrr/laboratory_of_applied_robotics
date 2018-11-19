@@ -10,12 +10,16 @@
 
 #include <stdio.h>
 #include "Line.hpp"
+#include <opencv2/core/core.hpp>
 
 class StraightLine: public Line {
     
-    StraightLine(std::pair<double,double> startPoint, std::pair<double,double> endPoint);
 public:
-    void recompute();
+    StraightLine(Position start_point, Position end_point);
+    StraightLine(Position start_point, double length);
+
+private:
+    double distance(cv::Point initial_point , cv::Point final_point);
 };
 
 #endif /* StraightLine_hpp */

@@ -31,7 +31,6 @@ private:
     Position fin_pos = Position(cv::Point2d(), 0);
     double length;
     double curvature;
-    double PI = M_PI;
     //double PI = 3.14159265358979323846;
 
 };

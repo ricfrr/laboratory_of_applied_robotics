@@ -1,25 +1,27 @@
-//
-//  CircularLine.cpp
-//  
-//
-//  Created by Air Marvin on 13.11.18.
-//
+#include "../Headers/CircularLine.hpp"
 
-#include "CircularLine.hpp"
 
-CircularLine::CircularLine(std::pair<double,double> startPoint, double angle, double curvature){
-    
-    this->startPoint = startPoint;
-    this->angle = angle;
-    this->curvature = curvature;
-    
-    recompute();
-    
+CircularLine::~CircularLine() {
 }
 
-CircularLine::CircularLine(double curvature){
-    
-    this->curvature = curvature;
-}
+CircularLine::CircularLine(Position start_point, double curvature, double length) {
+    setStartPoint(start_point);
+    setCurvature(curvature);
+    setLength(length);
+    Position end_point = findEndPoint(curvature, start_point, length);
+    setEndPoint(end_point);
+};
 
-CircularLine::CircularLine::recompute(){}
+
+void CircularLine::setCurvature(double curvature_i) {
+    curvature = curvature_i;
+};
+
+double CircularLine::getCurvature() {
+    return curvature;
+};
+
+
+
+
+

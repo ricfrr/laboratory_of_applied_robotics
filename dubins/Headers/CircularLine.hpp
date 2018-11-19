@@ -10,19 +10,24 @@
 
 #include <stdio.h>
 #include "Line.hpp"
+#include <cmath>
 
-class CircularLine: public Line {
-    
+class CircularLine : public Line {
+
 public:
-    CircularLine(std::pair<double,double> startPoint, double angle, double curvature);
-    CircularLine(double curvature);
-    
-    double angle;
-    
-    void recompute();
-    
-private:
-    double curvature;
-};
 
+    CircularLine(Position start_point, double curvature, double length);
+
+    ~CircularLine();
+
+    void setCurvature(double curvature_i);
+
+    double getCurvature();
+
+
+private:
+
+    double curvature;
+
+};
 #endif /* CircularLine_hpp */

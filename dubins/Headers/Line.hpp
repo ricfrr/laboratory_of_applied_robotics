@@ -9,18 +9,46 @@
 #define Line_hpp
 
 #include <stdio.h>
+#include <opencv2/core/core.hpp>
+#include "Position.hpp"
+
 
 class Line {
 public:
     Line();
-    Line(std::pair<double,double> startPoint, double length = 1);
+
+    Line(Position start_point, Position end_point);
+
     ~Line();
-    
-    std::pair<double,double> startPoint, endPoint;
+
+    void setStartPoint(Position start_point_i);
+
+    Position getStartPoint();
+
+    void setEndPoint(Position end_point_i);
+
+    Position getEndPoint();
+
+    void setLength(double length_i);
+
+    double getLength();
+
+    void setOrientation(double orientation_i);
+
+    double getOrientation();
+
+    Position findEndPoint(double k, Position start, double length);
+
+    double sinc(double inp);
+
+    double mod2pi(double ang);
+
+private:
+
+    Position start_point;
+    Position end_point;
     double length;
-    
-    //when the startpoint or the length or other values have changed it is necessary to recompute the endPoint right?
-    void recompute() = 1;
+
 };
 
 #endif /* Line_hpp */

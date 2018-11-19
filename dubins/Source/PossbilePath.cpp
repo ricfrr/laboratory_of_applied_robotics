@@ -2,13 +2,13 @@
 // Created by riccardo on 11/11/2018.
 //
 
-#include "../Headers/PossiblePath.hpp"
+#include "../Headers/PossibleDubinPath.hpp"
 
 
-PossiblePath::PossiblePath() {
+PossibleDubinPath::PossibleDubinPath() {
 
 };
 
-PossiblePath::~PossiblePath(){
+PossibleDubinPath::~PossibleDubinPath(){
 
 };

@@ -5,26 +5,24 @@
 //  Created by Air Marvin on 13.11.18.
 //
 
-#include "StraightLine.hpp"
+#include "../Headers/StraightLine.hpp"
 
-StraightLine::StraightLine(std::pair<double,double> startPoint, std::pair<double,double> endPoint){
-    
-    this->startPoint = startPoint;
-    this->endPoint = endPoint;
-    
-    recompute();
+StraightLine::StraightLine(Position start_point, Position end_point) {
+    setStartPoint(start_point);
+    setEndPoint(end_point);
+    double tmp_dst = distance(start_point.getCoordinates(),end_point.getCoordinates());
+    setLength(tmp_dst);
 }
 
-void StraightLine::recompute(){
-    
-    //given startpoint and endpoint the length should be set
-    double x_0 = startPoint.first;
-    double y_0 = startPoint.second;
-    double x_1 = endPoint.first;
-    double y_1 = endPoint.second;
-    
-    this->length = std::sqrt(pow(x_1 - x_0,2)+pow(y_1-y_0,2));
-    
-    //given startpoint and length the endpoint needs to be checked
-    
+double StraightLine::distance(cv::Point initial_point , cv::Point final_point){
+    double res;
+    res = sqrt(pow(initial_point.x-final_point.x,2.0)+pow(initial_point.y-final_point.y,2.0));
+    return res;
+}
+
+StraightLine::StraightLine(Position start_point, double length) {
+    setStartPoint(start_point);
+    setLength(length);
+    Position end_tmp = findEndPoint(0,start_point,length);
+    setEndPoint(end_tmp);
 }

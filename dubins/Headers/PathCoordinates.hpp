@@ -3,13 +3,13 @@
 
 #include "Position.hpp"
 
-class Car {
+class PathCoordinates {
 
 public:
 
-    Car(Position position_in, Position position_fin, double curvature_p);
+    PathCoordinates(Position position_in, Position position_fin, double curvature_p);
 
-    ~Car();
+    ~PathCoordinates();
 
     void setPositions(Position position_in, Position position_fin);
 

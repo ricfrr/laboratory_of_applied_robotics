@@ -3,9 +3,12 @@
 
 #include <opencv2/core/core.hpp>
 #include <limits>
-#include "Car.hpp"
+#include "PathCoordinates.hpp"
 #include "DubinArc.hpp"
-#include "PossiblePath.hpp"
+#include "PossibleDubinPath.hpp"
+#include "Line.hpp"
+#include "CircularLine.hpp"
+#include "StraightLine.hpp"
 
 using namespace cv;
 
@@ -20,26 +23,23 @@ class DubinPath {
 
 public:
 
-    DubinPath(Car car_i);
+    DubinPath(PathCoordinates path_coordinates_i);
 
     ~DubinPath();
 
-    void dubinShortestPath();
+    std::vector<Line> dubinShortestPath();
 
 private:
-    Car car = Car(Position(), Position(), 0);
+    PathCoordinates path_coordinates = PathCoordinates(Position(), Position(), 0);
 
-    void scaleToStandard(Car car);
+    void scaleToStandard(PathCoordinates path_coordinates);
 
     std::vector<double> scaleFromStandard(double lambda, double sc_s1, double sc_s2, double sc_s3);
 
-    void dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1, double k2);
+    std::vector<Line> dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1, double k2);
 
     //
     double mod2pi(double ang);
-
-    double PI = M_PI;
-
     // compute all the possibilities
     void LSL();
 
@@ -53,11 +53,8 @@ private:
 
     void LRL();
 
-    std::vector<PossiblePath> possiblePaths;
+    std::vector<PossibleDubinPath> possiblePaths;
 
-    DubinArc arc1 = DubinArc(Position(), 0, 0);
-    DubinArc arc2 = DubinArc(Position(), 0, 0);
-    DubinArc arc3 = DubinArc(Position(), 0, 0);
     double length;
     standardConf std_conf;
 };
