@@ -11,17 +11,33 @@
 #include <stdio.h>
 #include "Line.hpp"
 #include <cmath>
-
+/**
+ \brief Class for managing circle in the pat
+ */
 class CircularLine : public Line {
 
 public:
-
+    /**
+     \brief constructor of the class
+     * @param start_point  start position of the line
+     * @param curvature curvature of the path
+     * @param length length of the path
+     */
     CircularLine(Position start_point, double curvature, double length);
-
+    /**
+     \brief destructor of the class
+     */
     ~CircularLine();
 
-    void setCurvature(double curvature_i);
+    /**
+     \brief allow to set the curvature of the line
+     */
 
+    void setCurvature(double curvature_i);
+    /**
+     * return the curvature of the line
+     * @return curvature of the line
+     */
     double getCurvature();
 
 

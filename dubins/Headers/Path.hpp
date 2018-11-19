@@ -9,7 +9,6 @@
 #define Path_hpp
 
 #include <stdio.h>
-#include "Geometrie.hpp"
 #include <vector>
 #include <opencv2/core/types.hpp>
 #include "DubinPath.hpp"
@@ -32,21 +31,54 @@ public:
     void findPath();
 
     /**
-     \brief function that computes lines based on the path type and the givent point set
+     \brief set the lines of the path
      */
     void setLines(std::vector<Line>);
+    /**
+     * \brief return a vector of lines
+     * @return vector of lines
+     */
     std::vector<Line> getLines();
-
+    /**
+     * \brief set the start point of the path
+     * @param start_point start point of the path
+     */
     void setStartPoint(Position start_point);
+    /**
+     * \brief return the start point of the path
+     * @return the start point of the path
+     */
     Position getStartPoint();
-
+    /**
+     * \brief set the end point of the path
+     * @param end_point the end point of the path
+     */
     void setEndPoint(Position end_point);
+    /**
+     * \brief return the end point of the path
+     * @return the end point of the path
+     */
     Position getEndPoint();
-
+    /**
+     * \brief set max curvature of the path
+     * @param curvature max curvature of the path
+     */
     void setMaxCurvature(double curvature);
+    /**
+     * \brief return of max curvature of the path
+     * @return the max curvature of the path
+     */
     double getMaxCurvature();
-
+    /**
+     * \brief set the length of the path
+     * @param length length of the path
+     */
     void setLength(double length);
+    /**
+     * \brief return the length of the path
+     * @return the length
+     * @return the length
+     */
     double getLength();
 
     Position start_point;

@@ -3,16 +3,21 @@
 
 #include <opencv2/core/core.hpp>
 #include "PathCoordinates.hpp"
-#include "DubinArc.hpp"
 
 using namespace cv;
-
+/**
+ * \brief class that describes a possible dubin path (useful during the calculation)
+ */
 class PossibleDubinPath {
 
 public:
-
+    /**
+     * \brief constructor of PossibleDubinPath class
+     */
     PossibleDubinPath();
-
+    /**
+     * \brief destructor of PossibleDubinPath class
+     */
     ~PossibleDubinPath();
 
     bool ok;
