@@ -55,6 +55,16 @@ Position Line::findEndPoint(double k, Position start, double length) {
     return tmp_fin_pos;
 };
 
+void Line::setCurvature(double curvature_i) {
+    curvature = curvature_i;
+};
+
+double Line::getCurvature() {
+    return curvature;
+};
+
+
+
 // implementation of sinc function
 double Line::sinc(double inp) {
     double s;

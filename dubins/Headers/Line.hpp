@@ -17,45 +17,54 @@
  */
 class Line {
 public:
+
     /**
      * \brief constructor of Line class
      */
     Line();
+
     /**
      * \brief contrusctor of Line class
      * @param start_point start point of the path
      * @param end_point end point of the path
      */
     Line(Position start_point, Position end_point);
+
     /**
      * \brief destructor of the line path
      */
     ~Line();
+
     /**
      * \brief set the start position of the path
      * @param start_point_i start point of the path
      */
     void setStartPoint(Position start_point_i);
+
     /**
      * \brief return the start point of the path
      * @return the start point
      */
     Position getStartPoint();
+
     /**
      * \brief set the end point of the path
      * @param end_point_i the end point of the path
      */
     void setEndPoint(Position end_point_i);
+
     /**
      * \brief return the end point of the path
      * @return the end point of the path
      */
     Position getEndPoint();
+
     /**
      * \brief set the length of the path
      * @param length_i the length of the path
      */
     void setLength(double length_i);
+
     /**
      * return the length of the path
      * @return the length of the path
@@ -70,12 +79,14 @@ public:
      * @return
      */
     Position findEndPoint(double k, Position start, double length);
+
     /**
      * \brief Implementation of function sinc(t), returning 1 for t==0, and sin(t)/t
      * @param inp input angle
      * @return 1 for inp==0 otherwise sin(inp)/inp
      */
     double sinc(double inp);
+
     /**
      * \brief Normalize an angle (in range [0,2*pi))
      * @param ang input angle
@@ -83,11 +94,25 @@ public:
      */
     double mod2pi(double ang);
 
+    /**
+       \brief allow to set the curvature of the line
+    */
+
+    void setCurvature(double curvature_i);
+
+    /**
+     * return the curvature of the line
+     * @return curvature of the line
+     */
+    double getCurvature();
+
+
 private:
 
     Position start_point;
     Position end_point;
     double length;
+    double curvature; // 1: left 0: straight -1 :right
 
 };
 

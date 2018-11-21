@@ -1,8 +1,6 @@
 #include "../Headers/CircularLine.hpp"
 
 
-CircularLine::~CircularLine() {
-}
 
 CircularLine::CircularLine(Position start_point, double curvature, double length) {
     setStartPoint(start_point);
@@ -13,13 +11,10 @@ CircularLine::CircularLine(Position start_point, double curvature, double length
 };
 
 
-void CircularLine::setCurvature(double curvature_i) {
-    curvature = curvature_i;
+CircularLine::~CircularLine() {
 };
 
-double CircularLine::getCurvature() {
-    return curvature;
-};
+
 
 
 

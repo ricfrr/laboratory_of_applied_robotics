@@ -29,21 +29,5 @@ public:
      */
     ~CircularLine();
 
-    /**
-     \brief allow to set the curvature of the line
-     */
-
-    void setCurvature(double curvature_i);
-    /**
-     * return the curvature of the line
-     * @return curvature of the line
-     */
-    double getCurvature();
-
-
-private:
-
-    double curvature;
-
 };
 #endif /* CircularLine_hpp */

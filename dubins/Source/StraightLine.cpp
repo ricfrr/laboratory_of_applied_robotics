@@ -23,6 +23,7 @@ double StraightLine::distance(cv::Point initial_point , cv::Point final_point){
 StraightLine::StraightLine(Position start_point, double length) {
     setStartPoint(start_point);
     setLength(length);
+    setCurvature(0);
     Position end_tmp = findEndPoint(0,start_point,length);
     setEndPoint(end_tmp);
 }
