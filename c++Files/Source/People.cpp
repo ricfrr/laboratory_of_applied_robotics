@@ -30,6 +30,7 @@ void People::findCircles(const Mat &img)
             conf = " with extremely low confidence";
             
         std::cout << "detected a guy called " << data[i].digit << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << std::endl;
+        
         cv::Point center;
         center.x = data[i].center.x;
         center.y = data[i].center.y;
@@ -37,8 +38,16 @@ void People::findCircles(const Mat &img)
         circle_d.setDigit(data[i].digit);
         circle_d.setCenter(center);
         circle_d.setRadius(data[i].radius/2);
-        circles.push_back(circle_d);
+        circles.push_back(&circle_d);
     }
 }
 
-std::vector<Circle> People::getCircles() { return circles; };
+std::vector<Circle*> People::getCircles() { return circles; };
+
+void People::addCircle(Circle &circle){
+    this->circles.push_back(&circle);
+}
+
+void People::clearCircles(){
+    this->circles.clear();
+}

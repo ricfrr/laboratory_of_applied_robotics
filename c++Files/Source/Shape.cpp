@@ -10,11 +10,11 @@ Shape::~Shape()
     // nada
 }
 
-void Shape::setCell(Cell cell_i){
-    cell_l.push_back(cell_i);
+void Shape::setCell(Cell &cell_i){
+    cell_l.push_back(&cell_i);
 }
 
-std::vector<Cell> Shape::getCell(){
+std::vector<Cell*> Shape::getCell(){
     return cell_l;
 } 
 

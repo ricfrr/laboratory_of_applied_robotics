@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../c++Files/Headers/RoboticMapping.hpp"
 #include "Headers/Position.hpp"
 #include "Headers/PathCoordinates.hpp"
 #include "Headers/Path.hpp"
@@ -7,7 +8,19 @@ using namespace std;
 
 PathCoordinates initialize();
 
-int main(){
+const string intrinsic_calibration = "config/intrinsic_calibration.xml";
+
+int main(int argc, const char *argv[]){
+    
+    
+    cv::Mat persp_img;
+    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
+    persp_img = ipm.run(intrinsic_calibration, argv[1], "config/fullCalibration.yml");
+    
+    //cv::Mat persp_img = cv::imread(argv[1]);
+    // MAP
+    Map map = Map();
+    map.createMap(persp_img);
 
     PathCoordinates pathCoordinates = initialize();
     Path path = Path(pathCoordinates.getInitialPosition(),pathCoordinates.getFinalPosition(),pathCoordinates.getMaxCurvature());

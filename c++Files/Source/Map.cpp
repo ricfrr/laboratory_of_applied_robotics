@@ -117,7 +117,7 @@ double distanceBetweenTwoPoints(double x, double y, double a, double b)
     return sqrt(pow(x - a, 2) + pow(y - b, 2));
 };
 
-bool circleContact(std::vector<cv::Point> corners, Circle circle)
+bool circleContact(std::vector<cv::Point> corners, Circle &circle)
 {
     double distance;
     for (int i = 0; i < corners.size(); i++)
@@ -134,15 +134,16 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
 void Map::checkPeople(Cell &cell, People people)
 {
 
-    std::vector<Circle> circles = people.getCircles();
+    std::vector<Circle*> circles = people.getCircles();
     std::vector<cv::Point> cell_corners = cell.getCorners();
     //std::cout<<"circles size : "<<circles.size()<<" cell_corner : "<<cell_corners.size()<<std::endl;
     for (int i = 0; i < circles.size(); i++)
     {
-        if (circleContact(cell_corners, circles[i]))
+        if (circleContact(cell_corners, *circles[i]))
         {
-            cell.setRescue(circles[i].getDigit());
-            circles[i].setCell(cell);
+            cell.setRescue(circles[i]->getDigit());
+            circles[i]->setCell(cell);
+
         }
     }
 }
