@@ -24,8 +24,6 @@ public:
      * destructor of Pentagon class
      */
     ~Pentagon();
-    
-    void assign_points();
 
     /*!
      * return the list of corners of the pentagons
@@ -37,6 +35,9 @@ public:
      * @param corners list of corners to be setted
      */
     void setCorners(std::vector<cv::Point> corners);
+    
+    ///assignes points to 1., 2., 3 etc point.
+    void assign_points();
 
 
 

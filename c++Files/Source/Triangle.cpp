@@ -7,6 +7,23 @@ Triangle::~Triangle() {
   // nada
 }
 
+Triangle::Triangle(std::vector<cv::Point> points): Polygon(points){
+    assign_points();
+}
+
+void Triangle::assign_points(){
+    
+    if(this->points.size() != 3)
+        std::runtime_error("not a triangle");
+    
+    setCorners(this->points);
+    
+    //    this->top_left      = points[0];
+    //    this->top_right     = points[1];
+    //    this->bottom_right  = points[2];
+    //    this->bottom_right  = points[3];
+}
+
 void Triangle::setCorners(std::vector<cv::Point> corners) {
   Triangle::setFirstCorner(corners[0]);
   Triangle::setSecondCorner(corners[2]);

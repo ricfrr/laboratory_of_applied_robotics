@@ -80,6 +80,7 @@ Inheritance diagram for Pentagon:</div>
  <div class="center">
   <img src="class_pentagon.png" usemap="#Pentagon_map" alt=""/>
   <map id="Pentagon_map" name="Pentagon_map">
+<area href="class_polygon.html" alt="Polygon" shape="rect" coords="0,56,65,80"/>
 <area href="class_shape.html" title="class for handling all the shapes in the map " alt="Shape" shape="rect" coords="0,0,65,24"/>
 </map>
  </div></div>
@@ -88,12 +89,23 @@ Inheritance diagram for Pentagon:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1c5596d8ff548bfcdccc7fa53b81355c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pentagon.html#a1c5596d8ff548bfcdccc7fa53b81355c">Pentagon</a> ()</td></tr>
 <tr class="separator:a1c5596d8ff548bfcdccc7fa53b81355c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6d6f3dad8d75557a8f8bbf5a71d52a9"><td class="memItemLeft" align="right" valign="top"><a id="ac6d6f3dad8d75557a8f8bbf5a71d52a9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Pentagon</b> (std::vector&lt; cv::Point &gt; <a class="el" href="class_polygon.html#a347474823f6113a34fdefeee276d1b9e">points</a>)</td></tr>
+<tr class="separator:ac6d6f3dad8d75557a8f8bbf5a71d52a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a500031431177cee506fd7f0517d84753"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pentagon.html#a500031431177cee506fd7f0517d84753">~Pentagon</a> ()</td></tr>
 <tr class="separator:a500031431177cee506fd7f0517d84753"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab38482973f796da34cd9ac62cefb1491"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pentagon.html#ab38482973f796da34cd9ac62cefb1491">getCorners</a> ()</td></tr>
 <tr class="separator:ab38482973f796da34cd9ac62cefb1491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42c8df4cbb1fcf985c96c9886a21c70a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pentagon.html#a42c8df4cbb1fcf985c96c9886a21c70a">setCorners</a> (std::vector&lt; cv::Point &gt; corners)</td></tr>
 <tr class="separator:a42c8df4cbb1fcf985c96c9886a21c70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ead2b4648a9772bc5be704a43df981"><td class="memItemLeft" align="right" valign="top"><a id="a71ead2b4648a9772bc5be704a43df981"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pentagon.html#a71ead2b4648a9772bc5be704a43df981">assign_points</a> ()</td></tr>
+<tr class="memdesc:a71ead2b4648a9772bc5be704a43df981"><td class="mdescLeft">&#160;</td><td class="mdescRight">assignes points to 1., 2., 3 etc point. <br /></td></tr>
+<tr class="separator:a71ead2b4648a9772bc5be704a43df981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_polygon"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_polygon')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_polygon.html">Polygon</a></td></tr>
+<tr class="memitem:ab64d7cd0303d3bf850a770a4553a03c2 inherit pub_methods_class_polygon"><td class="memItemLeft" align="right" valign="top"><a id="ab64d7cd0303d3bf850a770a4553a03c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Polygon</b> (std::vector&lt; cv::Point &gt; <a class="el" href="class_polygon.html#a347474823f6113a34fdefeee276d1b9e">points</a>)</td></tr>
+<tr class="separator:ab64d7cd0303d3bf850a770a4553a03c2 inherit pub_methods_class_polygon"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_shape"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_shape')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_shape.html">Shape</a></td></tr>
 <tr class="memitem:aaa8d87171e65e0d8ba3c5459978992a7 inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#aaa8d87171e65e0d8ba3c5459978992a7">Shape</a> ()</td></tr>
 <tr class="separator:aaa8d87171e65e0d8ba3c5459978992a7 inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,6 +115,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af40ad140cf111c7d50923fbe140da9ad inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f76c3ebe64d63910fc10e9c04ae3685 inherit pub_methods_class_shape"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shape.html#a2f76c3ebe64d63910fc10e9c04ae3685">getCell</a> ()</td></tr>
 <tr class="separator:a2f76c3ebe64d63910fc10e9c04ae3685 inherit pub_methods_class_shape"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_class_polygon"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_polygon')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_polygon.html">Polygon</a></td></tr>
+<tr class="memitem:a347474823f6113a34fdefeee276d1b9e inherit pub_attribs_class_polygon"><td class="memItemLeft" align="right" valign="top"><a id="a347474823f6113a34fdefeee276d1b9e"></a>
+std::vector&lt; cv::Point &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_polygon.html#a347474823f6113a34fdefeee276d1b9e">points</a></td></tr>
+<tr class="memdesc:a347474823f6113a34fdefeee276d1b9e inherit pub_attribs_class_polygon"><td class="mdescLeft">&#160;</td><td class="mdescRight">brief the points of the polygon <br /></td></tr>
+<tr class="separator:a347474823f6113a34fdefeee276d1b9e inherit pub_attribs_class_polygon"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for hadling pentagon obstacles in the map. </p>

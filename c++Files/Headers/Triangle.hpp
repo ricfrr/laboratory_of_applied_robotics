@@ -3,14 +3,14 @@
 
 #include <vector>
 
-#include "Shape.hpp"
+#include "Polygon.hpp"
 
 using namespace cv;
 
 /**
  \brief class for handling triangle obstacles
  */
-class Triangle : public Shape {
+class Triangle : public Polygon {
 
 public:
     /*!
@@ -18,6 +18,8 @@ public:
      */
     Triangle();
 
+    Triangle(std::vector<cv::Point> points);
+    
     /*!
      * destructor of triangle class
      */
@@ -34,6 +36,9 @@ public:
      * @param corners list of corners
      */
     void setCorners(std::vector<cv::Point> corners);
+    
+    ///assignes points to 1., 2., 3 etc point.
+    void assign_points();
 
 
 private:
