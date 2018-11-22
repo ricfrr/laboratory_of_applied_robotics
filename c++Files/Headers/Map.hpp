@@ -46,6 +46,8 @@ public:
     Obstacle getObstacles();
     
     People getPeople();
+    
+    ExitPoint getExitPoint();
 
 private:
     // grid of the map

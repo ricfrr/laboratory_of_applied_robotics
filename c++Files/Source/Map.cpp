@@ -132,6 +132,10 @@ People Map::getPeople(){
     return this->people;
 }
 
+ExitPoint Map::getExitPoint(){
+    return this->exit_point;
+}
+
 double distanceBetweenTwoPoints(double x, double y, double a, double b)
 {
     return sqrt(pow(x - a, 2) + pow(y - b, 2));

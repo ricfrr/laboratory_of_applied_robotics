@@ -39,7 +39,9 @@ void Visualizer::visualize(){
     
     this->p_map->getPixelDimensions(width, height);
     
-    cv::Mat result(height,width,CV_8UC1,cv::Scalar(255,255,255));
+    cv::Mat start(height,width,CV_8UC1,cv::Scalar(255,255,255));
+    cv::Mat result;
+    cv::cvtColor(start, result, CV_GRAY2RGB);
     
     print_arena(result);
     print_grid(result);
@@ -126,6 +128,10 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
         cv::fillConvexPoly(result, pen[i].getCorners(), cv::Scalar(50,50,50));
     }
     
+    //print exit point
+    ExitPoint ex = p_map->getExitPoint();
+    cv::rectangle(result, ex.getTopLeft(), ex.getBottomRight(), cv::Scalar(0,191,255), -1,LINE_8,0);
+    
     //print people
     People p = p_map->getPeople();
     
@@ -133,6 +139,9 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     std::vector<Circle*> c = p.getCircles();
     for (int i=0;i<c.size();i++){
         cv::circle(result, c[i]->getCenter(), c[i]->getRadius(), cv::Scalar(30,90,180), -1,LINE_8,0);
+        
+        cv::putText(result, std::to_string(c[i]->getDigit()), c[i]->getCenter(),
+                FONT_HERSHEY_COMPLEX_SMALL, 1.5, cvScalar(255,255,255), 1, CV_AA);
     }
     
     
