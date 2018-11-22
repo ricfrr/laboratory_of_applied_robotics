@@ -34,18 +34,18 @@ void People::findCircles(const Mat &img)
         cv::Point center;
         center.x = data[i].center.x;
         center.y = data[i].center.y;
-        Circle circle_d = Circle();
-        circle_d.setDigit(data[i].digit);
-        circle_d.setCenter(center);
-        circle_d.setRadius(data[i].radius/2);
-        circles.push_back(&circle_d);
+        Circle* circle_d = new Circle;
+        circle_d->setDigit(data[i].digit);
+        circle_d->setCenter(center);
+        circle_d->setRadius(data[i].radius/2);
+        circles.push_back(circle_d);
     }
 }
 
 std::vector<Circle*> People::getCircles() { return circles; };
 
-void People::addCircle(Circle &circle){
-    this->circles.push_back(&circle);
+void People::addCircle(Circle *&circle){
+    this->circles.push_back(circle);
 }
 
 void People::clearCircles(){

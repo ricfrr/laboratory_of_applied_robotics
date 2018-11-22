@@ -40,6 +40,12 @@ public:
     void getPixelDimensions(int &width, int &height);
     
     void getArenaCells(std::vector<Cell *> &cells);
+    
+    void getGrid(std::vector<std::vector<Cell*>> &grid);
+    
+    Obstacle getObstacles();
+    
+    People getPeople();
 
 private:
     // grid of the map
@@ -64,7 +70,7 @@ private:
     People people;
     Settings setting;
 
-    std::vector<std::vector<Cell>> grid;
+    std::vector<std::vector<Cell*>> grid;
 
     int map_pixel_w = setting.IMG_WIDTH;
     int map_pixel_h = setting.IMG_LENGHT;

@@ -34,10 +34,10 @@ private:
     Map * p_map;
     Path * p_path;
     
-    cv::Mat print_arena();
-    cv::Mat print_grid();
-    cv::Mat print_shapes();
-    cv::Mat print_path();
+    cv::Mat print_arena(cv::Mat &result);
+    cv::Mat print_grid(cv::Mat &result);
+    cv::Mat print_shapes(cv::Mat &result);
+    cv::Mat print_path(cv::Mat &result);
     
     cv::Mat merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color);
 };

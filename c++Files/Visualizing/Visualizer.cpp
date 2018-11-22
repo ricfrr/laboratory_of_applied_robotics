@@ -31,28 +31,6 @@ void Visualizer::assign_path(Path *&path){
 
 void Visualizer::visualize(){
     
-    cv::Mat result;
-    
-    cv::Mat arena = print_arena();
-    cv::Mat grid = print_grid();
-    cv::Mat shapes = print_shapes();
-    cv::Mat path = print_path();
-    
-    cv::imshow("arena", arena);
-    //cv::imshow("grid", grid);
-    //cv::imshow("shapes", shapes);
-    //cv::imshow("path", path);
-    cv::waitKey(0);
-    
-    //result = merge(arena, grid, cv::Scalar(0,0,0));
-    
-    //cv::imshow("result", result);
-    //cv::waitKey(0);
-    
-}
-
-cv::Mat Visualizer::print_arena(){
-    
     if(this->p_map == nullptr)
         std::runtime_error("che cazzo");
     
@@ -62,6 +40,20 @@ cv::Mat Visualizer::print_arena(){
     this->p_map->getPixelDimensions(width, height);
     
     cv::Mat result(height,width,CV_8UC1,cv::Scalar(255,255,255));
+    
+    print_arena(result);
+    print_grid(result);
+    print_shapes(result);
+    print_path(result);
+    
+    cv::imshow("result", result);
+    cv::waitKey(0);
+    
+    
+}
+
+cv::Mat Visualizer::print_arena(cv::Mat &result){
+    
     std::vector<Cell *> cells;
     p_map->getArenaCells(cells);
     
@@ -90,13 +82,63 @@ cv::Mat Visualizer::print_arena(){
     
     return result;
 }
-cv::Mat Visualizer::print_grid(){
-    return cv::Mat();
+cv::Mat Visualizer::print_grid(cv::Mat &result){
+    
+    std::vector<std::vector<Cell*>> grid;
+    this->p_map->getGrid(grid);
+    
+    for(int i=0;i<grid.size();i++){
+        for(int j=0;j<grid[i].size();j++){
+            cv::line(result, grid[i][j]->getTopLeft(), grid[i][j]->getBottomLeft(), cv::Scalar(50,50,50));
+            cv::line(result, grid[i][j]->getTopLeft(), grid[i][j]->getTopRight(), cv::Scalar(50,50,50));
+            cv::line(result, grid[i][j]->getBottomLeft(), grid[i][j]->getBottomRight(), cv::Scalar(50,50,50));
+            cv::line(result, grid[i][j]->getTopRight(), grid[i][j]->getBottomRight(), cv::Scalar(50,50,50));
+        }
+    }
+    return result;
 }
-cv::Mat Visualizer::print_shapes(){
-    return cv::Mat();
+cv::Mat Visualizer::print_shapes(cv::Mat &result){
+    
+    //print obstacles
+    Obstacle obstacle = p_map->getObstacles();
+    
+    //print triangles
+    std::vector<Triangle> tri = obstacle.getTriangles();
+    for (int i=0;i<tri.size();i++){
+        cv::fillConvexPoly(result, tri[i].getCorners(), cv::Scalar(100,100,100));
+    }
+    
+    //print Squares
+    std::vector<Square> sqr = obstacle.getSquares();
+    for (int i=0;i<sqr.size();i++){
+        cv::fillConvexPoly(result, sqr[i].getCorners(), cv::Scalar(200,200,200));
+    }
+    
+    //print Hexagons
+    std::vector<Hexagon> hex = obstacle.getHexagons();
+    for (int i=0;i<hex.size();i++){
+        cv::fillConvexPoly(result, hex[i].getCorners(), cv::Scalar(150,150,150));
+    }
+    
+    //print Pentagons
+    std::vector<Pentagon> pen = obstacle.getPentagons();
+    for (int i=0;i<pen.size();i++){
+        cv::fillConvexPoly(result, pen[i].getCorners(), cv::Scalar(50,50,50));
+    }
+    
+    //print people
+    People p = p_map->getPeople();
+    
+    //print People
+    std::vector<Circle*> c = p.getCircles();
+    for (int i=0;i<c.size();i++){
+        cv::circle(result, c[i]->getCenter(), c[i]->getRadius(), cv::Scalar(30,90,180), -1,LINE_8,0);
+    }
+    
+    
+    return result;
 }
-cv::Mat Visualizer::print_path(){
+cv::Mat Visualizer::print_path(cv::Mat &result){
     return cv::Mat();
 }
 

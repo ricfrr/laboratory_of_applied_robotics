@@ -33,7 +33,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
     int y_incr = map_pixel_h / n_row;
     for (int i = 0; i < n_row; i++)
     {
-        std::vector<Cell> temp_vec;
+        std::vector<Cell*> temp_vec;
         for (int j = 0; j < n_col; j++)
         {
 
@@ -108,7 +108,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 if(debug)
                     std::cout << "\033[1;32me\033[0m";
             }
-            temp_vec.push_back(*cell);
+            temp_vec.push_back(cell);
             temp_x = temp_x + x_incr;
         }
         temp_y = temp_y + y_incr;
@@ -119,6 +119,18 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
     }
     std::cout << "---- DONE ----" << std::endl;
 };
+
+void Map::getGrid(std::vector<std::vector<Cell*>> &grid){
+    grid = this->grid;
+}
+
+Obstacle Map::getObstacles(){
+    return this->obstacles;
+}
+
+People Map::getPeople(){
+    return this->people;
+}
 
 double distanceBetweenTwoPoints(double x, double y, double a, double b)
 {

@@ -33,7 +33,7 @@ public:
      */
     std::vector<Circle*> getCircles();
     
-    void addCircle(Circle &circle);
+    void addCircle(Circle* &circle);
     
     void clearCircles();
 
