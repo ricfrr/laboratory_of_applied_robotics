@@ -130,10 +130,6 @@ std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img
     //invert the pixels black white
     std::tuple<cv::Mat,cv::Mat> inversionResult = invert_masked_image(img, green_mask);
 
-    cv::imshow("0", std::get<0>(inversionResult));
-    cv::imshow("1", std::get<1>(inversionResult));
-    cv::waitKey(0);
-    
     cv::Mat green_mask_inv  = std::get<0>(inversionResult); //only for displaying purposes
     filtered        = std::get<1>(inversionResult); // needed to detect digit
     

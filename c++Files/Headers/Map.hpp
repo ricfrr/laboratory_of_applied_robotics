@@ -36,6 +36,10 @@ public:
      * @param img photo of the arena after perspective transformation
      */
     void createMap(const Mat &img);
+    
+    void getPixelDimensions(int &width, int &height);
+    
+    void getArenaCells(std::vector<Cell *> &cells);
 
 private:
     // grid of the map

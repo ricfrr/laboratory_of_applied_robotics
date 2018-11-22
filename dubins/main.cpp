@@ -1,8 +1,6 @@
 #include <iostream>
-#include "../c++Files/Headers/RoboticMapping.hpp"
-#include "Headers/Position.hpp"
-#include "Headers/PathCoordinates.hpp"
-#include "Headers/Path.hpp"
+#include "../c++Files/Visualizing/Visualizer.hpp"
+
 using namespace std;
 
 
@@ -21,6 +19,9 @@ int main(int argc, const char *argv[]){
     // MAP
     Map map = Map();
     map.createMap(persp_img);
+    
+    Visualizer v(map);
+    v.visualize();
 
     PathCoordinates pathCoordinates = initialize();
     Path path = Path(pathCoordinates.getInitialPosition(),pathCoordinates.getFinalPosition(),pathCoordinates.getMaxCurvature());
