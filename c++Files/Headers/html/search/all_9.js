@@ -1,6 +1,9 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['laboratory_20of_20applied_20robotics_20documentation',['Laboratory of Applied Robotics Documentation',['../index.html',1,'']]],
+=======
+>>>>>>> pathplanning
   ['lb',['lb',['../struct_h_s_v_filter_range.html#a0c5c2a10fb591c4dd1512ae81e1032a4',1,'HSVFilterRange']]],
   ['load_5fpixels',['load_pixels',['../class_color___processing.html#a293f699a508b29f6a040f80363b5175c',1,'Color_Processing']]],
   ['loadcoefficients',['loadCoefficients',['../class_inverse___perspective___mapping.html#a60f8dbac68fadb20b085bfbcef293480',1,'Inverse_Perspective_Mapping']]],

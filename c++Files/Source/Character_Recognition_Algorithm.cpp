@@ -69,9 +69,14 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
 
 std::tuple<cv::Mat,cv::Mat> Character_Recognition_Algorithm::invert_masked_image(cv::Mat &original, cv::Mat &masked_image){
     
+    //filtered cv::Scalar values are the ones that will be overlayed in the original image
     cv::Mat mask_inv, filtered(original.rows, original.cols, CV_8UC3, cv::Scalar(255,255,255));
+    
+    //only get the shapes in black color - so we need to invert because only shapes are white and the rest is black
     cv::bitwise_not(masked_image, mask_inv); // generate binary mask with inverted pixels w.r.t. green mask -> black numbers are part of this mask
+    
     original.copyTo(filtered, mask_inv);   // create copy of image without green shapes
+    
     return std::tuple<cv::Mat,cv::Mat>(mask_inv, filtered);
 }
 

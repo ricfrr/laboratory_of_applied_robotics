@@ -17,6 +17,12 @@ void Map::createMap(const Mat &img)
     obstacles.findObstacles(img);
     people.findCircles(img);
 
+    std::cout << "" << std::endl;
+    
+    for(int i=0;i<this->people.circles.size();i++){
+        std::cout << "Data: " << this->people.circles[i].name << std::endl;
+    }
+    
     // detection of all obstacles
     initializeGrid(arena, exit_point, obstacles);
 }
@@ -33,11 +39,11 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
     int y_incr = map_pixel_h / n_row;
     for (int i = 0; i < n_row; i++)
     {
-        std::vector<Cell> temp_vec;
+        std::vector<Cell*> temp_vec;
         for (int j = 0; j < n_col; j++)
         {
 
-            Cell cell = Cell();
+            Cell* cell = new Cell;
             // corners of the cell
             cv::Point top_left, top_right, bottom_left, bottom_right;
             top_left.x = temp_x;
@@ -54,16 +60,24 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             cell_corners.push_back(bottom_right);
             cell_corners.push_back(bottom_left);
 
-            cell.setCorners(cell_corners);
-            cell.setEmpty();
+            cell->setCorners(cell_corners);
+            cell->setEmpty();
             // check if cell is in contact with an obj
 
-            if (isOutofArena(cell_corners, arena))
-            {
-                arena.setCell(cell);
-                cell.setBorder();
+            if (isOutofArena(cell_corners, arena)){
+                
+                arena.setCell(*cell);
+                cell->setBorder();
+            
+//            std::vector<Cell*> cells;
+//            getArenaCells(cells);
+//            for(int i = 0;i<cells.size();i++)
+//                std::cout <<"cell for arena "<< cells[i]->getTopLeft() << std::endl;
+//            std::cout << "\n";
+                
                 if(debug)
                     std::cout << "b";
+            
             }
             else
             {
@@ -71,31 +85,31 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 // std::cout << "CHECK EXIT" << std::endl;
                 if (contact(cell_corners, corners))
                 {
-                    exit_point.setCell(cell);
-                    cell.setExit();
+                    exit_point.setCell(*cell);
+                    cell->setExit();
                     if(debug)
                         std::cout << "\033[1;34mx\033[0m";
                 }
             }
-            if (cell.isEmpty())
+            if (cell->isEmpty())
             {
-                checkObstacles(cell, obstacles);
-                if (cell.isObstacle())
+                checkObstacles(*cell, obstacles);
+                if (cell->isObstacle())
                 {
                     if(debug)
                         std::cout << "\033[1;31mo\033[0m";
                 }
             }
-            if (cell.isEmpty())
+            if (cell->isEmpty())
             {
-                checkPeople(cell, people);
-                if (cell.isRescue())
+                checkPeople(*cell, people);
+                if (cell->isRescue())
                 {
                     if(debug)
                         std::cout << "\033[1;36mr\033[0m";
                 }
             }
-            if (cell.isEmpty())
+            if (cell->isEmpty())
             {
                 if(debug)
                     std::cout << "\033[1;32me\033[0m";
@@ -108,22 +122,39 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
         if(debug)
             std::cout << std::endl;
         grid.push_back(temp_vec);
+        
     }
     std::cout << "---- DONE ----" << std::endl;
 };
 
-double distanceBetweenTwoPoints(double x, double y, double a, double b)
+void Map::getGrid(std::vector<std::vector<Cell*>> &grid){
+    grid = this->grid;
+}
+
+Obstacle Map::getObstacles(){
+    return this->obstacles;
+}
+
+PeopleStorage Map::getPeople(){
+    return this->people;
+}
+
+ExitPoint Map::getExitPoint(){
+    return this->exit_point;
+}
+
+double Map::distanceBetweenTwoPoints(double x, double y, double a, double b)
 {
     return sqrt(pow(x - a, 2) + pow(y - b, 2));
 };
 
-bool circleContact(std::vector<cv::Point> corners, Circle circle)
+bool Map::circleContact(std::vector<cv::Point> corners, Circle* circle)
 {
     double distance;
     for (int i = 0; i < corners.size(); i++)
     {
-        distance = distanceBetweenTwoPoints(corners[i].x, corners[i].y, circle.getCenter().x, circle.getCenter().y);
-        if (distance < circle.getRadius())
+        distance = distanceBetweenTwoPoints(corners[i].x, corners[i].y, circle->getCenter().x, circle->getCenter().y);
+        if (distance < circle->getRadius())
         {
             return true;
         }
@@ -131,18 +162,31 @@ bool circleContact(std::vector<cv::Point> corners, Circle circle)
     return false;
 };
 
+void Map::getPixelDimensions(int &width, int &height){
+    width = this->map_pixel_w;
+    height = this->map_pixel_h;
+}
+
+void Map::getArenaCells(std::vector<Cell *> &cells){
+    cells = this->arena.getCell();
+    
+}
+
 void Map::checkPeople(Cell &cell, PeopleStorage &people)
 {
+    
 
-    std::vector<People> circles = people.circles;
     std::vector<cv::Point> cell_corners = cell.getCorners();
 
-    for (int i = 0; i < circles.size(); i++)
+    for (int i = 0; i < people.circles.size(); i++)
     {
-        if (circleContact(cell_corners, circles[i]))
+        People guy = people.circles[i];
+        
+        if (circleContact(cell_corners, &guy))
         {
-            cell.setRescue(circles[i].name);
-            circles[i].setCell(cell);
+            cell.setRescue(people.circles[i].name);
+            people.circles[i].setCell(cell);
+
         }
     }
 }
@@ -307,3 +351,4 @@ bool Map::contact(std::vector<cv::Point> cell,
     }
     return false;
 }
+

@@ -1,7 +1,6 @@
 #ifndef Circle_hpp
 #define Circle_hpp
 #include "Shape.hpp"
-#include <vector>
 
 using namespace cv;
 /**

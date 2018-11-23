@@ -9,9 +9,6 @@
 #ifndef Calibration_Intrinsic_hpp
 #define Calibration_Intrinsic_hpp
 
-#include <stdio.h>
-#include <string>
-#include <iostream>
 #include "Settings.hpp"
 
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };

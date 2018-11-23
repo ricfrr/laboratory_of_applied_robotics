@@ -1,6 +1,9 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['calibfixprincipalpoint',['calibFixPrincipalPoint',['../class_settings.html#a44397eea3f08a0c78808c38bdd716594',1,'Settings']]],
+=======
+>>>>>>> pathplanning
   ['calibrate_5fcolor',['calibrate_color',['../class_color___processing.html#acb962976dba3538eabcf5812951a023e',1,'Color_Processing']]],
   ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
   ['calibrationpattern',['calibrationPattern',['../class_settings.html#a94551b7ffe8ac60311b035b2905e9498',1,'Settings']]],

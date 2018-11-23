@@ -37,6 +37,22 @@ public:
      * @param img photo of the arena after perspective transformation
      */
     void createMap(const Mat &img);
+    
+    void getPixelDimensions(int &width, int &height);
+    
+    void getArenaCells(std::vector<Cell *> &cells);
+    
+    void getGrid(std::vector<std::vector<Cell*>> &grid);
+    
+    Obstacle getObstacles();
+    
+    PeopleStorage getPeople();
+    
+    ExitPoint getExitPoint();
+
+    bool circleContact(std::vector<cv::Point> corners, Circle* circle);
+    
+    double distanceBetweenTwoPoints(double x, double y, double a, double b);
 
 private:
     // grid of the map
@@ -61,7 +77,7 @@ private:
     PeopleStorage people;
     Settings setting;
 
-    std::vector<std::vector<Cell>> grid;
+    std::vector<std::vector<Cell*>> grid;
 
     int map_pixel_w = setting.IMG_WIDTH;
     int map_pixel_h = setting.IMG_LENGHT;

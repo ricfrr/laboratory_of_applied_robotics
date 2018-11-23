@@ -49,9 +49,6 @@ public:
     ///set detection algorithm for digits e.g. tesseract or template matching
     void set_algo(DigitRecognitionAlgo algorithm);
     
-    ///detects digit of prepared image and checks if the result was fitting the map requierements
-    int detect_digit_for_map(cv::Mat &img);
-    
     ///detects all the digits of an unprepared images and returns people information
     std::vector<People> detect_digits_for_map(const cv::Mat img_input);
     
@@ -118,17 +115,17 @@ struct PeopleStorage {
     }
     
     ///extract people information as Circle objects
-    std::vector<Circle> getCircles(){
+    std::vector<Circle*> getCircles(){
         
-        std::vector<Circle> circle_vector;
+        std::vector<Circle*> circle_vector;
         
         for(int i=0; i<this->circles.size(); i++){
             cv::Point center;
             center.x = circles[i].center.x;
             center.y = circles[i].center.y;
-            Circle circle_d = Circle();
-            circle_d.setCenter(center);
-            circle_d.setRadius(circles[i].radius/2);
+            Circle * circle_d = new Circle;
+            circle_d->setCenter(center);
+            circle_d->setRadius(circles[i].radius/2);
             circle_vector.push_back(circle_d);
         }
         

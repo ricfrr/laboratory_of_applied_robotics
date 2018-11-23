@@ -10,7 +10,8 @@ Shape::~Shape()
     // nada
 }
 
-void Shape::setCell(Cell & cell_i){
+void Shape::setCell(Cell &cell_i){
+
     cell_l.push_back(&cell_i);
 }
 
