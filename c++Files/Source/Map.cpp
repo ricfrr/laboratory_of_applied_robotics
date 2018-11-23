@@ -16,12 +16,6 @@ void Map::createMap(const Mat &img)
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
     people.findCircles(img);
-
-    std::cout << "" << std::endl;
-    
-    for(int i=0;i<this->people.circles.size();i++){
-        std::cout << "Data: " << this->people.circles[i].name << std::endl;
-    }
     
     // detection of all obstacles
     initializeGrid(arena, exit_point, obstacles);

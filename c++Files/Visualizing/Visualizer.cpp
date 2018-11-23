@@ -8,15 +8,19 @@
 
 #include "Visualizer.hpp"
 
-Visualizer::Visualizer(){}
+Visualizer::Visualizer(){
+    this->car = new Robot;
+}
 
 Visualizer::Visualizer(Map &map){
     assign_map(map);
+    this->car = new Robot;
 }
 
 Visualizer::Visualizer(Map &map, Path* &path){
     assign_map(map);
     assign_path(path);
+    this->car = new Robot;
 }
 
 Visualizer::~Visualizer(){}
@@ -29,7 +33,7 @@ void Visualizer::assign_path(Path *&path){
     this->p_path = path;
 }
 
-void Visualizer::visualize(){
+void Visualizer::play(){
     
     if(this->p_map == nullptr)
         std::runtime_error("che cazzo");
@@ -48,7 +52,12 @@ void Visualizer::visualize(){
     print_shapes(result);
     print_path(result);
     
-    cv::imshow("result", result);
+    cv::imshow(windowtitle, result);
+}
+
+void Visualizer::visualize(){
+    
+    play();
     cv::waitKey(0);
     
     
@@ -145,6 +154,9 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
                 FONT_HERSHEY_COMPLEX_SMALL, 1.5, cvScalar(255,255,255), 1, CV_AA);
     }
     
+    //print Car
+    cv::circle(result, car->getCenter(), car->getRadius()/2, car->color, -1,LINE_8,0);
+    
     
     return result;
 }
@@ -164,4 +176,19 @@ cv::Mat  Visualizer::merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color){
     input.copyTo(filtered, mask_inv);   // create copy of image without green shapes
     
     return filtered;
+}
+
+void Visualizer::simulate(){
+    
+    //testing
+    Position p1 = Position(cv::Point2d(this->car->getCenter()), 0);
+    Position p2 = Position(cv::Point2d(300,300), 0);
+    this->p_path = new Path(p1, p2,0);
+    
+    for(int i=0;i<40;i++){
+        this->car->setCenter(cv::Point(i*10,i*10));
+        play();
+        cv::waitKey(33);
+    }
+    visualize();
 }

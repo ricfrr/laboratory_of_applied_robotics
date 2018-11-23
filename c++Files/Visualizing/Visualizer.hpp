@@ -32,10 +32,16 @@ public:
     void assign_path(Path *&path);
     ///create an image based on the information
     void visualize();
+    ///simulate the robots way along the path
+    void simulate();
     
 private:
     Map * p_map;
     Path * p_path;
+    
+    const std::string windowtitle = "window";
+    
+    void play();
     
     cv::Mat print_arena(cv::Mat &result);
     cv::Mat print_grid(cv::Mat &result);
@@ -43,6 +49,8 @@ private:
     cv::Mat print_path(cv::Mat &result);
     
     cv::Mat merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color);
+    
+    Robot * car;
 };
 
 #endif /* Visualizer_hpp */
