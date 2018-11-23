@@ -26,8 +26,11 @@ public:
     Visualizer(Map &map, Path* &path);
     ~Visualizer();
     
+    ///override the map object to visualize
     void assign_map(Map &map);
+    ///override path object to visualize
     void assign_path(Path *&path);
+    ///create an image based on the information
     void visualize();
     
 private:
