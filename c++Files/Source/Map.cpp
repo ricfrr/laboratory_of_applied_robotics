@@ -62,6 +62,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 
                 arena.setCell(*cell);
                 cell->setBorder();
+                cell->refine_if_neccessary(arena.getCorners());
             
 //            std::vector<Cell*> cells;
 //            getArenaCells(cells);
@@ -81,6 +82,8 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 {
                     exit_point.setCell(*cell);
                     cell->setExit();
+                    cell->refine_if_neccessary(exit_point.getCorners());
+                    
                     if(debug)
                         std::cout << "\033[1;34mx\033[0m";
                 }
@@ -202,6 +205,7 @@ void Map::checkObstacles(Cell &cell, Obstacle obstacles)
             if (contact(cell_corners, tmp_tr))
             {
                 triangles[k].setCell(cell);
+                cell.refine_if_neccessary(triangles[k].getCorners());
                 touched = true;
             }
         }
@@ -215,6 +219,7 @@ void Map::checkObstacles(Cell &cell, Obstacle obstacles)
             if (contact(cell_corners, tmp_sq))
             {
                 squares[k].setCell(cell);
+                cell.refine_if_neccessary(squares[k].getCorners());
                 touched = true;
             }
         }
@@ -228,6 +233,7 @@ void Map::checkObstacles(Cell &cell, Obstacle obstacles)
             if (contact(cell_corners, tmp_pt))
             {
                 pentagons[k].setCell(cell);
+                cell.refine_if_neccessary(pentagons[k].getCorners());
                 touched = true;
             }
         }
@@ -241,6 +247,7 @@ void Map::checkObstacles(Cell &cell, Obstacle obstacles)
             if (contact(cell_corners, tmp_hx))
             {
                 hexagons[k].setCell(cell);
+                cell.refine_if_neccessary(hexagons[k].getCorners());
                 touched = true;
             }
         }

@@ -1,10 +1,20 @@
 #ifndef Cell_hpp
 #define Cell_hpp
 #include <vector>
-#include <opencv2/core/core.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/opencv.hpp>
 
 
 using namespace cv;
+
+///state of the cell
+enum CellState {
+    EMPTY,
+    MIXED,
+    FULL
+};
+
 /**
  \brief Cell class for handling each cell of the map
  */
@@ -125,13 +135,27 @@ class Cell
      * @param digit_i digit of the person
      */
     void setRescue(int digit_i);
+    
+    void findState(std::vector<cv::Point> contour);
+    
+    void refine_if_neccessary(std::vector<cv::Point> forShape);
 
+    void split();
+    
+    const std::vector<Cell*> getSubcells();
+    
    private: 
     
-    void findHalf(int &half_h, int &half_w, const std::vector<cv::Point> &corners);
+    void findHalf(double &half_h, double &half_w, const std::vector<cv::Point> &corners);
     bool empty, exit_p, border, obstacle, rescue;
     int digit =0;
     cv::Point top_left, top_right, bottom_left, bottom_right;
+    
+    std::vector<Cell> subcells;
+    CellState state;
+    
+    void state_for_allIn(std::vector<double> results);
+    void state_for_allOut(std::vector<cv::Point> contour);
 };
 
 #endif /* Cell_hpp */

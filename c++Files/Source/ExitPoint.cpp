@@ -46,7 +46,7 @@ void ExitPoint::findExitPoint(const Mat &img)
                      cv::CHAIN_APPROX_SIMPLE);
     drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
                  cv::LINE_AA);
-
+    
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, epsilon_approx, true);

@@ -49,6 +49,7 @@ private:
     cv::Mat print_path(cv::Mat &result);
     
     cv::Mat merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color);
+    void draw_cell(cv::Mat &result, Cell* &cell);
     
     Robot * car;
 };

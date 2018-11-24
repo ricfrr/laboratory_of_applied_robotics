@@ -100,14 +100,25 @@ cv::Mat Visualizer::print_grid(cv::Mat &result){
     
     for(int i=0;i<grid.size();i++){
         for(int j=0;j<grid[i].size();j++){
-            cv::line(result, grid[i][j]->getTopLeft(), grid[i][j]->getBottomLeft(), cv::Scalar(50,50,50));
-            cv::line(result, grid[i][j]->getTopLeft(), grid[i][j]->getTopRight(), cv::Scalar(50,50,50));
-            cv::line(result, grid[i][j]->getBottomLeft(), grid[i][j]->getBottomRight(), cv::Scalar(50,50,50));
-            cv::line(result, grid[i][j]->getTopRight(), grid[i][j]->getBottomRight(), cv::Scalar(50,50,50));
+            draw_cell(result, grid[i][j]);
+            
+            std::vector<Cell*> subcells = grid[i][j]->getSubcells();
+            for(int k=0;k<subcells.size();k++){
+                draw_cell(result, subcells[k]);
+                std::cout << "draw subcell" << std::endl;
+            }
         }
     }
     return result;
 }
+
+void Visualizer::draw_cell(cv::Mat &result, Cell* &cell){
+    cv::line(result, cell->getTopLeft(), cell->getBottomLeft(), cv::Scalar(50,50,50));
+    cv::line(result, cell->getTopLeft(), cell->getTopRight(), cv::Scalar(50,50,50));
+    cv::line(result, cell->getBottomLeft(), cell->getBottomRight(), cv::Scalar(50,50,50));
+    cv::line(result, cell->getTopRight(), cell->getBottomRight(), cv::Scalar(50,50,50));
+}
+
 cv::Mat Visualizer::print_shapes(cv::Mat &result){
     
     //print obstacles

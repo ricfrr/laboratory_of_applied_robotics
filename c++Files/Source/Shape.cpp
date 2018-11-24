@@ -11,6 +11,11 @@ Shape::~Shape()
 }
 
 void Shape::setCell(Cell &cell_i){
+    
+    //check state
+    // empty - mixed - full
+    
+    
 
     cell_l.push_back(&cell_i);
 }
