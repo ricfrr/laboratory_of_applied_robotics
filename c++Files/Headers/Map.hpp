@@ -75,8 +75,9 @@ public:
      */
     int getGridRowNum();
 
-    std::vector<std::vector<Cell>> grid;
+    std::vector<std::vector<Cell*>> grid;
 private:
+
     // grid of the map
     // create a map with empty cells
     void initializeGrid(Arena &arena, ExitPoint &exit_point, Obstacle &obstacles);
@@ -90,16 +91,14 @@ private:
 
     void checkObstacles(Cell &cell, Obstacle &obstacles);
 
+
     void checkPeople(Cell &cell, People people);
-
-
     ExitPoint exit_point;
     Obstacle obstacles;
     Arena arena;
     People people;
-    Settings setting;
 
-    std::vector<std::vector<Cell*>> grid;
+    Settings setting;
 
     int map_pixel_w = setting.IMG_WIDTH;
     int map_pixel_h = setting.IMG_LENGHT;
