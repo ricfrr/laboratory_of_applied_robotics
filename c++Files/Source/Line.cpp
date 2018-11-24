@@ -37,10 +37,8 @@ double Line::getLength() {
 };
 
 
-
-
 //compute the end point given a initial position lenght and curvature curvature = 0 straight line
-Position Line::findEndPoint(double k, Position start, double length) {
+Position Line::findPointDistance(double k, Position start, double length) {
     cv::Point2d coordinates;
     double fin_orientation;
     double tmp_sin_val = k * length / 2.0;

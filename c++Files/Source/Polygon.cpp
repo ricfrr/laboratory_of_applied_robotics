@@ -6,7 +6,7 @@
 //  Copyright © 2018 Air Marvin. All rights reserved.
 //
 
-#include "Polygon.hpp"
+#include "../Headers/Polygon.hpp"
 
 Polygon::Polygon(){}
 Polygon::Polygon(std::vector<cv::Point> points)

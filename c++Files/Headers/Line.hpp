@@ -78,7 +78,7 @@ public:
      * @param length length of the line
      * @return
      */
-    Position findEndPoint(double k, Position start, double length);
+    Position findPointDistance(double k, Position start, double length);
 
     /**
      * \brief Implementation of function sinc(t), returning 1 for t==0, and sin(t)/t

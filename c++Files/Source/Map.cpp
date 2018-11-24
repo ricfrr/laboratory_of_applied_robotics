@@ -9,6 +9,7 @@ Map::~Map()
     // nada
 }
 
+
 void Map::createMap(const Mat &img)
 {
 
@@ -188,7 +189,7 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people)
     }
 }
 
-void Map::checkObstacles(Cell &cell, Obstacle obstacles)
+void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
 {
     bool touched = false;
     std::vector<Triangle> triangles = obstacles.getTriangles();
@@ -351,5 +352,22 @@ bool Map::contact(std::vector<cv::Point> cell,
         }
     }
     return false;
+}
+
+
+int Map::getImageWidth() {
+    return map_pixel_w;
+}
+
+int Map::getImageHeight() {
+    return map_pixel_h;
+}
+
+int Map::getGridColNum() {
+    return n_col;
+}
+
+int Map::getGridRowNum() {
+    return n_row;
 }
 
