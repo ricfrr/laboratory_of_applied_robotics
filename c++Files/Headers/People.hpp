@@ -31,11 +31,15 @@ public:
      * return the list of circle in the map
      * @return list of circle
      */
-    std::vector<Circle> getCircles();
+    std::vector<Circle*> getCircles();
+    
+    void addCircle(Circle* &circle);
+    
+    void clearCircles();
 
 private:
     const int epsilon_approx = 7;
-    std::vector<Circle> circles;
+    std::vector<Circle*> circles;
 
 };
 
