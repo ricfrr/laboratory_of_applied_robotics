@@ -51,6 +51,8 @@ private:
     cv::Mat merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color);
     void draw_cell(cv::Mat &result, Cell* &cell);
     
+    void color_pixels_from(Cell &cell, cv::Mat &inImage, Vec3b color = Vec3b(100,100,100));
+    
     Robot * car;
 };
 

@@ -77,6 +77,8 @@ void Cell::setBottomRight(cv::Point bottomRight) { bottom_right = bottomRight; }
 // set content of cells 
 void Cell::setEmpty()
 {
+    this->state = EMPTY;
+    
     empty = true;
     exit_p = false;
     border = false;
@@ -107,6 +109,47 @@ void Cell::setObstacle()
     obstacle = true;
     rescue = false;
 };
+void Cell::set_Empty()
+{
+    setEmpty();
+    
+    for(int i=0;i<subcells.size();i++)
+        subcells[i].set_Empty();
+    
+};
+void Cell::set_Exit()
+{
+    setExit();
+    
+    for(int i=0;i<subcells.size();i++)
+        if(subcells[i].state == MIXED || subcells[i].state == FULL)
+            subcells[i].set_Exit();
+};
+void Cell::set_Border()
+{
+    setBorder();
+    
+    for(int i=0;i<subcells.size();i++)
+        if(subcells[i].state == MIXED || subcells[i].state == FULL)
+            subcells[i].set_Border();
+};
+void Cell::set_Obstacle()
+{
+    setObstacle();
+    
+    for(int i=0;i<subcells.size();i++)
+        if(subcells[i].state == MIXED || subcells[i].state == FULL)
+            subcells[i].set_Obstacle();
+};
+
+bool Cell::contains_object(){
+    if(state == MIXED || state == FULL)
+        return true;
+    else if (!empty)
+        return true;
+    else
+        return false;
+}
 
 int Cell::getDigit(){
     return digit;
@@ -144,13 +187,36 @@ bool Cell::isRescue()
 
 void Cell::refine_if_neccessary(std::vector<cv::Point> forShape){
     
-    findState(forShape);
+    std::vector<cv::Point> shape;
+    
+    if(forShape.size() == 2){
+        
+        int radius = forShape[1].x;
+        
+        for(int i=0;i<360;i+=10){
+            
+            double rad = 2 * M_PI / 360;
+            
+            rad *= i;
+            
+            double x = forShape[0].x + sin(rad) * radius;
+            double y = forShape[0].y + cos(rad) * radius;
+            
+            shape.push_back(cv::Point(x,y));
+        }
+        
+    }else{
+        shape = forShape;
+    }
+    
+    findState(shape);
     
     switch (state) {
         case EMPTY:
+            setEmpty();
             return;
         case MIXED:
-            split(forShape);
+            split(shape);
             break;
         case FULL:
             return;
@@ -173,9 +239,6 @@ const std::vector<Cell*> Cell::getAllSubcells(){
     std::vector<Cell*> allcells;
     std::cout << "will collect all subcells" << std::endl;
     collectSubcells(allcells);
-    if(allcells.size() > 4){
-        std::cout << "here we go" << std::endl;
-    }
     std::cout << "stopped collecting all subcells" << std::endl;
     return allcells;
 }
@@ -297,16 +360,16 @@ void Cell::split(std::vector<cv::Point> forShape){
     cell_3.setCorners({center, rightCenter, bottomRight, bottomCenter});
     cell_4.setCorners({leftCenter, center, bottomCenter, bottomLeft});
     
-    this->subcells = {cell_1, cell_2, cell_3, cell_4};
-    
     int cellArea = (topCenter.x - topLeft.x) * (leftCenter.y - topLeft.y);
     
-    if(cellArea > 2){
+    if(cellArea > 16){
         cell_1.refine_if_neccessary(forShape);
         cell_2.refine_if_neccessary(forShape);
         cell_3.refine_if_neccessary(forShape);
         cell_4.refine_if_neccessary(forShape);
     }
+    
+    this->subcells = {cell_1, cell_2, cell_3, cell_4};
     
     
 //    findState({cv::Point(20,20),cv::Point(50,20),cv::Point(50,50),cv::Point(20,50)});
