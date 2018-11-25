@@ -82,8 +82,8 @@ public:
 
     int IMG_WIDTH=400;
     int IMG_LENGHT=600;
-    int N_ROW_MAP=300;
-    int N_COL_MAP=200;
+    int N_ROW_MAP=30;
+    int N_COL_MAP=20;
     int GAP_PERSP=15;
     
 private:

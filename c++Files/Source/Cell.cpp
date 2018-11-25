@@ -1,9 +1,7 @@
 #include "../Headers/Cell.hpp"
 
 Cell::Cell()
-{
-    // creator
-}
+{}
 Cell::~Cell()
 {
     // nada
@@ -152,7 +150,7 @@ void Cell::refine_if_neccessary(std::vector<cv::Point> forShape){
         case EMPTY:
             return;
         case MIXED:
-            split();
+            split(forShape);
             break;
         case FULL:
             return;
@@ -169,6 +167,33 @@ const std::vector<Cell*> Cell::getSubcells(){
     
     std::vector<Cell*> subs = { &subcells[0],&subcells[1],&subcells[2],&subcells[3] };
     return subs;
+}
+
+const std::vector<Cell*> Cell::getAllSubcells(){
+    std::vector<Cell*> allcells;
+    std::cout << "will collect all subcells" << std::endl;
+    collectSubcells(allcells);
+    if(allcells.size() > 4){
+        std::cout << "here we go" << std::endl;
+    }
+    std::cout << "stopped collecting all subcells" << std::endl;
+    return allcells;
+}
+
+void Cell::collectSubcells(std::vector<Cell*> &cells){
+    
+    std::cout << "starting with " << cells.size() << " subcells" << std::endl;
+    std::cout << "having " << subcells.size() << " own subcells" << std::endl;
+    
+    for(int i=0;i<subcells.size();i++){
+        subcells[i].collectSubcells(cells);
+        Cell* cell = &subcells[i];
+        cells.push_back(cell);
+    }
+    
+    std::cout << "ended with " << cells.size() << " subcells" << std::endl;
+    std::cout << "" << std::endl;
+    
 }
 
 void Cell::findState(std::vector<cv::Point> contour){
@@ -249,7 +274,7 @@ void Cell::state_for_allOut(std::vector<cv::Point> contour){
         this->state = MIXED;
 }
 
-void Cell::split(){
+void Cell::split(std::vector<cv::Point> forShape){
     
     //std::cout << "splitting cell" << std::endl;
     
@@ -273,6 +298,16 @@ void Cell::split(){
     cell_4.setCorners({leftCenter, center, bottomCenter, bottomLeft});
     
     this->subcells = {cell_1, cell_2, cell_3, cell_4};
+    
+    int cellArea = (topCenter.x - topLeft.x) * (leftCenter.y - topLeft.y);
+    
+    if(cellArea > 2){
+        cell_1.refine_if_neccessary(forShape);
+        cell_2.refine_if_neccessary(forShape);
+        cell_3.refine_if_neccessary(forShape);
+        cell_4.refine_if_neccessary(forShape);
+    }
+    
     
 //    findState({cv::Point(20,20),cv::Point(50,20),cv::Point(50,50),cv::Point(20,50)});
 }

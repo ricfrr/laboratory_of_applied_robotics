@@ -140,9 +140,11 @@ class Cell
     
     void refine_if_neccessary(std::vector<cv::Point> forShape);
 
-    void split();
+    void split(std::vector<cv::Point> forShape = {});
     
     const std::vector<Cell*> getSubcells();
+    const std::vector<Cell*> getAllSubcells();
+    
     
    private: 
     
@@ -153,6 +155,8 @@ class Cell
     
     std::vector<Cell> subcells;
     CellState state;
+    
+    void collectSubcells(std::vector<Cell*> &cells);
     
     void state_for_allIn(std::vector<double> results);
     void state_for_allOut(std::vector<cv::Point> contour);

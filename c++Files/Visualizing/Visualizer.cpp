@@ -84,8 +84,9 @@ cv::Mat Visualizer::print_arena(cv::Mat &result){
             
             for(int x = 0;x<diff_x;x++){
                 
-                if (cells[c]->isBorder())
+                if (cells[c]->isBorder()){
                     result.at<Vec3b>(Point(w_startingPoint + x,h_startingPoint + y)) = Vec3b(0,0,0);
+                }
             }
             
         }
@@ -102,10 +103,10 @@ cv::Mat Visualizer::print_grid(cv::Mat &result){
         for(int j=0;j<grid[i].size();j++){
             draw_cell(result, grid[i][j]);
             
-            std::vector<Cell*> subcells = grid[i][j]->getSubcells();
+            std::vector<Cell*> subcells = grid[i][j]->getAllSubcells();
+            
             for(int k=0;k<subcells.size();k++){
                 draw_cell(result, subcells[k]);
-                std::cout << "draw subcell" << std::endl;
             }
         }
     }
