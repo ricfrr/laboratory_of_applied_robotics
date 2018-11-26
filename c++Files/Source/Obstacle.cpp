@@ -89,9 +89,13 @@ std::vector<Square> Obstacle::getSquares()
     return squares;
 };
 
-std::vector<Triangle> Obstacle::getTriangles()
+std::vector<Triangle *> Obstacle::getTriangles()
 {
-    return triangles;
+    std::vector<Triangle *> mytriangles;
+    for(int i=0;i<triangles.size();i++)
+        mytriangles.push_back(&triangles[i]);
+    
+    return mytriangles;
 };
 
 std::vector<Pentagon> Obstacle::getPentagons()

@@ -132,11 +132,11 @@ std::vector<People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_i
 
         //detect the digit
         std::pair<int,int> digit_0 = this->algorithm->detect_digit(orientation_0);
-        std::cout << "result for orientation_0 " << digit_0.first << std::endl;
+        //std::cout << "result for orientation_0 " << digit_0.first << std::endl;
         std::pair<int,int> digit_1 = this->algorithm->detect_digit(orientation_1);
-        std::cout << "result for orientation_1 " << digit_1.first << std::endl;
+        //std::cout << "result for orientation_1 " << digit_1.first << std::endl;
         std::pair<int,int> digit_2 = this->algorithm->detect_digit(orientation_2);
-        std::cout << "result for orientation_2 " << digit_2.first << std::endl;
+        //std::cout << "result for orientation_2 " << digit_2.first << std::endl;
 
         std::pair<int,int> digit = digit_0;
 

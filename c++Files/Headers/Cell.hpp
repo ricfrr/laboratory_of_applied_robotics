@@ -117,19 +117,19 @@ class Cell
     /*!
      * set cell to empty
      */
-    void setEmpty();
+    void set_Empty();
     /*!
      * set cell to exit
      */
-    void setExit();
+    void set_Exit();
     /*!
      * set cell to border
      */
-    void setBorder();
+    void set_Border();
     /*!
      * set cell to an obstacle
      */
-    void setObstacle();
+    void set_Obstacle();
     /*!
      * set the digit of the person
      * @param digit_i digit of the person
@@ -144,6 +144,15 @@ class Cell
     
     const std::vector<Cell*> getSubcells();
     const std::vector<Cell*> getAllSubcells();
+    
+    bool contains_object();
+    
+    /**
+     \brief a function that checks if a collision between an object and the cell will take place
+     \arg withObject the point cloud of the object that will collide
+     \result the distance until collision - zero means it collided
+     */
+    double collision(std::vector<cv::Point> &withObject);
     
     
    private: 
@@ -160,6 +169,14 @@ class Cell
     
     void state_for_allIn(std::vector<double> results);
     void state_for_allOut(std::vector<cv::Point> contour);
+    
+    void setEmpty();
+
+    void setExit();
+
+    void setBorder();
+
+    void setObstacle();
 };
 
 #endif /* Cell_hpp */

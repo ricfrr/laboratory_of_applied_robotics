@@ -33,7 +33,7 @@ public:
      * return the list of the triangles obstacles
      * @return list of the triangles obstacles
      */
-    std::vector<Triangle> getTriangles();
+    std::vector<Triangle *> getTriangles();
     /*!
      * return the list of the squares obstacles
      * @return list of the squares obstacles

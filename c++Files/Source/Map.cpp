@@ -56,14 +56,15 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             cell_corners.push_back(bottom_left);
 
             cell->setCorners(cell_corners);
-            cell->setEmpty();
+            cell->set_Empty();
             // check if cell is in contact with an obj
 
             if (isOutofArena(cell_corners, arena)){
                 
                 arena.setCell(*cell);
-                cell->setBorder();
                 cell->refine_if_neccessary(arena.getCorners());
+                cell->set_Border();
+                
             
 //            std::vector<Cell*> cells;
 //            getArenaCells(cells);
@@ -82,7 +83,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 if (contact(cell_corners, corners))
                 {
                     exit_point.setCell(*cell);
-                    cell->setExit();
+                    cell->set_Exit();
                     cell->refine_if_neccessary(exit_point.getCorners());
                     
                     if(debug)
@@ -167,7 +168,6 @@ void Map::getPixelDimensions(int &width, int &height){
 
 void Map::getArenaCells(std::vector<Cell *> &cells){
     cells = this->arena.getCell();
-    
 }
 
 void Map::checkPeople(Cell &cell, PeopleStorage &people)
@@ -182,6 +182,7 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people)
         
         if (circleContact(cell_corners, &guy))
         {
+            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius/2,0)});
             cell.setRescue(people.circles[i].name);
             people.circles[i].setCell(cell);
 
@@ -192,7 +193,7 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people)
 void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
 {
     bool touched = false;
-    std::vector<Triangle> triangles = obstacles.getTriangles();
+    std::vector<Triangle*> triangles = obstacles.getTriangles();
     std::vector<Square> squares = obstacles.getSquares();
     std::vector<Pentagon> pentagons = obstacles.getPentagons();
     std::vector<Hexagon> hexagons = obstacles.getHexagons();
@@ -201,12 +202,12 @@ void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
     {
         for (int k = 0; k < triangles.size(); k++)
         {
-            std::vector<cv::Point> tmp_tr = triangles[k].getCorners();
+            std::vector<cv::Point> tmp_tr = triangles[k]->getCorners();
             // std::cout << "CHECK TRIANGLE" << std::endl;
             if (contact(cell_corners, tmp_tr))
             {
-                triangles[k].setCell(cell);
-                cell.refine_if_neccessary(triangles[k].getCorners());
+                cell.refine_if_neccessary(triangles[k]->getCorners());
+                triangles[k]->setCell(cell);
                 touched = true;
             }
         }
@@ -255,7 +256,7 @@ void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
     }
     if (touched)
     {
-        cell.setObstacle();
+        cell.set_Obstacle();
     }
 };
 

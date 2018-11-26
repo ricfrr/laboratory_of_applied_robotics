@@ -182,7 +182,7 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
 
     cv::line(gray, cv::Point(line[2],line[3]), cv::Point(line[2]+100*line[0],line[3]+100*line[1]), cv::Scalar(0,100,200));
     
-    std::cout << "fitline result " << line << std::endl;
+    //std::cout << "fitline result " << line << std::endl;
     
     double rho = std::sqrt(std::pow(line[3],2) + std::pow(line[2],2));
     double angle = std::atan2(line[3]/rho, line[2]/rho);

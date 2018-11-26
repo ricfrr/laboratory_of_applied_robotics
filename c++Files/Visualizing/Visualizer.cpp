@@ -69,31 +69,50 @@ cv::Mat Visualizer::print_arena(cv::Mat &result){
     p_map->getArenaCells(cells);
     
     for(int c = 0;c<cells.size();c++){
-            
         
-        int w_startingPoint   = cells[c]->getTopLeft().x;
-        int w_endingPoint     = cells[c]->getTopRight().x;
         
-        int h_startingPoint     = cells[c]->getTopLeft().y;
-        int h_endingPoint     = cells[c]->getBottomLeft().y;
-        
-        int diff_x = w_endingPoint - w_startingPoint;
-        int diff_y = h_endingPoint - h_startingPoint;
-        
-        for(int y = 0;y<diff_y;y++){
-            
-            for(int x = 0;x<diff_x;x++){
-                
-                if (cells[c]->isBorder()){
-                    result.at<Vec3b>(Point(w_startingPoint + x,h_startingPoint + y)) = Vec3b(0,0,0);
-                }
-            }
-            
+        if(cells[c]->getSubcells().empty()){
+            color_pixels_from(*cells[c], result, Vec3b(0,0,0));
+            continue;
         }
+        
+        std::vector<Cell*> subcells = cells[c]->getAllSubcells();
+        
+        for(int i=0;i<subcells.size();i++){
+            if(subcells[i]->contains_object())
+                color_pixels_from(*subcells[i], result, Vec3b(0,0,0));
+        }
+        
+        
     }
     
     return result;
 }
+
+void Visualizer::color_pixels_from(Cell &cell, cv::Mat &inImage, Vec3b color){
+    
+    int w_startingPoint   = cell.getTopLeft().x;
+    int w_endingPoint     = cell.getTopRight().x;
+    
+    int h_startingPoint     = cell.getTopLeft().y;
+    int h_endingPoint     = cell.getBottomLeft().y;
+    
+    int diff_x = w_endingPoint - w_startingPoint;
+    int diff_y = h_endingPoint - h_startingPoint;
+    
+    for(int y = 0;y<diff_y;y++){
+        
+        for(int x = 0;x<diff_x;x++){
+            
+            if (cell.contains_object()){
+                inImage.at<Vec3b>(Point(w_startingPoint + x,h_startingPoint + y)) = color;
+            }
+        }
+        
+    }
+    
+}
+
 cv::Mat Visualizer::print_grid(cv::Mat &result){
     
     std::vector<std::vector<Cell*>> grid;
@@ -107,6 +126,9 @@ cv::Mat Visualizer::print_grid(cv::Mat &result){
             
             for(int k=0;k<subcells.size();k++){
                 draw_cell(result, subcells[k]);
+                
+//                if(subcells[k]->contains_object() && !subcells[k]->getSubcells().empty() )
+//                    color_pixels_from(*subcells[k], result, Vec3b(10,10,255));
             }
         }
     }
@@ -125,10 +147,14 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     //print obstacles
     Obstacle obstacle = p_map->getObstacles();
     
-    //print triangles
-    std::vector<Triangle> tri = obstacle.getTriangles();
+    //print triangles;
+    std::vector<Triangle*> tri = obstacle.getTriangles();
     for (int i=0;i<tri.size();i++){
-        cv::fillConvexPoly(result, tri[i].getCorners(), cv::Scalar(100,100,100));
+        
+        std::vector<Cell*>tricells = tri[i]->getCell();
+        colorAllCellsContainingObjects(tricells, result, Vec3b(200,200,200));
+        
+        //cv::fillConvexPoly(result, tri[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print Squares
@@ -171,6 +197,28 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     
     
     return result;
+}
+
+void Visualizer::colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color){
+    
+    for(int c = 0;c<cells.size();c++){
+        
+        
+        if(cells[c]->getSubcells().empty()){
+            color_pixels_from(*cells[c], inImg, color);
+            continue;
+        }
+        
+        std::vector<Cell*> subcells = cells[c]->getAllSubcells();
+        
+        for(int i=0;i<subcells.size();i++){
+            if(subcells[i]->contains_object() && subcells[i]->getSubcells().empty())
+                color_pixels_from(*subcells[i], inImg, color);
+        }
+        
+        
+    }
+    
 }
 
 cv::Mat Visualizer::print_path(cv::Mat &result){
