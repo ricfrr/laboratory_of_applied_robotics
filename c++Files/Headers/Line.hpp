@@ -106,11 +106,14 @@ public:
      */
     double getCurvature();
 
+    void setIntermediatePoints(std::vector<Point2d> &intermediate_points);
+    std::vector<Point2d> getIntermediatePoints();
 
 private:
 
     Position start_point;
     Position end_point;
+    std::vector<Point2d> intermediate_points;
     double length;
     double curvature; // 1: left 0: straight -1 :right
 

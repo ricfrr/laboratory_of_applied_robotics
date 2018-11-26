@@ -51,19 +51,19 @@ double distance(Position initial_point, Position final_point, double max_curvatu
 }
 
 // return a vector of intermediate points in of the line a given distance
-std::vector<Point2d> findIntermediatePoints(Line &line, double gap, double &max_curvature) {
-    std::vector<Point2d> tmp_intermediate_points;
+std::vector<Point2d>* findIntermediatePoints(Line &line, double gap, double &max_curvature) {
+    std::vector<Point2d>* tmp_intermediate_points = new std::vector<cv::Point2d>();
     Position next_position = line.getStartPoint();
-    tmp_intermediate_points.push_back(next_position.getCoordinates());
+    tmp_intermediate_points->push_back(next_position.getCoordinates());
     double points_distance = distance(next_position, line.getStartPoint(), line.getCurvature(), -1);
     while (points_distance < (line.getLength() - gap)) {
         // find the next point at given distance
         next_position = line.findPointDistance(line.getCurvature(), next_position, gap);
-        tmp_intermediate_points.push_back(next_position.getCoordinates());
+        tmp_intermediate_points->push_back(next_position.getCoordinates());
         points_distance = distance(next_position, line.getStartPoint(), line.getCurvature(), points_distance);
 
     }
-    tmp_intermediate_points.push_back(line.getEndPoint().getCoordinates());
+    tmp_intermediate_points->push_back(line.getEndPoint().getCoordinates());
     return tmp_intermediate_points;
 }
 
@@ -83,17 +83,19 @@ bool collision(cv::Point2d point, Map *map) {
 }
 
 
-bool CollisionDetector::detectCollision(std::vector<Line> lines_i, Map *map, double max_curvature) {
+bool CollisionDetector::detectCollision(std::vector<Line> &lines_i, Map *map, double max_curvature) {
     int diameter = 2;
     for (int i = 0; i < lines_i.size(); i++) {
         //find the intermediate point and detect if it is a collision
-        std::vector<cv::Point2d> intermediate_points = findIntermediatePoints(lines_i[i], diameter, max_curvature);
-        for (int j = 0; j < intermediate_points.size(); j++) {
-            if (collision(intermediate_points[j], map)) {
+        std::vector<cv::Point2d>* intermediate_points;
+        intermediate_points = findIntermediatePoints(lines_i[i], diameter, max_curvature);
+        for (int j = 0; j < intermediate_points->size(); j++) {
+            if (collision((*intermediate_points)[j], map)) {
                 std::cout << "collided " << std::endl;
                 return true;
             }
         }
+        lines_i[i].setIntermediatePoints(*intermediate_points);
     }
     return false;
 }

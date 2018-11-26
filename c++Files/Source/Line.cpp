@@ -85,4 +85,12 @@ double Line::mod2pi(double ang) {
         out = out - 2 * M_PI;
     }
     return out;
+}
+
+void Line::setIntermediatePoints(std::vector<Point2d> &intermediate_points) {
+    this->intermediate_points = intermediate_points;
+}
+
+std::vector<Point2d> Line::getIntermediatePoints() {
+    return this->intermediate_points;
 };
