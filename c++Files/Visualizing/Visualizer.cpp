@@ -222,7 +222,17 @@ void Visualizer::colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::M
 }
 
 cv::Mat Visualizer::print_path(cv::Mat &result){
-    return cv::Mat();
+    
+    std::vector<Line> lines = p_path->getLines();
+    
+    
+    for(int i=0;i<lines.size();i++)
+        cv::line(
+                 result,
+                 cv::Point(lines[i].getStartPoint().getCoordinates().x,lines[i].getStartPoint().getCoordinates().y),
+                 cv::Point(lines[i].getEndPoint().getCoordinates().x,lines[i].getEndPoint().getCoordinates().y)   , cv::Scalar(255,0,0),5);
+    
+    return result;
 }
 
 cv::Mat  Visualizer::merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color){
