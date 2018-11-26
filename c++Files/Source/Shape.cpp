@@ -14,10 +14,8 @@ void Shape::setCell(Cell &cell_i){
     
     //check state
     // empty - mixed - full
-    
-    
-
-    cell_l.push_back(&cell_i);
+    Cell* pointer = &cell_i;
+    cell_l.push_back(pointer);
 }
 
 std::vector<Cell*> Shape::getCell(){

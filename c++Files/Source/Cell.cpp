@@ -237,16 +237,11 @@ const std::vector<Cell*> Cell::getSubcells(){
 
 const std::vector<Cell*> Cell::getAllSubcells(){
     std::vector<Cell*> allcells;
-    std::cout << "will collect all subcells" << std::endl;
     collectSubcells(allcells);
-    std::cout << "stopped collecting all subcells" << std::endl;
     return allcells;
 }
 
 void Cell::collectSubcells(std::vector<Cell*> &cells){
-    
-    std::cout << "starting with " << cells.size() << " subcells" << std::endl;
-    std::cout << "having " << subcells.size() << " own subcells" << std::endl;
     
     for(int i=0;i<subcells.size();i++){
         subcells[i].collectSubcells(cells);
@@ -254,9 +249,10 @@ void Cell::collectSubcells(std::vector<Cell*> &cells){
         cells.push_back(cell);
     }
     
-    std::cout << "ended with " << cells.size() << " subcells" << std::endl;
-    std::cout << "" << std::endl;
-    
+}
+
+double Cell::collision(std::vector<cv::Point> &withObject){
+    return 0;
 }
 
 void Cell::findState(std::vector<cv::Point> contour){

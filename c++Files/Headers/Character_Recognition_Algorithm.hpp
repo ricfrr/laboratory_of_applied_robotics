@@ -188,7 +188,7 @@ public:
     double delta_angle = 30;
     
     ///sufficient confidence value to stop the rotating wheel of the digit recognition
-    unsigned int suf_conf = 80;
+    unsigned int suf_conf = 60;
 };
 
 #endif /* Character_Recognition_Algorithm_hpp */

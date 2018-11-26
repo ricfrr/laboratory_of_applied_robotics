@@ -168,7 +168,6 @@ void Map::getPixelDimensions(int &width, int &height){
 
 void Map::getArenaCells(std::vector<Cell *> &cells){
     cells = this->arena.getCell();
-    
 }
 
 void Map::checkPeople(Cell &cell, PeopleStorage &people)
@@ -194,7 +193,7 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people)
 void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
 {
     bool touched = false;
-    std::vector<Triangle> triangles = obstacles.getTriangles();
+    std::vector<Triangle*> triangles = obstacles.getTriangles();
     std::vector<Square> squares = obstacles.getSquares();
     std::vector<Pentagon> pentagons = obstacles.getPentagons();
     std::vector<Hexagon> hexagons = obstacles.getHexagons();
@@ -203,12 +202,12 @@ void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
     {
         for (int k = 0; k < triangles.size(); k++)
         {
-            std::vector<cv::Point> tmp_tr = triangles[k].getCorners();
+            std::vector<cv::Point> tmp_tr = triangles[k]->getCorners();
             // std::cout << "CHECK TRIANGLE" << std::endl;
             if (contact(cell_corners, tmp_tr))
             {
-                triangles[k].setCell(cell);
-                cell.refine_if_neccessary(triangles[k].getCorners());
+                cell.refine_if_neccessary(triangles[k]->getCorners());
+                triangles[k]->setCell(cell);
                 touched = true;
             }
         }

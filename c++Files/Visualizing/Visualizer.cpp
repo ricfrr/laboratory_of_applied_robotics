@@ -147,10 +147,14 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     //print obstacles
     Obstacle obstacle = p_map->getObstacles();
     
-    //print triangles
-    std::vector<Triangle> tri = obstacle.getTriangles();
+    //print triangles;
+    std::vector<Triangle*> tri = obstacle.getTriangles();
     for (int i=0;i<tri.size();i++){
-        cv::fillConvexPoly(result, tri[i].getCorners(), cv::Scalar(100,100,100));
+        
+        std::vector<Cell*>tricells = tri[i]->getCell();
+        colorAllCellsContainingObjects(tricells, result, Vec3b(200,200,200));
+        
+        //cv::fillConvexPoly(result, tri[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print Squares
@@ -193,6 +197,28 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     
     
     return result;
+}
+
+void Visualizer::colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color){
+    
+    for(int c = 0;c<cells.size();c++){
+        
+        
+        if(cells[c]->getSubcells().empty()){
+            color_pixels_from(*cells[c], inImg, color);
+            continue;
+        }
+        
+        std::vector<Cell*> subcells = cells[c]->getAllSubcells();
+        
+        for(int i=0;i<subcells.size();i++){
+            if(subcells[i]->contains_object() && subcells[i]->getSubcells().empty())
+                color_pixels_from(*subcells[i], inImg, color);
+        }
+        
+        
+    }
+    
 }
 
 cv::Mat Visualizer::print_path(cv::Mat &result){

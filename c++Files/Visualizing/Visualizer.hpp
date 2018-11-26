@@ -53,6 +53,8 @@ private:
     
     void color_pixels_from(Cell &cell, cv::Mat &inImage, Vec3b color = Vec3b(100,100,100));
     
+    void colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color = Vec3b(200,200,200));
+    
     Robot * car;
 };
 

@@ -147,6 +147,13 @@ class Cell
     
     bool contains_object();
     
+    /**
+     \brief a function that checks if a collision between an object and the cell will take place
+     \arg withObject the point cloud of the object that will collide
+     \result the distance until collision - zero means it collided
+     */
+    double collision(std::vector<cv::Point> &withObject);
+    
     
    private: 
     
