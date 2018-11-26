@@ -17,6 +17,44 @@ Class for handling the map.
 \mbox{\hyperlink{class_map_aa403fbe09394ccf39747588f5168e3b2}{$\sim$\+Map}} ()
 \item 
 void \mbox{\hyperlink{class_map_a02537656e91e97077dfdfc5d84c3027b}{create\+Map}} (const Mat \&img)
+\item 
+\mbox{\Hypertarget{class_map_aaba4246a4400e03db7218828402994df}\label{class_map_aaba4246a4400e03db7218828402994df}} 
+void {\bfseries get\+Pixel\+Dimensions} (int \&width, int \&height)
+\item 
+\mbox{\Hypertarget{class_map_a8eb8b7841ba4ccf02646fe2c288c7fc5}\label{class_map_a8eb8b7841ba4ccf02646fe2c288c7fc5}} 
+void {\bfseries get\+Arena\+Cells} (std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$ \&cells)
+\item 
+\mbox{\Hypertarget{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}\label{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}} 
+void {\bfseries get\+Grid} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$$>$ \&grid)
+\item 
+\mbox{\Hypertarget{class_map_a17022b64f602dfd4d45a84c0ffa92270}\label{class_map_a17022b64f602dfd4d45a84c0ffa92270}} 
+\mbox{\hyperlink{class_obstacle}{Obstacle}} {\bfseries get\+Obstacles} ()
+\item 
+\mbox{\Hypertarget{class_map_a26df03922b64a9676a0a457e8d6a69af}\label{class_map_a26df03922b64a9676a0a457e8d6a69af}} 
+\mbox{\hyperlink{struct_people_storage}{People\+Storage}} {\bfseries get\+People} ()
+\item 
+\mbox{\Hypertarget{class_map_ab3a1357229f508284bc9d8e3b25b6c1b}\label{class_map_ab3a1357229f508284bc9d8e3b25b6c1b}} 
+\mbox{\hyperlink{class_exit_point}{Exit\+Point}} {\bfseries get\+Exit\+Point} ()
+\item 
+\mbox{\Hypertarget{class_map_a508e78745bbbc96a64fa0e72d010680a}\label{class_map_a508e78745bbbc96a64fa0e72d010680a}} 
+bool {\bfseries circle\+Contact} (std\+::vector$<$ cv\+::\+Point $>$ corners, \mbox{\hyperlink{class_circle}{Circle}} $\ast$circle)
+\item 
+\mbox{\Hypertarget{class_map_ab65977297f93239ddabed51ea15fc8fe}\label{class_map_ab65977297f93239ddabed51ea15fc8fe}} 
+double {\bfseries distance\+Between\+Two\+Points} (double x, double y, double a, double b)
+\item 
+int \mbox{\hyperlink{class_map_a2ed476fb2f9142980ce447df2b066638}{get\+Image\+Width}} ()
+\begin{DoxyCompactList}\small\item\em return the width of the image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a77781f371aaf9f386f993714dbef40ec}{get\+Image\+Height}} ()
+\begin{DoxyCompactList}\small\item\em return the height of the image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a56085c67347222241299765fe89e615d}{get\+Grid\+Col\+Num}} ()
+\begin{DoxyCompactList}\small\item\em return the number of columns in the grid \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}{get\+Grid\+Row\+Num}} ()
+\begin{DoxyCompactList}\small\item\em return the number of rows in the grid \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_map_a550c4a27e88ecaed45b6fe075c647751}\label{class_map_a550c4a27e88ecaed45b6fe075c647751}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ {\bfseries grid}
 \end{DoxyCompactItemize}
 
 
@@ -50,6 +88,58 @@ create a map given the a photo of the arena
 {\em img} & photo of the arena after perspective transformation \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_map_a56085c67347222241299765fe89e615d}\label{class_map_a56085c67347222241299765fe89e615d}} 
+\index{Map@{Map}!get\+Grid\+Col\+Num@{get\+Grid\+Col\+Num}}
+\index{get\+Grid\+Col\+Num@{get\+Grid\+Col\+Num}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Grid\+Col\+Num()}{getGridColNum()}}
+{\footnotesize\ttfamily int Map\+::get\+Grid\+Col\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the number of columns in the grid 
+
+\begin{DoxyReturn}{Returns}
+the number of columns in the grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}\label{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}} 
+\index{Map@{Map}!get\+Grid\+Row\+Num@{get\+Grid\+Row\+Num}}
+\index{get\+Grid\+Row\+Num@{get\+Grid\+Row\+Num}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Grid\+Row\+Num()}{getGridRowNum()}}
+{\footnotesize\ttfamily int Map\+::get\+Grid\+Row\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the number of rows in the grid 
+
+\begin{DoxyReturn}{Returns}
+the number of rows in the grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a77781f371aaf9f386f993714dbef40ec}\label{class_map_a77781f371aaf9f386f993714dbef40ec}} 
+\index{Map@{Map}!get\+Image\+Height@{get\+Image\+Height}}
+\index{get\+Image\+Height@{get\+Image\+Height}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Image\+Height()}{getImageHeight()}}
+{\footnotesize\ttfamily int Map\+::get\+Image\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the height of the image 
+
+\begin{DoxyReturn}{Returns}
+the height of the image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a2ed476fb2f9142980ce447df2b066638}\label{class_map_a2ed476fb2f9142980ce447df2b066638}} 
+\index{Map@{Map}!get\+Image\+Width@{get\+Image\+Width}}
+\index{get\+Image\+Width@{get\+Image\+Width}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Image\+Width()}{getImageWidth()}}
+{\footnotesize\ttfamily int Map\+::get\+Image\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the width of the image 
+
+\begin{DoxyReturn}{Returns}
+the width of the image 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

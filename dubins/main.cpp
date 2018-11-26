@@ -22,8 +22,8 @@ int main(int argc, const char *argv[]){
     map.createMap(persp_img);
 
     Visualizer v(map);
-   // v.visualize();
-    v.simulate();
+    v.visualize();
+    //v.simulate();
 
     PathCoordinates pathCoordinates = initialize();
     Path path = Path(pathCoordinates.getInitialPosition(),pathCoordinates.getFinalPosition(),pathCoordinates.getMaxCurvature());

@@ -1,9 +1,6 @@
 var searchData=
 [
-<<<<<<< HEAD
   ['calibfixprincipalpoint',['calibFixPrincipalPoint',['../class_settings.html#a44397eea3f08a0c78808c38bdd716594',1,'Settings']]],
-=======
->>>>>>> pathplanning
   ['calibrate_5fcolor',['calibrate_color',['../class_color___processing.html#acb962976dba3538eabcf5812951a023e',1,'Color_Processing']]],
   ['calibration_5finstrinsic',['Calibration_Instrinsic',['../class_calibration___instrinsic.html',1,'']]],
   ['calibrationpattern',['calibrationPattern',['../class_settings.html#a94551b7ffe8ac60311b035b2905e9498',1,'Settings']]],
@@ -13,6 +10,9 @@ var searchData=
   ['character_5frecognition_5falgorithm',['Character_Recognition_Algorithm',['../class_character___recognition___algorithm.html',1,'']]],
   ['circle',['Circle',['../class_circle.html',1,'Circle'],['../class_circle.html#ad1ecfcfc7bf34529c6a6d6c448bf70fe',1,'Circle::Circle()']]],
   ['circles',['circles',['../struct_people_storage.html#a00dd487841221f7b5094934c1409957a',1,'PeopleStorage']]],
+  ['circularline',['CircularLine',['../class_circular_line.html',1,'CircularLine'],['../class_circular_line.html#aacb17f31ed3eb9fbe66fbe2a95b20e6a',1,'CircularLine::CircularLine()']]],
+  ['collision',['collision',['../class_cell.html#acc1faa0802609404e8058263004087ea',1,'Cell']]],
+  ['collisiondetector',['CollisionDetector',['../class_collision_detector.html',1,'CollisionDetector'],['../class_collision_detector.html#ab3f66bd8d272a21674e38bf46d4d31e0',1,'CollisionDetector::CollisionDetector()']]],
   ['color_5fprocessing',['Color_Processing',['../class_color___processing.html',1,'']]],
   ['confidence',['confidence',['../class_people.html#a44d79c52132068763c91e308e9685e06',1,'People']]],
   ['convert_5fbgr_5fto_5fhsv',['convert_bgr_to_hsv',['../class_character___recognition___algorithm.html#ab393524887755e6e363d281856b8aa1e',1,'Character_Recognition_Algorithm']]],

@@ -48,16 +48,36 @@ bool \mbox{\hyperlink{class_cell_ad86a719c04ff04bdf79c1c0b8e5a5942}{is\+Rescue}}
 \item 
 int \mbox{\hyperlink{class_cell_a335c410074aaac9bb5594ea8adf648ff}{get\+Digit}} ()
 \item 
-void \mbox{\hyperlink{class_cell_a6047939b792e819bc2330151ff98864f}{set\+Empty}} ()
+void \mbox{\hyperlink{class_cell_a8e990447fa7c048d0246ee88640b5060}{set\+\_\+\+Empty}} ()
 \item 
-void \mbox{\hyperlink{class_cell_a9fa0a3c17d798320c78bffe44411008e}{set\+Exit}} ()
+void \mbox{\hyperlink{class_cell_a0d8dcfcd6f3f40ce6179cf8fed4694ec}{set\+\_\+\+Exit}} ()
 \item 
-void \mbox{\hyperlink{class_cell_aa690e62809d36d512cd39ccda9cea293}{set\+Border}} ()
+void \mbox{\hyperlink{class_cell_aaf2c6b0f530432a4a2b47fbbf45c8ba0}{set\+\_\+\+Border}} ()
 \item 
-void \mbox{\hyperlink{class_cell_a34e953e7f720c3382f0b13c2480cafd0}{set\+Obstacle}} ()
+void \mbox{\hyperlink{class_cell_af7d43434293cf3df61c07b95af4c3be6}{set\+\_\+\+Obstacle}} ()
 \item 
 void \mbox{\hyperlink{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}{set\+Rescue}} (int digit\+\_\+i)
-\end{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_cell_a4eb2375f1aaf905bffe8c7c57e3379d4}\label{class_cell_a4eb2375f1aaf905bffe8c7c57e3379d4}} 
+void {\bfseries find\+State} (std\+::vector$<$ cv\+::\+Point $>$ contour)
+\item 
+\mbox{\Hypertarget{class_cell_a4c23ccef6e17cb341ca494933e195eac}\label{class_cell_a4c23ccef6e17cb341ca494933e195eac}} 
+void {\bfseries refine\+\_\+if\+\_\+neccessary} (std\+::vector$<$ cv\+::\+Point $>$ for\+Shape)
+\item 
+\mbox{\Hypertarget{class_cell_a04ec4b7bd84e8ae7ff1d014a3d9741ed}\label{class_cell_a04ec4b7bd84e8ae7ff1d014a3d9741ed}} 
+void {\bfseries split} (std\+::vector$<$ cv\+::\+Point $>$ for\+Shape=\{\})
+\item 
+\mbox{\Hypertarget{class_cell_a1e0b427a67335cf9995f0017963f7683}\label{class_cell_a1e0b427a67335cf9995f0017963f7683}} 
+const std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ {\bfseries get\+Subcells} ()
+\item 
+\mbox{\Hypertarget{class_cell_ae076e3a10da38a11957987dbc53050cc}\label{class_cell_ae076e3a10da38a11957987dbc53050cc}} 
+const std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ {\bfseries get\+All\+Subcells} ()
+\item 
+\mbox{\Hypertarget{class_cell_a7182bd8459f98bafdec19697e283a06a}\label{class_cell_a7182bd8459f98bafdec19697e283a06a}} 
+bool {\bfseries contains\+\_\+object} ()
+\item 
+double \mbox{\hyperlink{class_cell_acc1faa0802609404e8058263004087ea}{collision}} (std\+::vector$<$ cv\+::\+Point $>$ \&with\+Object)
+\begin{DoxyCompactList}\small\item\em a function that checks if a collision between an object and the cell will take place \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -79,6 +99,21 @@ constructor of \mbox{\hyperlink{class_cell}{Cell}} class \mbox{\Hypertarget{clas
 destructor of \mbox{\hyperlink{class_cell}{Cell}} class 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cell_acc1faa0802609404e8058263004087ea}\label{class_cell_acc1faa0802609404e8058263004087ea}} 
+\index{Cell@{Cell}!collision@{collision}}
+\index{collision@{collision}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{collision()}{collision()}}
+{\footnotesize\ttfamily double Cell\+::collision (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{with\+Object }\end{DoxyParamCaption})}
+
+
+
+a function that checks if a collision between an object and the cell will take place 
+
+\begin{DoxyItemize}
+\item with\+Object the point cloud of the object that will collide \begin{DoxyReturn}{Returns}
+the distance until collision -\/ zero means it collided 
+\end{DoxyReturn}
+\end{DoxyItemize}
 \mbox{\Hypertarget{class_cell_a1946142c5e112176e1cd20cc6d07f831}\label{class_cell_a1946142c5e112176e1cd20cc6d07f831}} 
 \index{Cell@{Cell}!get\+Bottom\+Left@{get\+Bottom\+Left}}
 \index{get\+Bottom\+Left@{get\+Bottom\+Left}!Cell@{Cell}}
@@ -178,13 +213,31 @@ true if is an obstacle
 \begin{DoxyReturn}{Returns}
 true if is a person to be rescue 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_cell_aa690e62809d36d512cd39ccda9cea293}\label{class_cell_aa690e62809d36d512cd39ccda9cea293}} 
-\index{Cell@{Cell}!set\+Border@{set\+Border}}
-\index{set\+Border@{set\+Border}!Cell@{Cell}}
-\subsubsection{\texorpdfstring{set\+Border()}{setBorder()}}
-{\footnotesize\ttfamily void Cell\+::set\+Border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_cell_aaf2c6b0f530432a4a2b47fbbf45c8ba0}\label{class_cell_aaf2c6b0f530432a4a2b47fbbf45c8ba0}} 
+\index{Cell@{Cell}!set\+\_\+\+Border@{set\+\_\+\+Border}}
+\index{set\+\_\+\+Border@{set\+\_\+\+Border}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{set\+\_\+\+Border()}{set\_Border()}}
+{\footnotesize\ttfamily void Cell\+::set\+\_\+\+Border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-set cell to border \mbox{\Hypertarget{class_cell_a86387a50a4c3f641eede253ce6cfcddb}\label{class_cell_a86387a50a4c3f641eede253ce6cfcddb}} 
+set cell to border \mbox{\Hypertarget{class_cell_a8e990447fa7c048d0246ee88640b5060}\label{class_cell_a8e990447fa7c048d0246ee88640b5060}} 
+\index{Cell@{Cell}!set\+\_\+\+Empty@{set\+\_\+\+Empty}}
+\index{set\+\_\+\+Empty@{set\+\_\+\+Empty}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{set\+\_\+\+Empty()}{set\_Empty()}}
+{\footnotesize\ttfamily void Cell\+::set\+\_\+\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+set cell to empty \mbox{\Hypertarget{class_cell_a0d8dcfcd6f3f40ce6179cf8fed4694ec}\label{class_cell_a0d8dcfcd6f3f40ce6179cf8fed4694ec}} 
+\index{Cell@{Cell}!set\+\_\+\+Exit@{set\+\_\+\+Exit}}
+\index{set\+\_\+\+Exit@{set\+\_\+\+Exit}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{set\+\_\+\+Exit()}{set\_Exit()}}
+{\footnotesize\ttfamily void Cell\+::set\+\_\+\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+set cell to exit \mbox{\Hypertarget{class_cell_af7d43434293cf3df61c07b95af4c3be6}\label{class_cell_af7d43434293cf3df61c07b95af4c3be6}} 
+\index{Cell@{Cell}!set\+\_\+\+Obstacle@{set\+\_\+\+Obstacle}}
+\index{set\+\_\+\+Obstacle@{set\+\_\+\+Obstacle}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{set\+\_\+\+Obstacle()}{set\_Obstacle()}}
+{\footnotesize\ttfamily void Cell\+::set\+\_\+\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+set cell to an obstacle \mbox{\Hypertarget{class_cell_a86387a50a4c3f641eede253ce6cfcddb}\label{class_cell_a86387a50a4c3f641eede253ce6cfcddb}} 
 \index{Cell@{Cell}!set\+Bottom\+Left@{set\+Bottom\+Left}}
 \index{set\+Bottom\+Left@{set\+Bottom\+Left}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{set\+Bottom\+Left()}{setBottomLeft()}}
@@ -217,25 +270,7 @@ set the list of corners
 {\em corners} & list of corners that have to be setted \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_cell_a6047939b792e819bc2330151ff98864f}\label{class_cell_a6047939b792e819bc2330151ff98864f}} 
-\index{Cell@{Cell}!set\+Empty@{set\+Empty}}
-\index{set\+Empty@{set\+Empty}!Cell@{Cell}}
-\subsubsection{\texorpdfstring{set\+Empty()}{setEmpty()}}
-{\footnotesize\ttfamily void Cell\+::set\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-set cell to empty \mbox{\Hypertarget{class_cell_a9fa0a3c17d798320c78bffe44411008e}\label{class_cell_a9fa0a3c17d798320c78bffe44411008e}} 
-\index{Cell@{Cell}!set\+Exit@{set\+Exit}}
-\index{set\+Exit@{set\+Exit}!Cell@{Cell}}
-\subsubsection{\texorpdfstring{set\+Exit()}{setExit()}}
-{\footnotesize\ttfamily void Cell\+::set\+Exit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-set cell to exit \mbox{\Hypertarget{class_cell_a34e953e7f720c3382f0b13c2480cafd0}\label{class_cell_a34e953e7f720c3382f0b13c2480cafd0}} 
-\index{Cell@{Cell}!set\+Obstacle@{set\+Obstacle}}
-\index{set\+Obstacle@{set\+Obstacle}!Cell@{Cell}}
-\subsubsection{\texorpdfstring{set\+Obstacle()}{setObstacle()}}
-{\footnotesize\ttfamily void Cell\+::set\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-set cell to an obstacle \mbox{\Hypertarget{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}\label{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}} 
+\mbox{\Hypertarget{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}\label{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}} 
 \index{Cell@{Cell}!set\+Rescue@{set\+Rescue}}
 \index{set\+Rescue@{set\+Rescue}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{set\+Rescue()}{setRescue()}}

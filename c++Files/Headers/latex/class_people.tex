@@ -24,6 +24,14 @@ Inheritance diagram for People\+:\begin{figure}[H]
 {\bfseries People} (std\+::pair$<$ int, int $>$ digit, cv\+::\+Rect rect)
 \item 
 \mbox{\hyperlink{class_people_adae124857f64dadff4e1801410b3dab2}{$\sim$\+People}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_circle}{Circle}} $\ast$ $>$ \mbox{\hyperlink{class_people_a55604e9d3aa4a772b5d8d97ead9493b0}{get\+Circles}} ()
+\item 
+\mbox{\Hypertarget{class_people_a91265f0ac62bb76a6c3995d9228de33f}\label{class_people_a91265f0ac62bb76a6c3995d9228de33f}} 
+void {\bfseries add\+Circle} (\mbox{\hyperlink{class_circle}{Circle}} $\ast$\&circle)
+\item 
+\mbox{\Hypertarget{class_people_a794c9fff88edec5c1de67cc86950ce52}\label{class_people_a794c9fff88edec5c1de67cc86950ce52}} 
+void {\bfseries clear\+Circles} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -33,7 +41,10 @@ int \mbox{\hyperlink{class_people_a06e995c8c3b9808db931bedb44d782c8}{name}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_people}{People}} have names -\/ represented by a digit. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_people_a44d79c52132068763c91e308e9685e06}\label{class_people_a44d79c52132068763c91e308e9685e06}} 
 int \mbox{\hyperlink{class_people_a44d79c52132068763c91e308e9685e06}{confidence}}
-\begin{DoxyCompactList}\small\item\em confidence that name is the correct digit \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em confidence that name is the correct digit \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_people_a910be85a90d059aaa122c6d970d28a97}\label{class_people_a910be85a90d059aaa122c6d970d28a97}} 
+const int {\bfseries epsilon\+\_\+approx} = 7
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -55,6 +66,23 @@ constructor of people class \mbox{\Hypertarget{class_people_adae124857f64dadff4e
 {\footnotesize\ttfamily People\+::$\sim$\+People (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 destructor of people class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_people_a55604e9d3aa4a772b5d8d97ead9493b0}\label{class_people_a55604e9d3aa4a772b5d8d97ead9493b0}} 
+\index{People@{People}!get\+Circles@{get\+Circles}}
+\index{get\+Circles@{get\+Circles}!People@{People}}
+\subsubsection{\texorpdfstring{get\+Circles()}{getCircles()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_circle}{Circle}}$\ast$$>$ People\+::get\+Circles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+detect circles in the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the map\\
+\hline
+\end{DoxyParams}
+return the list of circle in the map \begin{DoxyReturn}{Returns}
+list of circle 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

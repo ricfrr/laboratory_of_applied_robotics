@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['template_5fcharacter_5frecognition',['Template_Character_Recognition',['../class_template___character___recognition.html',1,'']]],
-  ['triangle',['Triangle',['../class_triangle.html',1,'']]]
+  ['settings',['Settings',['../class_settings.html',1,'']]],
+  ['shape',['Shape',['../class_shape.html',1,'']]],
+  ['square',['Square',['../class_square.html',1,'']]],
+  ['standardconf',['standardConf',['../structstandard_conf.html',1,'']]],
+  ['straightline',['StraightLine',['../class_straight_line.html',1,'']]]
 ];

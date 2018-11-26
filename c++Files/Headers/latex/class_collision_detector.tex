@@ -1,0 +1,55 @@
+\hypertarget{class_collision_detector}{}\section{Collision\+Detector Class Reference}
+\label{class_collision_detector}\index{Collision\+Detector@{Collision\+Detector}}
+
+
+detector of collision between obstacles and path  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Detector.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_collision_detector_ab3f66bd8d272a21674e38bf46d4d31e0}\label{class_collision_detector_ab3f66bd8d272a21674e38bf46d4d31e0}} 
+\mbox{\hyperlink{class_collision_detector_ab3f66bd8d272a21674e38bf46d4d31e0}{Collision\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em constructor of Collision\+Detector\+\_\+hpp class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_collision_detector_a1a0f7a386920e0cf83a101be92f04598}\label{class_collision_detector_a1a0f7a386920e0cf83a101be92f04598}} 
+\mbox{\hyperlink{class_collision_detector_a1a0f7a386920e0cf83a101be92f04598}{$\sim$\+Collision\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em destructor of Collision\+Detector\+\_\+hpp class \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_collision_detector_a190378f3f5714c8c75e5e5baabcfe2e7}{detect\+Collision}} (std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ lines\+\_\+i, \mbox{\hyperlink{class_map}{Map}} $\ast$map, double max\+\_\+curvature)
+\begin{DoxyCompactList}\small\item\em given a vector of lines detect if the path is feasible \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+detector of collision between obstacles and path 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_collision_detector_a190378f3f5714c8c75e5e5baabcfe2e7}\label{class_collision_detector_a190378f3f5714c8c75e5e5baabcfe2e7}} 
+\index{Collision\+Detector@{Collision\+Detector}!detect\+Collision@{detect\+Collision}}
+\index{detect\+Collision@{detect\+Collision}!Collision\+Detector@{Collision\+Detector}}
+\subsubsection{\texorpdfstring{detect\+Collision()}{detectCollision()}}
+{\footnotesize\ttfamily bool Collision\+Detector\+::detect\+Collision (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$}]{lines\+\_\+i,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map,  }\item[{double}]{max\+\_\+curvature }\end{DoxyParamCaption})}
+
+
+
+given a vector of lines detect if the path is feasible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lines\+\_\+i} & vector of line that we want to check \\
+\hline
+{\em map} & map of the arena \\
+\hline
+{\em max\+\_\+curvature} & curvature of the path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is a collision false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Collision\+Detector.\+hpp\end{DoxyCompactItemize}

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['pentagon',['Pentagon',['../class_pentagon.html',1,'']]],
-  ['people',['People',['../class_people.html',1,'']]],
-  ['peoplestorage',['PeopleStorage',['../struct_people_storage.html',1,'']]],
-  ['polygon',['Polygon',['../class_polygon.html',1,'']]]
+  ['obstacle',['Obstacle',['../class_obstacle.html',1,'']]],
+  ['optical_5fcharacter_5frecognition',['Optical_Character_Recognition',['../class_optical___character___recognition.html',1,'']]]
 ];

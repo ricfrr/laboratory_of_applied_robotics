@@ -5,6 +5,8 @@ var searchData=
   ['findcircles',['findCircles',['../struct_people_storage.html#a97206f5a49064a68924059861deab436',1,'PeopleStorage']]],
   ['findexitpoint',['findExitPoint',['../class_exit_point.html#a2762c0c61bbe71a1a292b86e9517e860',1,'ExitPoint']]],
   ['findobstacles',['findObstacles',['../class_obstacle.html#ae333b23b742b38e50be13bc7aec2da5b',1,'Obstacle']]],
+  ['findpath',['findPath',['../class_path.html#ab45faf702862c6594068a3ed2d026cda',1,'Path']]],
+  ['findpointdistance',['findPointDistance',['../class_line.html#a983c7c0071d48eb33644f9da8bc0050b',1,'Line']]],
   ['findtransform',['findTransform',['../class_inverse___perspective___mapping.html#aa4444fc0f5e10cab7f408d6679be73db',1,'Inverse_Perspective_Mapping']]],
   ['five',['five',['../struct_digit_result_distribution.html#abcc61ba15e9235041d116e79f2a8ff75',1,'DigitResultDistribution']]],
   ['fixk1',['fixK1',['../class_settings.html#a25242813ee2c5e111ce48fe1f7f85e7b',1,'Settings']]],

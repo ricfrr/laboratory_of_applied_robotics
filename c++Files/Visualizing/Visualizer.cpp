@@ -152,9 +152,9 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     for (int i=0;i<tri.size();i++){
         
         std::vector<Cell*>tricells = tri[i]->getCell();
-        colorAllCellsContainingObjects(tricells, result, Vec3b(200,200,200));
+        //colorAllCellsContainingObjects(tricells, result, Vec3b(200,200,200));
         
-        //cv::fillConvexPoly(result, tri[i]->getCorners(), cv::Scalar(100,100,100));
+        cv::fillConvexPoly(result, tri[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print Squares

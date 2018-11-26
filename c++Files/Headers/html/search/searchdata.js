@@ -1,14 +1,10 @@
 var indexSectionsWithContent =
 {
   0: "abcdefghilmnoprstuwz~",
-  1: "acdehimoprstu",
+  1: "acdehilmoprstu",
   2: "abcdefghilmoprstu~",
-<<<<<<< HEAD
   3: "abcdefilnoprstuwz",
   4: "l"
-=======
-  3: "bcdeflnoprstuz"
->>>>>>> pathplanning
 };
 
 var indexSectionNames =

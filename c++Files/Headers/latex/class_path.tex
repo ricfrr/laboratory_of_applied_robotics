@@ -1,0 +1,213 @@
+\hypertarget{class_path}{}\section{Path Class Reference}
+\label{class_path}\index{Path@{Path}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_path_a6abfa12b45ae127daa7408571b62b74d}{Path}} (\mbox{\hyperlink{class_position}{Position}} start\+\_\+point, \mbox{\hyperlink{class_position}{Position}} end\+\_\+point, double curvature, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\begin{DoxyCompactList}\small\item\em given the start point and the end point is able to find the best path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_ab45faf702862c6594068a3ed2d026cda}\label{class_path_ab45faf702862c6594068a3ed2d026cda}} 
+void \mbox{\hyperlink{class_path_ab45faf702862c6594068a3ed2d026cda}{find\+Path}} ()
+\begin{DoxyCompactList}\small\item\em function that detects the best path, for now uses only dubins path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_ae5b5816b3480e9f103079bb3467dc65f}\label{class_path_ae5b5816b3480e9f103079bb3467dc65f}} 
+void \mbox{\hyperlink{class_path_ae5b5816b3480e9f103079bb3467dc65f}{set\+Lines}} (std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$)
+\begin{DoxyCompactList}\small\item\em set the lines of the path \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ \mbox{\hyperlink{class_path_aff0072e2e1cf183ba6fc240cd85045e2}{get\+Lines}} ()
+\begin{DoxyCompactList}\small\item\em return a vector of lines \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path_a87f4082a3c5af3aa37260cb99c605156}{set\+Start\+Point}} (\mbox{\hyperlink{class_position}{Position}} start\+\_\+point)
+\begin{DoxyCompactList}\small\item\em set the start point of the path \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_position}{Position}} \mbox{\hyperlink{class_path_a88e537e6bfe6140d00b0f36ca642a4cd}{get\+Start\+Point}} ()
+\begin{DoxyCompactList}\small\item\em return the start point of the path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path_a168f515818fd9b26a6264fdf95af52e8}{set\+End\+Point}} (\mbox{\hyperlink{class_position}{Position}} end\+\_\+point)
+\begin{DoxyCompactList}\small\item\em set the end point of the path \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_position}{Position}} \mbox{\hyperlink{class_path_ac2617080c944b93f7c0c63f3e59aa88c}{get\+End\+Point}} ()
+\begin{DoxyCompactList}\small\item\em return the end point of the path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path_a132d54dc6350d1c2eb86611db60df7ff}{set\+Max\+Curvature}} (double curvature)
+\begin{DoxyCompactList}\small\item\em set max curvature of the path \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path_a613552d171c766462f422593b4957ecc}{get\+Max\+Curvature}} ()
+\begin{DoxyCompactList}\small\item\em return of max curvature of the path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path_ad723ba990a07d7542703770a09df52a7}{set\+Length}} (double length)
+\begin{DoxyCompactList}\small\item\em set the length of the path \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path_ad497d2a12a47bc52a316da83dbe6acbc}{get\+Length}} ()
+\begin{DoxyCompactList}\small\item\em return the length of the path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_a68a50ad6f0fd39d0b272bcb62655b475}\label{class_path_a68a50ad6f0fd39d0b272bcb62655b475}} 
+void {\bfseries set\+Map} (\mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\item 
+\mbox{\Hypertarget{class_path_abacf46c32c4f36a79c2faf21a9a01270}\label{class_path_abacf46c32c4f36a79c2faf21a9a01270}} 
+\mbox{\hyperlink{class_map}{Map}} $\ast$ {\bfseries get\+Map} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path_a822c83d45ed5e336376a813c806ff66b}\label{class_path_a822c83d45ed5e336376a813c806ff66b}} 
+\mbox{\hyperlink{class_position}{Position}} {\bfseries start\+\_\+point}
+\item 
+\mbox{\Hypertarget{class_path_ab97cd4eb2fa1141118bd561c824b27cc}\label{class_path_ab97cd4eb2fa1141118bd561c824b27cc}} 
+\mbox{\hyperlink{class_position}{Position}} {\bfseries end\+\_\+point}
+\item 
+\mbox{\Hypertarget{class_path_a181a2058e947c22fc3e25a361bb934e6}\label{class_path_a181a2058e947c22fc3e25a361bb934e6}} 
+double {\bfseries max\+Curvature}
+\item 
+\mbox{\Hypertarget{class_path_a3d38eb2e010fbf82837e7d3eb5f0faba}\label{class_path_a3d38eb2e010fbf82837e7d3eb5f0faba}} 
+std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ {\bfseries lines}
+\item 
+\mbox{\Hypertarget{class_path_a8ca4f648459940bdd347e52f07676473}\label{class_path_a8ca4f648459940bdd347e52f07676473}} 
+double {\bfseries length}
+\item 
+\mbox{\Hypertarget{class_path_a13645419b6b5876ce59368184742b8d7}\label{class_path_a13645419b6b5876ce59368184742b8d7}} 
+\mbox{\hyperlink{class_map}{Map}} $\ast$ {\bfseries map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_path_a6abfa12b45ae127daa7408571b62b74d}\label{class_path_a6abfa12b45ae127daa7408571b62b74d}} 
+\index{Path@{Path}!Path@{Path}}
+\index{Path@{Path}!Path@{Path}}
+\subsubsection{\texorpdfstring{Path()}{Path()}}
+{\footnotesize\ttfamily Path\+::\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_position}{Position}}}]{start\+\_\+point,  }\item[{\mbox{\hyperlink{class_position}{Position}}}]{end\+\_\+point,  }\item[{double}]{curvature,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+given the start point and the end point is able to find the best path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+point} & start point \\
+\hline
+{\em end\+\_\+point} & end point \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path_ac2617080c944b93f7c0c63f3e59aa88c}\label{class_path_ac2617080c944b93f7c0c63f3e59aa88c}} 
+\index{Path@{Path}!get\+End\+Point@{get\+End\+Point}}
+\index{get\+End\+Point@{get\+End\+Point}!Path@{Path}}
+\subsubsection{\texorpdfstring{get\+End\+Point()}{getEndPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_position}{Position}} Path\+::get\+End\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the end point of the path 
+
+\begin{DoxyReturn}{Returns}
+the end point of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path_ad497d2a12a47bc52a316da83dbe6acbc}\label{class_path_ad497d2a12a47bc52a316da83dbe6acbc}} 
+\index{Path@{Path}!get\+Length@{get\+Length}}
+\index{get\+Length@{get\+Length}!Path@{Path}}
+\subsubsection{\texorpdfstring{get\+Length()}{getLength()}}
+{\footnotesize\ttfamily double Path\+::get\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the length of the path 
+
+\begin{DoxyReturn}{Returns}
+the length 
+
+the length 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path_aff0072e2e1cf183ba6fc240cd85045e2}\label{class_path_aff0072e2e1cf183ba6fc240cd85045e2}} 
+\index{Path@{Path}!get\+Lines@{get\+Lines}}
+\index{get\+Lines@{get\+Lines}!Path@{Path}}
+\subsubsection{\texorpdfstring{get\+Lines()}{getLines()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_line}{Line}}$>$ Path\+::get\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return a vector of lines 
+
+\begin{DoxyReturn}{Returns}
+vector of lines 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path_a613552d171c766462f422593b4957ecc}\label{class_path_a613552d171c766462f422593b4957ecc}} 
+\index{Path@{Path}!get\+Max\+Curvature@{get\+Max\+Curvature}}
+\index{get\+Max\+Curvature@{get\+Max\+Curvature}!Path@{Path}}
+\subsubsection{\texorpdfstring{get\+Max\+Curvature()}{getMaxCurvature()}}
+{\footnotesize\ttfamily double Path\+::get\+Max\+Curvature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return of max curvature of the path 
+
+\begin{DoxyReturn}{Returns}
+the max curvature of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path_a88e537e6bfe6140d00b0f36ca642a4cd}\label{class_path_a88e537e6bfe6140d00b0f36ca642a4cd}} 
+\index{Path@{Path}!get\+Start\+Point@{get\+Start\+Point}}
+\index{get\+Start\+Point@{get\+Start\+Point}!Path@{Path}}
+\subsubsection{\texorpdfstring{get\+Start\+Point()}{getStartPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_position}{Position}} Path\+::get\+Start\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the start point of the path 
+
+\begin{DoxyReturn}{Returns}
+the start point of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path_a168f515818fd9b26a6264fdf95af52e8}\label{class_path_a168f515818fd9b26a6264fdf95af52e8}} 
+\index{Path@{Path}!set\+End\+Point@{set\+End\+Point}}
+\index{set\+End\+Point@{set\+End\+Point}!Path@{Path}}
+\subsubsection{\texorpdfstring{set\+End\+Point()}{setEndPoint()}}
+{\footnotesize\ttfamily void Path\+::set\+End\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_position}{Position}}}]{end\+\_\+point }\end{DoxyParamCaption})}
+
+
+
+set the end point of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em end\+\_\+point} & the end point of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path_ad723ba990a07d7542703770a09df52a7}\label{class_path_ad723ba990a07d7542703770a09df52a7}} 
+\index{Path@{Path}!set\+Length@{set\+Length}}
+\index{set\+Length@{set\+Length}!Path@{Path}}
+\subsubsection{\texorpdfstring{set\+Length()}{setLength()}}
+{\footnotesize\ttfamily void Path\+::set\+Length (\begin{DoxyParamCaption}\item[{double}]{length }\end{DoxyParamCaption})}
+
+
+
+set the length of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & length of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path_a132d54dc6350d1c2eb86611db60df7ff}\label{class_path_a132d54dc6350d1c2eb86611db60df7ff}} 
+\index{Path@{Path}!set\+Max\+Curvature@{set\+Max\+Curvature}}
+\index{set\+Max\+Curvature@{set\+Max\+Curvature}!Path@{Path}}
+\subsubsection{\texorpdfstring{set\+Max\+Curvature()}{setMaxCurvature()}}
+{\footnotesize\ttfamily void Path\+::set\+Max\+Curvature (\begin{DoxyParamCaption}\item[{double}]{curvature }\end{DoxyParamCaption})}
+
+
+
+set max curvature of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curvature} & max curvature of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path_a87f4082a3c5af3aa37260cb99c605156}\label{class_path_a87f4082a3c5af3aa37260cb99c605156}} 
+\index{Path@{Path}!set\+Start\+Point@{set\+Start\+Point}}
+\index{set\+Start\+Point@{set\+Start\+Point}!Path@{Path}}
+\subsubsection{\texorpdfstring{set\+Start\+Point()}{setStartPoint()}}
+{\footnotesize\ttfamily void Path\+::set\+Start\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_position}{Position}}}]{start\+\_\+point }\end{DoxyParamCaption})}
+
+
+
+set the start point of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+point} & start point of the path \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Path.\+hpp\end{DoxyCompactItemize}
