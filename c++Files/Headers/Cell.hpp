@@ -83,8 +83,7 @@ class Cell
      */
     void setBottomRight(cv::Point bottomRight);
 
-    /*!
-     *
+     /**
      * @return true if is empty
      */
     bool isEmpty(cv::Point forPoint = cv::Point(-1,-1));
@@ -97,12 +96,12 @@ class Cell
      *
      * @return true if is a border
      */
-    bool isBorder();
+    bool isBorder(cv::Point forPoint = cv::Point(-1,-1));
     /*!
      *
      * @return true if is an obstacle
      */
-    bool isObstacle();
+    bool isObstacle(cv::Point forPoint = cv::Point(-1,-1));
     /*!
      *
      * @return true if is a person to be rescue

@@ -202,12 +202,80 @@ bool Cell::isExit()
 {
     return exit_p;
 };
-bool Cell::isBorder()
+bool Cell::isBorder(cv::Point forPoint)
 {
+    if(state == EMPTY)
+        return false;
+    else if(state == FULL && border)
+        return true;
+    else {
+        if(subcells.size() == 0 && border)
+            return true;
+        else if(subcells.size() == 0)
+            return false;
+        
+        bool result = false;
+        
+        
+        Cell cell;
+        
+        bool first_half_v = forPoint.x <= subcells[0].getTopRight().x;
+        bool first_half_h = forPoint.y <= subcells[0].getBottomLeft().y;
+        
+        int index;
+        
+        if(first_half_h && first_half_v)
+            index = 0;
+        else if(!first_half_v && first_half_h)
+            index = 1;
+        else if(!first_half_v && !first_half_h)
+            index = 2;
+        else if(first_half_v && !first_half_h)
+            index = 3;
+        
+        result = subcells[index].isBorder();
+        
+        return result;
+    }
+    
     return border;
 };
-bool Cell::isObstacle()
+bool Cell::isObstacle(cv::Point forPoint)
 {
+    if(state == EMPTY)
+        return false;
+    else if(state == FULL && obstacle)
+        return true;
+    else {
+        if(subcells.size() == 0 && obstacle)
+            return true;
+        else if(subcells.size() == 0)
+            return false;
+        
+        bool result = false;
+        
+        
+        Cell cell;
+        
+        bool first_half_v = forPoint.x <= subcells[0].getTopRight().x;
+        bool first_half_h = forPoint.y <= subcells[0].getBottomLeft().y;
+        
+        int index;
+        
+        if(first_half_h && first_half_v)
+            index = 0;
+        else if(!first_half_v && first_half_h)
+            index = 1;
+        else if(!first_half_v && !first_half_h)
+            index = 2;
+        else if(first_half_v && !first_half_h)
+            index = 3;
+        
+        result = subcells[index].isObstacle();
+        
+        return result;
+    }
+    
     return obstacle;
 };
 bool Cell::isRescue()

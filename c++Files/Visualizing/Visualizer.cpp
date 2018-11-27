@@ -230,7 +230,7 @@ cv::Mat Visualizer::print_path(cv::Mat &result){
         cv::line(
                  result,
                  cv::Point(lines[i].getStartPoint().getCoordinates().x,lines[i].getStartPoint().getCoordinates().y),
-                 cv::Point(lines[i].getEndPoint().getCoordinates().x,lines[i].getEndPoint().getCoordinates().y)   , cv::Scalar(255,0,0),5);
+                 cv::Point(lines[i].getEndPoint().getCoordinates().x,lines[i].getEndPoint().getCoordinates().y)   , cv::Scalar(255,0,0),2);
     
     return result;
 }
