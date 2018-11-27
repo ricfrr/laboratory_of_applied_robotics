@@ -87,7 +87,7 @@ class Cell
      *
      * @return true if is empty
      */
-    bool isEmpty();
+    bool isEmpty(cv::Point forPoint = cv::Point(-1,-1));
     /*!
      *
      * @return true if is an exit
@@ -137,6 +137,8 @@ class Cell
     void setRescue(int digit_i);
     
     void findState(std::vector<cv::Point> contour);
+    
+    bool getState();
     
     void refine_if_neccessary(std::vector<cv::Point> forShape);
 

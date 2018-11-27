@@ -10,7 +10,7 @@
 #define Visualizer_hpp
 
 #include "../Headers/RoboticMapping.hpp"
-#include "../../dubins/PathPlanning.hpp"
+#include "../Headers/PathPlanning.hpp"
 
 
 #include <stdio.h>

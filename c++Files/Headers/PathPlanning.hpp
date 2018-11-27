@@ -11,8 +11,9 @@
 
 #include <stdio.h>
 
-#include "Headers/Position.hpp"
-#include "Headers/PathCoordinates.hpp"
-#include "Headers/Path.hpp"
+#include "Position.hpp"
+#include "PathCoordinates.hpp"
+#include "Path.hpp"
+#include "CollisionDetector.hpp"
 
 #endif /* PathPlanning_hpp */

@@ -250,15 +250,18 @@ cv::Mat  Visualizer::merge(cv::Mat &input, cv::Mat &overlay, cv::Scalar color){
 
 void Visualizer::simulate(){
     
-    //testing
-    Position p1 = Position(cv::Point2d(this->car->getCenter()), 0);
-    Position p2 = Position(cv::Point2d(300,300), 0);
-    this->p_path = new Path(p1, p2,0);
+    std::vector<Line> lines = p_path->getLines();
+    std::vector<cv::Point> points;
+    for(int i=0;i<lines.size();i++){
+        points.push_back(lines[i].getStartPoint().getCoordinates());
+        points.push_back(lines[i].getEndPoint().getCoordinates());
+    }
     
-    for(int i=0;i<40;i++){
-        this->car->setCenter(cv::Point(i*10,i*10));
+    
+    for(int i=0;i<points.size();i++){
+        this->car->setCenter(points[i]);
         play();
-        cv::waitKey(33);
+        cv::waitKey(1000);
     }
     visualize();
 }

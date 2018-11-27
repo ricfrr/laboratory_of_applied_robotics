@@ -164,9 +164,39 @@ void Cell::setRescue(int digit_i)
     digit = digit_i;
 };
 
-bool Cell::isEmpty()
+bool Cell::isEmpty(cv::Point forPoint)
 {
-    return empty;
+    if(state == EMPTY)
+        return true;
+    else if(state == FULL)
+        return false;
+    else {
+        if(subcells.size() == 0)
+            return false;
+        
+        bool result = true;
+        
+            
+        Cell cell;
+            
+        bool first_half_v = forPoint.x <= subcells[0].getTopRight().x;
+        bool first_half_h = forPoint.y <= subcells[0].getBottomLeft().y;
+        
+        int index;
+        
+        if(first_half_h && first_half_v)
+            index = 0;
+        else if(!first_half_v && first_half_h)
+            index = 1;
+        else if(!first_half_v && !first_half_h)
+            index = 2;
+        else if(first_half_v && !first_half_h)
+            index = 3;
+        
+        result = subcells[index].isEmpty();
+        
+        return result;
+    }
 };
 bool Cell::isExit()
 {
@@ -183,6 +213,10 @@ bool Cell::isObstacle()
 bool Cell::isRescue()
 {
     return rescue;
+}
+
+bool Cell::getState(){
+    return this->state;
 }
 
 void Cell::refine_if_neccessary(std::vector<cv::Point> forShape){
@@ -252,6 +286,8 @@ void Cell::collectSubcells(std::vector<Cell*> &cells){
 }
 
 double Cell::collision(std::vector<cv::Point> &withObject){
+    
+    
     return 0;
 }
 
