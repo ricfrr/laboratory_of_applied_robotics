@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Circle.hpp"
+#include "PathCoordinates.hpp"
 
 class Robot: public Circle {
     
@@ -20,6 +21,10 @@ public:
     ~Robot();
     
     const cv::Scalar color = cv::Scalar(0,0,255);
+    
+    PathCoordinates* data;
+    
+    PathCoordinates initialize();
     
 };
 

@@ -198,8 +198,10 @@ bool Digit_Recognition::is_valid(int &detectedDigit){
             return true;
         case 4:
             return true;
+        case 7:
+            return false;
     
         default:
-            return false;
+            return true;
     }
 }

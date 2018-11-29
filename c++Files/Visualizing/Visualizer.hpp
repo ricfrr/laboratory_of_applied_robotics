@@ -11,6 +11,7 @@
 
 #include "../Headers/RoboticMapping.hpp"
 #include "../Headers/PathPlanning.hpp"
+#include "../Headers/Robot.hpp"
 
 
 #include <stdio.h>

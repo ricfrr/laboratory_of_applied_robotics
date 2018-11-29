@@ -12,7 +12,6 @@
 #include "Calibration_Intrinsic.hpp"
 #include "Undistortion.hpp"
 #include "Inverse_Perspective_Mapping.hpp"
-#include "Robot.hpp"
 #include "Arena.hpp"
 #include "ExitPoint.hpp"
 #include "Map.hpp"

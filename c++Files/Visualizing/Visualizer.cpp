@@ -253,15 +253,16 @@ void Visualizer::simulate(){
     std::vector<Line> lines = p_path->getLines();
     std::vector<cv::Point> points;
     for(int i=0;i<lines.size();i++){
-        points.push_back(lines[i].getStartPoint().getCoordinates());
-        points.push_back(lines[i].getEndPoint().getCoordinates());
+        std::vector<cv::Point2d> ipoints = lines[i].getIntermediatePoints();
+        for(int j=0;j<ipoints.size();j++)
+            points.push_back(cv::Point(ipoints[j]));
     }
     
     
     for(int i=0;i<points.size();i++){
         this->car->setCenter(points[i]);
         play();
-        cv::waitKey(1000);
+        cv::waitKey(50);
     }
     visualize();
 }
