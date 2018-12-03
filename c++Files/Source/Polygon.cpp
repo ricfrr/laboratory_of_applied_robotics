@@ -14,3 +14,12 @@ Polygon::Polygon(std::vector<cv::Point> points)
     this->points = points;
 }
 Polygon::~Polygon(){}
+
+
+
+void Polygon::setClippedCorners(std::vector<cv::Point> &_clipped_corners) {
+    clipped_corners = _clipped_corners;
+}
+std::vector<cv::Point> Polygon::getClippedCorners(){
+    return clipped_corners;
+};

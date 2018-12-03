@@ -84,9 +84,14 @@ void Obstacle::findObstacles(const Mat &img)
     //waitKey(0);
 }
 
-std::vector<Square> Obstacle::getSquares()
+std::vector<Square *> Obstacle::getSquares()
 {
-    return squares;
+    std::vector<Square *> mySquare;
+    for(int i=0;i<squares.size();i++)
+        mySquare.push_back(&squares[i]);
+
+    return mySquare;
+
 };
 
 std::vector<Triangle *> Obstacle::getTriangles()
@@ -98,12 +103,18 @@ std::vector<Triangle *> Obstacle::getTriangles()
     return mytriangles;
 };
 
-std::vector<Pentagon> Obstacle::getPentagons()
+std::vector<Pentagon *> Obstacle::getPentagons()
 {
-    return pentagons;
+    std::vector<Pentagon *> myPentagons;
+    for(int i=0;i<pentagons.size();i++)
+        myPentagons.push_back(&pentagons[i]);
+    return myPentagons;
 };
 
-std::vector<Hexagon> Obstacle::getHexagons()
+std::vector<Hexagon *> Obstacle::getHexagons()
 {
-    return hexagons;
+    std::vector<Hexagon *> myHexagons;
+    for(int i=0;i<hexagons.size();i++)
+        myHexagons.push_back(&hexagons[i]);
+    return myHexagons;
 };

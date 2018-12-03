@@ -24,7 +24,11 @@ public:
     
     ///assignes the points
     virtual void assign_points() = 0;
-    
+    void setClippedCorners(std::vector<cv::Point> &_clipped_corners);
+    std::vector<cv::Point> getClippedCorners();
+
+    std::vector<cv::Point> clipped_corners;
+
 };
 
 #endif /* Polygon_hpp */

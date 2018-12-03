@@ -38,17 +38,17 @@ public:
      * return the list of the squares obstacles
      * @return list of the squares obstacles
      */
-    std::vector<Square> getSquares();
+    std::vector<Square *> getSquares();
     /*!
      * return the list of the pentagons obstacles
      * @return list of the pentagons obstacles
      */
-    std::vector<Pentagon> getPentagons();
+    std::vector<Pentagon *> getPentagons();
     /*!
      * return the list of the hexagons obstacles
      * @return list of the hexagons obstacles
      */
-    std::vector<Hexagon> getHexagons();
+    std::vector<Hexagon *> getHexagons();
 
 private:
     const int epsilon_approx = 7;

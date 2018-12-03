@@ -14,6 +14,7 @@
 #include "Settings.hpp"
 #include <vector>
 #include "Digit_Recognition.hpp"
+#include "Clipper.hpp"
 
 
 using namespace cv;
@@ -97,6 +98,7 @@ private:
 
     bool isOutofArena(std::vector<cv::Point> corners, Arena arena);
 
+    void clipPoints();
 
     void checkPeople(Cell &cell, PeopleStorage &people);
 
@@ -109,6 +111,8 @@ private:
 
     PeopleStorage people;
     Settings setting;
+
+    Clipper clipper;
 
 
     int map_pixel_w = setting.IMG_WIDTH;

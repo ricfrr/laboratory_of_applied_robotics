@@ -1,44 +1,84 @@
 #include "../Headers/Map.hpp"
 
-Map::Map()
-{
+Map::Map() {
     // creator
 }
-Map::~Map()
-{
+
+Map::~Map() {
     // nada
 }
 
+void Map::clipPoints() {
+    int radius = 10;
+    std::vector<cv::Point> tmp_point;
+    std::vector<cv::Point> tmp_clip;
+    //clipping exit-point
+    tmp_point = exit_point.getCorners();
+    tmp_clip = clipper.clip(tmp_point, radius);
+    exit_point.setClippedCorners(tmp_clip);
 
-void Map::createMap(const Mat &img)
-{
+    std::vector<Triangle *> triangles = obstacles.getTriangles();
+    std::vector<Square *> squares = obstacles.getSquares();
+    std::vector<Pentagon *> pentagons = obstacles.getPentagons();
+    std::vector<Hexagon *> hexagons = obstacles.getHexagons();
 
+    for (int i = 0; i < triangles.size(); i++) {
+        tmp_point = triangles[i]->getCorners();
+        tmp_clip = clipper.clip(tmp_point, radius);
+        triangles[i]->setClippedCorners(tmp_clip);
+    }
+    for (int i = 0; i < squares.size(); i++) {
+        tmp_point = squares[i]->getCorners();
+        tmp_clip = clipper.clip(tmp_point, radius);
+        squares[i]->setClippedCorners(tmp_clip);
+    }
+    for (int i = 0; i < pentagons.size(); i++) {
+        tmp_point = pentagons[i]->getCorners();
+        tmp_clip = clipper.clip(tmp_point, radius);
+        pentagons[i]->setClippedCorners(tmp_clip);
+    }
+    for (int i = 0; i < hexagons.size(); i++) {
+        tmp_point = hexagons[i]->getCorners();
+        tmp_clip = clipper.clip(tmp_point, radius);
+        hexagons[i]->setClippedCorners(tmp_clip);
+    }
+
+    tmp_point = arena.getCorners();
+    tmp_clip = clipper.clipArena(tmp_point, 0);
+    arena.setClippedCorners(tmp_clip);
+
+
+}
+
+
+void Map::createMap(const Mat &img) {
+    // robot.findRobot(img);
     arena.findArena(img);
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
     people.findCircles(img);
-    
+
+    clipPoints();
+
+
     // detection of all obstacles
     initializeGrid(arena, exit_point, obstacles);
 }
 
 void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
-                         Obstacle &obstacles)
-{
+                         Obstacle &obstacles) {
     bool debug = false;
-    
+
     // initalize cells with pixel coordinates and empty value
     int temp_x = 0;
     int temp_y = 0;
     int x_incr = map_pixel_w / n_col; // dimension of each cell in pixel
     int y_incr = map_pixel_h / n_row;
-    for (int i = 0; i < n_row; i++)
-    {
-        std::vector<Cell*> temp_vec;
-        for (int j = 0; j < n_col; j++)
-        {
+    for (int i = 0; i < n_row; i++) {
+        std::vector<Cell *> temp_vec;
+        for (int j = 0; j < n_col; j++) {
 
-            Cell* cell = new Cell;
+            Cell *cell = new Cell;
             // corners of the cell
             cv::Point top_left, top_right, bottom_left, bottom_right;
             top_left.x = temp_x;
@@ -59,58 +99,50 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             cell->set_Empty();
             // check if cell is in contact with an obj
 
-            if (isOutofArena(cell_corners, arena)){
-                
+            if (isOutofArena(cell_corners, arena)) {
+
                 arena.setCell(*cell);
-                cell->refine_if_neccessary(arena.getCorners());
+                cell->refine_if_neccessary(arena.getClippedCorners());
                 cell->set_Border();
-                
-            
+
+
 //            std::vector<Cell*> cells;
 //            getArenaCells(cells);
 //            for(int i = 0;i<cells.size();i++)
 //                std::cout <<"cell for arena "<< cells[i]->getTopLeft() << std::endl;
 //            std::cout << "\n";
-                
-                if(debug)
+
+                if (debug)
                     std::cout << "b";
-            
-            }
-            else
-            {
-                std::vector<cv::Point> corners = exit_point.getCorners();
+
+            } else {
+                std::vector<cv::Point> corners = exit_point.getClippedCorners();
                 // std::cout << "CHECK EXIT" << std::endl;
-                if (contact(cell_corners, corners))
-                {
+                if (contact(cell_corners, corners)) {
                     exit_point.setCell(*cell);
                     cell->set_Exit();
-                    cell->refine_if_neccessary(exit_point.getCorners());
-                    
-                    if(debug)
+                    cell->refine_if_neccessary(exit_point.getClippedCorners());
+
+                    if (debug)
                         std::cout << "\033[1;34mx\033[0m";
                 }
             }
-            if (cell->isEmpty())
-            {
+            if (cell->isEmpty()) {
                 checkObstacles(*cell, obstacles);
-                if (cell->isObstacle())
-                {
-                    if(debug)
+                if (cell->isObstacle()) {
+                    if (debug)
                         std::cout << "\033[1;31mo\033[0m";
                 }
             }
-            if (cell->isEmpty())
-            {
+            if (cell->isEmpty()) {
                 checkPeople(*cell, people);
-                if (cell->isRescue())
-                {
-                    if(debug)
+                if (cell->isRescue()) {
+                    if (debug)
                         std::cout << "\033[1;36mr\033[0m";
                 }
             }
-            if (cell->isEmpty())
-            {
-                if(debug)
+            if (cell->isEmpty()) {
+                if (debug)
                     std::cout << "\033[1;32me\033[0m";
             }
             temp_vec.push_back(cell);
@@ -118,71 +150,64 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
         }
         temp_y = temp_y + y_incr;
         temp_x = 0;
-        if(debug)
+        if (debug)
             std::cout << std::endl;
         grid.push_back(temp_vec);
-        
+
     }
     std::cout << "---- DONE ----" << std::endl;
 };
 
-void Map::getGrid(std::vector<std::vector<Cell*>> &grid){
+void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
     grid = this->grid;
 }
 
-Obstacle Map::getObstacles(){
+Obstacle Map::getObstacles() {
     return this->obstacles;
 }
 
-PeopleStorage Map::getPeople(){
+PeopleStorage Map::getPeople() {
     return this->people;
 }
 
-ExitPoint Map::getExitPoint(){
+ExitPoint Map::getExitPoint() {
     return this->exit_point;
 }
 
-double Map::distanceBetweenTwoPoints(double x, double y, double a, double b)
-{
+double Map::distanceBetweenTwoPoints(double x, double y, double a, double b) {
     return sqrt(pow(x - a, 2) + pow(y - b, 2));
 };
 
-bool Map::circleContact(std::vector<cv::Point> corners, Circle* circle)
-{
+bool Map::circleContact(std::vector<cv::Point> corners, Circle *circle) {
     double distance;
-    for (int i = 0; i < corners.size(); i++)
-    {
+    for (int i = 0; i < corners.size(); i++) {
         distance = distanceBetweenTwoPoints(corners[i].x, corners[i].y, circle->getCenter().x, circle->getCenter().y);
-        if (distance < circle->getRadius())
-        {
+        if (distance < circle->getRadius()) {
             return true;
         }
     }
     return false;
 };
 
-void Map::getPixelDimensions(int &width, int &height){
+void Map::getPixelDimensions(int &width, int &height) {
     width = this->map_pixel_w;
     height = this->map_pixel_h;
 }
 
-void Map::getArenaCells(std::vector<Cell *> &cells){
+void Map::getArenaCells(std::vector<Cell *> &cells) {
     cells = this->arena.getCell();
 }
 
-void Map::checkPeople(Cell &cell, PeopleStorage &people)
-{
-    
+void Map::checkPeople(Cell &cell, PeopleStorage &people) {
+
 
     std::vector<cv::Point> cell_corners = cell.getCorners();
 
-    for (int i = 0; i < people.circles.size(); i++)
-    {
+    for (int i = 0; i < people.circles.size(); i++) {
         People guy = people.circles[i];
-        
-        if (circleContact(cell_corners, &guy))
-        {
-            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius/2,0)});
+
+        if (circleContact(cell_corners, &guy)) {
+            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius / 2, 0)});
             cell.setRescue(people.circles[i].name);
             people.circles[i].setCell(cell);
 
@@ -190,94 +215,75 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people)
     }
 }
 
-void Map::checkObstacles(Cell &cell, Obstacle &obstacles)
-{
+void Map::checkObstacles(Cell &cell, Obstacle &obstacles) {
     bool touched = false;
-    std::vector<Triangle*> triangles = obstacles.getTriangles();
-    std::vector<Square> squares = obstacles.getSquares();
-    std::vector<Pentagon> pentagons = obstacles.getPentagons();
-    std::vector<Hexagon> hexagons = obstacles.getHexagons();
+    std::vector<Triangle *> triangles = obstacles.getTriangles();
+    std::vector<Square *> squares = obstacles.getSquares();
+    std::vector<Pentagon *> pentagons = obstacles.getPentagons();
+    std::vector<Hexagon *> hexagons = obstacles.getHexagons();
     std::vector<cv::Point> cell_corners = cell.getCorners();
-    if (!touched)
-    {
-        for (int k = 0; k < triangles.size(); k++)
-        {
-            std::vector<cv::Point> tmp_tr = triangles[k]->getCorners();
+    if (!touched) {
+        for (int k = 0; k < triangles.size(); k++) {
+            std::vector<cv::Point> tmp_tr = triangles[k]->getClippedCorners();
             // std::cout << "CHECK TRIANGLE" << std::endl;
-            if (contact(cell_corners, tmp_tr))
-            {
-                cell.refine_if_neccessary(triangles[k]->getCorners());
+            if (contact(cell_corners, tmp_tr)) {
+                cell.refine_if_neccessary(triangles[k]->getClippedCorners());
                 triangles[k]->setCell(cell);
                 touched = true;
             }
         }
     }
-    if (!touched)
-    {
-        for (int k = 0; k < squares.size(); k++)
-        {
-            std::vector<cv::Point> tmp_sq = squares[k].getCorners();
+    if (!touched) {
+        for (int k = 0; k < squares.size(); k++) {
+            std::vector<cv::Point> tmp_sq = squares[k]->getClippedCorners();
             // std::cout << "CHECK SQUARE" << std::endl;
-            if (contact(cell_corners, tmp_sq))
-            {
-                squares[k].setCell(cell);
-                cell.refine_if_neccessary(squares[k].getCorners());
+            if (contact(cell_corners, tmp_sq)) {
+                squares[k]->setCell(cell);
+                cell.refine_if_neccessary(squares[k]->getClippedCorners());
                 touched = true;
             }
         }
     }
-    if (!touched)
-    {
-        for (int k = 0; k < pentagons.size(); k++)
-        {
-            std::vector<cv::Point> tmp_pt = pentagons[k].getCorners();
+    if (!touched) {
+        for (int k = 0; k < pentagons.size(); k++) {
+            std::vector<cv::Point> tmp_pt = pentagons[k]->getClippedCorners();
             // std::cout << "CHECK PENTAGON" << std::endl;
-            if (contact(cell_corners, tmp_pt))
-            {
-                pentagons[k].setCell(cell);
-                cell.refine_if_neccessary(pentagons[k].getCorners());
+            if (contact(cell_corners, tmp_pt)) {
+                pentagons[k]->setCell(cell);
+                cell.refine_if_neccessary(pentagons[k]->getClippedCorners());
                 touched = true;
             }
         }
     }
-    if (!touched)
-    {
-        for (int k = 0; k < hexagons.size(); k++)
-        {
-            std::vector<cv::Point> tmp_hx = hexagons[k].getCorners();
+    if (!touched) {
+        for (int k = 0; k < hexagons.size(); k++) {
+            std::vector<cv::Point> tmp_hx = hexagons[k]->getClippedCorners();
             // std::cout << "CHECK HEXAGON" << std::endl;
-            if (contact(cell_corners, tmp_hx))
-            {
-                hexagons[k].setCell(cell);
-                cell.refine_if_neccessary(hexagons[k].getCorners());
+            if (contact(cell_corners, tmp_hx)) {
+                hexagons[k]->setCell(cell);
+                cell.refine_if_neccessary(hexagons[k]->getClippedCorners());
                 touched = true;
             }
         }
     }
-    if (touched)
-    {
+    if (touched) {
         cell.set_Obstacle();
     }
 };
 
-bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena)
-{
-    cv::Point top_right = arena.getTopRight();
-    cv::Point top_left = arena.getTopLeft();
-    cv::Point bottom_left = arena.getBottomLeft();
-    cv::Point bottom_right = arena.getBottomRight();
+bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena) {
+    cv::Point top_left = arena.getClippedCorners()[0]; //top_left
+    cv::Point top_right = arena.getClippedCorners()[1]; //top_right
+    cv::Point bottom_right = arena.getClippedCorners()[2]; //bottom_right
+    cv::Point bottom_left = arena.getClippedCorners()[3]; // bottom_left
 
-    for (int i = 0; i < corners.size(); i++)
-    {
+    for (int i = 0; i < corners.size(); i++) {
         if (corners[i].x >= top_right.x || corners[i].x >= bottom_right.x ||
-            corners[i].x <= top_left.x || corners[i].x <= bottom_left.x)
-        {
+            corners[i].x <= top_left.x || corners[i].x <= bottom_left.x) {
             return true;
-        }
-        else if (corners[i].y <= top_right.y || corners[i].y <= top_left.y ||
-                 corners[i].y >= bottom_right.y ||
-                 corners[i].y >= bottom_left.y)
-        {
+        } else if (corners[i].y <= top_right.y || corners[i].y <= top_left.y ||
+                   corners[i].y >= bottom_right.y ||
+                   corners[i].y >= bottom_left.y) {
             return true;
         }
     }
@@ -285,18 +291,14 @@ bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena)
 };
 
 void Map::findMaxMinY(int &max_y, int &min_y,
-                      const std::vector<cv::Point> poly)
-{
+                      const std::vector<cv::Point> poly) {
     min_y = setting.IMG_LENGHT;
     max_y = 0;
-    for (int i = 0; i < poly.size(); i++)
-    {
-        if (poly[i].y < min_y)
-        {
+    for (int i = 0; i < poly.size(); i++) {
+        if (poly[i].y < min_y) {
             min_y = poly[i].y;
         }
-        if (poly[i].y > max_y)
-        {
+        if (poly[i].y > max_y) {
             max_y = poly[i].y;
         }
     }
@@ -304,21 +306,18 @@ void Map::findMaxMinY(int &max_y, int &min_y,
 
 // check if a cell is in contact with a polygon,
 bool Map::contact(std::vector<cv::Point> cell,
-                  const std::vector<cv::Point> poly)
-{
+                  const std::vector<cv::Point> poly) {
     int max_y, min_y;
     findMaxMinY(max_y, min_y, poly);
     // std::cout<<"poly size : "<<poly.size()<<" max_y : "<<max_y<<" min_y :
     // "<<min_y<<std::endl;
-    for (int i = 0; i < cell.size(); i++)
-    {
+    for (int i = 0; i < cell.size(); i++) {
         cv::Point point = cell[i];
         double x = point.x;
         double y = point.y;
 
         unsigned short intersections = 0;
-        for (int j = 0; j < poly.size(); j++)
-        {
+        for (int j = 0; j < poly.size(); j++) {
             cv::Point p1 = poly[j];
             // next point
             cv::Point p2;
@@ -331,8 +330,7 @@ bool Map::contact(std::vector<cv::Point> cell,
             // if x is out bound not intersect
             if ((x <= p1.x && x <= p2.x) || (x > p1.x && x > p2.x))
                 continue;
-            if (y > max_y || y < min_y)
-            {
+            if (y > max_y || y < min_y) {
                 continue;
             }
 
@@ -341,14 +339,12 @@ bool Map::contact(std::vector<cv::Point> cell,
             double y_int = p1.y + (p2.y - p1.y) * (x - p1.x) / (p2.x - p1.x);
 
             // if y_int is higher than y do intersect
-            if (y <= y_int)
-            {
+            if (y <= y_int) {
                 intersections++;
             }
         }
         /* is odd */
-        if (intersections % 2)
-        {
+        if (intersections % 2) {
             return true;
         }
     }

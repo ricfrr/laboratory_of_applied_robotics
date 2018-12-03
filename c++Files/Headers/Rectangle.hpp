@@ -55,7 +55,9 @@ public:
                   const std::vector<cv::Point> &corners);
 
     cv::Point top_left, top_right, bottom_left, bottom_right;
-    
+
+
+
     ///assignes points to 1., 2., 3 etc point.
     void assign_points();
 };
