@@ -162,6 +162,18 @@ void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
     grid = this->grid;
 }
 
+Cell * Map::getCell(cv::Point forPoint){
+    
+    double x_ratio = getImageWidth() / getGridColNum();
+    double y_ratio = getImageHeight() / getGridRowNum();
+    
+    int grid_row_check = (int) round(forPoint.y / y_ratio) - 1;
+    int grid_col_check = (int) round(forPoint.x / x_ratio) - 1;
+    
+    return grid[grid_row_check][grid_col_check];
+    
+}
+
 Obstacle Map::getObstacles() {
     return this->obstacles;
 }
@@ -368,3 +380,178 @@ int Map::getGridRowNum() {
     return n_row;
 }
 
+std::vector<std::vector<Cell*>> Map::getNearestNeighbors(Cell * &cell){
+    return {
+        getTopNeighbors(cell),
+        getLeftNeighbors(cell),
+        getBottomNeighbors(cell),
+        getRightNeighbors(cell)
+        
+    };
+}
+
+std::vector<std::vector<Cell*>> Map::getNearestNeighbors(cv::Point cellInPoint){
+    
+    Cell* cell = getCell(cellInPoint);
+    
+    return {
+        getTopNeighbors(cell),
+        getLeftNeighbors(cell),
+        getBottomNeighbors(cell),
+        getRightNeighbors(cell)
+        
+    };
+}
+
+std::vector<std::vector<Cell*>> Map::getEmptyNearestNeighbors(Cell * &cell){
+    
+    std::vector<std::vector<Cell*>> cells = getNearestNeighbors(cell);
+    std::vector<std::vector<Cell*>> emptyCells;
+    
+    for(int i=0;i<cells.size();i++){
+        std::vector<Cell*> subresult;
+        for(int j=0;j<cells[i].size();j++)
+            if(cells[i][j]->getState() == EMPTY)
+                subresult.push_back(cells[i][j]);
+        emptyCells.push_back(subresult);
+    }
+    
+    return emptyCells;
+}
+
+std::vector<std::vector<cv::Point>> Map::getEmptyNearestNeighborsPoints(Cell * &cell){
+    std::vector<std::vector<cv::Point>> points;
+    std::vector<std::vector<Cell*>> cells = getEmptyNearestNeighbors(cell);
+    
+    for(int i=0;i<cells.size();i++){
+        std::vector<cv::Point> ps;
+        for(int j=0;j<cells[i].size();j++)
+            ps.push_back(cells[i][j]->center());
+        points.push_back(ps);
+    }
+    
+    
+    return points;
+}
+
+std::vector<Cell *> Map::getTopNeighbors(Cell* &forCell){
+    
+    double translation_y = forCell->height();
+    double translation_x = forCell->width();
+    
+    std::vector<Cell*> cells;
+    
+    cv::Point centerpoint = forCell->center();
+    centerpoint.y += translation_y;
+    Cell* center = getCell(centerpoint);
+    
+    if(center != nullptr)
+        cells.push_back(center);
+    
+    cv::Point leftpoint = centerpoint;
+    leftpoint.x -= translation_x;
+    Cell* left = getCell(leftpoint);
+    
+    if(left != nullptr)
+        cells.push_back(left);
+    
+    cv::Point rightpoint = centerpoint;
+    rightpoint.x += translation_x;
+    Cell* right = getCell(rightpoint);
+    
+    if(right != nullptr)
+        cells.push_back(right);
+    
+    
+    return cells;
+}
+std::vector<Cell *> Map::getLeftNeighbors(Cell* &forCell){
+    double translation_y = forCell->height();
+    double translation_x = forCell->width();
+    
+    std::vector<Cell*> cells;
+    
+    cv::Point centerpoint = forCell->center();
+    centerpoint.x -= translation_x;
+    Cell* center = getCell(centerpoint);
+    
+    if(center != nullptr)
+        cells.push_back(center);
+    
+    cv::Point leftpoint = centerpoint;
+    leftpoint.y -= translation_y;
+    Cell* left = getCell(leftpoint);
+    
+    if(left != nullptr)
+        cells.push_back(left);
+    
+    cv::Point rightpoint = centerpoint;
+    rightpoint.y += translation_y;
+    Cell* right = getCell(rightpoint);
+    
+    if(right != nullptr)
+        cells.push_back(right);
+    
+    
+    return cells;
+}
+std::vector<Cell *> Map::getRightNeighbors(Cell* &forCell){
+    double translation_y = forCell->height();
+    double translation_x = forCell->width();
+    
+    std::vector<Cell*> cells;
+    
+    cv::Point centerpoint = forCell->center();
+    centerpoint.x += translation_x;
+    Cell* center = getCell(centerpoint);
+    
+    if(center != nullptr)
+        cells.push_back(center);
+    
+    cv::Point leftpoint = centerpoint;
+    leftpoint.y -= translation_y;
+    Cell* left = getCell(leftpoint);
+    
+    if(left != nullptr)
+        cells.push_back(left);
+    
+    cv::Point rightpoint = centerpoint;
+    rightpoint.y += translation_y;
+    Cell* right = getCell(rightpoint);
+    
+    if(right != nullptr)
+        cells.push_back(right);
+    
+    
+    return cells;
+}
+std::vector<Cell *> Map::getBottomNeighbors(Cell* &forCell){
+    double translation_y = forCell->height();
+    double translation_x = forCell->width();
+    
+    std::vector<Cell*> cells;
+    
+    cv::Point centerpoint = forCell->center();
+    centerpoint.y -= translation_y;
+    Cell* center = getCell(centerpoint);
+    
+    if(center != nullptr)
+        cells.push_back(center);
+    
+    cv::Point leftpoint = centerpoint;
+    leftpoint.x -= translation_x;
+    Cell* left = getCell(leftpoint);
+    
+    if(left != nullptr)
+        cells.push_back(left);
+    
+    cv::Point rightpoint = centerpoint;
+    rightpoint.x += translation_x;
+    Cell* right = getCell(rightpoint);
+    
+    if(right != nullptr)
+        cells.push_back(right);
+    
+    
+    return cells;
+}

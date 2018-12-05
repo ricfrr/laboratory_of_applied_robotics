@@ -29,7 +29,7 @@ int main(int argc, const char *argv[]){
                           Position(cv::Point2d(100,550),3/4*M_PI),0.05,&map);
     
     Visualizer v(map,path);
-    //v.visualize();
+    v.visualize();
     v.simulate();
 
     return 0;

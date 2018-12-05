@@ -68,13 +68,8 @@ std::vector<Point2d>* findIntermediatePoints(Line &line, double gap, double &max
 }
 
 bool collision(cv::Point2d point, Map *map) {
-    double x_ratio = map->getImageWidth() / map->getGridColNum();
-    double y_ratio = map->getImageHeight() / map->getGridRowNum();
-
-    int grid_row_check = (int) round(point.y / y_ratio) - 1;
-    int grid_col_check = (int) round(point.x / x_ratio) - 1;
-    //std::cout<<"row grid : "<<grid_row_check<<" col grid  : "<<grid_col_check<<std::endl;
-    bool isCollision = map->grid[grid_row_check][grid_col_check]->isObstacle();
+    
+    bool isCollision = map->getCell(point)->isObstacle();
 
     if (isCollision) {
         std::cout << "collision" << std::endl;

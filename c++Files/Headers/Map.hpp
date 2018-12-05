@@ -46,6 +46,8 @@ public:
     void getArenaCells(std::vector<Cell *> &cells);
 
     void getGrid(std::vector<std::vector<Cell *>> &grid);
+    
+    Cell * getCell(cv::Point forPoint);
 
     Obstacle getObstacles();
 
@@ -84,6 +86,19 @@ public:
     int getGridRowNum();
 
     std::vector<std::vector<Cell *>> grid;
+    
+    /// returns 4 vectors with top, right, bottom & left neighboring cells for a cell
+    std::vector<std::vector<Cell*>> getNearestNeighbors(Cell * &cell);
+    
+    /// returns 4 vectors with top, right, bottom & left neighboring empty cells for a cell
+    std::vector<std::vector<Cell*>> getEmptyNearestNeighbors(Cell * &cell);
+    
+    /// returns 4 vectors with top, right, bottom & left neighboring cells for a cell at a point
+    std::vector<std::vector<Cell*>> getNearestNeighbors(cv::Point cellInPoint);
+    
+    /// returns 4 vectors with top, right, bottom & left neighboring center points of empty cells for a cell
+    std::vector<std::vector<cv::Point>> getEmptyNearestNeighborsPoints(Cell * &cell);
+    
 
 private:
 
@@ -120,6 +135,11 @@ private:
 
     int n_row = setting.N_ROW_MAP;
     int n_col = setting.N_COL_MAP;
+    
+    std::vector<Cell *> getTopNeighbors(Cell* &forCell);
+    std::vector<Cell *> getLeftNeighbors(Cell* &forCell);
+    std::vector<Cell *> getRightNeighbors(Cell* &forCell);
+    std::vector<Cell *> getBottomNeighbors(Cell* &forCell);
 };
 
 #endif /* Map_hpp */

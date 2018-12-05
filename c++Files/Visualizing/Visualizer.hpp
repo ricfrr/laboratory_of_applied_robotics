@@ -36,6 +36,11 @@ public:
     ///simulate the robots way along the path
     void simulate();
     
+    ///hightlight nearest neighbours
+    void colorNearestNeighbours(cv::Mat &result);
+    
+    void placePoint(cv::Point point,cv::Mat &result ,cv::Scalar color = cv::Scalar(0,0,255));
+    
 private:
     Map * p_map;
     Path * p_path;

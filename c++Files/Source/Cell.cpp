@@ -474,3 +474,38 @@ void Cell::split(std::vector<cv::Point> forShape){
     
 //    findState({cv::Point(20,20),cv::Point(50,20),cv::Point(50,50),cv::Point(20,50)});
 }
+
+double Cell::width(){
+    
+    return  top_right.x - top_left.x;
+}
+
+double Cell::height(){
+    return bottom_left.y - top_left.y;
+}
+
+cv::Point Cell::center(){
+    
+    return cv::Point(
+                     top_left.x + width()/2,
+                     top_left.y + height()/2
+    );
+}
+
+bool Cell::isChildOf(Cell* &cell){
+    
+    std::vector<Cell*> subcells = cell->getAllSubcells();
+    
+    if(subcells.empty())
+        return false;
+    
+    if (std::find(subcells.begin(), subcells.end(), this) != subcells.end())
+        return true;
+    
+//    for(int i=0; i<subcells.size(); i++)
+//        if(subcells[i]->center() == this->center())
+//            return true;
+    
+    return false;
+
+}

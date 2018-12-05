@@ -148,6 +148,18 @@ class Cell
     
     bool contains_object();
     
+    ///the width of the cell
+    double width();
+    
+    ///the height of the cell
+    double height();
+    
+    ///the center point of the cell
+    cv::Point center();
+    
+    ///checks if a cell is a subcell of a given cell
+    bool isChildOf(Cell* &cell);
+    
     /**
      \brief a function that checks if a collision between an object and the cell will take place
      \arg withObject the point cloud of the object that will collide

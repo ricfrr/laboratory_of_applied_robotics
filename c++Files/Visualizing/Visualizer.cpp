@@ -49,8 +49,13 @@ void Visualizer::play(){
     
     print_arena(result);
     print_grid(result);
+    
+    //testing
+    colorNearestNeighbours(result);
+    
     print_shapes(result);
     print_path(result);
+
     
     cv::imshow(windowtitle, result);
 }
@@ -158,21 +163,21 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     }
     
     //print Squares
-    std::vector<Square> sqr = obstacle.getSquares();
+    std::vector<Square*> sqr = obstacle.getSquares();
     for (int i=0;i<sqr.size();i++){
-        cv::fillConvexPoly(result, sqr[i].getCorners(), cv::Scalar(200,200,200));
+        cv::fillConvexPoly(result, sqr[i]->getCorners(), cv::Scalar(200,200,200));
     }
     
     //print Hexagons
-    std::vector<Hexagon> hex = obstacle.getHexagons();
+    std::vector<Hexagon*> hex = obstacle.getHexagons();
     for (int i=0;i<hex.size();i++){
-        cv::fillConvexPoly(result, hex[i].getCorners(), cv::Scalar(150,150,150));
+        cv::fillConvexPoly(result, hex[i]->getCorners(), cv::Scalar(150,150,150));
     }
     
     //print Pentagons
-    std::vector<Pentagon> pen = obstacle.getPentagons();
+    std::vector<Pentagon*> pen = obstacle.getPentagons();
     for (int i=0;i<pen.size();i++){
-        cv::fillConvexPoly(result, pen[i].getCorners(), cv::Scalar(50,50,50));
+        cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(50,50,50));
     }
     
     //print exit point
@@ -265,4 +270,63 @@ void Visualizer::simulate(){
         cv::waitKey(50);
     }
     visualize();
+}
+
+void Visualizer::colorNearestNeighbours(cv::Mat &result){
+    
+    Obstacle ob = p_map->getObstacles();
+    
+    std::vector<Square*> sq = ob.getSquares();
+    std::vector<Pentagon*> pg = ob.getPentagons();
+    std::vector<Hexagon*> hx = ob.getHexagons();
+    std::vector<Triangle*> tr = ob.getTriangles();
+    
+    std::vector<Cell*> cells;
+    
+    for(int i=0;i<sq.size();i++){
+        std::vector<Cell*> c = sq[i]->getCell();
+        for(int j=0;j<c.size();j++)
+            cells.push_back(c[j]);
+    }
+    for(int i=0;i<pg.size();i++){
+        std::vector<Cell*> c = pg[i]->getCell();
+        for(int j=0;j<c.size();j++)
+            cells.push_back(c[j]);
+    }
+    for(int i=0;i<hx.size();i++){
+        std::vector<Cell*> c = hx[i]->getCell();
+        for(int j=0;j<c.size();j++)
+            cells.push_back(c[j]);
+    }
+    for(int i=0;i<tr.size();i++){
+        std::vector<Cell*> c = tr[i]->getCell();
+        for(int j=0;j<c.size();j++)
+            cells.push_back(c[j]);
+    }
+    
+    for(int i = 0;i<cells.size(); i++)
+        if(cells[i]->getState() == MIXED){
+            std::vector<std::vector<cv::Point>> n = p_map->getEmptyNearestNeighborsPoints(cells[i]);
+            for(int j=0; j<n.size();j++)
+                for(int k=0;k<n[j].size();k++)
+                    placePoint(n[j][k], result, cv::Scalar(0,255,0));
+        }
+    
+//    for(int i = 0;i<cells.size(); i++){
+//        if(cells[i]->getState() == MIXED){
+//            std::vector<std::vector<Cell*>> n = p_map->getNearestNeighbors(cells[i]);
+//            for(int j=0; j<n.size();j++)
+//                for(int k=0;k<n[j].size();k++){
+//                    //color_pixels_from(*n[j][k], result,Vec3b(0,0,0));
+//                    if(n[j][k]->getState() == EMPTY)
+//                        placePoint(n[j][k]->center(), result, cv::Scalar(0,255,0));
+//                    else
+//                        placePoint(n[j][k]->center(), result);
+//                }
+//        }
+//    }
+}
+
+void Visualizer::placePoint(cv::Point point,cv::Mat &result, cv::Scalar color){
+    cv::circle(result, point, 1, color,-1);
 }
