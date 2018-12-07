@@ -57,7 +57,7 @@ std::vector<Line> DubinPath::dubinShortestPath(std::vector<cv::Point> &alternati
                 lines = tmp_lines;
             }
             else{
-                std::cout<<"non path valido\nreturning alternative points"<<std::endl;
+                //std::cout<<"non path valido\nreturning alternative points"<<std::endl;
                 
                 std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(coll.second);
                 

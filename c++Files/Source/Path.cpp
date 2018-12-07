@@ -159,6 +159,9 @@ void Path::split(Path &path, cv::Point intermediate){
     bool ok = false;
     
     do{
+        
+        orientation_i = 0;
+        
         if(!path.end_point.orientation_locked)
             path.end_point.orientation = orientation_e;
         

@@ -168,7 +168,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     for (int i=0;i<sqr.size();i++){
         std::vector<Cell*> cs = sqr[i]->getCell();
         colorAllCellsContainingObstacle(cs, result);
-        cv::fillConvexPoly(result, sqr[i]->getCorners(), cv::Scalar(200,200,200));
+        cv::fillConvexPoly(result, sqr[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print Hexagons
@@ -176,7 +176,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     for (int i=0;i<hex.size();i++){
         std::vector<Cell*> cs = hex[i]->getCell();
         colorAllCellsContainingObstacle(cs, result);
-        cv::fillConvexPoly(result, hex[i]->getCorners(), cv::Scalar(150,150,150));
+        cv::fillConvexPoly(result, hex[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print Pentagons
@@ -185,7 +185,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
         
         std::vector<Cell*> cs = pen[i]->getCell();
         colorAllCellsContainingObstacle(cs, result);
-        //cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(50,50,50));
+        cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(100,100,100));
     }
     
     //print exit point

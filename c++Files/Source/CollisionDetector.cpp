@@ -120,7 +120,7 @@ std::pair<bool,Cell*> CollisionDetector::detectCollision(std::vector<Line> &line
             std::pair<bool,Cell*> coll = collision((*intermediate_points)[j], map);
             
             if (coll.first) {
-                std::cout << "collided at cell with center " << coll.second->center() << std::endl;
+                //std::cout << "collided at cell with center " << coll.second->center() << std::endl;
                 return std::pair<bool,Cell*>(true,coll.second);
             }
         }

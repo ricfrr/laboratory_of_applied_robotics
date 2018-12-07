@@ -2,6 +2,7 @@
 #define ExitPoint_hpp
 #include "Rectangle.hpp"
 #include <vector>
+#include "Settings.hpp"
 
 using namespace cv;
 /**
@@ -25,6 +26,8 @@ public:
    * @param img image of the arena
    */
   void findExitPoint(const Mat &img);
+    
+    std::pair<cv::Point,double> getEntryPoint();
 
 
 private:

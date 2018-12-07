@@ -63,3 +63,54 @@ void ExitPoint::findExitPoint(const Mat &img)
     std::cout << "Exit : " << corners << std::endl;
 
 }
+
+std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
+    
+    cv::Point center = top_left + (bottom_right - top_left)/2;
+    
+    int height =  bottom_right.y - top_left.y;
+    int width = bottom_right.x - top_left.x;
+    
+    //where is the exit in the map
+    bool left = false;
+    bool right = false;
+    bool top = false;
+    bool bottom = false;
+    
+    if(top_left.x < 20){
+        left = true;
+        center.x += width/2;
+    }
+    else if(top_right.x > Settings().IMG_WIDTH -20){
+        right = true;
+        center.x -= width/2;
+    }
+    
+    if(top_left.y < 20)
+        top = true;
+    else if(bottom_left.y > Settings().IMG_LENGHT - 20)
+        bottom = true;
+    
+    double angle = 0;
+    
+    if(height > width){
+        //vertically
+        if(left)
+            angle = 1;
+        else if(right)
+            angle = 0;
+        else
+            std::runtime_error("ohh it's not so simple");
+    }
+    else{
+        //horizontal
+        if(top)
+            angle = 0.5;
+        else if(bottom)
+            angle = 1.5;
+        else
+            std::runtime_error("ohh it's not so simple");
+    }
+    
+    return std::pair<cv::Point,double> (center, angle * M_PI);
+}
