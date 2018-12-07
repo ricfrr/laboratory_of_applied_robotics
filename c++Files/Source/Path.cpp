@@ -154,7 +154,8 @@ void Path::findPath() {
 void Path::split(Path &path, cv::Point intermediate){
     
     double orientation_i = 0;
-    double orientation_e = 0;
+    double orientation_e = path.end_point.orientation;
+    double max_orientation = orientation_e + 2.0*M_PI;
     Path one,two;
     bool ok = false;
     
@@ -192,8 +193,7 @@ void Path::split(Path &path, cv::Point intermediate){
         orientation_i += 0.1;
     }
         orientation_e += 1;
-    }while(orientation_e < 2*M_PI && path.end_point.orientation_locked == false && ok == false);
-    
+    }while(orientation_e < max_orientation && path.end_point.orientation_locked == false && ok == false);
     
     if(ok)
         path = Path(one,two);

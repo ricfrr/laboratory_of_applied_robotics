@@ -309,7 +309,9 @@ bool Cell::isBorder(cv::Point forPoint)
 };
 bool Cell::isObstacle(cv::Point forPoint)
 {
-        
+     if(isExit())
+         return false;
+    
     if(isEmpty())
         return false;
     else if(state == FULL && obstacle)

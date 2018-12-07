@@ -29,23 +29,19 @@ int main(int argc, const char *argv[]){
 //    cv::Point2d(100,550)
 
     double or1 = 0*M_PI;
-    double or2 = 3.0/2.0*M_PI;
-    
+    double or2 = 1.5*M_PI;
+    std::pair<cv::Point,double> exit = map.getExitPoint().getEntryPoint();
+    Position finalPos =  Position(exit.first,exit.second);finalPos.orientation_locked = true;
+
     Path *path1_2 =     new Path(Position(circle[3]->getCenter(),or1),
                                  Position(circle[0]->getCenter(),or2),0.05,&map);
-    Path *path2_3 =     new Path(Position(circle[0]->getCenter(),path1_2->end_point.getOrientation()),
+    Path *path2_3 =     new Path(path1_2->end_point,
                                  Position(circle[1]->getCenter(),or2),0.05,&map);
-    
-    Position endo = Position(circle[2]->getCenter(),1.5*M_PI);
-    endo.orientation_locked = true;
-    Path *path3_4 =     new Path(Position(circle[1]->getCenter(),path2_3->end_point.getOrientation()),
-                                 endo,0.05,&map);
-    
-    std::pair<cv::Point,double> exit = map.getExitPoint().getEntryPoint();
-    
-    Path* path4_x =     new Path(endo,
-                                 Position(exit.first,exit.second),0.05,&map);
-    
+    Path *path3_4 =     new Path(path2_3->end_point,
+                                 Position(circle[2]->getCenter(),or2),0.05,&map);
+    Path* path4_x =     new Path(path3_4->end_point,
+                                finalPos,0.05,&map);
+
     Path* path1_3 =     new Path(*path1_2,*path2_3);
     Path* path1_4 =     new Path(*path1_3,*path3_4);
     Path* path1_exit =  new Path(*path1_4, *path4_x);

@@ -190,6 +190,9 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     
     //print exit point
     ExitPoint ex = p_map->getExitPoint();
+    std::vector<Cell*> cells = ex.getCell();
+    colorAllCellsContainingObjects(cells, result,Vec3b(0,191,200));
+    
     cv::rectangle(result, ex.getTopLeft(), ex.getBottomRight(), cv::Scalar(0,191,255), -1,LINE_8,0);
     
     //print people

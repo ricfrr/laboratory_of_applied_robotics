@@ -52,7 +52,7 @@ std::vector<Line> DubinPath::dubinShortestPath(std::vector<cv::Point> &alternati
             std::pair<bool,Cell*> coll = collisionDetector.detectCollision(tmp_lines, map,path_coordinates.getMaxCurvature());
             
             if (!coll.first) {
-                std::cout<<"path valido"<<std::endl;
+                //std::cout<<"path valido"<<std::endl;
                 L = Lcur;
                 lines = tmp_lines;
             }
