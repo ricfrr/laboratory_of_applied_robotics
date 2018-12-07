@@ -25,10 +25,23 @@ int main(int argc, const char *argv[]){
     PeopleStorage peops = map.getPeople();
     std::vector<Circle*> circle = peops.getCircles();
     
-    Path *path = new Path(Position(cv::Point2d(100,400),0),
-                          Position(cv::Point2d(100,550),3/4*M_PI),0.05,&map);
+//    cv::Point2d(100,400)
+//    cv::Point2d(100,550)
+
+    double or1 = 0*M_PI;
+    double or2 = 3.0/2.0*M_PI;
     
-    Visualizer v(map,path);
+    Path *path1_2 = new Path(Position(circle[3]->getCenter(),or1),
+                          Position(circle[0]->getCenter(),or2),0.05,&map);
+    Path *path2_3 = new Path(Position(circle[0]->getCenter(),path1_2->end_point.getOrientation()),
+                          Position(circle[1]->getCenter(),or2),0.05,&map);
+    Path *path3_4 = new Path(Position(circle[1]->getCenter(),path2_3->end_point.getOrientation()),
+                          Position(circle[2]->getCenter(),or2),0.05,&map);
+    
+    Path* path1_3 = new Path(*path1_2,*path2_3);
+    Path* path1_4 = new Path(*path1_3,*path3_4);
+    
+    Visualizer v(map,path1_4);
     v.visualize();
     v.simulate();
 

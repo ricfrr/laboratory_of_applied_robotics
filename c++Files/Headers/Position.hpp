@@ -40,12 +40,16 @@ public:
      * @return the orientation of the position
      */
     double getOrientation();
+    
+    bool orientation_locked = false;
+    
+    double orientation;
 
 private:
 
 
     cv::Point2d coordinates;
-    double orientation;
+    
 };
 
 #endif /* Position_hpp */

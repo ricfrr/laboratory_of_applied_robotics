@@ -9,7 +9,7 @@
 #include "../Headers/Robot.hpp"
 
 Robot::Robot(){
-    this->radius = 20;
+    this->radius = 10;
     this->center = cv::Point(20,20);
     this->data = nullptr;
 }

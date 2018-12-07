@@ -11,7 +11,7 @@ People::~People()
 
 People::People(std::pair<int,int> digit, cv::Rect rect){
     this->name = digit.first;
-    this->radius = std::min(rect.height,rect.width);
+    this->radius = std::min(rect.height,rect.width)/2;
     this->center = cv::Point(rect.x + rect.width/2, rect.y + rect.height/2);
     this->confidence = digit.second;
 }

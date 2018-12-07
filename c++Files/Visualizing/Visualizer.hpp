@@ -61,6 +61,10 @@ private:
     
     void colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color = Vec3b(200,200,200));
     
+    void colorAllCellsContainingObstacle(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color = Vec3b(200,200,200));
+    
+    void drawVector(Position pos, cv::Mat &result);
+    
     Robot * car;
 };
 

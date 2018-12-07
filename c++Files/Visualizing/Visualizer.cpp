@@ -155,7 +155,8 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     //print triangles;
     std::vector<Triangle*> tri = obstacle.getTriangles();
     for (int i=0;i<tri.size();i++){
-        
+        std::vector<Cell*> cs = tri[i]->getCell();
+        colorAllCellsContainingObstacle(cs, result);
         std::vector<Cell*>tricells = tri[i]->getCell();
         //colorAllCellsContainingObjects(tricells, result, Vec3b(200,200,200));
         
@@ -165,19 +166,26 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     //print Squares
     std::vector<Square*> sqr = obstacle.getSquares();
     for (int i=0;i<sqr.size();i++){
+        std::vector<Cell*> cs = sqr[i]->getCell();
+        colorAllCellsContainingObstacle(cs, result);
         cv::fillConvexPoly(result, sqr[i]->getCorners(), cv::Scalar(200,200,200));
     }
     
     //print Hexagons
     std::vector<Hexagon*> hex = obstacle.getHexagons();
     for (int i=0;i<hex.size();i++){
+        std::vector<Cell*> cs = hex[i]->getCell();
+        colorAllCellsContainingObstacle(cs, result);
         cv::fillConvexPoly(result, hex[i]->getCorners(), cv::Scalar(150,150,150));
     }
     
     //print Pentagons
     std::vector<Pentagon*> pen = obstacle.getPentagons();
     for (int i=0;i<pen.size();i++){
-        cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(50,50,50));
+        
+        std::vector<Cell*> cs = pen[i]->getCell();
+        colorAllCellsContainingObstacle(cs, result);
+        //cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(50,50,50));
     }
     
     //print exit point
@@ -191,14 +199,14 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     std::vector<People> c = p.circles;
     for (int i=0;i<c.size();i++){
         
-        cv::circle(result, c[i].getCenter(), c[i].getRadius()/2, cv::Scalar(30,90,180), -1,LINE_8,0);
+        cv::circle(result, c[i].getCenter(), c[i].getRadius(), cv::Scalar(30,90,180), -1,LINE_8,0);
 
         cv::putText(result, std::to_string(c[i].name), c[i].getCenter(),
                 FONT_HERSHEY_COMPLEX_SMALL, 1.5, cvScalar(255,255,255), 1, CV_AA);
     }
     
     //print Car
-    cv::circle(result, car->getCenter(), car->getRadius()/2, car->color, -1,LINE_8,0);
+    cv::circle(result, car->getCenter(), car->getRadius(), car->color, -1,LINE_8,0);
     
     
     return result;
@@ -226,16 +234,53 @@ void Visualizer::colorAllCellsContainingObjects(std::vector<Cell*> &cells, cv::M
     
 }
 
+void Visualizer::colorAllCellsContainingObstacle(std::vector<Cell*> &cells, cv::Mat &inImg, Vec3b color){
+    
+    for(int c = 0;c<cells.size();c++){
+        
+        
+        if(cells[c]->getSubcells().empty()){
+            color_pixels_from(*cells[c], inImg, color);
+            continue;
+        }
+        
+        std::vector<Cell*> subcells = cells[c]->getAllSubcells();
+        
+        for(int i=0;i<subcells.size();i++){
+            if(subcells[i]->isObstacle() && subcells[i]->getSubcells().empty())
+                color_pixels_from(*subcells[i], inImg, color);
+            else if(subcells[i]->getSubcells().empty())
+                color_pixels_from(*subcells[i], inImg, Vec3b(255,0,255));
+        }
+        
+        
+    }
+    
+}
+
 cv::Mat Visualizer::print_path(cv::Mat &result){
     
     std::vector<Line> lines = p_path->getLines();
     
     
-    for(int i=0;i<lines.size();i++)
-        cv::line(
-                 result,
-                 cv::Point(lines[i].getStartPoint().getCoordinates().x,lines[i].getStartPoint().getCoordinates().y),
-                 cv::Point(lines[i].getEndPoint().getCoordinates().x,lines[i].getEndPoint().getCoordinates().y)   , cv::Scalar(255,0,0),2);
+    for(int i=0;i<lines.size();i++){
+//        cv::line(
+//                 result,
+//                 cv::Point(lines[i].getStartPoint().getCoordinates().x,lines[i].getStartPoint().getCoordinates().y),
+//                 cv::Point(lines[i].getEndPoint().getCoordinates().x,lines[i].getEndPoint().getCoordinates().y)   , cv::Scalar(255,0,0),2);
+        std::vector<cv::Point2d> ps = lines[i].getIntermediatePoints();
+        for(int j=0;j<ps.size();j++){
+            Cell *cell = p_map->getCell(ps[j]);
+            if(cell->contains_object())
+                cv::circle(result, ps[j], 1, cv::Scalar(255,255,50),-1);
+            else{
+                cv::circle(result, ps[j], 1, cv::Scalar(255,100,0),-1);
+            }
+        }
+    }
+    
+    drawVector(p_path->start_point, result);
+    drawVector(p_path->end_point, result);
     
     return result;
 }
@@ -263,11 +308,12 @@ void Visualizer::simulate(){
             points.push_back(cv::Point(ipoints[j]));
     }
     
-    
+    while(cv::waitKey(0)){
     for(int i=0;i<points.size();i++){
         this->car->setCenter(points[i]);
         play();
         cv::waitKey(50);
+    }
     }
     visualize();
 }
@@ -329,4 +375,19 @@ void Visualizer::colorNearestNeighbours(cv::Mat &result){
 
 void Visualizer::placePoint(cv::Point point,cv::Mat &result, cv::Scalar color){
     cv::circle(result, point, 1, color,-1);
+}
+
+void Visualizer::drawVector(Position pos, cv::Mat &result){
+        
+    double length = 30;
+    double x = pos.getCoordinates().x + cos(pos.orientation)*length;
+    double y = pos.getCoordinates().y + sin(pos.orientation)*length;
+        
+    cv::Point end = cv::Point(x,y);
+    cv::line(result, pos.getCoordinates(), end, cv::Scalar(0,0,255),3);
+    cv::circle(result, end, 6, cv::Scalar(0,0,255),-1);
+    
+        
+        
+    
 }

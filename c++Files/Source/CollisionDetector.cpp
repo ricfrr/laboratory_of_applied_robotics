@@ -25,11 +25,11 @@ double arcLength(cv::Point2d initial_point, cv::Point2d final_point, double curv
     double d = distanceEuclidean(initial_point, final_point);
     curvature = abs(curvature);
     double res = 0;
-    double sin_angle = (d * curvature) / 2;
+    double sin_angle = (d * curvature) / 2.0;
     double asin_v = asin(sin_angle);
-    double numerator = 2 * asin_v;
+    double numerator = 2.0 * asin_v;
     res = numerator / curvature;
-    double perimeter = (1 / curvature) * 2 * M_PI;
+    double perimeter = (1.0 / curvature) * 2.0 * M_PI;
     // useful when then distance between start point and end point i greater than half perimeter
     if (res < old_distance) {
         res = perimeter - res;
@@ -67,32 +67,66 @@ std::vector<Point2d>* findIntermediatePoints(Line &line, double gap, double &max
     return tmp_intermediate_points;
 }
 
-bool collision(cv::Point2d point, Map *map) {
-    
-    bool isCollision = map->getCell(point)->isObstacle();
+//bool collision(cv::Point2d point, Map *map) {
+//
+//    bool isCollision = map->getCell(point)->isObstacle();
+//
+//    if (isCollision) {
+//        std::cout << "collision" << std::endl;
+//    }
+//    return isCollision;
+//}
 
-    if (isCollision) {
-        std::cout << "collision" << std::endl;
+std::pair<bool,Cell*> collision(cv::Point2d point, Map *map) {
+    
+    Cell * cell = map->getCell(point);
+    
+    std::vector<Cell*> subcells = cell->getAllSubcells();
+    
+    
+    if(subcells.empty()){
+        if(cell->isObstacle(point)){
+            std::cout << "collision" << std::endl;
+            return std::pair<bool,Cell*>(true,cell);
+        }
     }
-    return isCollision;
+        
+    
+    for(int i=0;i<subcells.size();i++){
+        if(subcells[i]->contains_object() &&  subcells[i]->getSubcells().empty() && !subcells[i]->isRescue())
+            if(subcells[i]->pointInside(point)){
+                std::cout << "collision" << std::endl;
+                return std::pair<bool,Cell*>(true,subcells[i]);
+            }
+    }
+    
+    //bool isCollision = cell->isObstacle(point);
+    
+    return std::pair<bool,Cell*>(false,cell);
 }
 
 
-bool CollisionDetector::detectCollision(std::vector<Line> &lines_i, Map *map, double max_curvature) {
+std::pair<bool,Cell*> CollisionDetector::detectCollision(std::vector<Line> &lines_i, Map *map, double max_curvature) {
+    
     int diameter = 2;
     for (int i = 0; i < lines_i.size(); i++) {
+        
         //find the intermediate point and detect if it is a collision
         std::vector<cv::Point2d>* intermediate_points;
         intermediate_points = findIntermediatePoints(lines_i[i], diameter, max_curvature);
+        
         for (int j = 0; j < intermediate_points->size(); j++) {
-            if (collision((*intermediate_points)[j], map)) {
-                std::cout << "collided " << std::endl;
-                return true;
+            
+            std::pair<bool,Cell*> coll = collision((*intermediate_points)[j], map);
+            
+            if (coll.first) {
+                std::cout << "collided at cell with center " << coll.second->center() << std::endl;
+                return std::pair<bool,Cell*>(true,coll.second);
             }
         }
         lines_i[i].setIntermediatePoints(*intermediate_points);
     }
-    return false;
+    return std::pair<bool,Cell*>(false,nullptr);;
 }
 
 

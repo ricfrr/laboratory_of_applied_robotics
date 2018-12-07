@@ -16,7 +16,7 @@ DubinPath::~DubinPath() {
 
 };
 
-std::vector<Line> DubinPath::dubinShortestPath() {
+std::vector<Line> DubinPath::dubinShortestPath(std::vector<cv::Point> &alternative_Points) {
     scaleToStandard(path_coordinates);
     LSL();
     RSR();
@@ -48,10 +48,24 @@ std::vector<Line> DubinPath::dubinShortestPath() {
                                     path.signs[0] * path_coordinates.getMaxCurvature(),
                                     path.signs[1] * path_coordinates.getMaxCurvature(),
                                     path.signs[2] * path_coordinates.getMaxCurvature());
-            if (!collisionDetector.detectCollision(tmp_lines, map,path_coordinates.getMaxCurvature())) {
+            
+            std::pair<bool,Cell*> coll = collisionDetector.detectCollision(tmp_lines, map,path_coordinates.getMaxCurvature());
+            
+            if (!coll.first) {
                 std::cout<<"path valido"<<std::endl;
                 L = Lcur;
                 lines = tmp_lines;
+            }
+            else{
+                std::cout<<"non path valido\nreturning alternative points"<<std::endl;
+                
+                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(coll.second);
+                
+                for(int j=0;j<points.size();j++){
+                    alternative_Points.reserve( alternative_Points.size() + points[j].size() ); // preallocate memory
+                    alternative_Points.insert( alternative_Points.end(), points[j].begin(), points[j].end() );
+                }
+                
             }
         }
     }
@@ -146,13 +160,17 @@ void DubinPath::LSL() {
 }
 
 void DubinPath::RSR() {
+    
     PossibleDubinPath possiblePath;
+    
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) - cos(std_conf.sc_thf);
-    double S = 2.0 * std_conf.sc_Kmax + sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
+    double S = 2.0 * std_conf.sc_Kmax - sin(std_conf.sc_th0) + sin(std_conf.sc_thf);
     double temp1 = atan2(C, S);
+    
     possiblePath.sc_s1 = invK * mod2pi(std_conf.sc_th0 - temp1);
-    double temp2 = 2.0 + 4.0 * pow(std_conf.sc_Kmax, 2.0) - 2.0 * cos(std_conf.sc_th0 - std_conf.sc_thf) +
+    
+    double temp2 = 2.0 + 4.0 * pow(std_conf.sc_Kmax, 2.0) - 2.0 * cos(std_conf.sc_th0 - std_conf.sc_thf) -
                    4.0 * std_conf.sc_Kmax * (sin(std_conf.sc_th0) - sin(std_conf.sc_thf));
     if (temp2 < 0) {
         possiblePath.ok = false;
@@ -196,7 +214,7 @@ void DubinPath::LSR() {
 
 void DubinPath::RSL() {
     PossibleDubinPath possiblePath;
-    double invK = 1 / std_conf.sc_Kmax;
+    double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) + cos(std_conf.sc_thf);
     double S = 2.0 * std_conf.sc_Kmax - sin(std_conf.sc_th0) - sin(std_conf.sc_thf);
     double temp1 = atan2(C, S);
@@ -210,7 +228,7 @@ void DubinPath::RSL() {
         possiblePaths.push_back(possiblePath);
     } else {
         possiblePath.sc_s2 = invK * sqrt(temp3);
-        double temp2 = -atan2(2, possiblePath.sc_s2 * std_conf.sc_Kmax);
+        double temp2 = atan2(2, possiblePath.sc_s2 * std_conf.sc_Kmax);
         possiblePath.sc_s1 = invK * mod2pi(std_conf.sc_th0 - temp1 + temp2);
         possiblePath.sc_s3 = invK * mod2pi(std_conf.sc_thf - temp1 + temp2);
         possiblePath.ok = true;

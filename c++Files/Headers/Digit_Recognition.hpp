@@ -125,7 +125,7 @@ struct PeopleStorage {
             center.y = circles[i].center.y;
             Circle * circle_d = new Circle;
             circle_d->setCenter(center);
-            circle_d->setRadius(circles[i].radius/2);
+            circle_d->setRadius(circles[i].radius);
             circle_vector.push_back(circle_d);
         }
         

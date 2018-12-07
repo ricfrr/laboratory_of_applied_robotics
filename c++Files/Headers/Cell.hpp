@@ -133,9 +133,12 @@ class Cell
      * set the digit of the person
      * @param digit_i digit of the person
      */
-    void setRescue(int digit_i);
+    void set_Rescue(int digit_i);
     
     void findState(std::vector<cv::Point> contour);
+    
+    void setMixed();
+    void setFull();
     
     bool getState();
     
@@ -167,6 +170,10 @@ class Cell
      */
     double collision(std::vector<cv::Point> &withObject);
     
+    bool pointInside(cv::Point point);
+    
+    void print();
+    
     
    private: 
     
@@ -176,6 +183,7 @@ class Cell
     cv::Point top_left, top_right, bottom_left, bottom_right;
     
     std::vector<Cell> subcells;
+    
     CellState state;
     
     void collectSubcells(std::vector<Cell*> &cells);
@@ -190,6 +198,8 @@ class Cell
     void setBorder();
 
     void setObstacle();
+    
+    void setRescue(int digit_i);
 };
 
 #endif /* Cell_hpp */

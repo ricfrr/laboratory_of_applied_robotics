@@ -164,13 +164,48 @@ void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
 
 Cell * Map::getCell(cv::Point forPoint){
     
+    Cell* cell;
+    
     double x_ratio = getImageWidth() / getGridColNum();
     double y_ratio = getImageHeight() / getGridRowNum();
     
-    int grid_row_check = (int) round(forPoint.y / y_ratio) - 1;
-    int grid_col_check = (int) round(forPoint.x / x_ratio) - 1;
+    int grid_row_check = (int) round(forPoint.y / y_ratio);
+    int grid_col_check = (int) round(forPoint.x / x_ratio);
     
-    return grid[grid_row_check][grid_col_check];
+    Cell* potential_cell = grid[grid_row_check][grid_col_check];
+    
+    if(potential_cell->pointInside(forPoint)){
+        //std::cout << "found the right point" << std::endl;
+        return potential_cell;
+    }else{
+        int delta_x_l = potential_cell->getTopLeft().x - forPoint.x;
+        int delta_x_r = potential_cell->getTopRight().x - forPoint.x;
+        int delta_y_t = potential_cell->getTopLeft().y - forPoint.y;
+        int delta_y_b = potential_cell->getBottomLeft().y - forPoint.y;
+        
+        if(delta_x_l > 0)
+            grid_col_check -= 1;
+        else if(delta_x_r < 0)
+            grid_col_check += 1;
+        
+        if(delta_y_t > 0)
+            grid_row_check -= 1;
+        else if(delta_y_b < 0)
+            grid_row_check += 1;
+        
+        potential_cell = grid[grid_row_check][grid_col_check];
+    }
+    
+    if(potential_cell->pointInside(forPoint)){
+        //std::cout << "found the right point - after correction" << std::endl;
+        return potential_cell;
+    }
+    else{
+        std::cout << "could not find the cell for the point !!!" << std::endl;
+        return potential_cell;
+    }
+    
+    return cell;
     
 }
 
@@ -219,8 +254,10 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people) {
         People guy = people.circles[i];
 
         if (circleContact(cell_corners, &guy)) {
-            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius / 2, 0)});
-            cell.setRescue(people.circles[i].name);
+            cell.set_Rescue(people.circles[i].name);
+            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius, 0)});
+            if(cell.isEmpty())
+                std::cout << "what!" << std::endl;
             people.circles[i].setCell(cell);
 
         }
@@ -228,59 +265,88 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people) {
 }
 
 void Map::checkObstacles(Cell &cell, Obstacle &obstacles) {
-    bool touched = false;
+
     std::vector<Triangle *> triangles = obstacles.getTriangles();
     std::vector<Square *> squares = obstacles.getSquares();
     std::vector<Pentagon *> pentagons = obstacles.getPentagons();
     std::vector<Hexagon *> hexagons = obstacles.getHexagons();
     std::vector<cv::Point> cell_corners = cell.getCorners();
-    if (!touched) {
+
         for (int k = 0; k < triangles.size(); k++) {
             std::vector<cv::Point> tmp_tr = triangles[k]->getClippedCorners();
             // std::cout << "CHECK TRIANGLE" << std::endl;
             if (contact(cell_corners, tmp_tr)) {
+                cell.set_Obstacle();
                 cell.refine_if_neccessary(triangles[k]->getClippedCorners());
                 triangles[k]->setCell(cell);
-                touched = true;
+                std::vector<Cell*> subcells = cell.getAllSubcells();
+                
+                for(int i=0;i<subcells.size();i++){
+                    if(!subcells[i]->isObstacle() && subcells[i]->getSubcells().empty() && !subcells[i]->isEmpty()){
+                        subcells[i]->set_Obstacle();
+                    }
+                }
+                break;
             }
         }
-    }
-    if (!touched) {
+    
+
         for (int k = 0; k < squares.size(); k++) {
             std::vector<cv::Point> tmp_sq = squares[k]->getClippedCorners();
             // std::cout << "CHECK SQUARE" << std::endl;
             if (contact(cell_corners, tmp_sq)) {
-                squares[k]->setCell(cell);
+                cell.set_Obstacle();
                 cell.refine_if_neccessary(squares[k]->getClippedCorners());
-                touched = true;
+                squares[k]->setCell(cell);
+                std::vector<Cell*> subcells = cell.getAllSubcells();
+                
+                for(int i=0;i<subcells.size();i++){
+                    if(!subcells[i]->isObstacle() && subcells[i]->getSubcells().empty() && !subcells[i]->isEmpty()){
+                        subcells[i]->set_Obstacle();
+                    }
+                }
+                break;
             }
         }
-    }
-    if (!touched) {
+
         for (int k = 0; k < pentagons.size(); k++) {
             std::vector<cv::Point> tmp_pt = pentagons[k]->getClippedCorners();
             // std::cout << "CHECK PENTAGON" << std::endl;
             if (contact(cell_corners, tmp_pt)) {
+                cell.set_Obstacle();
+                cell.refine_if_neccessary(tmp_pt);
                 pentagons[k]->setCell(cell);
-                cell.refine_if_neccessary(pentagons[k]->getClippedCorners());
-                touched = true;
+                
+                std::vector<Cell*> subcells = cell.getAllSubcells();
+                
+                for(int i=0;i<subcells.size();i++){
+                    if(!subcells[i]->isObstacle() && subcells[i]->getSubcells().empty() && !subcells[i]->isEmpty()){
+                        subcells[i]->set_Obstacle();
+                    }
+                }
+                
+                break;
             }
         }
-    }
-    if (!touched) {
+
         for (int k = 0; k < hexagons.size(); k++) {
             std::vector<cv::Point> tmp_hx = hexagons[k]->getClippedCorners();
             // std::cout << "CHECK HEXAGON" << std::endl;
             if (contact(cell_corners, tmp_hx)) {
-                hexagons[k]->setCell(cell);
+                cell.set_Obstacle();
                 cell.refine_if_neccessary(hexagons[k]->getClippedCorners());
-                touched = true;
+                hexagons[k]->setCell(cell);
+                std::vector<Cell*> subcells = cell.getAllSubcells();
+                
+                for(int i=0;i<subcells.size();i++){
+                    if(!subcells[i]->isObstacle() && subcells[i]->getSubcells().empty() && !subcells[i]->isEmpty()){
+                        subcells[i]->set_Obstacle();
+                    }
+                }
+                break;
             }
         }
-    }
-    if (touched) {
-        cell.set_Obstacle();
-    }
+
 };
 
 bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena) {
@@ -411,7 +477,7 @@ std::vector<std::vector<Cell*>> Map::getEmptyNearestNeighbors(Cell * &cell){
     for(int i=0;i<cells.size();i++){
         std::vector<Cell*> subresult;
         for(int j=0;j<cells[i].size();j++)
-            if(cells[i][j]->getState() == EMPTY)
+            if(cells[i][j]->isEmpty())
                 subresult.push_back(cells[i][j]);
         emptyCells.push_back(subresult);
     }
@@ -436,8 +502,10 @@ std::vector<std::vector<cv::Point>> Map::getEmptyNearestNeighborsPoints(Cell * &
 
 std::vector<Cell *> Map::getTopNeighbors(Cell* &forCell){
     
-    double translation_y = forCell->height();
-    double translation_x = forCell->width();
+    double multiplier = 2;
+    
+    double translation_y = multiplier*forCell->height();
+    double translation_x = multiplier*forCell->width();
     
     std::vector<Cell*> cells;
     

@@ -1,7 +1,9 @@
 #include "../Headers/Cell.hpp"
 
 Cell::Cell()
-{}
+{
+    setEmpty();
+}
 Cell::~Cell()
 {
     // nada
@@ -85,6 +87,19 @@ void Cell::setEmpty()
     obstacle = false;
     rescue = false;
 };
+
+
+void Cell::setMixed(){
+    this->state = MIXED;
+    
+    empty = false;
+}
+void Cell::setFull(){
+    this->state = FULL;
+    
+    empty = false;
+}
+
 void Cell::setExit()
 {
     empty = false;
@@ -129,23 +144,58 @@ void Cell::set_Border()
 {
     setBorder();
     
-    for(int i=0;i<subcells.size();i++)
-        if(subcells[i].state == MIXED || subcells[i].state == FULL)
-            subcells[i].set_Border();
-};
-void Cell::set_Obstacle()
-{
-    setObstacle();
+    if(isEmpty())
+        setFull();
     
     for(int i=0;i<subcells.size();i++)
         if(subcells[i].state == MIXED || subcells[i].state == FULL)
-            subcells[i].set_Obstacle();
+            subcells[i].set_Border();
+        else{
+            subcells[i].setFull();
+            subcells[i].set_Border();
+        }
+        
 };
+
+
+void Cell::set_Obstacle()
+{
+    if(state != EMPTY)
+        setObstacle();
+    
+    for(int i=0;i<subcells.size();i++)
+        if(subcells[i].state != EMPTY){
+            subcells[i].set_Obstacle();
+            if(subcells[i].subcells.empty() && subcells[i].state != FULL)
+                subcells[i].setFull();
+                }
+    
+    if(state != EMPTY && state != MIXED && state != FULL)
+        std::runtime_error("che cazzo");
+};
+
+void Cell::print(){
+    std::cout <<
+                "\nPrinting information about Cell\n" <<
+                "Center: " << center() <<
+                "\ntop left     point: " << top_left <<
+                "\nbottom right point: " << bottom_right <<
+                "\n" <<
+                "\nempty-------------> " << empty <<
+                "\nobstacle----------> " << obstacle <<
+                "\nrescue------------> " << rescue <<
+                "\nexit--------------> " << exit_p <<
+                "\nis_Obstacle-------> " << isObstacle() <<
+                "\nisRescue----------> " << isRescue() <<
+                "\ncontains_object---> " <<contains_object() <<
+                "\nisEmpty-----------> " <<isEmpty() <<
+    "\ndone printing information\n" << std::endl;
+}
 
 bool Cell::contains_object(){
     if(state == MIXED || state == FULL)
         return true;
-    else if (!empty)
+    else if (state!=EMPTY)
         return true;
     else
         return false;
@@ -162,16 +212,30 @@ void Cell::setRescue(int digit_i)
     obstacle = false;
     rescue = true;
     digit = digit_i;
+    
 };
+
+void Cell::set_Rescue(int digit_i){
+    
+    setRescue(digit_i);
+    
+    for(int i=0;i<subcells.size();i++)
+        if(subcells[i].state == MIXED || subcells[i].state == FULL)
+            subcells[i].set_Rescue(digit_i);
+}
 
 bool Cell::isEmpty(cv::Point forPoint)
 {
-    if(state == EMPTY)
+    if(state == EMPTY && !subcells.empty())
+        std::runtime_error("che cazzo");
+    
+    if(state == EMPTY && subcells.empty())
         return true;
     else if(state == FULL)
         return false;
-    else {
-        if(subcells.size() == 0)
+    else if(forPoint.x >= 0 && forPoint.y >= 0) {
+        
+        if(subcells.empty())
             return false;
         
         bool result = true;
@@ -197,7 +261,10 @@ bool Cell::isEmpty(cv::Point forPoint)
         
         return result;
     }
+    else
+        return false;
 };
+
 bool Cell::isExit()
 {
     return exit_p;
@@ -242,23 +309,23 @@ bool Cell::isBorder(cv::Point forPoint)
 };
 bool Cell::isObstacle(cv::Point forPoint)
 {
-    if(state == EMPTY)
+        
+    if(isEmpty())
         return false;
     else if(state == FULL && obstacle)
         return true;
-    else {
-        if(subcells.size() == 0 && obstacle)
-            return true;
-        else if(subcells.size() == 0)
-            return false;
-        
+    else if (!subcells.empty()){
         bool result = false;
         
+        cv::Point point = forPoint;
+        
+        if(forPoint.x < 0 || forPoint.y < 0)
+            point = center();
         
         Cell cell;
         
-        bool first_half_v = forPoint.x <= subcells[0].getTopRight().x;
-        bool first_half_h = forPoint.y <= subcells[0].getBottomLeft().y;
+        bool first_half_v = point.x <= subcells[0].getTopRight().x;
+        bool first_half_h = point.y <= subcells[0].getBottomLeft().y;
         
         int index;
         
@@ -271,7 +338,13 @@ bool Cell::isObstacle(cv::Point forPoint)
         else if(first_half_v && !first_half_h)
             index = 3;
         
-        result = subcells[index].isObstacle();
+        result = subcells[index].isObstacle(point);
+        
+        if(!result && obstacle){
+            std::cout << "PROBLEM" << std::endl;
+            
+            return true;
+        }
         
         return result;
     }
@@ -287,45 +360,39 @@ bool Cell::getState(){
     return this->state;
 }
 
+bool Cell::pointInside(cv::Point point){
+    
+    bool top = point.y >= top_left.y;
+    bool left = point.x >= top_left.x;
+    bool right = point.x <= top_right.x;
+    bool bottom = point.y <= bottom_left.y;
+    
+    return top && left && right && bottom;
+}
+
 void Cell::refine_if_neccessary(std::vector<cv::Point> forShape){
     
-    std::vector<cv::Point> shape;
     
-    if(forShape.size() == 2){
-        
-        int radius = forShape[1].x;
-        
-        for(int i=0;i<360;i+=10){
-            
-            double rad = 2 * M_PI / 360;
-            
-            rad *= i;
-            
-            double x = forShape[0].x + sin(rad) * radius;
-            double y = forShape[0].y + cos(rad) * radius;
-            
-            shape.push_back(cv::Point(x,y));
-        }
-        
-    }else{
-        shape = forShape;
-    }
-    
-    findState(shape);
+    findState(forShape);
     
     switch (state) {
         case EMPTY:
-            setEmpty();
-            return;
+            if(subcells.empty())
+                setEmpty();
+            else
+                setMixed();
+            break;
         case MIXED:
-            split(shape);
+            split(forShape);
             break;
         case FULL:
-            return;
+            break;
             
         default:
+            std::cout << "default" << std::endl;
             break;
     }
+    
 }
 
 const std::vector<Cell*> Cell::getSubcells(){
@@ -361,13 +428,27 @@ double Cell::collision(std::vector<cv::Point> &withObject){
 
 void Cell::findState(std::vector<cv::Point> contour){
     
-//    cv::Mat contours_img(600,600,CV_8UC3,cv::Scalar(255, 255, 255));
-//
-//    std::vector<std::vector<cv::Point>> contours = {contour};
-//    cv::drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
-//                 cv::LINE_AA);
-//    cv::imshow("contour", contours_img);
-//    cv::waitKey(0);
+    std::vector<cv::Point> shape;
+    
+    if(contour.size() == 2){
+        
+        int radius = contour[1].x;
+        
+        for(int i=0;i<360;i+=10){
+            
+            double rad = 2 * M_PI / 360;
+            
+            rad *= i;
+            
+            double x = contour[0].x + sin(rad) * radius;
+            double y = contour[0].y + cos(rad) * radius;
+            
+            shape.push_back(cv::Point(x,y));
+        }
+        
+    }else{
+        shape = contour;
+    }
     
     std::vector<cv::Point> corners = getCorners();
     
@@ -375,9 +456,9 @@ void Cell::findState(std::vector<cv::Point> contour){
     bool allOut = true;
     
     std::vector<double> results;
-    for(int i=0;i<contour.size();i++){
+    for(int i=0;i<shape.size();i++){
         //check if contour points are inside the cell, outside the cell or on the border
-        double result = cv::pointPolygonTest(corners, contour[i], true);
+        double result = cv::pointPolygonTest(corners, shape[i], true);
         //save the result
         results.push_back(result);
         //logic
@@ -391,11 +472,11 @@ void Cell::findState(std::vector<cv::Point> contour){
         allOut = false;
     
     if(!allIn && !allOut)
-        this->state = MIXED;
+        setMixed();
     else if (allIn)
         state_for_allIn(results);
     else if (allOut)
-        state_for_allOut(contour);
+        state_for_allOut(shape);
 }
 
 void Cell::state_for_allIn(std::vector<double> results){
@@ -409,9 +490,9 @@ void Cell::state_for_allIn(std::vector<double> results){
         }
     
     if(all_points_on_border)
-        this->state = FULL;
+        setFull();
     else
-        this->state = MIXED;
+        setMixed();
 }
 
 void Cell::state_for_allOut(std::vector<cv::Point> contour){
@@ -428,13 +509,13 @@ void Cell::state_for_allOut(std::vector<cv::Point> contour){
     }
     
     if(all_points_inside_contour)
-        this->state = FULL;
+        setFull();
     
     else if(all_points_outside_contour)
-        this->state = EMPTY;
+        setEmpty();
     
     else
-        this->state = MIXED;
+        setMixed();
 }
 
 void Cell::split(std::vector<cv::Point> forShape){
@@ -460,6 +541,31 @@ void Cell::split(std::vector<cv::Point> forShape){
     cell_3.setCorners({center, rightCenter, bottomRight, bottomCenter});
     cell_4.setCorners({leftCenter, center, bottomCenter, bottomLeft});
     
+    //clone the cell into subcells
+    cell_1.obstacle = obstacle;
+    cell_1.exit_p = exit_p;
+    cell_1.empty = empty;
+    cell_1.rescue = rescue;
+    cell_1.border = border;
+    
+    cell_2.obstacle = obstacle;
+    cell_2.exit_p = exit_p;
+    cell_2.empty = empty;
+    cell_2.rescue = rescue;
+    cell_2.border = border;
+    
+    cell_3.obstacle = obstacle;
+    cell_3.exit_p = exit_p;
+    cell_3.empty = empty;
+    cell_3.rescue = rescue;
+    cell_3.border = border;
+    
+    cell_4.obstacle = obstacle;
+    cell_4.exit_p = exit_p;
+    cell_4.empty = empty;
+    cell_4.rescue = rescue;
+    cell_4.border = border;
+    
     int cellArea = (topCenter.x - topLeft.x) * (leftCenter.y - topLeft.y);
     
     if(cellArea > 16){
@@ -467,6 +573,12 @@ void Cell::split(std::vector<cv::Point> forShape){
         cell_2.refine_if_neccessary(forShape);
         cell_3.refine_if_neccessary(forShape);
         cell_4.refine_if_neccessary(forShape);
+    }
+    else{
+        cell_1.findState(forShape);
+        cell_2.findState(forShape);
+        cell_3.findState(forShape);
+        cell_4.findState(forShape);
     }
     
     this->subcells = {cell_1, cell_2, cell_3, cell_4};

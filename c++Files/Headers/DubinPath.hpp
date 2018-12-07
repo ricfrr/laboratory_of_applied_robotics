@@ -36,9 +36,10 @@ public:
     ~DubinPath();
     /**
      * \brief function that find the dubins shortest path and return a vector of line
+     * @arg alternative_Points a point set for every obsticle that was found along the way
      * @return vector of lines which describes the path
      */
-    std::vector<Line> dubinShortestPath();
+    std::vector<Line> dubinShortestPath(std::vector<cv::Point> &alternative_Points);
 
 private:
     PathCoordinates path_coordinates = PathCoordinates(Position(), Position(), 0);

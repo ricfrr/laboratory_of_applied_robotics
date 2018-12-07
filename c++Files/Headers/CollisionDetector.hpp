@@ -28,7 +28,7 @@ public:
      * @param max_curvature curvature of the path
      * @return true if there is a collision false otherwise
      */
-    bool detectCollision(std::vector<Line> &lines_i, Map* map, double max_curvature);
+    std::pair<bool,Cell*> detectCollision(std::vector<Line> &lines_i, Map* map, double max_curvature);
 
 };
 

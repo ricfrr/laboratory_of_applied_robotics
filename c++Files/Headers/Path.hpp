@@ -26,10 +26,20 @@ public:
     Path(Position start_point, Position end_point, double curvature, Map *map_i);
     ~Path();
     
+    ///constructs a new path out of two existant path objects
+    Path(Path path1, Path path2);
+    
     /**
         \brief function that detects the best path, for now uses only dubins path
      */
     void findPath();
+    
+    void findPathSimple();
+    
+    /**
+     \brief splits a path so it goes over an interediate point
+     */
+    static void split(Path &path, cv::Point intermediate);
 
     /**
      \brief set the lines of the path
