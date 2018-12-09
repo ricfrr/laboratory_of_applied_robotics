@@ -315,7 +315,7 @@ void Visualizer::simulate(){
     for(int i=0;i<points.size();i++){
         this->car->setCenter(points[i]);
         play();
-        cv::waitKey(50);
+        cv::waitKey(25);
     }
     }
     visualize();

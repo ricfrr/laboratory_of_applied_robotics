@@ -164,13 +164,21 @@ void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
 
 Cell * Map::getCell(cv::Point forPoint){
     
-    Cell* cell;
+    Cell* cell = new Cell;
     
     double x_ratio = getImageWidth() / getGridColNum();
     double y_ratio = getImageHeight() / getGridRowNum();
     
     int grid_row_check = (int) round(forPoint.y / y_ratio);
     int grid_col_check = (int) round(forPoint.x / x_ratio);
+    
+    while(grid_row_check >= (int)grid.size())
+        grid_row_check -= 1;
+    while(grid_col_check >= (int)grid[0].size())
+        grid_col_check -= 1;
+    
+    if(grid_col_check < 0 || grid_row_check < 0)
+        return cell;
     
     Cell* potential_cell = grid[grid_row_check][grid_col_check];
     
@@ -183,14 +191,14 @@ Cell * Map::getCell(cv::Point forPoint){
         int delta_y_t = potential_cell->getTopLeft().y - forPoint.y;
         int delta_y_b = potential_cell->getBottomLeft().y - forPoint.y;
         
-        if(delta_x_l > 0)
+        if(delta_x_l > 0 && grid_col_check > 0)
             grid_col_check -= 1;
-        else if(delta_x_r < 0)
+        else if(delta_x_r < 0 && grid_col_check < grid[0].size()-1)
             grid_col_check += 1;
         
-        if(delta_y_t > 0)
+        if(delta_y_t > 0 && grid_row_check > 0)
             grid_row_check -= 1;
-        else if(delta_y_b < 0)
+        else if(delta_y_b < 0 && grid_row_check < grid.size()-1)
             grid_row_check += 1;
         
         potential_cell = grid[grid_row_check][grid_col_check];
@@ -257,6 +265,7 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people) {
             cell.set_Rescue(people.circles[i].name);
             cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius, 0)});
             if(cell.isEmpty())
+
                 std::cout << "what!" << std::endl;
             people.circles[i].setCell(cell);
 
@@ -502,7 +511,7 @@ std::vector<std::vector<cv::Point>> Map::getEmptyNearestNeighborsPoints(Cell * &
 
 std::vector<Cell *> Map::getTopNeighbors(Cell* &forCell){
     
-    double multiplier = 2;
+    double multiplier = n_multiplier;
     
     double translation_y = multiplier*forCell->height();
     double translation_x = multiplier*forCell->width();

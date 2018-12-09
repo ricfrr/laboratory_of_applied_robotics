@@ -99,7 +99,9 @@ public:
     /// returns 4 vectors with top, right, bottom & left neighboring center points of empty cells for a cell
     std::vector<std::vector<cv::Point>> getEmptyNearestNeighborsPoints(Cell * &cell);
     
-
+    ///the distance a neighboring cell is given based on cell width/height and a multiplier
+    double n_multiplier = 2.0;
+    
 private:
 
     // grid of the map

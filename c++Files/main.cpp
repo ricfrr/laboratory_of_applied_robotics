@@ -33,20 +33,30 @@ int main(int argc, const char *argv[]){
     std::pair<cv::Point,double> exit = map.getExitPoint().getEntryPoint();
     Position finalPos =  Position(exit.first,exit.second);finalPos.orientation_locked = true;
 
-    Path *path1_2 =     new Path(Position(circle[3]->getCenter(),or1),
+    //get last line's endpoint rather than the actual endpoint to make sure the orientation is correct in some cases
+    /// !!!
+    
+    
+    Path *path0_1 =     new Path(Position(cv::Point2d(60,60),or1),
+                                 Position(circle[3]->getCenter(),or2),0.05,&map);
+    Path *path1_2 =     new Path(path0_1->end_point,
                                  Position(circle[0]->getCenter(),or2),0.05,&map);
     Path *path2_3 =     new Path(path1_2->end_point,
                                  Position(circle[1]->getCenter(),or2),0.05,&map);
     Path *path3_4 =     new Path(path2_3->end_point,
-                                 Position(circle[2]->getCenter(),or2),0.05,&map);
+                                 Position(circle[2]->getCenter(),or1),0.05,&map);
     Path* path4_x =     new Path(path3_4->end_point,
                                 finalPos,0.05,&map);
 
-    Path* path1_3 =     new Path(*path1_2,*path2_3);
-    Path* path1_4 =     new Path(*path1_3,*path3_4);
-    Path* path1_exit =  new Path(*path1_4, *path4_x);
+    Path* path0_2 =     new Path(*path0_1,*path1_2);
+    Path* path0_3 =     new Path(*path0_2,*path2_3);
+    Path* path0_4 =     new Path(*path0_3,*path3_4);
+    Path* path0_exit =  new Path(*path0_4, *path4_x);
     
-    Visualizer v(map,path1_exit);
+    Path* path4_x_test =     new Path(Position(path3_4->end_point.getCoordinates(),or2),
+                                 finalPos,0.05,&map);
+    
+    Visualizer v(map,path0_exit);
     v.visualize();
     v.simulate();
 
