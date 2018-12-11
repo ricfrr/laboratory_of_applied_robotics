@@ -3,20 +3,24 @@
 //
 
 
-#include "../Headers/DubinPath.hpp"
+#include "../Headers/DubinPathFinder.hpp"
 #include "../Headers/CircularLine.hpp"
 
 
-DubinPath::DubinPath(PathCoordinates path_coordinates_i, Map* map_i) {
+DubinPathFinder::DubinPathFinder(PathCoordinates path_coordinates_i, Map* map_i) {
     path_coordinates = path_coordinates_i;
     map = map_i;
 };
 
-DubinPath::~DubinPath() {
+DubinPathFinder::~DubinPathFinder() {
 
 };
 
-std::vector<Line> DubinPath::dubinShortestPath(std::vector<cv::Point> &alternative_Points) {
+std::vector<Line> DubinPathFinder::shortestPath(std::vector<cv::Point> &alternative_Points){
+    return dubinShortestPath(alternative_Points);
+}
+
+std::vector<Line> DubinPathFinder::dubinShortestPath(std::vector<cv::Point> &alternative_Points) {
     scaleToStandard(path_coordinates);
     LSL();
     RSR();
@@ -74,7 +78,7 @@ std::vector<Line> DubinPath::dubinShortestPath(std::vector<cv::Point> &alternati
 };
 
 std::vector<Line>
-DubinPath::dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1,
+DubinPathFinder::dubinsCurve(double x0, double y0, double th0, double s1, double s2, double s3, double k0, double k1,
                        double k2) {
     // set first arc
     cv::Point2d coord1 = cv::Point2d(x0, y0);
@@ -114,7 +118,7 @@ DubinPath::dubinsCurve(double x0, double y0, double th0, double s1, double s2, d
 }
 
 
-void DubinPath::scaleToStandard(PathCoordinates path_coordinates) {
+void DubinPathFinder::scaleToStandard(PathCoordinates path_coordinates) {
     double dx = path_coordinates.getFinalPosition().getCoordinates().x -
                 path_coordinates.getInitialPosition().getCoordinates().x;
     double dy = path_coordinates.getFinalPosition().getCoordinates().y -
@@ -134,7 +138,7 @@ void DubinPath::scaleToStandard(PathCoordinates path_coordinates) {
     std_conf.lambda = lambda;
 }
 
-void DubinPath::LSL() {
+void DubinPathFinder::LSL() {
     PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_thf) - cos(std_conf.sc_th0);
@@ -159,7 +163,7 @@ void DubinPath::LSL() {
 
 }
 
-void DubinPath::RSR() {
+void DubinPathFinder::RSR() {
     
     PossibleDubinPath possiblePath;
     
@@ -187,7 +191,7 @@ void DubinPath::RSR() {
     }
 }
 
-void DubinPath::LSR() {
+void DubinPathFinder::LSR() {
     PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) + cos(std_conf.sc_thf);
@@ -212,7 +216,7 @@ void DubinPath::LSR() {
     }
 }
 
-void DubinPath::RSL() {
+void DubinPathFinder::RSL() {
     PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) + cos(std_conf.sc_thf);
@@ -237,7 +241,7 @@ void DubinPath::RSL() {
     }
 }
 
-void DubinPath::RLR() {
+void DubinPathFinder::RLR() {
     PossibleDubinPath possiblePath;
     double invK = 1.0 / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_th0) - cos(std_conf.sc_thf);
@@ -262,7 +266,7 @@ void DubinPath::RLR() {
     }
 }
 
-void DubinPath::LRL() {
+void DubinPathFinder::LRL() {
     PossibleDubinPath possiblePath;
     double invK = 1. / std_conf.sc_Kmax;
     double C = cos(std_conf.sc_thf) - cos(std_conf.sc_th0);
@@ -288,7 +292,7 @@ void DubinPath::LRL() {
 }
 
 
-double DubinPath::mod2pi(double ang) {
+double DubinPathFinder::mod2pi(double ang) {
     double out = ang;
     while (out < 0.0) {
         out = out + 2.0 * M_PI;
@@ -300,7 +304,7 @@ double DubinPath::mod2pi(double ang) {
 };
 
 
-std::vector<double> DubinPath::scaleFromStandard(double lambda, double sc_s1, double sc_s2, double sc_s3) {
+std::vector<double> DubinPathFinder::scaleFromStandard(double lambda, double sc_s1, double sc_s2, double sc_s3) {
     std::vector<double> rescaled;
     double s1 = sc_s1 * lambda;
     double s2 = sc_s2 * lambda;

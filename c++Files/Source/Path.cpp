@@ -136,7 +136,7 @@ void Path::findPath() {
     // ...
     PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
     
-    DubinPath dubin_finder = DubinPath(path_coordinates,getMap());
+    DubinPathFinder dubin_finder = DubinPathFinder(path_coordinates,getMap());
 
     double iterations = 9.0;
     double it = 2.0;
@@ -263,7 +263,7 @@ void Path::findPathSimple(){
     std::vector<Line> dubin_lines = {};
     
     PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
-    DubinPath dubin_finder = DubinPath(path_coordinates,getMap());
+    DubinPathFinder dubin_finder = DubinPathFinder(path_coordinates,getMap());
     
     setLength(0);
     

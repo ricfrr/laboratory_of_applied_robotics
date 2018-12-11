@@ -14,6 +14,5 @@
 #include "Position.hpp"
 #include "PathCoordinates.hpp"
 #include "Path.hpp"
-#include "CollisionDetector.hpp"
 
 #endif /* PathPlanning_hpp */

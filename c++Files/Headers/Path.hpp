@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <vector>
 #include <opencv2/core/types.hpp>
-#include "DubinPath.hpp"
+#include "DubinPathFinder.hpp"
 #include "Map.hpp"
 
 class Path {

@@ -1,5 +1,5 @@
-#ifndef DubinPath_hpp
-#define DubinPath_hpp
+#ifndef DubinPathFinder_hpp
+#define DubinPathFinder_hpp
 
 #include <opencv2/core/core.hpp>
 #include <limits>
@@ -9,9 +9,7 @@
 #include "CircularLine.hpp"
 #include "StraightLine.hpp"
 #include "Map.hpp"
-#include "CollisionDetector.hpp"
-
-using namespace cv;
+#include "PathFinder.hpp"
 
 struct standardConf {
     double lambda;
@@ -19,27 +17,31 @@ struct standardConf {
     double sc_thf;
     double sc_Kmax;
 };
+
+using namespace cv;
 /**
  \brief Class that given the path coordinates allow to find the path using the dubins path algorithm
  */
-class DubinPath {
+class DubinPathFinder: public PathFinder {
 
 public:
     /**
-      \brief constructor of the DubinPath class
+      \brief constructor of the DubinPathFinder class
      * @param path_coordinates_i coordinates of the path that we want to find
      */
-    DubinPath(PathCoordinates path_coordinates_i,Map* map_i);
+    DubinPathFinder(PathCoordinates path_coordinates_i,Map* map_i);
     /**
-     * \brief destructor of the DubinPath class
+     * \brief destructor of the DubinPathFinder class
      */
-    ~DubinPath();
+    ~DubinPathFinder();
     /**
      * \brief function that find the dubins shortest path and return a vector of line
      * @arg alternative_Points a point set for every obsticle that was found along the way
      * @return vector of lines which describes the path
      */
     std::vector<Line> dubinShortestPath(std::vector<cv::Point> &alternative_Points);
+    
+    std::vector<Line> shortestPath(std::vector<cv::Point> &alternative_Points);
 
 private:
     PathCoordinates path_coordinates = PathCoordinates(Position(), Position(), 0);
@@ -72,7 +74,7 @@ private:
     Map* map;
 
 
-    CollisionDetector collisionDetector;
+    PathFinder::CollisionDetector collisionDetector;
 };
 
-#endif /* DubinPath_hpp */
+#endif /* DubinPathFinder_hpp */
