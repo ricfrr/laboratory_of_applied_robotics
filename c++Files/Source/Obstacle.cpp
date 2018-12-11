@@ -52,7 +52,7 @@ void Obstacle::findObstacles(const Mat &img)
             Triangle triangle = Triangle();
             triangle.setCorners(approx_curve);
             triangles.push_back(triangle);
-            std::cout << "Triangle : " << triangle.getCorners() << std::endl;
+            //std::cout << "Triangle : " << triangle.getCorners() << std::endl;
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
         else if (approx_curve.size() == 4)
@@ -60,7 +60,7 @@ void Obstacle::findObstacles(const Mat &img)
             Square square = Square();
             square.setCorners(approx_curve);
             squares.push_back(square);
-            std::cout << "Square : " << square.getCorners() << std::endl;
+            //std::cout << "Square : " << square.getCorners() << std::endl;
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
         else if (approx_curve.size() == 5)
@@ -68,7 +68,7 @@ void Obstacle::findObstacles(const Mat &img)
             Pentagon pentagon = Pentagon();
             pentagon.setCorners(approx_curve);
             pentagons.push_back(pentagon);
-            std::cout << "Pentagon : " << pentagon.getCorners() << std::endl;
+            //std::cout << "Pentagon : " << pentagon.getCorners() << std::endl;
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
         else if (approx_curve.size() == 6)
@@ -76,7 +76,7 @@ void Obstacle::findObstacles(const Mat &img)
             Hexagon hexagon = Hexagon();
             hexagon.setCorners(approx_curve);
             hexagons.push_back(hexagon);
-            std::cout << "Hexagon : " << hexagon.getCorners() << std::endl;
+            //std::cout << "Hexagon : " << hexagon.getCorners() << std::endl;
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
     }

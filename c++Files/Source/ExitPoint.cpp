@@ -60,7 +60,7 @@ void ExitPoint::findExitPoint(const Mat &img)
     }
     setCorners(corners);
     corners = getCorners();
-    std::cout << "Exit : " << corners << std::endl;
+    //std::cout << "Exit : " << corners << std::endl;
 
 }
 
@@ -105,9 +105,9 @@ std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
     else{
         //horizontal
         if(top)
-            angle = 0.5;
-        else if(bottom)
             angle = 1.5;
+        else if(bottom)
+            angle = 0.5;
         else
             std::runtime_error("ohh it's not so simple");
     }

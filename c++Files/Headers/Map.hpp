@@ -102,6 +102,9 @@ public:
     ///the distance a neighboring cell is given based on cell width/height and a multiplier
     double n_multiplier = 2.0;
     
+    ///a flag that indicates that the path planning algorithm should skip possible solution and have a shorter calculation time
+    bool quickCalculation = true;
+    
 private:
 
     // grid of the map

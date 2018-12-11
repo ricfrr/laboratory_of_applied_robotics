@@ -209,7 +209,7 @@ Cell * Map::getCell(cv::Point forPoint){
         return potential_cell;
     }
     else{
-        std::cout << "could not find the cell for the point !!!" << std::endl;
+        //std::cout << "could not find the cell for the point !!!" << std::endl;
         return potential_cell;
     }
     
@@ -264,9 +264,9 @@ void Map::checkPeople(Cell &cell, PeopleStorage &people) {
         if (circleContact(cell_corners, &guy)) {
             cell.set_Rescue(people.circles[i].name);
             cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius, 0)});
-            if(cell.isEmpty())
+            // if(cell.isEmpty())
 
-                std::cout << "what!" << std::endl;
+                // std::cout << "what!" << std::endl;
             people.circles[i].setCell(cell);
 
         }

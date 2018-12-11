@@ -343,7 +343,7 @@ bool Cell::isObstacle(cv::Point forPoint)
         result = subcells[index].isObstacle(point);
         
         if(!result && obstacle){
-            std::cout << "PROBLEM" << std::endl;
+       //     std::cout << "PROBLEM" << std::endl;
             
             return true;
         }

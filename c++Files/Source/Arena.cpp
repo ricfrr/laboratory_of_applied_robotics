@@ -77,7 +77,7 @@ void Arena::findArena(const Mat &img)
         // 170, 220), 5, cv::LINE_AA);
     }
 
-    std::cout << "Arena : " << corners << std::endl;
+    //std::cout << "Arena : " << corners << std::endl;
     //
     setCorners(corners);
     corners = getCorners();

@@ -87,6 +87,7 @@ void Path::setLines(std::vector<Line> lines) {
             std::cout << "\nWARNING... orientation of endpoint does not match orientation of last line's endpoint" << std::endl;
             std::cout << "endpoint orientation: " << std::round(end_point.orientation*1000)/1000
             << "\nline's endpoint orientation: " << std::round(end.orientation*1000)/1000 << std::endl;
+            std::cout << "You can ignore this warning if endpoint orientation is not locked\n" << std::endl;
             orientation_error = true;
         }
         if(std::round(end.getCoordinates().x) != end_point.getCoordinates().x){
@@ -147,11 +148,11 @@ void Path::findPath() {
         dubin_lines = dubin_finder.dubinShortestPath(alt_points);
         
         if(dubin_lines.empty()){
-            std::cout << "will break down path" << std::endl;
-            std::cout << "found " << alt_points.size() << " alternative points" << std::endl;
+            //std::cout << "will break down path" << std::endl;
+            //std::cout << "found " << alt_points.size() << " alternative points" << std::endl;
             
             for(int i=0;i<alt_points.size();i++){
-                std::cout << "splitting for point " << i << std::endl;
+                std::cout << "splitting for point " << i+1 << std::endl;
                 Path path = Path(*this);
                 path.start_point = start_point;
                 path.end_point = end_point;
@@ -167,9 +168,9 @@ void Path::findPath() {
                     best_lines = path.lines;
                     initLength = l;
                     // the breaks speeds up the process but some solution will get lost
-                    break;
+                    if(map->quickCalculation)
+                        break;
                 }
-                    
             }
             
             dubin_lines = best_lines;

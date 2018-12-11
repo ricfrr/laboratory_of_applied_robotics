@@ -80,8 +80,8 @@ public:
     bool goodInput;
     int flag;
 
-    int IMG_WIDTH=400;//458
-    int IMG_LENGHT=600;//678
+    int IMG_WIDTH=458;//458
+    int IMG_LENGHT=678;//678
     int N_ROW_MAP=30;
     int N_COL_MAP=20;
     int GAP_PERSP=15;
