@@ -26,8 +26,6 @@ public:
     double sc_s3;
     std::vector<int> signs;
 
-private:
-
 };
 
 #endif /* PossiblePath_hpp */

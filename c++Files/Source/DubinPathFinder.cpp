@@ -316,3 +316,11 @@ std::vector<double> DubinPathFinder::scaleFromStandard(double lambda, double sc_
 
 }
 
+DubinPathFinder::PossibleDubinPath::PossibleDubinPath() {
+    
+};
+
+DubinPathFinder::PossibleDubinPath::~PossibleDubinPath(){
+    
+};
+
