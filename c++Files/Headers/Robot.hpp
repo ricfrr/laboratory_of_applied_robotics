@@ -22,9 +22,9 @@ public:
     
     const cv::Scalar color = cv::Scalar(0,0,255);
     
-    Path2D::PathCoordinates* data;
+    Path2D::Element::PathCoordinates* data;
     
-    Path2D::PathCoordinates initialize();
+    Path2D::Element::PathCoordinates initialize();
     
 };
 

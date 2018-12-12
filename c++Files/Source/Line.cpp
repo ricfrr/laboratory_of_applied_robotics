@@ -3,6 +3,7 @@
 #include "../Headers/Line.hpp"
 
 using namespace Path2D;
+using namespace Element;
 
 Line::Line() {}
 

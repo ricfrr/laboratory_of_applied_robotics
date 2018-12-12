@@ -21,6 +21,8 @@
 using namespace cv;
 
 namespace Path2D {
+    
+    using namespace Element;
 
 /**
  \brief abstract class for finding a path between two Positions

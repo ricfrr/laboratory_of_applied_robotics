@@ -1,6 +1,7 @@
 #include "../Headers/CircularLine.hpp"
 
 using namespace Path2D;
+using namespace Element;
 
 CircularLine::CircularLine(Position start_point, double curvature, double length) {
     setStartPoint(start_point);

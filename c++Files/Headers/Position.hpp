@@ -6,6 +6,8 @@
 using namespace cv;
 
 namespace Path2D {
+    
+    namespace Element {
 /**
  * \brief describes a position of a point using x and y coordinates and orientation
  */
@@ -53,6 +55,8 @@ private:
     cv::Point2d coordinates;
     
 };
+    
+}
     
 }
 

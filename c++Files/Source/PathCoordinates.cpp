@@ -6,6 +6,7 @@
 #include "../Headers/PathCoordinates.hpp"
 
 using namespace Path2D;
+using namespace Element;
 
 PathCoordinates::PathCoordinates(Position position_in, Position position_fin, double curvature_p) {
     setPositions(position_in, position_fin);

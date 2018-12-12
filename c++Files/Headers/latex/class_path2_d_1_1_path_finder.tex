@@ -1,0 +1,98 @@
+\hypertarget{class_path2_d_1_1_path_finder}{}\section{Path2D\+:\+:Path\+Finder Class Reference}
+\label{class_path2_d_1_1_path_finder}\index{Path2\+D\+::\+Path\+Finder@{Path2\+D\+::\+Path\+Finder}}
+
+
+abstract class for finding a path between two Positions  This class is a basis for more defined classes based on this class structure. For example a Dubins\+Path\+Finder class could be used to find a path using Dubin\+Curves, or an Spline\+Path\+Finder could be made to find a Spline\+Curve. Anyway this class does not just contain the basic structure of future specialized implementations but also usefull tools every Path\+Finding algorithm needs, such as a collision detection class nested inside. Given a map object this class can be used to see if the picked path is colliding with obstacles in the map.  
+
+
+
+
+{\ttfamily \#include $<$Path\+Finder.\+hpp$>$}
+
+Inheritance diagram for Path2D\+:\+:Path\+Finder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_path2_d_1_1_path_finder}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_path2_d_1_1_path_finder_1_1_collision_detector}{Collision\+Detector}}
+\begin{DoxyCompactList}\small\item\em detector of collision between obstacles and path \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_path2_d_1_1_path_finder_a0aa8bbd238985f5baa456287671551ea}{Path\+Finder}} (\mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}} path\+\_\+coordinates\+\_\+i, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\begin{DoxyCompactList}\small\item\em constructor of the \mbox{\hyperlink{class_path2_d_1_1_path_finder}{Path\+Finder}} class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a32bdcb63296c44e8777d0f247f2072ea}\label{class_path2_d_1_1_path_finder_a32bdcb63296c44e8777d0f247f2072ea}} 
+{\bfseries Path\+Finder} (\mbox{\hyperlink{class_path2_d_1_1_element_1_1_position}{Position}} start\+\_\+point, \mbox{\hyperlink{class_path2_d_1_1_element_1_1_position}{Position}} end\+\_\+point, double curvature, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a96141cb3260846bab64d45f3a8f40515}\label{class_path2_d_1_1_path_finder_a96141cb3260846bab64d45f3a8f40515}} 
+\mbox{\hyperlink{class_path2_d_1_1_path_finder_a96141cb3260846bab64d45f3a8f40515}{Path\+Finder}} ()
+\begin{DoxyCompactList}\small\item\em destructor of the \mbox{\hyperlink{class_path2_d_1_1_path_finder}{Path\+Finder}} class \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}} $>$ \mbox{\hyperlink{class_path2_d_1_1_path_finder_a5d050326067c313925d87ac37612a181}{shortest\+Path}} (std\+::vector$<$ cv\+::\+Point $>$ \&alternative\+\_\+\+Points)=0
+\begin{DoxyCompactList}\small\item\em function that find the dubins shortest path and return a vector of line \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a91d4111a80bb3d5cde042169fab4337e}\label{class_path2_d_1_1_path_finder_a91d4111a80bb3d5cde042169fab4337e}} 
+\mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}} {\bfseries path\+\_\+coordinates} = \mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}}(\mbox{\hyperlink{class_path2_d_1_1_element_1_1_position}{Position}}(), \mbox{\hyperlink{class_path2_d_1_1_element_1_1_position}{Position}}(), 0)
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a71fb23328f7dd376cce578b34441c10a}\label{class_path2_d_1_1_path_finder_a71fb23328f7dd376cce578b34441c10a}} 
+double {\bfseries length}
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a9db26e8edde93af781907314b0cf2e9b}\label{class_path2_d_1_1_path_finder_a9db26e8edde93af781907314b0cf2e9b}} 
+\mbox{\hyperlink{class_map}{Map}} $\ast$ {\bfseries map}
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a81fab59437d1f65f6c1a6aaf796c40ed}\label{class_path2_d_1_1_path_finder_a81fab59437d1f65f6c1a6aaf796c40ed}} 
+\mbox{\hyperlink{class_path2_d_1_1_path_finder_1_1_collision_detector}{Collision\+Detector}} {\bfseries collision\+Detector}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+abstract class for finding a path between two Positions  This class is a basis for more defined classes based on this class structure. For example a Dubins\+Path\+Finder class could be used to find a path using Dubin\+Curves, or an Spline\+Path\+Finder could be made to find a Spline\+Curve. Anyway this class does not just contain the basic structure of future specialized implementations but also usefull tools every Path\+Finding algorithm needs, such as a collision detection class nested inside. Given a map object this class can be used to see if the picked path is colliding with obstacles in the map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a0aa8bbd238985f5baa456287671551ea}\label{class_path2_d_1_1_path_finder_a0aa8bbd238985f5baa456287671551ea}} 
+\index{Path2\+D\+::\+Path\+Finder@{Path2\+D\+::\+Path\+Finder}!Path\+Finder@{Path\+Finder}}
+\index{Path\+Finder@{Path\+Finder}!Path2\+D\+::\+Path\+Finder@{Path2\+D\+::\+Path\+Finder}}
+\subsubsection{\texorpdfstring{Path\+Finder()}{PathFinder()}}
+{\footnotesize\ttfamily Path2\+D\+::\+Path\+Finder\+::\+Path\+Finder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}}}]{path\+\_\+coordinates\+\_\+i,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+constructor of the \mbox{\hyperlink{class_path2_d_1_1_path_finder}{Path\+Finder}} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+coordinates\+\_\+i} & coordinates of the path that we want to find \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_a5d050326067c313925d87ac37612a181}\label{class_path2_d_1_1_path_finder_a5d050326067c313925d87ac37612a181}} 
+\index{Path2\+D\+::\+Path\+Finder@{Path2\+D\+::\+Path\+Finder}!shortest\+Path@{shortest\+Path}}
+\index{shortest\+Path@{shortest\+Path}!Path2\+D\+::\+Path\+Finder@{Path2\+D\+::\+Path\+Finder}}
+\subsubsection{\texorpdfstring{shortest\+Path()}{shortestPath()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}}$>$ Path2\+D\+::\+Path\+Finder\+::shortest\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{alternative\+\_\+\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+function that find the dubins shortest path and return a vector of line 
+
+\begin{DoxyItemize}
+\item alternative\+\_\+\+Points a point set for every obsticle that was found along the way \begin{DoxyReturn}{Returns}
+vector of lines which describes the path 
+\end{DoxyReturn}
+\end{DoxyItemize}
+
+
+Implemented in \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_a53d6ee86e364b403274f403af6e5088e}{Path2\+D\+::\+Dubin\+Path\+Finder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Path\+Finder.\+hpp\end{DoxyCompactItemize}

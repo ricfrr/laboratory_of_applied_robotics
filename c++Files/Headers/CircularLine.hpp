@@ -13,6 +13,7 @@
 #include <cmath>
 
 namespace Path2D {
+    namespace Element{
 /**
  \brief Class for managing circle in the pat
  */
@@ -33,5 +34,6 @@ public:
 
 };
     
+}
 }
 #endif /* CircularLine_hpp */

@@ -4,6 +4,7 @@
 #include "Position.hpp"
 
 namespace Path2D {
+    namespace Element{
 /**
  * \brief class for storing data that describes the path
  */
@@ -57,6 +58,7 @@ private:
     double Kmax;
 };
     
+}
 }
 
 #endif /* Car_hpp */

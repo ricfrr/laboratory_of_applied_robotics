@@ -7,6 +7,7 @@
 #include "../Headers/CircularLine.hpp"
 
 using namespace Path2D;
+using namespace Element;
 
 DubinPathFinder::DubinPathFinder(PathCoordinates path_coordinates_i, Map* map_i):PathFinder(path_coordinates_i,map_i) {
     path_coordinates = path_coordinates_i;

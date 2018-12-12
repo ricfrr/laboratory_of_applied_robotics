@@ -5,12 +5,6 @@
 
 namespace Path2D
 {
-struct standardConf {
-    double lambda;
-    double sc_th0;
-    double sc_thf;
-    double sc_Kmax;
-};
 
 using namespace cv;
 /**
@@ -18,6 +12,14 @@ using namespace cv;
  */
 class DubinPathFinder: public PathFinder {
 
+public:
+    struct standardConf {
+        double lambda;
+        double sc_th0;
+        double sc_thf;
+        double sc_Kmax;
+    };
+    
 public:
     /**
       \brief constructor of the DubinPathFinder class

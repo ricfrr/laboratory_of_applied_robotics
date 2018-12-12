@@ -7,6 +7,7 @@
 
 using namespace cv;
 using namespace Path2D;
+using namespace Element;
 
 Position::Position(cv::Point2d pos, double orient) {
     setPosition(pos, orient);

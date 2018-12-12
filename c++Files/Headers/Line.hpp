@@ -14,6 +14,7 @@
 
 
 namespace Path2D {
+    namespace Element{
 /**
  * \brief Line class that describes the basic line of a path
  */
@@ -120,7 +121,7 @@ private:
     double curvature; // 1: left 0: straight -1 :right
 
 };
-    
+}
 }
 
 #endif /* Line_hpp */
