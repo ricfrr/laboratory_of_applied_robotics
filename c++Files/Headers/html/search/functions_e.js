@@ -7,6 +7,7 @@ var searchData=
   ['set_5ffilter',['set_filter',['../class_digit___recognition.html#a68484f6730ee2f0fc2050726c3ff2252',1,'Digit_Recognition']]],
   ['set_5flower_5fbound_5ffilter',['set_lower_bound_filter',['../class_character___recognition___algorithm.html#a06c2a31ba8f4ab6e3aacea6b643a4d7d',1,'Character_Recognition_Algorithm']]],
   ['set_5fobstacle',['set_Obstacle',['../class_cell.html#af7d43434293cf3df61c07b95af4c3be6',1,'Cell']]],
+  ['set_5frescue',['set_Rescue',['../class_cell.html#a9fbed46923e15b7c576b438017ba0673',1,'Cell']]],
   ['set_5fupper_5fbound_5ffilter',['set_upper_bound_filter',['../class_character___recognition___algorithm.html#a2add4eeeb34fb3a8bd35a1d5da0950a0',1,'Character_Recognition_Algorithm']]],
   ['setbottomleft',['setBottomLeft',['../class_cell.html#a86387a50a4c3f641eede253ce6cfcddb',1,'Cell']]],
   ['setbottomright',['setBottomRight',['../class_cell.html#ae68ff90cfde34cec208e8e74ce3f2745',1,'Cell']]],
@@ -21,12 +22,13 @@ var searchData=
   ['setposition',['setPosition',['../class_position.html#acf00d240f456cc9b2c2910e803f53605',1,'Position']]],
   ['setpositions',['setPositions',['../class_path_coordinates.html#a730ba85010cbd33da4e76fe0f05fb2b0',1,'PathCoordinates']]],
   ['setradius',['setRadius',['../class_circle.html#ae4a8bd93b437b4cf0077483ff84c8626',1,'Circle']]],
-  ['setrescue',['setRescue',['../class_cell.html#afa194cda3c1e8f9be100c9a14fda7f9d',1,'Cell']]],
   ['setstartpoint',['setStartPoint',['../class_line.html#a6356eecffc24d5016c9aa697611c3020',1,'Line::setStartPoint()'],['../class_path.html#a87f4082a3c5af3aa37260cb99c605156',1,'Path::setStartPoint()']]],
   ['settopleft',['setTopLeft',['../class_cell.html#a9e2d13652a170ef25265a41dfe39e93f',1,'Cell']]],
   ['settopright',['setTopRight',['../class_cell.html#a245afe36e263e2fbf66880e4ea628f40',1,'Cell']]],
   ['shape',['Shape',['../class_shape.html#aaa8d87171e65e0d8ba3c5459978992a7',1,'Shape']]],
+  ['shortestpath',['shortestPath',['../class_dubin_path_finder.html#adc5d730f6226c4d92202b0ff4126cbb2',1,'DubinPathFinder::shortestPath()'],['../class_path_finder.html#aee7b3017f8f532f9368d2d996d191a10',1,'PathFinder::shortestPath()']]],
   ['sinc',['sinc',['../class_line.html#a4976ad80d3fe4a789bac7a1916543edd',1,'Line']]],
+  ['split',['split',['../class_path.html#a034538715379fdc31b3fdd093354d4d4',1,'Path']]],
   ['storeallparameters',['storeAllParameters',['../class_inverse___perspective___mapping.html#abdea95329f3868f2a0875832a67f1076',1,'Inverse_Perspective_Mapping']]],
   ['straightline',['StraightLine',['../class_straight_line.html#a583064766a4c73bfa58ee1cb9f5b4495',1,'StraightLine::StraightLine(Position start_point, Position end_point)'],['../class_straight_line.html#ac55a20f7c9d8ba62f4dd0bba0e9d8c4e',1,'StraightLine::StraightLine(Position start_point, double length)']]]
 ];

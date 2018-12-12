@@ -27,6 +27,9 @@ void {\bfseries get\+Arena\+Cells} (std\+::vector$<$ \mbox{\hyperlink{class_cell
 \mbox{\Hypertarget{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}\label{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}} 
 void {\bfseries get\+Grid} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$$>$ \&grid)
 \item 
+\mbox{\Hypertarget{class_map_adf1aceac80d4cbfc91a5cf158c009c9d}\label{class_map_adf1aceac80d4cbfc91a5cf158c009c9d}} 
+\mbox{\hyperlink{class_cell}{Cell}} $\ast$ {\bfseries get\+Cell} (cv\+::\+Point for\+Point)
+\item 
 \mbox{\Hypertarget{class_map_a17022b64f602dfd4d45a84c0ffa92270}\label{class_map_a17022b64f602dfd4d45a84c0ffa92270}} 
 \mbox{\hyperlink{class_obstacle}{Obstacle}} {\bfseries get\+Obstacles} ()
 \item 
@@ -49,13 +52,31 @@ int \mbox{\hyperlink{class_map_a77781f371aaf9f386f993714dbef40ec}{get\+Image\+He
 int \mbox{\hyperlink{class_map_a56085c67347222241299765fe89e615d}{get\+Grid\+Col\+Num}} ()
 \begin{DoxyCompactList}\small\item\em return the number of columns in the grid \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}{get\+Grid\+Row\+Num}} ()
-\begin{DoxyCompactList}\small\item\em return the number of rows in the grid \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em return the number of rows in the grid \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a4caa93dd96a400c6fc12de7ca68e7518}\label{class_map_a4caa93dd96a400c6fc12de7ca68e7518}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a4caa93dd96a400c6fc12de7ca68e7518}{get\+Nearest\+Neighbors}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring cells for a cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}\label{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}{get\+Empty\+Nearest\+Neighbors}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring empty cells for a cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}\label{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}{get\+Nearest\+Neighbors}} (cv\+::\+Point cell\+In\+Point)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring cells for a cell at a point \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}\label{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}} 
+std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \mbox{\hyperlink{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}{get\+Empty\+Nearest\+Neighbors\+Points}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring center points of empty cells for a cell \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_map_a550c4a27e88ecaed45b6fe075c647751}\label{class_map_a550c4a27e88ecaed45b6fe075c647751}} 
 std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ {\bfseries grid}
-\end{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_map_acb457d584b56b2f61a2f191f60c1c15c}\label{class_map_acb457d584b56b2f61a2f191f60c1c15c}} 
+double \mbox{\hyperlink{class_map_acb457d584b56b2f61a2f191f60c1c15c}{n\+\_\+multiplier}} = 2.\+0
+\begin{DoxyCompactList}\small\item\em the distance a neighboring cell is given based on cell width/height and a multiplier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_ad766d9e026f8085e6b113d8274b2b109}\label{class_map_ad766d9e026f8085e6b113d8274b2b109}} 
+bool \mbox{\hyperlink{class_map_ad766d9e026f8085e6b113d8274b2b109}{quick\+Calculation}} = true
+\begin{DoxyCompactList}\small\item\em a flag that indicates that the path planning algorithm should skip possible solution and have a shorter calculation time \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

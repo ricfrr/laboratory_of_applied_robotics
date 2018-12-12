@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['ub',['ub',['../struct_h_s_v_filter_range.html#a1c5b705f9992e014fd4dd7085e078c9d',1,'HSVFilterRange']]],
-  ['usefisheye',['useFisheye',['../class_settings.html#ac8f271630d54f9d0c718ea0130972d44',1,'Settings']]]
+  ['template_5fpath',['template_path',['../class_template___character___recognition.html#aa4cb4d3779f7d7a65ae5811f78be880b',1,'Template_Character_Recognition']]],
+  ['three',['three',['../struct_digit_result_distribution.html#a7577349008e126903118cfd374098b13',1,'DigitResultDistribution']]],
+  ['two',['two',['../struct_digit_result_distribution.html#a56239fa561bbf02f884b927537e4e641',1,'DigitResultDistribution']]]
 ];

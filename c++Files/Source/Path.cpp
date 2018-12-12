@@ -2,6 +2,8 @@
 
 #include "../Headers/Path.hpp"
 
+using namespace Path2D;
+
 Path::Path() {};
 
 Path::Path(Path path1, Path path2){
@@ -22,6 +24,9 @@ Path::Path(Path path1, Path path2){
     lines.insert( lines.end(), line1.begin(), line1.end() );
     lines.insert( lines.end(), line2.begin(), line2.end() );
     
+    PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
+    setFinder<DubinPathFinder>(path_coordinates);
+    
 }
 
 Path::Path(Position start_point, Position end_point, double curvature, Map *map_i) {
@@ -29,8 +34,42 @@ Path::Path(Position start_point, Position end_point, double curvature, Map *map_
     setEndPoint(end_point);
     setMaxCurvature(curvature);
     setMap(map_i);
+    
+    PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
+    setFinder<DubinPathFinder>(path_coordinates);
+    
     findPath();
 };
+
+template <class T>
+Path::Path(Position start_point, Position end_point, double curvature, Map *map_i, T* pathFinder, bool complex){
+    setStartPoint(start_point);
+    setEndPoint(end_point);
+    setMaxCurvature(curvature);
+    setMap(map_i);
+    
+    this->finder = new T(start_point,end_point,curvature,map);
+    
+    if(complex)
+        findPath();
+    else
+        findPathSimple();
+}
+
+template <class T>
+Path::Path(PathCoordinates coordinates, Map *map, T* pathFinder, bool complex){
+    setStartPoint(coordinates.getInitialPosition());
+    setEndPoint(coordinates.getFinalPosition());
+    setMaxCurvature(coordinates.getMaxCurvature());
+    setMap(map);
+    
+    this->finder = new T(coordinates,map);
+    
+    if(complex)
+        findPath();
+    else
+        findPathSimple();
+}
 
 Path::~Path() {};
 
@@ -134,9 +173,6 @@ void Path::findPath() {
     
     //some kind of do while (dubin_lines.empty())
     // ...
-    PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
-    
-    DubinPathFinder dubin_finder = DubinPathFinder(path_coordinates,getMap());
 
     double iterations = 9.0;
     double it = 2.0;
@@ -145,7 +181,7 @@ void Path::findPath() {
     
     do{
         getMap()->n_multiplier = it;
-        dubin_lines = dubin_finder.dubinShortestPath(alt_points);
+        dubin_lines = finder->shortestPath(alt_points);
         
         if(dubin_lines.empty()){
             //std::cout << "will break down path" << std::endl;
@@ -160,7 +196,7 @@ void Path::findPath() {
                 path.map = map;
                 path.setLines(lines);
                 map->n_multiplier = 2.0;
-                Path::split(path, alt_points[i]);
+                Path::split<DubinPathFinder>(path, alt_points[i]);
                 
                 double l = path.getLength();
 
@@ -207,6 +243,7 @@ void Path::findPath() {
     setLength(tmp_length);
 }
 
+template <class T>
 void Path::split(Path &path, cv::Point intermediate){
     
     double orientation_i = 0;
@@ -227,17 +264,12 @@ void Path::split(Path &path, cv::Point intermediate){
     while(orientation_i < 2*M_PI){
         
         Position point = Position(intermediate,orientation_i);
-        one.start_point = path.start_point;
-        one.end_point = point;
-        one.maxCurvature = path.maxCurvature;
-        one.map = path.map;
-        one.findPathSimple();
         
-        two.start_point = point;
-        two.end_point = path.end_point;
-        two.maxCurvature = path.maxCurvature;
-        two.map = path.map;
-        two.findPathSimple();
+        one = Path(PathCoordinates(path.start_point, point, path.maxCurvature), path.map, new T(PathCoordinates(path.start_point, point, path.maxCurvature), path.map),false);
+        
+        //one = Path(PathCoordinates(path.start_point, point, path.maxCurvature),path.map,false);
+        
+        two = Path(PathCoordinates(point, path.end_point, path.maxCurvature),path.map, new T(PathCoordinates(point, path.end_point, path.maxCurvature),path.map),false);
         
         if(one.length > 0 && two.length > 0){
             ok = true;
@@ -268,7 +300,7 @@ void Path::findPathSimple(){
     setLength(0);
     
     std::vector<cv::Point> alt_points;
-    dubin_lines = dubin_finder.dubinShortestPath(alt_points);
+    dubin_lines = finder->shortestPath(alt_points);
     
     if(dubin_lines.empty()){
         //std::cout << "did not find simple path" << std::endl;
@@ -301,6 +333,13 @@ void Path::setMap(Map* map_i) {
 Map* Path::getMap() {
     return map;
 }
+
+template <class T>
+void Path::setFinder(PathCoordinates pc){
+    
+    this->finder = new T(pc,map);
+}
+
 
 
 

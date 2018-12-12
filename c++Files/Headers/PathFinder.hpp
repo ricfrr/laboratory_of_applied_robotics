@@ -12,7 +12,6 @@
 #include <opencv2/core/core.hpp>
 #include <limits>
 #include "PathCoordinates.hpp"
-#include "PossibleDubinPath.hpp"
 #include "Line.hpp"
 #include "CircularLine.hpp"
 #include "StraightLine.hpp"
@@ -21,6 +20,7 @@
 
 using namespace cv;
 
+namespace Path2D {
 
 /**
  \brief abstract class for finding a path between two Positions
@@ -34,6 +34,7 @@ public:
      * @param path_coordinates_i coordinates of the path that we want to find
      */
     PathFinder(PathCoordinates path_coordinates_i,Map* map_i);
+    PathFinder(Position start_point, Position end_point, double curvature, Map *map_i);
     /**
      * \brief destructor of the PathFinder class
      */
@@ -77,5 +78,7 @@ public:
     
     CollisionDetector collisionDetector;
 };
+    
+}
 
 #endif /* PathFinder_hpp */

@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include "Line.hpp"
 #include <cmath>
+
+namespace Path2D {
 /**
  \brief Class for managing circle in the pat
  */
@@ -30,4 +32,6 @@ public:
     ~CircularLine();
 
 };
+    
+}
 #endif /* CircularLine_hpp */

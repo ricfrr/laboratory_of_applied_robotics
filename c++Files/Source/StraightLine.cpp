@@ -7,6 +7,8 @@
 
 #include "../Headers/StraightLine.hpp"
 
+using namespace Path2D;
+
 StraightLine::StraightLine(Position start_point, Position end_point) {
     setStartPoint(start_point);
     setEndPoint(end_point);

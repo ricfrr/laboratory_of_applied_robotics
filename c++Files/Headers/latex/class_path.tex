@@ -5,9 +5,18 @@
 \item 
 \mbox{\hyperlink{class_path_a6abfa12b45ae127daa7408571b62b74d}{Path}} (\mbox{\hyperlink{class_position}{Position}} start\+\_\+point, \mbox{\hyperlink{class_position}{Position}} end\+\_\+point, double curvature, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
 \begin{DoxyCompactList}\small\item\em given the start point and the end point is able to find the best path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_a328c21221c311c4f33adca6dbb1fe152}\label{class_path_a328c21221c311c4f33adca6dbb1fe152}} 
+{\bfseries Path} (\mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}} coordinates, \mbox{\hyperlink{class_map}{Map}} $\ast$map, bool complex=true, Path\+Finder\+Type type=Dubins\+Curve)
+\item 
+\mbox{\Hypertarget{class_path_ad2148acf78204e74c45bd593f63d6c29}\label{class_path_ad2148acf78204e74c45bd593f63d6c29}} 
+\mbox{\hyperlink{class_path_ad2148acf78204e74c45bd593f63d6c29}{Path}} (\mbox{\hyperlink{class_path}{Path}} path1, \mbox{\hyperlink{class_path}{Path}} path2)
+\begin{DoxyCompactList}\small\item\em constructs a new path out of two existant path objects \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_path_ab45faf702862c6594068a3ed2d026cda}\label{class_path_ab45faf702862c6594068a3ed2d026cda}} 
 void \mbox{\hyperlink{class_path_ab45faf702862c6594068a3ed2d026cda}{find\+Path}} ()
 \begin{DoxyCompactList}\small\item\em function that detects the best path, for now uses only dubins path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_ad5d38a9684c07019370a856d29b32538}\label{class_path_ad5d38a9684c07019370a856d29b32538}} 
+void {\bfseries find\+Path\+Simple} ()
+\item 
 \mbox{\Hypertarget{class_path_ae5b5816b3480e9f103079bb3467dc65f}\label{class_path_ae5b5816b3480e9f103079bb3467dc65f}} 
 void \mbox{\hyperlink{class_path_ae5b5816b3480e9f103079bb3467dc65f}{set\+Lines}} (std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$)
 \begin{DoxyCompactList}\small\item\em set the lines of the path \end{DoxyCompactList}\item 
@@ -34,7 +43,16 @@ void {\bfseries set\+Map} (\mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
 \item 
 \mbox{\Hypertarget{class_path_abacf46c32c4f36a79c2faf21a9a01270}\label{class_path_abacf46c32c4f36a79c2faf21a9a01270}} 
 \mbox{\hyperlink{class_map}{Map}} $\ast$ {\bfseries get\+Map} ()
+\item 
+\mbox{\Hypertarget{class_path_a96f8912c754b3861697aad04018276f6}\label{class_path_a96f8912c754b3861697aad04018276f6}} 
+void {\bfseries set\+Finder} (Path\+Finder\+Type type, \mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}} pc)
 \end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path_a034538715379fdc31b3fdd093354d4d4}\label{class_path_a034538715379fdc31b3fdd093354d4d4}} 
+static void \mbox{\hyperlink{class_path_a034538715379fdc31b3fdd093354d4d4}{split}} (\mbox{\hyperlink{class_path}{Path}} \&path, cv\+::\+Point intermediate)
+\begin{DoxyCompactList}\small\item\em splits a path so it goes over an interediate point \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 

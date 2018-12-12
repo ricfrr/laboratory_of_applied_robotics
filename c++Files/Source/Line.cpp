@@ -2,6 +2,8 @@
 
 #include "../Headers/Line.hpp"
 
+using namespace Path2D;
+
 Line::Line() {}
 
 Line::Line(Position start_point, Position end_point) {

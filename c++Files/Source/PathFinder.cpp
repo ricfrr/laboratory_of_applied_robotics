@@ -8,7 +8,13 @@
 
 #include "../Headers/PathFinder.hpp"
 
+using namespace Path2D;
+
 PathFinder::PathFinder(PathCoordinates path_coordinates_i,Map* map_i){}
+
+PathFinder::PathFinder(Position start_point, Position end_point, double curvature, Map *map_i){}
+
+
 
 PathFinder::PathFinder(){}
 

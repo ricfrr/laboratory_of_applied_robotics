@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['range',['range',['../class_color___processing.html#a5769c226ab5a68929b0b5894d35dbb57',1,'Color_Processing']]]
+  ['quickcalculation',['quickCalculation',['../class_map.html#ad766d9e026f8085e6b113d8274b2b109',1,'Map']]]
 ];

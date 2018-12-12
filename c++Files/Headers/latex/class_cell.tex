@@ -36,13 +36,13 @@ cv\+::\+Point \mbox{\hyperlink{class_cell_afa1704102095fd55ac036f7d290eed05}{get
 \item 
 void \mbox{\hyperlink{class_cell_ae68ff90cfde34cec208e8e74ce3f2745}{set\+Bottom\+Right}} (cv\+::\+Point bottom\+Right)
 \item 
-bool \mbox{\hyperlink{class_cell_a6c7344ef2aa917e70364221bf86ff8bc}{is\+Empty}} ()
+bool \mbox{\hyperlink{class_cell_a5175d1bb16d2192ecfcb6e7c0a962389}{is\+Empty}} (cv\+::\+Point for\+Point=cv\+::\+Point(-\/1,-\/1))
 \item 
 bool \mbox{\hyperlink{class_cell_aaf13f5d308c7f1eb670a050e4fc6dc28}{is\+Exit}} ()
 \item 
-bool \mbox{\hyperlink{class_cell_a34d62b7c65fd85f356bd9e2c3058edcb}{is\+Border}} ()
+bool \mbox{\hyperlink{class_cell_adebbc4bba0795d564ec275ea32edb525}{is\+Border}} (cv\+::\+Point for\+Point=cv\+::\+Point(-\/1,-\/1))
 \item 
-bool \mbox{\hyperlink{class_cell_aee32093f779b1fa761b43a6b0a86ed6c}{is\+Obstacle}} ()
+bool \mbox{\hyperlink{class_cell_a8c505bb81ec2fbbb68ffb3d022c43b10}{is\+Obstacle}} (cv\+::\+Point for\+Point=cv\+::\+Point(-\/1,-\/1))
 \item 
 bool \mbox{\hyperlink{class_cell_ad86a719c04ff04bdf79c1c0b8e5a5942}{is\+Rescue}} ()
 \item 
@@ -56,10 +56,19 @@ void \mbox{\hyperlink{class_cell_aaf2c6b0f530432a4a2b47fbbf45c8ba0}{set\+\_\+\+B
 \item 
 void \mbox{\hyperlink{class_cell_af7d43434293cf3df61c07b95af4c3be6}{set\+\_\+\+Obstacle}} ()
 \item 
-void \mbox{\hyperlink{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}{set\+Rescue}} (int digit\+\_\+i)
+void \mbox{\hyperlink{class_cell_a9fbed46923e15b7c576b438017ba0673}{set\+\_\+\+Rescue}} (int digit\+\_\+i)
 \item 
 \mbox{\Hypertarget{class_cell_a4eb2375f1aaf905bffe8c7c57e3379d4}\label{class_cell_a4eb2375f1aaf905bffe8c7c57e3379d4}} 
 void {\bfseries find\+State} (std\+::vector$<$ cv\+::\+Point $>$ contour)
+\item 
+\mbox{\Hypertarget{class_cell_ab26739a1fdd5763ff71f5362b986eae4}\label{class_cell_ab26739a1fdd5763ff71f5362b986eae4}} 
+void {\bfseries set\+Mixed} ()
+\item 
+\mbox{\Hypertarget{class_cell_a1d31bcdf9696327e370853e552135c74}\label{class_cell_a1d31bcdf9696327e370853e552135c74}} 
+void {\bfseries set\+Full} ()
+\item 
+\mbox{\Hypertarget{class_cell_aeee51c3aeab485978aa70293806b6021}\label{class_cell_aeee51c3aeab485978aa70293806b6021}} 
+bool {\bfseries get\+State} ()
 \item 
 \mbox{\Hypertarget{class_cell_a4c23ccef6e17cb341ca494933e195eac}\label{class_cell_a4c23ccef6e17cb341ca494933e195eac}} 
 void {\bfseries refine\+\_\+if\+\_\+neccessary} (std\+::vector$<$ cv\+::\+Point $>$ for\+Shape)
@@ -76,8 +85,26 @@ const std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ {\bfseries
 \mbox{\Hypertarget{class_cell_a7182bd8459f98bafdec19697e283a06a}\label{class_cell_a7182bd8459f98bafdec19697e283a06a}} 
 bool {\bfseries contains\+\_\+object} ()
 \item 
+\mbox{\Hypertarget{class_cell_a135d14fca8f8e3c241b3e7d39df90383}\label{class_cell_a135d14fca8f8e3c241b3e7d39df90383}} 
+double \mbox{\hyperlink{class_cell_a135d14fca8f8e3c241b3e7d39df90383}{width}} ()
+\begin{DoxyCompactList}\small\item\em the width of the cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cell_a18272b1b5b9a3dc9eb8e5be7cf7de10a}\label{class_cell_a18272b1b5b9a3dc9eb8e5be7cf7de10a}} 
+double \mbox{\hyperlink{class_cell_a18272b1b5b9a3dc9eb8e5be7cf7de10a}{height}} ()
+\begin{DoxyCompactList}\small\item\em the height of the cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cell_ae8141ce63b441afa2bb75d4f86aef38e}\label{class_cell_ae8141ce63b441afa2bb75d4f86aef38e}} 
+cv\+::\+Point \mbox{\hyperlink{class_cell_ae8141ce63b441afa2bb75d4f86aef38e}{center}} ()
+\begin{DoxyCompactList}\small\item\em the center point of the cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cell_a136f724c1730f551b7533f5840c9c393}\label{class_cell_a136f724c1730f551b7533f5840c9c393}} 
+bool \mbox{\hyperlink{class_cell_a136f724c1730f551b7533f5840c9c393}{is\+Child\+Of}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em checks if a cell is a subcell of a given cell \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_cell_acc1faa0802609404e8058263004087ea}{collision}} (std\+::vector$<$ cv\+::\+Point $>$ \&with\+Object)
-\begin{DoxyCompactList}\small\item\em a function that checks if a collision between an object and the cell will take place \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em a function that checks if a collision between an object and the cell will take place \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_cell_a984dff9c5002abe33e18b9d866e4885e}\label{class_cell_a984dff9c5002abe33e18b9d866e4885e}} 
+bool {\bfseries point\+Inside} (cv\+::\+Point point)
+\item 
+\mbox{\Hypertarget{class_cell_ad85f38ac8740c33451866c8af37b8240}\label{class_cell_ad85f38ac8740c33451866c8af37b8240}} 
+void {\bfseries print} ()
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -168,20 +195,20 @@ return the top left corner of the cell
 return the top right corner of the cell \begin{DoxyReturn}{Returns}
 return the top right corner of the cell 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_cell_a34d62b7c65fd85f356bd9e2c3058edcb}\label{class_cell_a34d62b7c65fd85f356bd9e2c3058edcb}} 
+\mbox{\Hypertarget{class_cell_adebbc4bba0795d564ec275ea32edb525}\label{class_cell_adebbc4bba0795d564ec275ea32edb525}} 
 \index{Cell@{Cell}!is\+Border@{is\+Border}}
 \index{is\+Border@{is\+Border}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{is\+Border()}{isBorder()}}
-{\footnotesize\ttfamily bool Cell\+::is\+Border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Cell\+::is\+Border (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{for\+Point = {\ttfamily cv\+:\+:Point(-\/1,-\/1)} }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
 true if is a border 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_cell_a6c7344ef2aa917e70364221bf86ff8bc}\label{class_cell_a6c7344ef2aa917e70364221bf86ff8bc}} 
+\mbox{\Hypertarget{class_cell_a5175d1bb16d2192ecfcb6e7c0a962389}\label{class_cell_a5175d1bb16d2192ecfcb6e7c0a962389}} 
 \index{Cell@{Cell}!is\+Empty@{is\+Empty}}
 \index{is\+Empty@{is\+Empty}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{is\+Empty()}{isEmpty()}}
-{\footnotesize\ttfamily bool Cell\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Cell\+::is\+Empty (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{for\+Point = {\ttfamily cv\+:\+:Point(-\/1,-\/1)} }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
 true if is empty 
@@ -195,11 +222,11 @@ true if is empty
 \begin{DoxyReturn}{Returns}
 true if is an exit 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_cell_aee32093f779b1fa761b43a6b0a86ed6c}\label{class_cell_aee32093f779b1fa761b43a6b0a86ed6c}} 
+\mbox{\Hypertarget{class_cell_a8c505bb81ec2fbbb68ffb3d022c43b10}\label{class_cell_a8c505bb81ec2fbbb68ffb3d022c43b10}} 
 \index{Cell@{Cell}!is\+Obstacle@{is\+Obstacle}}
 \index{is\+Obstacle@{is\+Obstacle}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{is\+Obstacle()}{isObstacle()}}
-{\footnotesize\ttfamily bool Cell\+::is\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Cell\+::is\+Obstacle (\begin{DoxyParamCaption}\item[{cv\+::\+Point}]{for\+Point = {\ttfamily cv\+:\+:Point(-\/1,-\/1)} }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
 true if is an obstacle 
@@ -237,7 +264,18 @@ set cell to exit \mbox{\Hypertarget{class_cell_af7d43434293cf3df61c07b95af4c3be6
 \subsubsection{\texorpdfstring{set\+\_\+\+Obstacle()}{set\_Obstacle()}}
 {\footnotesize\ttfamily void Cell\+::set\+\_\+\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-set cell to an obstacle \mbox{\Hypertarget{class_cell_a86387a50a4c3f641eede253ce6cfcddb}\label{class_cell_a86387a50a4c3f641eede253ce6cfcddb}} 
+set cell to an obstacle \mbox{\Hypertarget{class_cell_a9fbed46923e15b7c576b438017ba0673}\label{class_cell_a9fbed46923e15b7c576b438017ba0673}} 
+\index{Cell@{Cell}!set\+\_\+\+Rescue@{set\+\_\+\+Rescue}}
+\index{set\+\_\+\+Rescue@{set\+\_\+\+Rescue}!Cell@{Cell}}
+\subsubsection{\texorpdfstring{set\+\_\+\+Rescue()}{set\_Rescue()}}
+{\footnotesize\ttfamily void Cell\+::set\+\_\+\+Rescue (\begin{DoxyParamCaption}\item[{int}]{digit\+\_\+i }\end{DoxyParamCaption})}
+
+set the digit of the person 
+\begin{DoxyParams}{Parameters}
+{\em digit\+\_\+i} & digit of the person \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_cell_a86387a50a4c3f641eede253ce6cfcddb}\label{class_cell_a86387a50a4c3f641eede253ce6cfcddb}} 
 \index{Cell@{Cell}!set\+Bottom\+Left@{set\+Bottom\+Left}}
 \index{set\+Bottom\+Left@{set\+Bottom\+Left}!Cell@{Cell}}
 \subsubsection{\texorpdfstring{set\+Bottom\+Left()}{setBottomLeft()}}
@@ -268,17 +306,6 @@ set the bottom right corner
 set the list of corners 
 \begin{DoxyParams}{Parameters}
 {\em corners} & list of corners that have to be setted \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}\label{class_cell_afa194cda3c1e8f9be100c9a14fda7f9d}} 
-\index{Cell@{Cell}!set\+Rescue@{set\+Rescue}}
-\index{set\+Rescue@{set\+Rescue}!Cell@{Cell}}
-\subsubsection{\texorpdfstring{set\+Rescue()}{setRescue()}}
-{\footnotesize\ttfamily void Cell\+::set\+Rescue (\begin{DoxyParamCaption}\item[{int}]{digit\+\_\+i }\end{DoxyParamCaption})}
-
-set the digit of the person 
-\begin{DoxyParams}{Parameters}
-{\em digit\+\_\+i} & digit of the person \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_cell_a9e2d13652a170ef25265a41dfe39e93f}\label{class_cell_a9e2d13652a170ef25265a41dfe39e93f}} 

@@ -6,9 +6,14 @@
 #include "../Headers/DubinPathFinder.hpp"
 #include "../Headers/CircularLine.hpp"
 
+using namespace Path2D;
 
-DubinPathFinder::DubinPathFinder(PathCoordinates path_coordinates_i, Map* map_i) {
+DubinPathFinder::DubinPathFinder(PathCoordinates path_coordinates_i, Map* map_i):PathFinder(path_coordinates_i,map_i) {
     path_coordinates = path_coordinates_i;
+    map = map_i;
+};
+
+DubinPathFinder::DubinPathFinder(Map* map_i) {
     map = map_i;
 };
 
@@ -323,4 +328,5 @@ DubinPathFinder::PossibleDubinPath::PossibleDubinPath() {
 DubinPathFinder::PossibleDubinPath::~PossibleDubinPath(){
     
 };
+
 

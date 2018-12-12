@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include "Line.hpp"
 #include <opencv2/core/core.hpp>
+
+namespace Path2D {
 /**
  * \brief describe a StraightLine in the path
  */
@@ -37,5 +39,7 @@ public:
 private:
     double distance(cv::Point initial_point , cv::Point final_point);
 };
+    
+}
 
 #endif /* StraightLine_hpp */

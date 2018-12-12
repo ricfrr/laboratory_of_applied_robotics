@@ -6,6 +6,7 @@
 #include "../Headers/Position.hpp"
 
 using namespace cv;
+using namespace Path2D;
 
 Position::Position(cv::Point2d pos, double orient) {
     setPosition(pos, orient);

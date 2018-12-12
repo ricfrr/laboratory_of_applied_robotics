@@ -16,6 +16,8 @@
 
 #include <stdio.h>
 
+using namespace Path2D;
+
 /**
  \brief class that visualizes the steps taken by robotic mapping and path planning
  */

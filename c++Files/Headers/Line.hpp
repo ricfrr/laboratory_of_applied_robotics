@@ -12,6 +12,8 @@
 #include <opencv2/core/core.hpp>
 #include "Position.hpp"
 
+
+namespace Path2D {
 /**
  * \brief Line class that describes the basic line of a path
  */
@@ -118,5 +120,7 @@ private:
     double curvature; // 1: left 0: straight -1 :right
 
 };
+    
+}
 
 #endif /* Line_hpp */

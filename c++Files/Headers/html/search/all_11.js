@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['ub',['ub',['../struct_h_s_v_filter_range.html#a1c5b705f9992e014fd4dd7085e078c9d',1,'HSVFilterRange']]],
-  ['undistorsion',['Undistorsion',['../class_undistorsion.html',1,'Undistorsion'],['../class_undistorsion.html#a447aceee5716c408a3ed662111525cf9',1,'Undistorsion::Undistorsion()']]],
-  ['undistort_5fimage',['undistort_image',['../class_undistorsion.html#a00c36a6d87702b119e87ca0ff003c92f',1,'Undistorsion']]],
-  ['usefisheye',['useFisheye',['../class_settings.html#ac8f271630d54f9d0c718ea0130972d44',1,'Settings']]]
+  ['template_5fcharacter_5frecognition',['Template_Character_Recognition',['../class_template___character___recognition.html',1,'']]],
+  ['template_5fpath',['template_path',['../class_template___character___recognition.html#aa4cb4d3779f7d7a65ae5811f78be880b',1,'Template_Character_Recognition']]],
+  ['three',['three',['../struct_digit_result_distribution.html#a7577349008e126903118cfd374098b13',1,'DigitResultDistribution']]],
+  ['triangle',['Triangle',['../class_triangle.html',1,'Triangle'],['../class_triangle.html#aaefe4ed500c07918d30c6f0e286332c5',1,'Triangle::Triangle()']]],
+  ['turn_5fimage',['turn_image',['../class_character___recognition___algorithm.html#aeff8a2e07ed905b20d0150b977acd752',1,'Character_Recognition_Algorithm']]],
+  ['two',['two',['../struct_digit_result_distribution.html#a56239fa561bbf02f884b927537e4e641',1,'DigitResultDistribution']]]
 ];

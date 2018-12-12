@@ -93,6 +93,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>getArenaCells</b> (st
 <tr class="memitem:a0bc04be78a3badfaa364bc3f48fbfdfe"><td class="memItemLeft" align="right" valign="top"><a id="a0bc04be78a3badfaa364bc3f48fbfdfe"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>getGrid</b> (std::vector&lt; std::vector&lt; <a class="el" href="class_cell.html">Cell</a> *&gt;&gt; &amp;grid)</td></tr>
 <tr class="separator:a0bc04be78a3badfaa364bc3f48fbfdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf1aceac80d4cbfc91a5cf158c009c9d"><td class="memItemLeft" align="right" valign="top"><a id="adf1aceac80d4cbfc91a5cf158c009c9d"></a>
+<a class="el" href="class_cell.html">Cell</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCell</b> (cv::Point forPoint)</td></tr>
+<tr class="separator:adf1aceac80d4cbfc91a5cf158c009c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17022b64f602dfd4d45a84c0ffa92270"><td class="memItemLeft" align="right" valign="top"><a id="a17022b64f602dfd4d45a84c0ffa92270"></a>
 <a class="el" href="class_obstacle.html">Obstacle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getObstacles</b> ()</td></tr>
 <tr class="separator:a17022b64f602dfd4d45a84c0ffa92270"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,12 +123,36 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>distanceBetweenTwoP
 <tr class="memitem:a1cb1dccec0a3f9f2d25f5f3dfb224942"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a1cb1dccec0a3f9f2d25f5f3dfb224942">getGridRowNum</a> ()</td></tr>
 <tr class="memdesc:a1cb1dccec0a3f9f2d25f5f3dfb224942"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the number of rows in the grid  <a href="#a1cb1dccec0a3f9f2d25f5f3dfb224942">More...</a><br /></td></tr>
 <tr class="separator:a1cb1dccec0a3f9f2d25f5f3dfb224942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4caa93dd96a400c6fc12de7ca68e7518"><td class="memItemLeft" align="right" valign="top"><a id="a4caa93dd96a400c6fc12de7ca68e7518"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a4caa93dd96a400c6fc12de7ca68e7518">getNearestNeighbors</a> (<a class="el" href="class_cell.html">Cell</a> *&amp;cell)</td></tr>
+<tr class="memdesc:a4caa93dd96a400c6fc12de7ca68e7518"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns 4 vectors with top, right, bottom &amp; left neighboring cells for a cell <br /></td></tr>
+<tr class="separator:a4caa93dd96a400c6fc12de7ca68e7518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5034e15f3f4fbd3a0b2e09ed7415dc3e"><td class="memItemLeft" align="right" valign="top"><a id="a5034e15f3f4fbd3a0b2e09ed7415dc3e"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a5034e15f3f4fbd3a0b2e09ed7415dc3e">getEmptyNearestNeighbors</a> (<a class="el" href="class_cell.html">Cell</a> *&amp;cell)</td></tr>
+<tr class="memdesc:a5034e15f3f4fbd3a0b2e09ed7415dc3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns 4 vectors with top, right, bottom &amp; left neighboring empty cells for a cell <br /></td></tr>
+<tr class="separator:a5034e15f3f4fbd3a0b2e09ed7415dc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bf65dfd56c7a8e1c51573985a7e2277"><td class="memItemLeft" align="right" valign="top"><a id="a9bf65dfd56c7a8e1c51573985a7e2277"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a9bf65dfd56c7a8e1c51573985a7e2277">getNearestNeighbors</a> (cv::Point cellInPoint)</td></tr>
+<tr class="memdesc:a9bf65dfd56c7a8e1c51573985a7e2277"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns 4 vectors with top, right, bottom &amp; left neighboring cells for a cell at a point <br /></td></tr>
+<tr class="separator:a9bf65dfd56c7a8e1c51573985a7e2277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf9cc0e6b79fbc7401b62d7dafcdcbd1"><td class="memItemLeft" align="right" valign="top"><a id="abf9cc0e6b79fbc7401b62d7dafcdcbd1"></a>
+std::vector&lt; std::vector&lt; cv::Point &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#abf9cc0e6b79fbc7401b62d7dafcdcbd1">getEmptyNearestNeighborsPoints</a> (<a class="el" href="class_cell.html">Cell</a> *&amp;cell)</td></tr>
+<tr class="memdesc:abf9cc0e6b79fbc7401b62d7dafcdcbd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns 4 vectors with top, right, bottom &amp; left neighboring center points of empty cells for a cell <br /></td></tr>
+<tr class="separator:abf9cc0e6b79fbc7401b62d7dafcdcbd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a550c4a27e88ecaed45b6fe075c647751"><td class="memItemLeft" align="right" valign="top"><a id="a550c4a27e88ecaed45b6fe075c647751"></a>
 std::vector&lt; std::vector&lt; <a class="el" href="class_cell.html">Cell</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>grid</b></td></tr>
 <tr class="separator:a550c4a27e88ecaed45b6fe075c647751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb457d584b56b2f61a2f191f60c1c15c"><td class="memItemLeft" align="right" valign="top"><a id="acb457d584b56b2f61a2f191f60c1c15c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#acb457d584b56b2f61a2f191f60c1c15c">n_multiplier</a> = 2.0</td></tr>
+<tr class="memdesc:acb457d584b56b2f61a2f191f60c1c15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">the distance a neighboring cell is given based on cell width/height and a multiplier <br /></td></tr>
+<tr class="separator:acb457d584b56b2f61a2f191f60c1c15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad766d9e026f8085e6b113d8274b2b109"><td class="memItemLeft" align="right" valign="top"><a id="ad766d9e026f8085e6b113d8274b2b109"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#ad766d9e026f8085e6b113d8274b2b109">quickCalculation</a> = true</td></tr>
+<tr class="memdesc:ad766d9e026f8085e6b113d8274b2b109"><td class="mdescLeft">&#160;</td><td class="mdescRight">a flag that indicates that the path planning algorithm should skip possible solution and have a shorter calculation time <br /></td></tr>
+<tr class="separator:ad766d9e026f8085e6b113d8274b2b109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for handling the map. </p>

@@ -14,6 +14,8 @@
 #include "DubinPathFinder.hpp"
 #include "Map.hpp"
 
+namespace Path2D
+{
 class Path {
     
 public:
@@ -24,6 +26,10 @@ public:
      * @param end_point end point
      */
     Path(Position start_point, Position end_point, double curvature, Map *map_i);
+    template <class T>
+    Path(Position start_point, Position end_point, double curvature, Map *map_i, T* pathFinder, bool complex = true);
+    template <class T>
+    explicit Path(PathCoordinates coordinates, Map *map, T* pathFinder, bool complex = true);
     ~Path();
     
     ///constructs a new path out of two existant path objects
@@ -39,6 +45,7 @@ public:
     /**
      \brief splits a path so it goes over an interediate point
      */
+    template <class T>
     static void split(Path &path, cv::Point intermediate);
 
     /**
@@ -101,6 +108,12 @@ public:
     std::vector<Line> lines;
     double length;
     Map* map;
+    
+    template <class T>
+    void setFinder(PathCoordinates pc);
+    
+private:
+    PathFinder* finder;
 };
-
+}
 #endif /* Path_hpp */

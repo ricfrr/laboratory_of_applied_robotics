@@ -3,6 +3,8 @@
 
 #include "PathFinder.hpp"
 
+namespace Path2D
+{
 struct standardConf {
     double lambda;
     double sc_th0;
@@ -22,6 +24,7 @@ public:
      * @param path_coordinates_i coordinates of the path that we want to find
      */
     DubinPathFinder(PathCoordinates path_coordinates_i,Map* map_i);
+    DubinPathFinder(Map* map_i);
     /**
      * \brief destructor of the DubinPathFinder class
      */
@@ -91,5 +94,5 @@ private:
 
     PathFinder::CollisionDetector collisionDetector;
 };
-
+}
 #endif /* DubinPathFinder_hpp */

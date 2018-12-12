@@ -36,6 +36,7 @@ int main(int argc, const char *argv[]){
     //get last line's endpoint rather than the actual endpoint to make sure the orientation is correct in some cases
     /// !!!
     
+    map.quickCalculation = true;
     
     Path *path0_1 =     new Path(Position(cv::Point2d(60,60),or1),
                                  Position(circle[3]->getCenter(),or2),0.05,&map);
