@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <opencv2/core.hpp>
 #include <cmath>
+
+namespace ImageProcessing {
 class Clipper{
 
 public:
@@ -20,5 +22,6 @@ public:
     std::vector<cv::Point> clipArena(std::vector<cv::Point> &points, int offset);
 
 };
+}
 
 #endif /* Clipper_hpp */

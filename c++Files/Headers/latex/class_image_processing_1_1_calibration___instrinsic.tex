@@ -1,0 +1,55 @@
+\hypertarget{class_image_processing_1_1_calibration___instrinsic}{}\section{Image\+Processing\+:\+:Calibration\+\_\+\+Instrinsic Class Reference}
+\label{class_image_processing_1_1_calibration___instrinsic}\index{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic@{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic}}
+
+
+function that helps calibrating the camera resulting in an undistortion matrix  
+
+
+
+
+{\ttfamily \#include $<$Calibration\+\_\+\+Intrinsic.\+hpp$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_image_processing_1_1_calibration___instrinsic_acbaa653aac61aa9fc42696a51267b6b8}{perform\+Calibration}} (const std\+::string cali\+\_\+config)
+\item 
+static bool \mbox{\hyperlink{class_image_processing_1_1_calibration___instrinsic_a69ec772ab65d6fc5918a39b5e5839e2e}{run\+Calibration\+And\+Save}} (\mbox{\hyperlink{class_settings}{Settings}} \&s, Size image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, std\+::vector$<$ std\+::vector$<$ Point2f $>$ $>$ image\+Points)
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_calibration___instrinsic_ad38f84410a98a93ed3c2078f06210880}\label{class_image_processing_1_1_calibration___instrinsic_ad38f84410a98a93ed3c2078f06210880}} 
+static bool {\bfseries run\+Calibration} (\mbox{\hyperlink{class_settings}{Settings}} \&s, Size \&image\+Size, Mat \&camera\+Matrix, Mat \&dist\+Coeffs, std\+::vector$<$ std\+::vector$<$ Point2f $>$ $>$ image\+Points, std\+::vector$<$ Mat $>$ \&rvecs, std\+::vector$<$ Mat $>$ \&tvecs, std\+::vector$<$ float $>$ \&reproj\+Errs, double \&total\+Avg\+Err)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+function that helps calibrating the camera resulting in an undistortion matrix 
+
+This class can be used to calibrate the distortion matrix. Given initial settings from a \mbox{\hyperlink{class_settings}{Settings}} object and the opencv chessboard calibration tool it performs the calibration and saves the results in an external file.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{_settings_8hpp_source}{Settings.\+hpp}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_image_processing_1_1_calibration___instrinsic_acbaa653aac61aa9fc42696a51267b6b8}\label{class_image_processing_1_1_calibration___instrinsic_acbaa653aac61aa9fc42696a51267b6b8}} 
+\index{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic@{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic}!perform\+Calibration@{perform\+Calibration}}
+\index{perform\+Calibration@{perform\+Calibration}!Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic@{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic}}
+\subsubsection{\texorpdfstring{perform\+Calibration()}{performCalibration()}}
+{\footnotesize\ttfamily static void Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic\+::perform\+Calibration (\begin{DoxyParamCaption}\item[{const std\+::string}]{cali\+\_\+config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+performs caliration and saves it to the filename indicated in the argument \begin{DoxyItemize}
+\item cali\+\_\+config filename of finished calibration file \end{DoxyItemize}
+\mbox{\Hypertarget{class_image_processing_1_1_calibration___instrinsic_a69ec772ab65d6fc5918a39b5e5839e2e}\label{class_image_processing_1_1_calibration___instrinsic_a69ec772ab65d6fc5918a39b5e5839e2e}} 
+\index{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic@{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic}!run\+Calibration\+And\+Save@{run\+Calibration\+And\+Save}}
+\index{run\+Calibration\+And\+Save@{run\+Calibration\+And\+Save}!Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic@{Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic}}
+\subsubsection{\texorpdfstring{run\+Calibration\+And\+Save()}{runCalibrationAndSave()}}
+{\footnotesize\ttfamily static bool Image\+Processing\+::\+Calibration\+\_\+\+Instrinsic\+::run\+Calibration\+And\+Save (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_settings}{Settings}} \&}]{s,  }\item[{Size}]{image\+Size,  }\item[{Mat \&}]{camera\+Matrix,  }\item[{Mat \&}]{dist\+Coeffs,  }\item[{std\+::vector$<$ std\+::vector$<$ Point2f $>$ $>$}]{image\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Uses \mbox{\hyperlink{class_settings}{Settings}} object to run and save the calibration \begin{DoxyItemize}
+\item s \mbox{\hyperlink{class_settings}{Settings}} object with information about chessboard and so on \item image\+Size \item camera\+Matrix \end{DoxyItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Calibration\+\_\+\+Intrinsic.\+hpp\end{DoxyCompactItemize}

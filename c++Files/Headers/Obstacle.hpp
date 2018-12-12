@@ -10,6 +10,7 @@
 #include <vector>
 
 using namespace cv;
+using namespace Geometry2D;
 /**
  \brief class for handling obstacles in the map
  */

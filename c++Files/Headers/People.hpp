@@ -5,6 +5,7 @@
 #include <vector>
 
 using namespace cv;
+using namespace Geometry2D;
 
 /**
  \brief class for representing people in the map that have to be collected

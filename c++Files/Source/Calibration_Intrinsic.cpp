@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Calibration_Intrinsic.hpp"
+using namespace ImageProcessing;
 
 Calibration_Instrinsic::Calibration_Instrinsic(){
     std::cout << "started intrinsic calibration";

@@ -11,6 +11,8 @@
 #include <unistd.h>
 
 using namespace cv;
+
+namespace Geometry2D {
 /**
  \brief class for handling all the shapes in the map
  */
@@ -39,5 +41,7 @@ class Shape
   private:
     std::vector<Cell*> cell_l;
 };
+    
+}
 
 #endif /* Shape_hpp */

@@ -5,9 +5,15 @@
 #include "Polygon.hpp"
 
 using namespace cv;
+
 /**
- \brief Class for handling hexagon obstacles
+ \brief contains Geometries, such as Pentagons, Circles and other 2D Shapes
  */
+namespace Geometry2D
+{
+    /**
+     \brief Class for handling hexagon obstacles
+     */
 class Hexagon : public Polygon
 {
 
@@ -63,5 +69,5 @@ class Hexagon : public Polygon
 
     cv::Point first, second, third, fourth, fifth, sixth;
 };
-
+}
 #endif /* Hexagon_hpp */

@@ -8,6 +8,7 @@
 
 #include "../Headers/Inverse_Perspective_Mapping.hpp"
 #include "../Headers/Arena.hpp"
+using namespace ImageProcessing;
 
 Inverse_Perspective_Mapping::Inverse_Perspective_Mapping()
 {

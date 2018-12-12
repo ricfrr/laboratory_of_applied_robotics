@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['range',['range',['../class_color___processing.html#a5769c226ab5a68929b0b5894d35dbb57',1,'Color_Processing']]]
+  ['range',['range',['../class_image_processing_1_1_color___processing.html#a8a027ab4f4c0a4736ff78785c172affd',1,'ImageProcessing::Color_Processing']]]
 ];

@@ -8,6 +8,8 @@
 
 #include "../Headers/Square.hpp"
 
+using namespace Geometry2D;
+
 Square::Square(){}
 
 Square::~Square(){}

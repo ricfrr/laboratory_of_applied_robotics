@@ -1,5 +1,7 @@
 #include "../Headers/Circle.hpp"
 
+using namespace Geometry2D;
+
 Circle::Circle()
 {
     // creator

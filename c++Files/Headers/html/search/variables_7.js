@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lb',['lb',['../struct_h_s_v_filter_range.html#a0c5c2a10fb591c4dd1512ae81e1032a4',1,'HSVFilterRange']]]
+  ['lb',['lb',['../struct_image_processing_1_1_h_s_v_filter_range.html#abdd2bdaacd9ab1270b470e3913e0340e',1,'ImageProcessing::HSVFilterRange']]]
 ];

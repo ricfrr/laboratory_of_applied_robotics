@@ -23,6 +23,8 @@
 
 using namespace cv;
 
+namespace ImageProcessing
+{
 /*!
  * \brief produce a perspective transformation around the arena given a photo
  */
@@ -95,5 +97,5 @@ private:
     Settings settings;
     std::string outputfilename;
 };
-
+}
 #endif /* Inverse_Perspective_Mapping_hpp */

@@ -3,6 +3,8 @@
 #include "Shape.hpp"
 
 using namespace cv;
+
+namespace Geometry2D {
 /**
   \brief Circle class is able to detect and save the arena given a photo
 */
@@ -43,5 +45,5 @@ class Circle : public Shape
     cv::Point center;
     double radius;
 };
-
+}
 #endif /* Circle_hpp */

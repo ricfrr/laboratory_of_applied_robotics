@@ -16,6 +16,9 @@
 
 #include "Color_Processing.hpp"
 
+namespace ImageProcessing
+{
+    
 template < typename T>
 int findInVector(const std::vector<T>  & vecOfElements, const T  & element)
 {
@@ -190,5 +193,5 @@ public:
     ///sufficient confidence value to stop the rotating wheel of the digit recognition
     unsigned int suf_conf = 80;
 };
-
+}
 #endif /* Character_Recognition_Algorithm_hpp */

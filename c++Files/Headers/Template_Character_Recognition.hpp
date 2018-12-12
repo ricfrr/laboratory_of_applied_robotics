@@ -19,6 +19,9 @@
 
 #include "Character_Recognition_Algorithm.hpp"
 
+namespace ImageProcessing
+{
+    
 /**
  \brief Class that performs the Template Matching Method to identify characters
  */
@@ -39,4 +42,5 @@ private:
     
     int thres_score = 300000000;
 };
+}
 #endif /* Template_Character_Recognition_hpp */

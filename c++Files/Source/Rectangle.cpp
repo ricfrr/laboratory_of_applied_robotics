@@ -1,5 +1,7 @@
 #include "../Headers/Rectangle.hpp"
 
+using namespace Geometry2D;
+
 Rectangle::Rectangle()
 {
     // creator

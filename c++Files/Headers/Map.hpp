@@ -18,6 +18,7 @@
 
 
 using namespace cv;
+using namespace ImageProcessing;
 
 /**
  \brief Class for handling the map
@@ -51,7 +52,7 @@ public:
 
     Obstacle getObstacles();
 
-    PeopleStorage getPeople();
+    Digit_Recognition::PeopleStorage getPeople();
 
     ExitPoint getExitPoint();
 
@@ -120,7 +121,7 @@ private:
 
     void clipPoints();
 
-    void checkPeople(Cell &cell, PeopleStorage &people);
+    void checkPeople(Cell &cell, Digit_Recognition::PeopleStorage &people);
 
     void checkObstacles(Cell &cell, Obstacle &obstacles);
 
@@ -129,7 +130,7 @@ private:
     Obstacle obstacles;
     Arena arena;
 
-    PeopleStorage people;
+    Digit_Recognition::PeopleStorage people;
     Settings setting;
 
     Clipper clipper;

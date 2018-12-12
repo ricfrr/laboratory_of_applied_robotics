@@ -12,7 +12,13 @@
 #include "Line.hpp"
 #include <cmath>
 
+/**
+ \brief Contains Datatypes for planning and constructing 2D paths.
+ */
 namespace Path2D {
+    /**
+     \brief Contains basic elements needed for describing a path
+     */
     namespace Element{
 /**
  \brief Class for managing circle in the pat

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['picked_5falgorithm',['picked_algorithm',['../class_digit___recognition.html#aae57bd40fa8864ed5085beb98aa22fcd',1,'Digit_Recognition']]],
-  ['pixels',['pixels',['../class_color___processing.html#a8702c050fe8071a91a3d4376b76ac0d5',1,'Color_Processing']]],
-  ['points',['points',['../class_polygon.html#a347474823f6113a34fdefeee276d1b9e',1,'Polygon']]]
+  ['picked_5falgorithm',['picked_algorithm',['../class_image_processing_1_1_digit___recognition.html#abd6b1ab006d68a0f7b2ae3acc11d2a23',1,'ImageProcessing::Digit_Recognition']]],
+  ['pixels',['pixels',['../class_image_processing_1_1_color___processing.html#a0f409e933954d9a45d82886264842529',1,'ImageProcessing::Color_Processing']]],
+  ['points',['points',['../class_geometry2_d_1_1_polygon.html#ab965e028324c2199022da00ff7eef14b',1,'Geometry2D::Polygon']]]
 ];

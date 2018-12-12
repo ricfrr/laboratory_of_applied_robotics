@@ -13,6 +13,8 @@
 #include "Circle.hpp"
 #include "PathCoordinates.hpp"
 
+using namespace Geometry2D;
+
 class Robot: public Circle {
     
 public:

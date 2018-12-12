@@ -221,7 +221,7 @@ Obstacle Map::getObstacles() {
     return this->obstacles;
 }
 
-PeopleStorage Map::getPeople() {
+ImageProcessing::Digit_Recognition::PeopleStorage Map::getPeople() {
     return this->people;
 }
 
@@ -253,7 +253,7 @@ void Map::getArenaCells(std::vector<Cell *> &cells) {
     cells = this->arena.getCell();
 }
 
-void Map::checkPeople(Cell &cell, PeopleStorage &people) {
+void Map::checkPeople(Cell &cell, Digit_Recognition::PeopleStorage &people) {
 
 
     std::vector<cv::Point> cell_corners = cell.getCorners();

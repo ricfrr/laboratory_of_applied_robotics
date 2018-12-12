@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Color_Processing.hpp"
+using namespace ImageProcessing;
 
 
 void Color_Processing::load_pixels(cv::Mat &img){

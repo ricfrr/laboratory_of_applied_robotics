@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Undistortion.hpp"
+using namespace ImageProcessing;
 
 Undistorsion::Undistorsion(std::string calibration_filename)
 {

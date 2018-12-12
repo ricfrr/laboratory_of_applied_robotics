@@ -11,6 +11,9 @@
 
 #include "Settings.hpp"
 
+/// transforming, classifying and creating images
+namespace ImageProcessing
+{
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
 
 /**
@@ -54,5 +57,5 @@ private:
                                          Settings::Pattern patternType /*= Settings::CHESSBOARD*/);
     
 };
-
+}
 #endif /* Calibration_Intrinsic_hpp */

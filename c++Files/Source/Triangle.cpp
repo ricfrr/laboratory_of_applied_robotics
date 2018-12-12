@@ -1,5 +1,7 @@
 #include "../Headers/Triangle.hpp"
 
+using namespace Geometry2D;
+
 Triangle::Triangle() {
   // creator
 }

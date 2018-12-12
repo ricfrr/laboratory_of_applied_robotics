@@ -1,6 +1,8 @@
 #include "../Headers/Shape.hpp"
 #include "../Headers/Cell.hpp"
 
+using namespace Geometry2D;
+
 Shape::Shape()
 {
     // creator

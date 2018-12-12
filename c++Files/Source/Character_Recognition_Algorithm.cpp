@@ -8,6 +8,8 @@
 
 #include "../Headers/Character_Recognition_Algorithm.hpp"
 
+using namespace ImageProcessing;
+
 Character_Recognition_Algorithm::Character_Recognition_Algorithm(){
         this->filter = HSVFilterRange("bad");
 }

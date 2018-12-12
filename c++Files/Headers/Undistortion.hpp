@@ -19,6 +19,8 @@
 #include <string>
 
 using namespace cv;
+namespace ImageProcessing
+{
 /**
  \brief class for undistorsion of the images
  */
@@ -54,5 +56,6 @@ private:
                           cv::Mat& camera_matrix,
                           cv::Mat& distCoeffs);
 };
+}
 
 #endif /* Undistortion_hpp */

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['black_5fthreshold',['black_threshold',['../class_color___processing.html#a46734d34d9efc70a1e15dcece2a2336e',1,'Color_Processing']]]
+  ['black_5fthreshold',['black_threshold',['../class_image_processing_1_1_color___processing.html#a42ac41f06222b9175e029516e39d24d9',1,'ImageProcessing::Color_Processing']]]
 ];

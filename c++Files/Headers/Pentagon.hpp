@@ -7,6 +7,8 @@
 
 using namespace cv;
 
+namespace Geometry2D {
+
 /**
  \brief Class for hadling pentagon obstacles in the map
  */
@@ -69,4 +71,5 @@ private:
     cv::Point first, second, third, fourth, fifth; // corners of the pentagon
 };
 
+}
 #endif /* Pentagon_hpp */

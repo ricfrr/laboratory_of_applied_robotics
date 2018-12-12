@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Template_Character_Recognition.hpp"
+using namespace ImageProcessing;
 
 Template_Character_Recognition::Template_Character_Recognition(){
     this->filter = HSVFilterRange("bad");

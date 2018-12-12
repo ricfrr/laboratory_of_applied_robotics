@@ -1,5 +1,7 @@
 #include "../Headers/Hexagon.hpp"
 
+using namespace Geometry2D;
+
 Hexagon::Hexagon()
 {
     // creator

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Rectangle.hpp"
 
+namespace Geometry2D {
 /**
  \brief A Shape type similar to a Rectangle but with equdistant lengths
  */
@@ -23,4 +24,6 @@ public:
 public:
     //nothing so far
 };
+}
 #endif /* Square_hpp */
+

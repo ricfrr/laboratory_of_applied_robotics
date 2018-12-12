@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['inverse_5fperspective_5fmapping',['Inverse_Perspective_Mapping',['../class_inverse___perspective___mapping.html#a9c3733e22a6516e932a2197196c999f2',1,'Inverse_Perspective_Mapping']]],
-  ['invert_5fmasked_5fimage',['invert_masked_image',['../class_character___recognition___algorithm.html#a75ff23b5b2722c9c572091755985e137',1,'Character_Recognition_Algorithm']]],
+  ['inverse_5fperspective_5fmapping',['Inverse_Perspective_Mapping',['../class_image_processing_1_1_inverse___perspective___mapping.html#a71da0ca3af64c1c8e0942040252ddf94',1,'ImageProcessing::Inverse_Perspective_Mapping']]],
+  ['invert_5fmasked_5fimage',['invert_masked_image',['../class_image_processing_1_1_character___recognition___algorithm.html#af4e813e7e622253bd1fa1f3253f80816',1,'ImageProcessing::Character_Recognition_Algorithm']]],
   ['isborder',['isBorder',['../class_cell.html#adebbc4bba0795d564ec275ea32edb525',1,'Cell']]],
   ['ischildof',['isChildOf',['../class_cell.html#a136f724c1730f551b7533f5840c9c393',1,'Cell']]],
   ['isempty',['isEmpty',['../class_cell.html#a5175d1bb16d2192ecfcb6e7c0a962389',1,'Cell']]],

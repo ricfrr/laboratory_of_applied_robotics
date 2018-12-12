@@ -16,6 +16,9 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
 
+namespace ImageProcessing
+{
+    
 /**
  \brief A structure that helps creating a color filter
  
@@ -116,5 +119,5 @@ public:
     void demo(cv::Mat &img);
     
 };
-
+}
 #endif /* Color_Processing_hpp */

@@ -5,6 +5,7 @@
 #include "Settings.hpp"
 
 using namespace cv;
+using namespace Geometry2D;
 /**
   \brief ExitPoint class is able to detect and save the exit point given a photo
 */

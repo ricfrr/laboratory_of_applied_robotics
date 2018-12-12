@@ -19,6 +19,8 @@
 
 #include "Character_Recognition_Algorithm.hpp"
 
+namespace ImageProcessing
+{
 ///OCP algorithm from tesseract library
 class Optical_Character_Recognition: public Character_Recognition_Algorithm
 {
@@ -37,4 +39,5 @@ public:
     
 
 };
+}
 #endif /* Optical_Character_Recognition_hpp */

@@ -8,6 +8,8 @@
 
 #include "../Headers/Polygon.hpp"
 
+using namespace Geometry2D;
+
 Polygon::Polygon(){}
 Polygon::Polygon(std::vector<cv::Point> points)
 {

@@ -6,6 +6,7 @@
 #include "Polygon.hpp"
 
 using namespace cv;
+namespace Geometry2D {
 
 /**
  \brief class for handling triangle obstacles
@@ -61,4 +62,5 @@ private:
     cv::Point first, second, third;
 };
 
+}
 #endif /* Triangle_hpp */

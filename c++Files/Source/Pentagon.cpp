@@ -1,5 +1,7 @@
 #include "../Headers/Pentagon.hpp"
 
+using namespace Geometry2D;
+
 Pentagon::Pentagon() {
   // creator
 }

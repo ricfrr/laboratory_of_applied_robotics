@@ -1,5 +1,6 @@
 #include "../Headers/Arena.hpp"
 
+
 Arena::Arena()
 {
     // creator

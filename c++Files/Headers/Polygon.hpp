@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "Shape.hpp"
 
+namespace Geometry2D {
+
 class Polygon: public Shape {
 
 public:
@@ -30,5 +32,7 @@ public:
     std::vector<cv::Point> clipped_corners;
 
 };
+    
+}
 
 #endif /* Polygon_hpp */

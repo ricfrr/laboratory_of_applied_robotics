@@ -2,6 +2,7 @@
 // Created by riccardo on 02/12/2018.
 //
 #include "../Headers/Clipper.hpp"
+using namespace ImageProcessing;
 
 Clipper::Clipper() {
 

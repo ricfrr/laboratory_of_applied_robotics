@@ -1,0 +1,81 @@
+\hypertarget{class_geometry2_d_1_1_triangle}{}\section{Geometry2D\+:\+:Triangle Class Reference}
+\label{class_geometry2_d_1_1_triangle}\index{Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}}
+
+
+class for handling triangle obstacles  
+
+
+
+
+{\ttfamily \#include $<$Triangle.\+hpp$>$}
+
+Inheritance diagram for Geometry2D\+:\+:Triangle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_geometry2_d_1_1_triangle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_geometry2_d_1_1_triangle_acd1c0636ad8f7f7659e75a4918770acf}{Triangle}} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_triangle_a021ed2abfba6fd0683c730c513d80646}\label{class_geometry2_d_1_1_triangle_a021ed2abfba6fd0683c730c513d80646}} 
+{\bfseries Triangle} (std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_geometry2_d_1_1_polygon_ab965e028324c2199022da00ff7eef14b}{points}})
+\item 
+\mbox{\hyperlink{class_geometry2_d_1_1_triangle_a0b731e9ceb72993005171096adba9096}{$\sim$\+Triangle}} ()
+\item 
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_geometry2_d_1_1_triangle_af7fa844cf4f260c2c41942e1bffd4c60}{get\+Corners}} ()
+\item 
+void \mbox{\hyperlink{class_geometry2_d_1_1_triangle_af689573b5d1a3b415ee2c236ed5e3abf}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_triangle_aae1d7c21bbade068d34e1dd799e9c742}\label{class_geometry2_d_1_1_triangle_aae1d7c21bbade068d34e1dd799e9c742}} 
+void \mbox{\hyperlink{class_geometry2_d_1_1_triangle_aae1d7c21bbade068d34e1dd799e9c742}{assign\+\_\+points}} ()
+\begin{DoxyCompactList}\small\item\em assignes points to 1., 2., 3 etc point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+class for handling triangle obstacles 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_geometry2_d_1_1_triangle_acd1c0636ad8f7f7659e75a4918770acf}\label{class_geometry2_d_1_1_triangle_acd1c0636ad8f7f7659e75a4918770acf}} 
+\index{Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}!Triangle@{Triangle}}
+\index{Triangle@{Triangle}!Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}}
+\subsubsection{\texorpdfstring{Triangle()}{Triangle()}}
+{\footnotesize\ttfamily Geometry2\+D\+::\+Triangle\+::\+Triangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of triangle class \mbox{\Hypertarget{class_geometry2_d_1_1_triangle_a0b731e9ceb72993005171096adba9096}\label{class_geometry2_d_1_1_triangle_a0b731e9ceb72993005171096adba9096}} 
+\index{Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}!````~Triangle@{$\sim$\+Triangle}}
+\index{````~Triangle@{$\sim$\+Triangle}!Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}}
+\subsubsection{\texorpdfstring{$\sim$\+Triangle()}{~Triangle()}}
+{\footnotesize\ttfamily Geometry2\+D\+::\+Triangle\+::$\sim$\+Triangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of triangle class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geometry2_d_1_1_triangle_af7fa844cf4f260c2c41942e1bffd4c60}\label{class_geometry2_d_1_1_triangle_af7fa844cf4f260c2c41942e1bffd4c60}} 
+\index{Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}!get\+Corners@{get\+Corners}}
+\index{get\+Corners@{get\+Corners}!Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}}
+\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Geometry2\+D\+::\+Triangle\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of corners \begin{DoxyReturn}{Returns}
+list of corners of the triangle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_geometry2_d_1_1_triangle_af689573b5d1a3b415ee2c236ed5e3abf}\label{class_geometry2_d_1_1_triangle_af689573b5d1a3b415ee2c236ed5e3abf}} 
+\index{Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}!set\+Corners@{set\+Corners}}
+\index{set\+Corners@{set\+Corners}!Geometry2\+D\+::\+Triangle@{Geometry2\+D\+::\+Triangle}}
+\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
+{\footnotesize\ttfamily void Geometry2\+D\+::\+Triangle\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
+
+set corners of the triangle 
+\begin{DoxyParams}{Parameters}
+{\em corners} & list of corners \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Triangle.\+hpp\end{DoxyCompactItemize}

@@ -196,7 +196,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     cv::rectangle(result, ex.getTopLeft(), ex.getBottomRight(), cv::Scalar(0,191,255), -1,LINE_8,0);
     
     //print people
-    PeopleStorage p = p_map->getPeople();
+    ImageProcessing::Digit_Recognition::PeopleStorage p = p_map->getPeople();
     
     //print People
     std::vector<People> c = p.circles;

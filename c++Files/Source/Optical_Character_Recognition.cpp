@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Optical_Character_Recognition.hpp"
+using namespace ImageProcessing;
 
 Optical_Character_Recognition::Optical_Character_Recognition(){
     // Initialize tesseract to use English (eng)

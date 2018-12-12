@@ -7,6 +7,7 @@
 //
 
 #include "../Headers/Digit_Recognition.hpp"
+using namespace ImageProcessing;
 
 Digit_Recognition::Digit_Recognition(){
     std::cout << "basic digit recognition constructor selected" << std::endl;

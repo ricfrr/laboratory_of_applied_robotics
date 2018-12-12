@@ -7,6 +7,8 @@
 
 using namespace cv;
 
+namespace Geometry2D
+{
 /**
  \brief Class for handling square in the map
  */
@@ -61,5 +63,7 @@ public:
     ///assignes points to 1., 2., 3 etc point.
     void assign_points();
 };
+    
+}
 
 #endif /* Rectangle_hpp */

@@ -22,7 +22,7 @@ int main(int argc, const char *argv[]){
     map.createMap(persp_img);
 
     
-    PeopleStorage peops = map.getPeople();
+    Digit_Recognition::PeopleStorage peops = map.getPeople();
     std::vector<Circle*> circle = peops.getCircles();
     
 //    cv::Point2d(100,400)

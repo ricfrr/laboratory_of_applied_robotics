@@ -5,6 +5,9 @@
 #include <vector>
 
 using namespace cv;
+using namespace Geometry2D;
+
+
 /**
   \brief Arena class is able to detect and save the arena given a photo
 */
