@@ -1,5 +1,6 @@
 #include "../Headers/Arena.hpp"
 
+using namespace LAR;
 
 Arena::Arena()
 {

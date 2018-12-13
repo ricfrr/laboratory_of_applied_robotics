@@ -6,7 +6,7 @@ var searchData=
   ['pathcoordinates',['PathCoordinates',['../class_path2_d_1_1_element_1_1_path_coordinates.html',1,'Path2D::Element::PathCoordinates'],['../class_path2_d_1_1_element_1_1_path_coordinates.html#a63f9e5d25a023ed5aa42d440ef095afa',1,'Path2D::Element::PathCoordinates::PathCoordinates()']]],
   ['pathfinder',['PathFinder',['../class_path2_d_1_1_path_finder.html',1,'Path2D::PathFinder'],['../class_path2_d_1_1_path_finder.html#a0aa8bbd238985f5baa456287671551ea',1,'Path2D::PathFinder::PathFinder(PathCoordinates path_coordinates_i, Map *map_i)'],['../class_path2_d_1_1_path_finder.html#a96141cb3260846bab64d45f3a8f40515',1,'Path2D::PathFinder::PathFinder()']]],
   ['pentagon',['Pentagon',['../class_geometry2_d_1_1_pentagon.html',1,'Geometry2D::Pentagon'],['../class_geometry2_d_1_1_pentagon.html#ab7db58850051b5fc59c5f16428020e6b',1,'Geometry2D::Pentagon::Pentagon()']]],
-  ['people',['People',['../class_people.html',1,'People'],['../class_people.html#aae1408eddfd15a5007003ecdf1507941',1,'People::People()']]],
+  ['people',['People',['../class_l_a_r_1_1_people.html',1,'LAR::People'],['../class_l_a_r_1_1_people.html#a87e2350faa20d4ac7298123f19b73953',1,'LAR::People::People()']]],
   ['peoplestorage',['PeopleStorage',['../struct_image_processing_1_1_digit___recognition_1_1_people_storage.html',1,'ImageProcessing::Digit_Recognition']]],
   ['performcalibration',['performCalibration',['../class_image_processing_1_1_calibration___instrinsic.html#acbaa653aac61aa9fc42696a51267b6b8',1,'ImageProcessing::Calibration_Instrinsic']]],
   ['picked_5falgorithm',['picked_algorithm',['../class_image_processing_1_1_digit___recognition.html#abd6b1ab006d68a0f7b2ae3acc11d2a23',1,'ImageProcessing::Digit_Recognition']]],

@@ -2,7 +2,7 @@
 \label{class_image_processing_1_1_digit___recognition}\index{Image\+Processing\+::\+Digit\+\_\+\+Recognition@{Image\+Processing\+::\+Digit\+\_\+\+Recognition}}
 
 
-The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{class_people}{People}} objects.  
+The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export People objects.  
 
 
 
@@ -22,8 +22,8 @@ struct \mbox{\hyperlink{struct_image_processing_1_1_digit___recognition_1_1_peop
 \mbox{\Hypertarget{class_image_processing_1_1_digit___recognition_a7bd2d754921d45fcb83e7f58aa906b93}\label{class_image_processing_1_1_digit___recognition_a7bd2d754921d45fcb83e7f58aa906b93}} 
 void \mbox{\hyperlink{class_image_processing_1_1_digit___recognition_a7bd2d754921d45fcb83e7f58aa906b93}{set\+\_\+algo}} (\mbox{\hyperlink{namespace_image_processing_afe66b5cb462eb22dcf108308418c09eb}{Digit\+Recognition\+Algo}} algorithm)
 \begin{DoxyCompactList}\small\item\em set detection algorithm for digits e.\+g. tesseract or template matching \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_image_processing_1_1_digit___recognition_ad156b8e3a96651e6f65272507dfd77da}\label{class_image_processing_1_1_digit___recognition_ad156b8e3a96651e6f65272507dfd77da}} 
-std\+::vector$<$ \mbox{\hyperlink{class_people}{People}} $>$ \mbox{\hyperlink{class_image_processing_1_1_digit___recognition_ad156b8e3a96651e6f65272507dfd77da}{detect\+\_\+digits\+\_\+for\+\_\+map}} (const cv\+::\+Mat img\+\_\+input)
+\mbox{\Hypertarget{class_image_processing_1_1_digit___recognition_a80d9b59f207de79970a374d0bb92e3ab}\label{class_image_processing_1_1_digit___recognition_a80d9b59f207de79970a374d0bb92e3ab}} 
+std\+::vector$<$ \mbox{\hyperlink{class_l_a_r_1_1_people}{L\+A\+R\+::\+People}} $>$ \mbox{\hyperlink{class_image_processing_1_1_digit___recognition_a80d9b59f207de79970a374d0bb92e3ab}{detect\+\_\+digits\+\_\+for\+\_\+map}} (const cv\+::\+Mat img\+\_\+input)
 \begin{DoxyCompactList}\small\item\em detects all the digits of an unprepared images and returns people information \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_image_processing_1_1_digit___recognition_adfae039ca51d000e71273256b3eb9279}{set\+\_\+filter}} (\mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} filter\+Range)
 \begin{DoxyCompactList}\small\item\em sets a hsv filter for better image recognition results \end{DoxyCompactList}\item 
@@ -38,10 +38,10 @@ std\+::vector$<$ cv\+::\+Rect $>$ \mbox{\hyperlink{class_image_processing_1_1_di
 
 
 \subsection{Detailed Description}
-The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{class_people}{People}} objects. 
+The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export People objects. 
 
-The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export \mbox{\hyperlink{class_people}{People}} objects. The class contains a \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} member that is used to detect digits. Changing the Digit\+Recognition\+Algo type results in the use of another implementation of \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} derived classes. New types of \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} subclasses can be added to improve digit recognition performance over time. The class contains \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} object that is able to automatically construct a color filter from a given input image. When detect\+\_\+digit\+\_\+for\+\_\+map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a \mbox{\hyperlink{class_people}{People}} object that can be used to create the map. \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{class_people}{People}} 
+The \mbox{\hyperlink{class_image_processing_1_1_digit___recognition}{Digit\+\_\+\+Recognition}} class is used to detect digits in the arena and export People objects. The class contains a \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} member that is used to detect digits. Changing the Digit\+Recognition\+Algo type results in the use of another implementation of \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} derived classes. New types of \mbox{\hyperlink{class_image_processing_1_1_character___recognition___algorithm}{Character\+\_\+\+Recognition\+\_\+\+Algorithm}} subclasses can be added to improve digit recognition performance over time. The class contains \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} object that is able to automatically construct a color filter from a given input image. When detect\+\_\+digit\+\_\+for\+\_\+map is called the class will identify circles, use the filter to extract the digits, perform the digit recognition and export a People object that can be used to create the map. \begin{DoxySeeAlso}{See also}
+People 
 
 \mbox{\hyperlink{class_map}{Map}} 
 \end{DoxySeeAlso}

@@ -52,7 +52,7 @@ public:
     void set_algo(DigitRecognitionAlgo algorithm);
     
     ///detects all the digits of an unprepared images and returns people information
-    std::vector<People> detect_digits_for_map(const cv::Mat img_input);
+    std::vector<LAR::People> detect_digits_for_map(const cv::Mat img_input);
     
     /// \brief sets a hsv filter for better image recognition results
     /// \param filterRange a HSVFilterRange object that automatically creates a filter based on an input image
@@ -87,7 +87,7 @@ public:
         
         
         ///detected People
-        std::vector<People> circles;
+        std::vector<LAR::People> circles;
         
         /*!
          * detect circles in the map
@@ -96,7 +96,7 @@ public:
         void findCircles(const Mat &img){
             Digit_Recognition dg_recognition = Digit_Recognition();
             
-            std::vector<People> data = dg_recognition.detect_digits_for_map(img);
+            std::vector<LAR::People> data = dg_recognition.detect_digits_for_map(img);
             for (int i = 0; i < data.size(); i++)
             {
                 std::string conf;

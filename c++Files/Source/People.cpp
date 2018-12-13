@@ -1,5 +1,7 @@
 #include "../Headers/People.hpp"
 
+using namespace LAR;
+
 People::People()
 {
     // creator

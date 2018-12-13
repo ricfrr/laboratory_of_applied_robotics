@@ -25,6 +25,8 @@
 
 using namespace cv;
 
+namespace ImageProcessing {
+
 /**
  \brief A data structure that stores important information for calibrating a camera.
  
@@ -40,7 +42,7 @@ public:
     
     void write(FileStorage& fs) const;                        //Write serialization for this class
 
-    void read(const FileNode& node);
+    void readFile(const FileNode& node);
     
     void validate();
     
@@ -91,5 +93,6 @@ private:
     
     
 };
+}
 
 #endif /* Settings_hpp */

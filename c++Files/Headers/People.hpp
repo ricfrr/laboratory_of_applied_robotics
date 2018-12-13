@@ -6,7 +6,7 @@
 
 using namespace cv;
 using namespace Geometry2D;
-
+namespace LAR {
 /**
  \brief class for representing people in the map that have to be collected
  
@@ -50,5 +50,5 @@ private:
     std::vector<Circle*> circles;
 
 };
-
+}
 #endif /* People_hpp */

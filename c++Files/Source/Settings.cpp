@@ -8,6 +8,8 @@
 
 #include "../Headers/Settings.hpp"
 
+using namespace ImageProcessing;
+
 void Settings::write(FileStorage& fs) const                        //Write serialization for this class
 {
     fs << "{"
@@ -32,7 +34,7 @@ void Settings::write(FileStorage& fs) const                        //Write seria
     << "}";
 }
 
-void Settings::read(const FileNode& node)                          //Read serialization for this class
+void Settings::readFile(const FileNode& node)                          //Read serialization for this class
 {
     node["BoardSize_Width" ] >> boardSize.width;
     node["BoardSize_Height"] >> boardSize.height;

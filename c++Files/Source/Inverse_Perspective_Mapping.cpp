@@ -143,7 +143,7 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale){
     Settings settings;
     // Destination image
     Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
-    Arena arena = Arena();
+    LAR::Arena arena = LAR::Arena();
     arena.findArena(persp_img);
     std::vector<cv::Point> corners = arena.getCorners();
 

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['imageprocessing',['ImageProcessing',['../namespace_image_processing.html',1,'']]],
-  ['input',['input',['../class_settings.html#a8696deae231b0efe48f1d069a4145ee6',1,'Settings']]],
+  ['input',['input',['../class_image_processing_1_1_settings.html#ad1212876e0e534640f0096a132930a19',1,'ImageProcessing::Settings']]],
   ['inverse_5fperspective_5fmapping',['Inverse_Perspective_Mapping',['../class_image_processing_1_1_inverse___perspective___mapping.html',1,'ImageProcessing::Inverse_Perspective_Mapping'],['../class_image_processing_1_1_inverse___perspective___mapping.html#a71da0ca3af64c1c8e0942040252ddf94',1,'ImageProcessing::Inverse_Perspective_Mapping::Inverse_Perspective_Mapping()']]],
   ['invert_5fmasked_5fimage',['invert_masked_image',['../class_image_processing_1_1_character___recognition___algorithm.html#af4e813e7e622253bd1fa1f3253f80816',1,'ImageProcessing::Character_Recognition_Algorithm']]],
   ['isborder',['isBorder',['../class_cell.html#adebbc4bba0795d564ec275ea32edb525',1,'Cell']]],

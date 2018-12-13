@@ -1,5 +1,7 @@
 #include "../Headers/Obstacle.hpp"
 
+using namespace LAR;
+
 Obstacle::Obstacle()
 {
     // creator

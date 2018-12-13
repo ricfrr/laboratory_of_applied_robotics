@@ -19,6 +19,7 @@
 
 using namespace cv;
 using namespace ImageProcessing;
+using namespace LAR;
 
 /**
  \brief Class for handling the map
@@ -50,11 +51,11 @@ public:
     
     Cell * getCell(cv::Point forPoint);
 
-    Obstacle getObstacles();
+    LAR::Obstacle getObstacles();
 
     Digit_Recognition::PeopleStorage getPeople();
 
-    ExitPoint getExitPoint();
+    LAR::ExitPoint getExitPoint();
 
 
     bool circleContact(std::vector<cv::Point> corners, Circle *circle);

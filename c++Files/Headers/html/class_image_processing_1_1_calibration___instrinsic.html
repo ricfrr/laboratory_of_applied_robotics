@@ -83,15 +83,15 @@ $(function() {
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:acbaa653aac61aa9fc42696a51267b6b8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_processing_1_1_calibration___instrinsic.html#acbaa653aac61aa9fc42696a51267b6b8">performCalibration</a> (const std::string cali_config)</td></tr>
 <tr class="separator:acbaa653aac61aa9fc42696a51267b6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69ec772ab65d6fc5918a39b5e5839e2e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_processing_1_1_calibration___instrinsic.html#a69ec772ab65d6fc5918a39b5e5839e2e">runCalibrationAndSave</a> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints)</td></tr>
+<tr class="memitem:a69ec772ab65d6fc5918a39b5e5839e2e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_processing_1_1_calibration___instrinsic.html#a69ec772ab65d6fc5918a39b5e5839e2e">runCalibrationAndSave</a> (<a class="el" href="class_image_processing_1_1_settings.html">Settings</a> &amp;s, Size imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints)</td></tr>
 <tr class="separator:a69ec772ab65d6fc5918a39b5e5839e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38f84410a98a93ed3c2078f06210880"><td class="memItemLeft" align="right" valign="top"><a id="ad38f84410a98a93ed3c2078f06210880"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibration</b> (<a class="el" href="class_settings.html">Settings</a> &amp;s, Size &amp;imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints, std::vector&lt; Mat &gt; &amp;rvecs, std::vector&lt; Mat &gt; &amp;tvecs, std::vector&lt; float &gt; &amp;reprojErrs, double &amp;totalAvgErr)</td></tr>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibration</b> (<a class="el" href="class_image_processing_1_1_settings.html">Settings</a> &amp;s, Size &amp;imageSize, Mat &amp;cameraMatrix, Mat &amp;distCoeffs, std::vector&lt; std::vector&lt; Point2f &gt; &gt; imagePoints, std::vector&lt; Mat &gt; &amp;rvecs, std::vector&lt; Mat &gt; &amp;tvecs, std::vector&lt; float &gt; &amp;reprojErrs, double &amp;totalAvgErr)</td></tr>
 <tr class="separator:ad38f84410a98a93ed3c2078f06210880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>function that helps calibrating the camera resulting in an undistortion matrix </p>
-<p>This class can be used to calibrate the distortion matrix. Given initial settings from a <a class="el" href="class_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object and the opencv chessboard calibration tool it performs the calibration and saves the results in an external file.</p>
+<p>This class can be used to calibrate the distortion matrix. Given initial settings from a <a class="el" href="class_image_processing_1_1_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object and the opencv chessboard calibration tool it performs the calibration and saves the results in an external file.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="_settings_8hpp_source.html">Settings.hpp</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="acbaa653aac61aa9fc42696a51267b6b8"></a>
@@ -135,7 +135,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibration
         <tr>
           <td class="memname">static bool ImageProcessing::Calibration_Instrinsic::runCalibrationAndSave </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_settings.html">Settings</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_image_processing_1_1_settings.html">Settings</a> &amp;&#160;</td>
           <td class="paramname"><em>s</em>, </td>
         </tr>
         <tr>
@@ -174,8 +174,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>runCalibration
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Uses <a class="el" href="class_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object to run and save the calibration </p><ul>
-<li>s <a class="el" href="class_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object with information about chessboard and so on </li>
+<p>Uses <a class="el" href="class_image_processing_1_1_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object to run and save the calibration </p><ul>
+<li>s <a class="el" href="class_image_processing_1_1_settings.html" title="A data structure that stores important information for calibrating a camera. ">Settings</a> object with information about chessboard and so on </li>
 <li>imageSize </li>
 <li>cameraMatrix </li>
 </ul>

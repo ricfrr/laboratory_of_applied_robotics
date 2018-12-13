@@ -8,6 +8,8 @@ using namespace cv;
 using namespace Geometry2D;
 
 
+///contains objects that are specific for the Laboratory of Applied Robotics Projects
+namespace LAR {
 /**
   \brief Arena class is able to detect and save the arena given a photo
 */
@@ -85,9 +87,9 @@ class Arena : public Rectangle
 
   private:
 
-    Settings settings; 
+    ImageProcessing::Settings settings; 
     const int epsilon_approx = 110;
     //cv::Point top_left,top_right,bottom_left,bottom_right;
 };
-
+}
 #endif /* Arena_hpp */

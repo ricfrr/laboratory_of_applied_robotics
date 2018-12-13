@@ -1,5 +1,7 @@
 #include "../Headers/ExitPoint.hpp"
 
+using namespace LAR;
+
 ExitPoint::ExitPoint()
 {
     // creator
@@ -81,14 +83,14 @@ std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
         left = true;
         center.x += width/2;
     }
-    else if(top_right.x > Settings().IMG_WIDTH -20){
+    else if(top_right.x > ImageProcessing::Settings().IMG_WIDTH -20){
         right = true;
         center.x -= width/2;
     }
     
     if(top_left.y < 20)
         top = true;
-    else if(bottom_left.y > Settings().IMG_LENGHT - 20)
+    else if(bottom_left.y > ImageProcessing::Settings().IMG_LENGHT - 20)
         bottom = true;
     
     double angle = 0;

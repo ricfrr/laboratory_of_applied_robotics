@@ -54,9 +54,9 @@ int main(int argc, const char *argv[]){
     Path* path0_4 =     new Path(*path0_3,*path3_4);
     Path* path0_exit =  new Path(*path0_4, *path4_x);
     
-    Path* path4_x_test =     new Path(Position(path3_4->end_point.getCoordinates(),or2),
+    Path* path4_x_test =     new Path(Position(cv::Point2d(60,60),or1),
                                  finalPos,0.05,&map);
-    
+
     Visualizer v(map,path0_exit);
     v.visualize();
     v.simulate();

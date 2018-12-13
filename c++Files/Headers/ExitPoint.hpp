@@ -6,6 +6,7 @@
 
 using namespace cv;
 using namespace Geometry2D;
+namespace LAR {
 /**
   \brief ExitPoint class is able to detect and save the exit point given a photo
 */
@@ -34,5 +35,5 @@ public:
 private:
   const int epsilon_approx = 20; // value for detect poly
 };
-
+}
 #endif /* ExitPoint_hpp */

@@ -16,12 +16,14 @@ Calibration_Instrinsic::~Calibration_Instrinsic() {
     std::cout << "destructing intrinsic calbration";
 }
 
+namespace ImageProcessing {
 static inline void read(const FileNode& node, Settings& x, const Settings& default_value = Settings())
 {
     if(node.empty())
     x = default_value;
     else
-    x.read(node);
+        x.readFile(node);
+}
 }
 
 void Calibration_Instrinsic::performCalibration(const std::string cali_config){

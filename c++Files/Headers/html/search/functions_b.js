@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['obstacle',['Obstacle',['../class_obstacle.html#a8f734072321fa06a7b7dae2d5f50f352',1,'Obstacle']]]
+  ['obstacle',['Obstacle',['../class_l_a_r_1_1_obstacle.html#a50654be1a82945b51a2078aec80ffed3',1,'LAR::Obstacle']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['writeextrinsics',['writeExtrinsics',['../class_settings.html#a1cee56847e08f49c90d2f7e2b0511197',1,'Settings']]],
-  ['writepoints',['writePoints',['../class_settings.html#a53ac449815682c6bfae7e50944ba0565',1,'Settings']]]
+  ['writeextrinsics',['writeExtrinsics',['../class_image_processing_1_1_settings.html#a74c1f84a8fcfa3fd43d4273a4abdbf03',1,'ImageProcessing::Settings']]],
+  ['writepoints',['writePoints',['../class_image_processing_1_1_settings.html#a34bf85a7d8cee8e26c268ae81d76d1fb',1,'ImageProcessing::Settings']]]
 ];

@@ -11,6 +11,7 @@
 
 using namespace cv;
 using namespace Geometry2D;
+namespace LAR {
 /**
  \brief class for handling obstacles in the map
  */
@@ -58,5 +59,5 @@ private:
     std::vector<Pentagon> pentagons;
     std::vector<Hexagon> hexagons;
 };
-
+}
 #endif /* Obstacle_hpp */
