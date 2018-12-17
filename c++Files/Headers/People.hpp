@@ -21,6 +21,7 @@ public:
      */
     People();
     People(std::pair<int,int> digit, cv::Rect rect);
+    //People(People &p);
     /*!
      * destructor of people class
      */
@@ -45,6 +46,20 @@ public:
     void addCircle(Circle* &circle);
     
     void clearCircles();
+    
+        
+    bool operator > (const People& p) const
+    {
+            return (name > p.name);
+    }
+    bool operator < (const People& p) const
+    {
+        return (name < p.name);
+    }
+    bool operator == (const People& p) const
+    {
+        return (name == p.name);
+    }
 
 private:
     std::vector<Circle*> circles;

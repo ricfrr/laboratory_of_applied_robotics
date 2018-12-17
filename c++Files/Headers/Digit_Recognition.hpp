@@ -86,6 +86,7 @@ public:
         PeopleStorage(){};
         
         
+    public:
         ///detected People
         std::vector<LAR::People> circles;
         
