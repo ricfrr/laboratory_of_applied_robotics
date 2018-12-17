@@ -129,7 +129,8 @@ void MissionPlanning::plan_mission_two(){
             Path2D::Path* p_path = new Path2D::Path(path->end_point,
                                                     Path2D::Position(people_s[i]->center,or2),0.05,map_p);
             
-            path = new Path2D::Path(*path,*p_path);
+            if(!p_path->lines.empty())
+                path = new Path2D::Path(*path,*p_path);
         }
         
         Path2D::Path* p_path = new Path2D::Path(path->end_point,
