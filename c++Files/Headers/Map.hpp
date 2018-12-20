@@ -29,8 +29,14 @@ class Map {
 public:
     /*!
      * constructor of the Map class
+     \param algorithm a DigitRecognitionAlgo enum type that specifies the type of Character_Recognition_Algorithm used to perform the recognition of the digit
+     \param suff_confidence confidence level [0-100] the recognized digit is accepted
+     \param search_angle region +/- detected angle the algorithm will try to find the digit
+     \param d_angle delta_angle step when turning to find the digit
+     \param extra_eroding number of consecutive eroding steps, importted for low quality images
+     \see Optical_Recognition_Algorithm, Template_Character_Recognition
      */
-    Map();
+    Map(const DigitRecognitionAlgo &algorithm = DigitRecognitionAlgo::tesseractOCP, const unsigned int &suff_confidence = 80, const unsigned int &search_angle = 15, const double &d_angle = 3.0, const unsigned int &extra_eroding = 0);
 
     /*!
      * destructor of the Map class
@@ -107,6 +113,11 @@ public:
     ///a flag that indicates that the path planning algorithm should skip possible solution and have a shorter calculation time
     bool quickCalculation = true;
     
+    ///settings for camera to real world conversion
+    Settings setting;
+    
+    bool wasSuccess();
+    
 private:
 
     // grid of the map
@@ -132,7 +143,6 @@ private:
     Arena arena;
 
     Digit_Recognition::PeopleStorage people;
-    Settings setting;
 
     Clipper clipper;
 
@@ -147,6 +157,8 @@ private:
     std::vector<Cell *> getLeftNeighbors(Cell* &forCell);
     std::vector<Cell *> getRightNeighbors(Cell* &forCell);
     std::vector<Cell *> getBottomNeighbors(Cell* &forCell);
+    
+    bool success = false;
 };
 
 #endif /* Map_hpp */

@@ -37,7 +37,7 @@ bool comparePeople(People p1, People p2){
 
 void MissionPlanning::plan_mission_one(){
     
-    std::cout << "planning mission one" << std::endl;
+    std::cout << "\nplanning mission one \n" << std::endl;
     
     Digit_Recognition::PeopleStorage peops = map_p->getPeople();
     std::vector<People> people_v = peops.circles;
@@ -75,6 +75,8 @@ void MissionPlanning::plan_mission_one(){
     Visualizer v(*map_p,path);
     v.visualize();
     v.simulate();
+    
+    std::cout << "---- DONE ----" << std::endl;
     
 }
 

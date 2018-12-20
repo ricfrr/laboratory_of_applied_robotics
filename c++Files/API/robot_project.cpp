@@ -23,19 +23,21 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     //take the image and preprocess
     cv::Mat persp_img;
     Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
-    persp_img = ipm.run(this->intrinsic_calibration, img, "../config/fullCalibration.yml");
+    persp_img = ipm.run(this->intrinsic_calibration, img, calibration_filepath);
     
     //important settings
     // - img width and height in pixels
+    map->setting.IMG_WIDTH = persp_img.cols;
+    map->setting.IMG_LENGHT = persp_img.rows;
     
-    //important Parameters
+    //important Parameters (in constructor of map)
     //  - DigitRecognition min confidence
     //  - consecutive delusions
     //  - main CRA
     //  - min rotation angle
     map->createMap(persp_img);
     
-    return false;
+    return map->wasSuccess();
 }
 
 bool RobotProject::planPath(cv::Mat const & img, Path & path){

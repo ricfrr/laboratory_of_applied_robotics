@@ -197,7 +197,7 @@ public:
     unsigned int search_angle = 15;
     
     ///how many consecutive eroding functions are applied after the blur
-    int erode_times = 0;
+    unsigned int erode_times = 0;
 };
 }
 #endif /* Character_Recognition_Algorithm_hpp */

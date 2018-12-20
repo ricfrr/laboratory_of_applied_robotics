@@ -1,11 +1,16 @@
 #include "../Headers/Map.hpp"
 
-Map::Map() {
+Map::Map(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confidence, const unsigned int &search_angle, const double &d_angle, const unsigned int &extra_eroding) {
     // creator
+    this->people = Digit_Recognition::PeopleStorage(algorithm,suff_confidence,search_angle,d_angle,extra_eroding);
 }
 
 Map::~Map() {
     // nada
+}
+
+bool Map::wasSuccess(){
+    return success;
 }
 
 void Map::clipPoints() {
@@ -156,6 +161,9 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
 
     }
     std::cout << "---- DONE ----" << std::endl;
+    
+    if(grid.empty() == false)
+        success = true;
 };
 
 void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {

@@ -311,14 +311,15 @@ void Visualizer::simulate(){
             points.push_back(cv::Point(ipoints[j]));
     }
     
-    while(cv::waitKey(0)){
+    bool stay = true;
+    while(cvWaitKey(0) != '\33' && stay){
     for(int i=0;i<points.size();i++){
         this->car->setCenter(points[i]);
         play();
         cv::waitKey(25);
     }
     }
-    visualize();
+    //visualize();
 }
 
 void Visualizer::colorNearestNeighbours(cv::Mat &result){

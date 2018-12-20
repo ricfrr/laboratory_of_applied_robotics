@@ -41,15 +41,31 @@ enum DigitRecognitionAlgo {
 class Digit_Recognition {
     
 public:
-    Digit_Recognition();
     
     /// \brief constructing the class with a set DigitRecognitionAlgo type
     /// \param algorithm a DigitRecognitionAlgo enum type that specifies the type of Character_Recognition_Algorithm used to perform the recognition of the digit
     /// \see Optical_Recognition_Algorithm, Template_Character_Recognition
     Digit_Recognition(DigitRecognitionAlgo algorithm);
     
-    ///set detection algorithm for digits e.g. tesseract or template matching
-    void set_algo(DigitRecognitionAlgo algorithm);
+    /**
+     \brief constructing the class with a set DigitRecognitionAlgo type
+     \param algorithm a DigitRecognitionAlgo enum type that specifies the type of Character_Recognition_Algorithm used to perform the recognition of the digit
+     \param suff_confidence confidence level [0-100] the recognized digit is accepted
+     \param search_angle region +/- detected angle the algorithm will try to find the digit
+     \param d_angle delta_angle step when turning to find the digit
+     \param extra_eroding number of consecutive eroding steps, importted for low quality images
+     \see Optical_Recognition_Algorithm, Template_Character_Recognition */
+    Digit_Recognition(const DigitRecognitionAlgo &algorithm = DigitRecognitionAlgo::tesseractOCP, const unsigned int &suff_confidence = 80, const unsigned int &search_angle = 15, const double &d_angle = 3.0, const unsigned int &extra_eroding = 0);
+    
+    /**
+     \brief set detection algorithm for digits e.g. tesseract or template matching
+     \param algorithm a DigitRecognitionAlgo enum type that specifies the type of Character_Recognition_Algorithm used to perform the recognition of the digit
+     \param suff_confidence confidence level [0-100] the recognized digit is accepted
+     \param search_angle region +/- detected angle the algorithm will try to find the digit
+     \param d_angle delta_angle step when turning to find the digit
+     \param extra_eroding number of consecutive eroding steps, importted for low quality images
+     */
+    void set_algo(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confidence = 80, const unsigned int &search_angle = 15, const double &d_angle = 3.0, const unsigned int &extra_eroding = 0);
     
     ///detects all the digits of an unprepared images and returns people information
     std::vector<LAR::People> detect_digits_for_map(const cv::Mat img_input);
@@ -81,9 +97,30 @@ public:
         
         PeopleStorage(const Mat &img){
             findCircles(img);
+            
+            this->algorithm = DigitRecognitionAlgo::tesseractOCP;
+            this->suff_confidence = 80;
+            this->search_angle = 15;
+            this->d_angle = 3;
+            this->extra_eroding = 0;
         }
         
-        PeopleStorage(){};
+        PeopleStorage(const DigitRecognitionAlgo &algorithm = DigitRecognitionAlgo::tesseractOCP, const unsigned int &suff_confidence = 80, const unsigned int &search_angle = 15, const double &d_angle = 3.0, const unsigned int &extra_eroding = 0){
+            
+            this->algorithm = algorithm;
+            this->suff_confidence = suff_confidence;
+            this->search_angle = search_angle;
+            this->d_angle = d_angle;
+            this->extra_eroding = extra_eroding;
+        };
+        
+    private:
+        
+        DigitRecognitionAlgo algorithm;
+        unsigned int suff_confidence;
+        unsigned int search_angle;
+        double d_angle;
+        unsigned int extra_eroding;
         
         
     public:
@@ -95,7 +132,8 @@ public:
          * @param img image of the map
          */
         void findCircles(const Mat &img){
-            Digit_Recognition dg_recognition = Digit_Recognition();
+            
+            Digit_Recognition dg_recognition = Digit_Recognition(algorithm,suff_confidence,search_angle,d_angle,extra_eroding);
             
             std::vector<LAR::People> data = dg_recognition.detect_digits_for_map(img);
             for (int i = 0; i < data.size(); i++)

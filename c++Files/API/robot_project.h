@@ -28,7 +28,7 @@ public:
     
 private:
     std::string source_img_path;
-    std::string calibration_filepath;
+    std::string calibration_filepath = "../config/fullCalibration.yml";
     std::string intrinsic_calibration;
     
     Map* map;

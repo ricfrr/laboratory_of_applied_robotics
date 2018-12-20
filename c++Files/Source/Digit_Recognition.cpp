@@ -9,10 +9,10 @@
 #include "../Headers/Digit_Recognition.hpp"
 using namespace ImageProcessing;
 
-Digit_Recognition::Digit_Recognition(){
-    std::cout << "basic digit recognition constructor selected" << std::endl;
-    //initiate variables
-    set_algo(DigitRecognitionAlgo::tesseractOCP);
+Digit_Recognition::Digit_Recognition(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confidence, const unsigned int &search_angle, const double &d_angle, const unsigned int &extra_eroding){
+    
+    set_algo(algorithm, suff_confidence,search_angle,d_angle,extra_eroding);
+    
 }
 
 Digit_Recognition::Digit_Recognition(DigitRecognitionAlgo algorithm){
@@ -47,9 +47,18 @@ void Digit_Recognition::initialize_algorithm(){
     }
 }
 
-void Digit_Recognition::set_algo(DigitRecognitionAlgo algorithm){
+void Digit_Recognition::set_algo(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confidence, const unsigned int &search_angle, const double &d_angle, const unsigned int &extra_eroding){
+    
     this->picked_algorithm = algorithm;
+    
     initialize_algorithm();
+    
+    this->algorithm->suf_conf = suff_confidence;
+    this->algorithm->search_angle = search_angle;
+    this->algorithm->delta_angle = d_angle;
+    this->algorithm->erode_times = extra_eroding;
+    
+    
 }
 
 void Digit_Recognition::set_filter(HSVFilterRange filterRange){
@@ -82,7 +91,7 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     
     //*** new Marvin
     
-    std::cout << "started detecting the digits" << std::endl;
+    std::cout << "\nstarted detecting the digits ";
     
     cv::Mat filtered;
     std::vector<cv::Rect> rects;
@@ -100,6 +109,7 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     for(int i = 0;i<digit_images.size();i++){
         //cv::imshow("digit_"+std::to_string(i), digit_images[i]);
 
+        std::cout << ".";
         //do the noise reduction
         this->algorithm->prepare_uniform_window(digit_images[i]);
 
@@ -207,6 +217,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
             results.push_back(LAR::People({0,0},rects[i]));
 
     }
+    
+    std::cout << "done!\n" << std::endl;
     
     return results;
 }
