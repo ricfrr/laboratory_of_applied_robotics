@@ -82,6 +82,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     
     //*** new Marvin
     
+    std::cout << "started detecting the digits" << std::endl;
+    
     cv::Mat filtered;
     std::vector<cv::Rect> rects;
 
@@ -109,9 +111,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
         orientation_0 = digit_images[i].clone();
 
         //rotate the image
-        this->algorithm->rotate_image(digit_images[i], angle, orientation_1);
-        angle = 180;
-        this->algorithm->rotate_image(orientation_1, angle, orientation_2);
+        this->algorithm->rotate_image(digit_images[i], -angle, orientation_1);
+        this->algorithm->rotate_image(orientation_1, 180, orientation_2);
 
 //        cv::imshow("orientation_0", orientation_0);
 //        cv::imshow("orientation_1", orientation_1);
@@ -141,39 +142,60 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
 
         std::pair<int,int> digit = digit_0;
 
-        if(digit_0.second < digit_1.second){
-            digit = digit_1;
-            if(digit_1.second < digit_2.second)
-                digit = digit_2;
-        }
+        //starting to turn the digit
+        double angle2 =  - (double)this->algorithm->search_angle;
 
-        else if(digit_0.second < digit_2.second)
-            digit = digit_2;
+        while(angle2 <=  (double)this->algorithm->search_angle){
 
-        double angle2 = this->algorithm->delta_angle;
-
-        while(angle2 < 360){
-
-            if (digit.second > this->algorithm->suf_conf - 10 &&
-                is_valid(digit.first))
+            if (digit_1.second > this->algorithm->suf_conf - 10 &&
+                is_valid(digit.first)){
+                digit = digit_1;
+                
+                if (digit_2.second > digit_1.second &&
+                    is_valid(digit.first)){
+                    digit = digit_2;
+                    break;
+                }
+                
                 break;
+            }else if (digit_2.second > this->algorithm->suf_conf - 10 &&
+                                  is_valid(digit.first)){
+                digit = digit_2;
+                break;
+            }
+            
 
-            cv::Mat result;
+            cv::Mat result1, result2;
             std::pair<int,int> digit_4;
+            std::pair<int,int> digit_5;
 
             //rotate the image
-            this->algorithm->rotate_image(digit_images[i], angle2, result);
-            digit_4 = this->algorithm->detect_digit(result);
+            this->algorithm->rotate_image(orientation_1, angle2, result1);
+            this->algorithm->rotate_image(orientation_2, angle2, result2);
+            
+            digit_4 = this->algorithm->detect_digit(result1);
+            digit_5 = this->algorithm->detect_digit(result2);
+            
             angle2 += this->algorithm->delta_angle;
-//            cv::imshow("rotated", result);
-//            std::cout << digit_4.first << " " << digit_4.second <<  std::endl;
-//            cv::waitKey(0);
+            
+//            cv::imshow("rotated4", result1);
+//            cv::imshow("rotated5", result2);
+            
+           // cv::waitKey(0);
 
-            if(digit.second < digit_4.second)
-                digit = digit_4;
+            if(digit_1.second < digit_4.second)
+                digit_1 = digit_4;
+            if(digit_2.second < digit_5.second)
+                digit_2 = digit_5;
 
-            if(digit.second > this->algorithm->suf_conf )
+            if(digit_1.second > this->algorithm->suf_conf ){
+                digit = digit_1;
                 break;
+            }
+            else if(digit_2.second > this->algorithm->suf_conf ){
+                digit = digit_2;
+                break;
+            }
         }
 
         //create the people data

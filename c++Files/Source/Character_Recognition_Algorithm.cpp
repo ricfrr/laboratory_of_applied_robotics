@@ -163,7 +163,7 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     cv::Mat gray;
     cvtColor(image, gray, CV_BGR2GRAY); //perform gray scale conversion.
     
-    threshold( gray, gray, 100,255,cv::THRESH_BINARY_INV );
+    threshold( gray, gray, 100,255,cv::THRESH_BINARY );//_INV
     
     std::vector<std::vector<cv::Point>> contours;
     
@@ -182,16 +182,30 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     
     cv::fitLine(numbers, line, CV_DIST_L1, 0,  0.01,  0.01);
 
-    cv::line(gray, cv::Point(line[2],line[3]), cv::Point(line[2]+100*line[0],line[3]+100*line[1]), cv::Scalar(0,100,200));
+    cv::Mat colored;
+    cvtColor(gray, colored, CV_GRAY2RGB);
     
-    //std::cout << "fitline result " << line << std::endl;
+    cv::Point start =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
+    cv::Point end   = cv::Point(line[2],line[3]);
+    cv::Point result = start - end;
+    cv::Point plot_result = cv::Point(colored.cols/2,colored.rows/2) + result;
     
-    double rho = std::sqrt(std::pow(line[3],2) + std::pow(line[2],2));
-    double angle = std::atan2(line[3]/rho, line[2]/rho);
+    cv::line(gray, start, end, cv::Scalar(0,0,255));
+    cv::line(colored, start, end, cv::Scalar(0,0,255));
+    cv::line(colored, cv::Point(colored.cols/2,colored.rows/2), plot_result, cv::Scalar(255,0,0));
+   
+    
+//    cv::imshow("gray", gray);
+//    cv::imshow("colored", colored);
+   // std::cout << "fitline result " << line << std::endl;
+    
+    double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+    double angle = std::atan2(result.y/rho, result.x/rho);
     
     
     //convert rad to deg
-    return (angle) * 57.2958;
+    //std::cout << "turning result: " << (angle) * 57.2958 + 90<< std::endl;
+    return (angle) * -57.2958 + 90;
     
 }
 
@@ -211,10 +225,9 @@ void Character_Recognition_Algorithm::prepare_uniform_window(cv::Mat &img){
   //  cv::imshow("after erosion", img);
     cv::GaussianBlur(img, img, cv::Size(3, 3), 2, 2);
  //   cv::imshow("after blur", img);
-    cv::erode(img, img, kernel);
+    for(int i=0;i<this->erode_times;i++)
+        cv::erode(img, img, kernel);
  //   cv::imshow("after erosion2", img);
-    cv::erode(img, img, kernel);
- //   cv::imshow("after erosion3", img);
 
     
 //    cv::dilate(img, img, kernel);

@@ -188,13 +188,16 @@ public:
     void turn_image(cv::Mat input, cv::Mat & output, double angle);
     
     ///angle by which the image is turned each step from 0 to 360 degrees to find the right orientation
-    double delta_angle = 30;
+    double delta_angle = 3;
     
     ///sufficient confidence value to stop the rotating wheel of the digit recognition
     unsigned int suf_conf = 80;
     
     ///instead of searching a full rotation only an angle +/- starting angle is looked for
-    unsigned int search_angle = 30;
+    unsigned int search_angle = 15;
+    
+    ///how many consecutive eroding functions are applied after the blur
+    int erode_times = 0;
 };
 }
 #endif /* Character_Recognition_Algorithm_hpp */
