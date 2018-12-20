@@ -192,6 +192,9 @@ public:
     
     ///sufficient confidence value to stop the rotating wheel of the digit recognition
     unsigned int suf_conf = 80;
+    
+    ///instead of searching a full rotation only an angle +/- starting angle is looked for
+    unsigned int search_angle = 30;
 };
 }
 #endif /* Character_Recognition_Algorithm_hpp */

@@ -66,6 +66,12 @@ public:
                       const cv::Mat &dist_coeffs,
                       double &pixel_scale,
                       cv::Mat &persp_img);
+    
+    Mat findTransform(const cv::Mat &img,
+                      const cv::Mat &camera_matrix,
+                      const cv::Mat &dist_coeffs,
+                      double &pixel_scale,
+                      cv::Mat &persp_img);
     /*!
      *  Store all the parameters to a file, for a later use, using the FileStorage
      *  class methods
@@ -91,6 +97,8 @@ public:
      * @return the image after transformation
      */
     cv::Mat run(std::string intrinsic_conf, std::string image, std::string outputfilename);
+    
+    cv::Mat run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename);
 
 private:
 

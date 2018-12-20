@@ -218,6 +218,48 @@ Mat Inverse_Perspective_Mapping::findTransform(
     return tform;
 }
 
+Mat Inverse_Perspective_Mapping::findTransform(
+                                               const cv::Mat &img, const cv::Mat &camera_matrix,
+                                               const cv::Mat &dist_coeffs, double &pixel_scale, cv::Mat &persp_img)
+{
+    Mat calib_image, original_image = img;
+    
+    if (original_image.empty())
+    {
+        throw std::runtime_error("Image is empty! ");
+    }
+    
+    //undistort the image based on the calibration
+    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    //    imshow("origin", original_image);
+    //    imshow("undistored", calib_image);
+    //    waitKey(0);
+    // find corners
+    std::vector<cv::Point> corners = findCorners(calib_image);
+    
+    // Destination image
+    Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
+    Mat im_dst = Mat::zeros(size, CV_8UC3);
+    // Create a vector of points.
+    std::vector<Point2f> pts_dst;
+    
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    
+    Mat tform = findHomography(corners, pts_dst);
+    warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
+                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+    //imshow("first persp", im_dst);
+    reTransform(im_dst,pixel_scale);
+    persp_img = im_dst;
+    //imshow("sec persp", im_dst);
+    imwrite("sec_persp.png", im_dst);
+    //waitKey(0);
+    return tform;
+}
+
 
 // Store all the parameters to a file, for a later use, using the FileStorage
 // class methods
@@ -242,6 +284,20 @@ cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf,
     Mat persp_img;
     Mat persp_transf =
         findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
+    storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale,
+                       persp_transf);
+    return persp_img;
+}
+
+cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename)
+{
+    cv::Mat camera_matrix, dist_coeffs;
+    loadCoefficients(intrinsic_conf, camera_matrix, dist_coeffs);
+    this->outputfilename = outputfilename;
+    double pixel_scale = 0;
+    Mat persp_img;
+    Mat persp_transf =
+    findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
     storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale,
                        persp_transf);
     return persp_img;

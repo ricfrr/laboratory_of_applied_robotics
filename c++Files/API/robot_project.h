@@ -5,6 +5,8 @@
 #include <vector>
 #include "path.h"
 
+#include "../Headers/RoboticMapping.hpp"
+
 // Define your own class RobotProject, that implements and exposes the following methods.
 // NB: The input images are already undistorted.
 class RobotProject
@@ -23,6 +25,13 @@ public:
   // The output state is a vector of three elements, x, y and theta.
   bool localize(cv::Mat const & img, 
                 std::vector<double> & state);
+    
+private:
+    std::string source_img_path;
+    std::string calibration_filepath;
+    std::string intrinsic_calibration;
+    
+    Map* map;
 
 };
 
