@@ -25,7 +25,12 @@ public:
     
     Map* map_p;
     Path2D::Path* path_p;
-    
+
+    bool isExitReached(std::vector<Path2D::Position*> &point_of_interests);
+
+    Path2D::Path* findOptimalPath(Position &start_point, std::vector<Path2D::Position*> &point_of_interests);
+
+
     void plan_mission_one();
     void plan_mission_two();
     

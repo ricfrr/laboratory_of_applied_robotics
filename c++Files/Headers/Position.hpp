@@ -25,6 +25,12 @@ public:
      */
     Position(cv::Point2d pos, double orient);
     /**
+     * \brief construction of the Position class
+     * @param pos coordinate of the position
+     */
+    Position(cv::Point2d pos);
+
+    /**
      * \brief destructor of the Position class
      */
     ~Position();
@@ -44,13 +50,30 @@ public:
      * @return the orientation of the position
      */
     double getOrientation();
-    
+
+    /**
+     * set the orientation of the path
+     * @param _orientation the orientation of the path
+     */
+    void setOrientation(double _orientation);
+    /**
+     * set the weight of the position;
+     * @param _weight the weight of the position
+     */
+    void setWeight (double _weight);
+
+    /**
+     * return the weight of the position
+     * @return the weight of the position
+     */
+    double getWeight();
+
     bool orientation_locked = false;
     
     double orientation;
 
 private:
-
+    double weight= 0;
 
     cv::Point2d coordinates;
     
