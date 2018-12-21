@@ -57,20 +57,39 @@ void Map::clipPoints() {
 
 
 void Map::createMap(const Mat &img) {
-    // robot.findRobot(img);
+   
+    std::cout << "\nCREATING MAP\n" << std::endl;
+    
+    std::cout << "detect areana     ->";
     arena.findArena(img);
+    std::cout << " done" << std::endl;
+    
+    std::cout << "detect exit       ->";
     exit_point.findExitPoint(img);
+    std::cout << " done" << std::endl;
+    
+    std::cout << "find obstacles    ->";
     obstacles.findObstacles(img);
+    std::cout << " done" << std::endl;
+    
+    std::cout << "find people:\n";
     people.findCircles(img);
     
+    std::cout << "find robot        ->";
     this->robo = new Robot;
     robo->findRobot(img);
+    std::cout << " done" << std::endl;
     
+    std::cout << "clip points       ->";
     clipPoints();
+    std::cout << " done" << std::endl;
 
 
-    // detection of all obstacles
+    std::cout << "init grid:        ->";
     initializeGrid(arena, exit_point, obstacles);
+    std::cout << " done" << std::endl;  
+    
+    std::cout << "\nCREATED MAP\n" << std::endl;
 }
 
 void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
@@ -163,7 +182,7 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
         grid.push_back(temp_vec);
 
     }
-    std::cout << "---- DONE ----" << std::endl;
+//std::cout << "---- DONE ----" << std::endl;
     
     if(grid.empty() == false)
         success = true;

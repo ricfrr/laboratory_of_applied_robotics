@@ -35,7 +35,7 @@ int main(int argc, const char *argv[]) {
 
     map.quickCalculation = true;
     MissionPlanning m = MissionPlanning(&map);
-    m.plan_mission_one();
+    m.plan_mission_two();
 
     return 0;
 }
