@@ -149,7 +149,7 @@ public:
                 else
                     conf = " with extremely low confidence";
                 
-                std::cout << "detected a guy called " << data[i].name << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << std::endl;
+                std::cout << "detected a guy called " << data[i].name << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << "\n"  <<std::endl;
                 
                 circles.push_back(data[i]);
             }

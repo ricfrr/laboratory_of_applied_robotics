@@ -72,11 +72,11 @@ void MissionPlanning::plan_mission_one(){
                                             finalPos,0.05,map_p);
     path = new Path2D::Path(*path,*p_path);
     
+    std::cout << "---- DONE ----" << std::endl;
+    
     Visualizer v(*map_p,path);
     v.visualize();
     v.simulate();
-    
-    std::cout << "---- DONE ----" << std::endl;
     
 }
 

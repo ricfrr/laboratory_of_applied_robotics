@@ -46,7 +46,7 @@ void Robot::update(const std::vector<cv::Point> &points){
     if(La <= Lb && La <= Lc){
         cv::Point start = points[1] + a/2;
         cv::Point end = points[2];
-        result = end - start;
+        result = start-end;
         double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
         angle = std::atan2(result.y/rho, result.x/rho);
         deg = (angle) * 57.2958;
@@ -75,6 +75,8 @@ void Robot::update(const std::vector<cv::Point> &points){
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
     this->radius = this->radius/2;
+    
+    
 
 
 }
@@ -141,7 +143,7 @@ void Robot::move(const cv::Point &location, const double &angle){
     
     if(angle == NAN)
         return;
-    std::cout <<(angle) << std::endl;
+
     
     cv::Point d = location - center;
     
@@ -149,12 +151,19 @@ void Robot::move(const cv::Point &location, const double &angle){
     cv::Point d_1 = location - points[1];
     cv::Point d_2 = location - points[2];
     
-    cv::Matx23d rot_mat = getRotationMatrix2D( center, angle, 1 );
+    cv::Matx23d rot_mat = getRotationMatrix2D( center,this->angle-angle, 1 );
     
     std::vector<cv::Point> pointz;
     
     if(rot_mat.val[0] != NAN)
         cv::transform(points, pointz, rot_mat);
+    
+    std::cout <<(pointz[0]) << std::endl;
+    
+    if(pointz[0].x > 1000)
+        return;
+    if(pointz[0].x < 0)
+        return;
     
     pointz[0] += d;
     pointz[1] += d;
