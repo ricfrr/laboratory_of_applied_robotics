@@ -6,7 +6,10 @@ Map::Map(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confide
 }
 
 Map::~Map() {
-    // nada
+    for( auto &&row : grid){
+        for(auto &&cell : row)
+            delete cell;
+    }
 }
 
 bool Map::wasSuccess(){
