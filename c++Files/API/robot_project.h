@@ -6,6 +6,7 @@
 #include "path.h"
 
 #include "../Headers/RoboticMapping.hpp"
+#include "../Headers/Robot.hpp"
 
 // Define your own class RobotProject, that implements and exposes the following methods.
 // NB: The input images are already undistorted.

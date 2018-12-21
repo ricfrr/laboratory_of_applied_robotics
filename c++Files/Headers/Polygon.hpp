@@ -18,7 +18,7 @@ class Polygon: public Shape {
 
 public:
     Polygon();
-    Polygon(std::vector<cv::Point> points);
+    Polygon(const std::vector<cv::Point> &points);
     ~Polygon();
     
     ///brief the points of the polygon

@@ -59,7 +59,7 @@ void MissionPlanning::plan_mission_one(){
     std::pair<cv::Point,double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos =  Path2D::Position(exit.first,exit.second);finalPos.orientation_locked = true;
     
-    Path2D::Path* path = new Path2D::Path(Path2D::Position(cv::Point2d(60,60),or1),
+    Path2D::Path* path = new Path2D::Path(Path2D::Position(map_p->robo->center,map_p->robo->angle),
                                           Path2D::Position(people_s[0]->center,or2),0.05,map_p);
     
     for(int i = 1; i<people_s.size();i++){
@@ -110,7 +110,7 @@ void MissionPlanning::plan_mission_two(){
     std::pair<cv::Point,double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos =  Path2D::Position(exit.first,exit.second);finalPos.orientation_locked = true;
     
-    Path2D::Path* path = new Path2D::Path(Path2D::Position(cv::Point2d(60,60),or1),
+    Path2D::Path* path = new Path2D::Path(Path2D::Position(map_p->robo->center,map_p->robo->angle),
                                           finalPos,0.05,map_p);
     
     if(path->lines.empty()){

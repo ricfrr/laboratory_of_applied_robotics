@@ -3,6 +3,7 @@
 
 #include "Circle.hpp"
 #include <vector>
+#include <stdlib.h>
 
 using namespace cv;
 using namespace Geometry2D;

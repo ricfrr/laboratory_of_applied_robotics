@@ -10,23 +10,30 @@
 #define Robot_hpp
 
 #include <stdio.h>
-#include "Circle.hpp"
-#include "PathCoordinates.hpp"
+#include "Triangle.hpp"
 
 using namespace Geometry2D;
 
-class Robot: public Circle {
+class Robot: public Triangle {
     
 public:
     
-    Robot();
+    Robot(const std::vector<cv::Point> &points = {});
     ~Robot();
     
     const cv::Scalar color = cv::Scalar(0,0,255);
     
-    Path2D::Element::PathCoordinates* data;
+    void update(const std::vector<cv::Point> &points = {});
     
-    Path2D::Element::PathCoordinates initialize();
+    void findRobot(const cv::Mat &img);
+    
+    void move(const cv::Point &location, const double &angle);
+    
+    double radius;
+    cv::Point center;
+    double angle;
+    
+    const int epsilon_approx = 7;
     
 };
 

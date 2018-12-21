@@ -9,7 +9,7 @@ Triangle::~Triangle() {
   // nada
 }
 
-Triangle::Triangle(std::vector<cv::Point> points): Polygon(points){
+Triangle::Triangle(const std::vector<cv::Point> &points): Polygon(points){
     assign_points();
 }
 
@@ -27,6 +27,8 @@ void Triangle::assign_points(){
 }
 
 void Triangle::setCorners(std::vector<cv::Point> corners) {
+    if(corners.empty())
+        return;
   Triangle::setFirstCorner(corners[0]);
   Triangle::setSecondCorner(corners[2]);
   Triangle::setThirdCorner(corners[1]);

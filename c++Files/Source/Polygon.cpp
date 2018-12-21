@@ -11,7 +11,7 @@
 using namespace Geometry2D;
 
 Polygon::Polygon(){}
-Polygon::Polygon(std::vector<cv::Point> points)
+Polygon::Polygon(const std::vector<cv::Point> &points)
 {
     this->points = points;
 }

@@ -8,29 +8,165 @@
 
 #include "../Headers/Robot.hpp"
 
-Robot::Robot(){
-    this->radius = 10;
-    this->center = cv::Point(20,20);
-    this->data = nullptr;
+Robot::Robot(const std::vector<cv::Point> &points): Triangle(points){
+    
+    if(points.size() > 0)
+        update(points);
 }
 Robot::~Robot(){}
 
-Path2D::Element::PathCoordinates Robot::initialize(){
-    // initial position
-    int in_x = 0;
-    int in_y = 1;
-    double in_orient = -1.0/3*M_PI;
-    double Kmax = 1.0; //max curvature 1/kmax give us the radius
-    cv::Point2d in_coordinates = Point2d(in_x,in_y);
-    Path2D::Element::Position in_position = Path2D::Element::Position(in_coordinates,in_orient);
-    // final position
-    int f_x = 4;
-    int f_y = 3;
-    double f_orient = M_PI/3.0;
-    cv::Point2d f_coordinates = Point2d(f_x,f_y);
-    Path2D::Element::Position f_position = Path2D::Element::Position(f_coordinates,f_orient);
+void Robot::update(const std::vector<cv::Point> &points){
     
+    this->points = points;
+    setCorners(points);
     
-    Path2D::Element::PathCoordinates car = Path2D::Element::PathCoordinates(in_position,f_position,Kmax);
-    return car;
+    center = points[0] + points[1] + points[2];
+    center = center/3;
+    
+    //find shorter side
+    int a_x = std::abs(points[0].x - points[1].x);
+    int b_x = std::abs(points[0].x - points[2].x);
+    int c_x = std::abs(points[1].x - points[2].x);
+
+    int a_y = std::abs(points[0].y - points[1].y);
+    int b_y = std::abs(points[0].y - points[2].y);
+    int c_y = std::abs(points[1].y - points[2].y);
+    
+    cv::Point a(a_x,a_y);
+    cv::Point b(b_x,b_y);
+    cv::Point c(c_x,c_y);
+    
+    double La = sqrt(pow(a_x,2) + pow(a_y,2));
+    double Lb = sqrt(pow(b_x,2) + pow(b_y,2));
+    double Lc = sqrt(pow(c_x,2) + pow(c_y,2));
+    
+    cv::Point result;
+    double deg = 0.0;
+    
+    if(La <= Lb && La <= Lc){
+        cv::Point start = points[1] + a/2;
+        cv::Point end = points[2];
+        result = end - start;
+        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+        angle = std::atan2(result.y/rho, result.x/rho);
+        deg = (angle) * 57.2958;
+    }
+    else if(Lb < La && Lb < Lc){
+        cv::Point start = points[2] + b/2;
+        cv::Point end = points[1];
+        result = start - end;
+        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+        angle = std::atan2(result.y/rho, result.x/rho);
+        deg = (angle) * 57.2958;
+    }
+    else if(Lc < La && Lc < Lb){
+        cv::Point start = points[2] + c/2;
+        cv::Point end = points[0];
+        result = start - end;
+        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+        angle = std::atan2(result.y/rho, result.x/rho);
+        deg = (angle) * 57.2958;
+    }
+    else{
+        std::cout << "can not find orientation of triangle" << std::endl;
+        deg = 0;
+    }
+    
+    this->radius = max(La,Lb);
+    this->radius = max(this->radius,Lc);
+    this->radius = this->radius/2;
+
+
+}
+
+void Robot::findRobot(const cv::Mat &img){
+    
+    // Convert color space from BGR to HSV
+    cv::Mat hsv_img;
+    cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
+    // Preparing the kernel matrix
+    cv::Mat kernel = cv::getStructuringElement(
+                                               cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
+    
+    // Definining contour containers and hierarchy to find the right contours
+    cv::Mat contours_img;
+    std::vector<std::vector<cv::Point>> contours, contours_approx;
+    std::vector<cv::Vec4i> hierarchy;
+    std::vector<cv::Point> approx_curve, corners;
+    
+    // Find red regions: h values around 0 (positive and negative angle: [0,15] U [160,179])
+    cv::Mat blue_mask;
+    cv::inRange(hsv_img, cv::Scalar(75, 50, 50), cv::Scalar(130, 255, 255), blue_mask);
+    
+    // Filter (applying dilation, blurring, dilation and erosion) the image
+    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
+    // Filter (applying an erosion and dilation) the image
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
+    
+    // Process red mask
+    
+    contours_img = img.clone();
+    cv::findContours(blue_mask, contours, hierarchy, cv::RETR_LIST,
+                     cv::CHAIN_APPROX_SIMPLE);
+    drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
+                 cv::LINE_AA);
+    
+    for (int i = 0; i < contours.size(); ++i)
+    {
+        approxPolyDP(contours[i], approx_curve, epsilon_approx, true);
+        contours_approx = {approx_curve};
+        if (approx_curve.size() == 3)
+        {
+            Triangle triangle = Triangle();
+            triangle.setCorners(approx_curve);
+
+           // std::cout << "Triangle : " << triangle.getCorners() << std::endl;
+            drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
+            
+            triangle.points = triangle.getCorners();
+            
+            if(!triangle.points.empty()){
+            update(triangle.points);
+                break;
+                
+            }
+        }
+    }
+//    imshow("robot", contours_img);
+//    waitKey(0);
+}
+
+void Robot::move(const cv::Point &location, const double &angle){
+    
+    if(angle == NAN)
+        return;
+    std::cout <<(angle) << std::endl;
+    
+    cv::Point d = location - center;
+    
+    cv::Point d_0 = location - points[0];
+    cv::Point d_1 = location - points[1];
+    cv::Point d_2 = location - points[2];
+    
+    cv::Matx23d rot_mat = getRotationMatrix2D( center, angle, 1 );
+    
+    std::vector<cv::Point> pointz;
+    
+    if(rot_mat.val[0] != NAN)
+        cv::transform(points, pointz, rot_mat);
+    
+    pointz[0] += d;
+    pointz[1] += d;
+    pointz[2] += d;
+    
+    if(pointz[0].x >= 0 && pointz[1].x && pointz[1].x &&
+       pointz[0].y >= 0 && pointz[1].y && pointz[1].y &&
+       angle != NAN)
+        points = pointz;
+    
+    setCorners(points);
+    
+    update(points);
+    
 }

@@ -54,6 +54,14 @@ bool RobotProject::localize(cv::Mat const & img,
     //find robot shape
     //calculate COM
     //calculate orientation
+    Robot robo;
+    robo.findRobot(img);
+    
+    double x = (double)robo.center.x;
+    double y = (double)robo.center.y;
+    double theta = robo.angle;
+    
+    state = {x,y,theta};
     
     //put info to state
     

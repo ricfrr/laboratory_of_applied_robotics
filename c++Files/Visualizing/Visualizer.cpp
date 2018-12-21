@@ -14,19 +14,20 @@ Visualizer::Visualizer(){
 
 Visualizer::Visualizer(Map &map){
     assign_map(map);
-    this->car = new Robot;
+    this->car = map.robo;
 }
 
 Visualizer::Visualizer(Map &map, Path* &path){
     assign_map(map);
     assign_path(path);
-    this->car = new Robot;
+    this->car = map.robo;
 }
 
 Visualizer::~Visualizer(){}
 
 void Visualizer::assign_map(Map &map){
     this->p_map = &map;
+    this->car = map.robo;
 }
 
 void Visualizer::assign_path(Path *&path){
@@ -209,7 +210,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     }
     
     //print Car
-    cv::circle(result, car->getCenter(), car->getRadius(), car->color, -1,LINE_8,0);
+    cv::fillConvexPoly(result, car->points, cv::Scalar(255,100,0));
     
     
     return result;
@@ -313,8 +314,15 @@ void Visualizer::simulate(){
     
     bool stay = true;
     while(cvWaitKey(0) != '\33' && stay){
-    for(int i=0;i<points.size();i++){
-        this->car->setCenter(points[i]);
+    for(int i=0;i<points.size()-1;i++){
+        
+        cv::Point start = points[i];
+        cv::Point end = points[i+1];
+        cv::Point result = end-start;
+        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+        double angle = std::atan2(result.y/rho, result.x/rho);
+        
+        this->car->move(points[i], angle);
         play();
         cv::waitKey(25);
     }

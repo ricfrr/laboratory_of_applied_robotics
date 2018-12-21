@@ -19,7 +19,7 @@ public:
      */
     Triangle();
 
-    Triangle(std::vector<cv::Point> points);
+    Triangle(const std::vector<cv::Point> &points);
     
     /*!
      * destructor of triangle class

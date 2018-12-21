@@ -62,7 +62,10 @@ void Map::createMap(const Mat &img) {
     exit_point.findExitPoint(img);
     obstacles.findObstacles(img);
     people.findCircles(img);
-
+    
+    this->robo = new Robot;
+    robo->findRobot(img);
+    
     clipPoints();
 
 

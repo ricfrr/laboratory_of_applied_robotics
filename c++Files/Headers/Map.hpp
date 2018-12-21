@@ -8,7 +8,7 @@
 #include "Obstacle.hpp"
 #include "Pentagon.hpp"
 #include "Square.hpp"
-#include "Triangle.hpp"
+#include "Robot.hpp"
 #include "People.hpp"
 #include "Circle.hpp"
 #include "Settings.hpp"
@@ -115,6 +115,8 @@ public:
     
     ///settings for camera to real world conversion
     Settings setting;
+    
+    Robot* robo;
     
     bool wasSuccess();
     
