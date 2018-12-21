@@ -174,7 +174,7 @@ void Path::findPath() {
     //some kind of do while (dubin_lines.empty())
     // ...
 
-    double iterations = 9.0;
+    double iterations = 30.0;
     double it = 2.0;
     double initLength = 1000000000;
     std::vector<cv::Point> alt_points;

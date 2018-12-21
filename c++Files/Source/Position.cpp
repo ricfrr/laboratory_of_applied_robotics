@@ -32,4 +32,21 @@ cv::Point2d Position::getCoordinates() {
 
 double Position::getOrientation() {
     return orientation;
+}
+
+void Position::setOrientation(double _orientation) {
+    this->orientation = _orientation;
+}
+
+void Position::setWeight(double _weight) {
+    this->weight = _weight;
+}
+
+double Position::getWeight() {
+    return this->weight;
+}
+
+Position::Position(cv::Point2d pos) {
+    this->coordinates = pos;
+    this->orientation = 0;
 };
