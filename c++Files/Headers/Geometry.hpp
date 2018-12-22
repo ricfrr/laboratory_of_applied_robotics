@@ -12,10 +12,13 @@
 #include <opencv2/core.hpp>
 #include <stdio.h>
 
-using namespace std;
 using namespace cv;
 
 struct Geometry{
+    
+public:
+    
+    Geometry()    {    }
     
     static double angle_deg(const Point start, const Point end)
     {

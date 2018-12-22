@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "Color_Processing.hpp"
+#include "Geometry.hpp"
 
 namespace ImageProcessing
 {

@@ -13,11 +13,11 @@ int main(int argc, const char *argv[]) {
 
 //    std::cout << "hello world" << std::endl;
 
-    cv::Mat persp_img;
-    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
-    persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
+    //cv::Mat persp_img;
+    //Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
+    //persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
 
-    //cv::Mat persp_img = cv::imread(argv[1]);
+    cv::Mat persp_img = cv::imread(argv[1]);
     // MAP
     Map map = Map(DigitRecognitionAlgo::tesseractOCP, 80, 15, 3, 0);
     map.setting.IMG_WIDTH = persp_img.cols;
@@ -35,7 +35,7 @@ int main(int argc, const char *argv[]) {
 
     map.quickCalculation = true;
     MissionPlanning m = MissionPlanning(&map);
-    m.plan_mission_two();
+    m.plan_mission_one();
 
     return 0;
 }

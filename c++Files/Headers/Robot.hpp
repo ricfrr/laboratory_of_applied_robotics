@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Triangle.hpp"
+#include "Geometry.hpp"
 
 using namespace Geometry2D;
 

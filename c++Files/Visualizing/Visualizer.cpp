@@ -314,18 +314,18 @@ void Visualizer::simulate(){
     }
     
     bool stay = true;
+    double prev_angle = 0.0;
     while(cvWaitKey(0) != '\33' && stay){
     for(int i=0;i<points.size()-1;i++){
         
         cv::Point start = points[i];
         cv::Point end = points[i+1];
-        cv::Point result = end-start;
-        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
-        double angle = std::atan2(result.y/rho, result.x/rho);
+        double angle = Geometry::angle_rad(start, end);
         
-        this->car->move(points[i], angle);
+        this->car->move(points[i], angle-prev_angle);
         play();
         cv::waitKey(25);
+        prev_angle = angle;
     }
     }
     //visualize();
