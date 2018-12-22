@@ -185,27 +185,24 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     cv::Mat colored;
     cvtColor(gray, colored, CV_GRAY2RGB);
     
-    cv::Point start =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
-    cv::Point end   = cv::Point(line[2],line[3]);
-    cv::Point result = start - end;
-    cv::Point plot_result = cv::Point(colored.cols/2,colored.rows/2) + result;
+    cv::Point end =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
+    cv::Point start   = cv::Point(line[2],line[3]);
+    //cv::Point result = start - end;
+    //cv::Point plot_result = cv::Point(colored.cols/2,colored.rows/2) + result;
     
     cv::line(gray, start, end, cv::Scalar(0,0,255));
     cv::line(colored, start, end, cv::Scalar(0,0,255));
-    cv::line(colored, cv::Point(colored.cols/2,colored.rows/2), plot_result, cv::Scalar(255,0,0));
+    //cv::line(colored, cv::Point(colored.cols/2,colored.rows/2), plot_result, cv::Scalar(255,0,0));
    
+    double angle = Geometry::angle_deg(start, end);
     
-//    cv::imshow("gray", gray);
-//    cv::imshow("colored", colored);
-   // std::cout << "fitline result " << line << std::endl;
+    cv::imshow("gray", gray);
+    cv::imshow("colored", colored);
     
-    double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
-    double angle = std::atan2(result.y/rho, result.x/rho);
+    std::cout << "angle " << 90-(angle) << std::endl;
+    cv::waitKey(0);
     
-    
-    //convert rad to deg
-    //std::cout << "turning result: " << (angle) * 57.2958 + 90<< std::endl;
-    return (angle) * -57.2958 + 90;
+    return  90-(angle);
     
 }
 

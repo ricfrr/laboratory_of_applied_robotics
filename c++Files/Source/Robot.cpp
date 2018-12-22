@@ -46,26 +46,17 @@ void Robot::update(const std::vector<cv::Point> &points){
     if(La <= Lb && La <= Lc){
         cv::Point start = points[1] + a/2;
         cv::Point end = points[2];
-        result = start-end;
-        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
-        angle = std::atan2(result.y/rho, result.x/rho);
-        deg = (angle) * 57.2958;
+        angle = Geometry::angle_rad(start, end);
     }
     else if(Lb < La && Lb < Lc){
         cv::Point start = points[2] + b/2;
         cv::Point end = points[1];
-        result = start - end;
-        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
-        angle = std::atan2(result.y/rho, result.x/rho);
-        deg = (angle) * 57.2958;
+        angle = Geometry::angle_rad(start, end);
     }
     else if(Lc < La && Lc < Lb){
         cv::Point start = points[2] + c/2;
         cv::Point end = points[0];
-        result = start - end;
-        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
-        angle = std::atan2(result.y/rho, result.x/rho);
-        deg = (angle) * 57.2958;
+        angle = Geometry::angle_rad(start, end);
     }
     else{
         std::cout << "can not find orientation of triangle" << std::endl;
