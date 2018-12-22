@@ -111,6 +111,7 @@ public:
 
     void setIntermediatePoints(std::vector<Point2d> &intermediate_points);
     std::vector<Point2d> getIntermediatePoints();
+    std::vector<Point2d>* getIntermediatePointsPointer();
 
 private:
 

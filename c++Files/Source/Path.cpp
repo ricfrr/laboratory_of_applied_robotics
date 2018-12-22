@@ -129,12 +129,12 @@ void Path::setLines(std::vector<Line> lines) {
             std::cout << "You can ignore this warning if endpoint orientation is not locked\n" << std::endl;
             orientation_error = true;
         }
-        if(std::round(end.getCoordinates().x) != end_point.getCoordinates().x){
+        if(std::round(end.getCoordinates().x) != std::round(end_point.getCoordinates().x)){
             std::cout << "WARNING... x coordinate of endpoint does not match x coordinate of last line's endpoint" << std::endl;
             std::cout << "endpoint: " << end_point.getCoordinates().x << "\nline's endpoint: " << std::round(end.getCoordinates().x) << std::endl;
             coordinate_error = true;
         }
-        if(std::round(end.getCoordinates().y) != end_point.getCoordinates().y){
+        if(std::round(end.getCoordinates().y) != std::round(end_point.getCoordinates().y)){
             std::cout << "WARNING... y coordinate of endpoint does not match y coordinate of last line's endpoint" << std::endl;
             std::cout << "endpoint: " << end_point.getCoordinates().y << "\nline's endpoint: " << std::round(end.getCoordinates().y) << std::endl;
             coordinate_error = true;

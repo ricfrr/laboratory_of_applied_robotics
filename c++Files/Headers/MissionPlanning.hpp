@@ -30,8 +30,10 @@ public:
 
     Path2D::Path* findOptimalPath(Position * start_point, std::vector<Path2D::Position*> &point_of_interests);
 
+    Path2D::Path * passNearAnotherPerson(Path2D::Path * path, std::vector<Position*> &point_of_interest, int index, int &intermediate_person_index);
 
-    void plan_mission_one();
+
+        void plan_mission_one();
     void plan_mission_two();
     
 };
