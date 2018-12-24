@@ -29,13 +29,24 @@ double dinstance(cv::Point2d p, cv::Point2d o) {
 
 MissionPlanning::MissionPlanning() {
     this->map_p = new Map;
+    initializePeopleDimensionDinstance();
 }
 
 MissionPlanning::MissionPlanning(Map *map) {
     this->map_p = map;
+    initializePeopleDimensionDinstance();
 }
 
 MissionPlanning::~MissionPlanning() {}
+
+void MissionPlanning::initializePeopleDimensionDinstance() {
+    std::vector<Circle *> tmp_circles = map_p->getPeople().getCircles();
+    for (int i = 0; i < tmp_circles.size(); i++) {
+        people_dimension += tmp_circles[i]->radius;
+    }
+    people_dimension = people_dimension / tmp_circles.size();
+    people_dimension *= 1.2;
+};
 
 bool comparePeople(People p1, People p2) {
     return p1.name < p2.name;
@@ -105,19 +116,19 @@ void MissionPlanning::plan_mission_two() {
     for (std::vector<People>::iterator it = people_v.begin(); it != people_v.end(); it++) {
         Path2D::Position *tmp_position = new Position(it->getCenter());
         if (it->name == 4) {
-            tmp_position->setWeight(400);
+            tmp_position->setWeight(300);
         }
         if (it->name == 2) {
-            tmp_position->setWeight(500);
+            tmp_position->setWeight(200);
         }
         if (it->name == 1) {
-            tmp_position->setWeight(0);
+            tmp_position->setWeight(100);
         }
         if (it->name == 3) {
             tmp_position->setWeight(0);
         }
         if (it->name == 5) {
-            tmp_position->setWeight(100);
+            tmp_position->setWeight(300);
         }
         point_of_interest.push_back(tmp_position);
     }
@@ -125,6 +136,7 @@ void MissionPlanning::plan_mission_two() {
     std::pair<cv::Point, double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
     finalPos.orientation_locked = true;
+    finalPos.setWeight(100);
     point_of_interest.push_back(&finalPos);
 
     Path2D::Path *path = new Path();
@@ -149,6 +161,7 @@ void MissionPlanning::plan_mission_two() {
     fsec delta = t1 - t0;
     std::cout << delta.count() << "s\n";
 
+    std::cout << "-----DONE----" << std::endl;
     Visualizer v(*map_p, path);
     v.visualize();
     v.simulate();
@@ -160,81 +173,122 @@ MissionPlanning::findOptimalPath(Position *start_point, std::vector<Path2D::Posi
     Path2D::Path *final_path;
     double orientation_number = 16.0;
     double value = std::numeric_limits<double>::infinity();
+    double net_dinstance = std::numeric_limits<double>::infinity();
+
     double path_value = 0;
 
     double final_orientation = 0;
     double final_index = 0;
 
-    int intermediate_person_index = -1;
+    std::vector<int> intermediate_person_index;
 
+    // sort the point of interest vector to make the algorithm faster
+    std::sort(point_of_interests.begin(), point_of_interests.end(), [start_point](Position *a, Position *b) {
+        return dinstance(a->getCoordinates(), start_point->getCoordinates()) <
+               dinstance(b->getCoordinates(), start_point->getCoordinates());
+    });
+    // loop through all the point of interest
     for (int i = 0; i < point_of_interests.size(); i++) {
-        if (dinstance(start_point->getCoordinates(), point_of_interests[i]->getCoordinates()) < value) {
+        //check if the path there are real possibilities to obtain a better path
+        if (i == 0 ||
+            dinstance(start_point->getCoordinates(), point_of_interests[i]->getCoordinates()) <
+            net_dinstance + point_of_interests[i]->getWeight()) {
+            //loop through all the orientation
             for (double j = 0.0; j < orientation_number; j += 1.0) {
+
                 double temp_orientation = (M_PI * j) / (orientation_number);
+                std::cout << "angle : " << temp_orientation << std::endl;
+                // check if the point of interest is the exit point
                 if (!point_of_interests[i]->orientation_locked)
                     point_of_interests[i]->setOrientation(temp_orientation);
                 else
                     j = orientation_number;//to finish the loop immediately when the algorithm check the end point
+
                 path = new Path2D::Path(*start_point, *point_of_interests[i], 0.05, map_p);
                 path_value = path->length - point_of_interests[i]->getWeight();
+                // if the path that we have found is better than the one that we already have, update the parameters
                 if (value > path_value) {
+                    //refine the path checking if the path pass near another person
                     Path2D::Path *refined_path = nullptr;
-                    intermediate_person_index = -1;
-                    
+                    intermediate_person_index.erase(intermediate_person_index.begin(), intermediate_person_index.end());
                     refined_path = passNearAnotherPerson(path, point_of_interests, i, intermediate_person_index);
-
                     if (refined_path != nullptr) {
                         path = refined_path;
+                        final_path = path;
+                        int intermediate_weight = 0;
+                        for (int int_dim = 0; int_dim < intermediate_person_index.size(); int_dim++)
+                            intermediate_weight += intermediate_person_index[int_dim];
+                        value = final_path->length - point_of_interests[i]->getWeight() - intermediate_weight;
+                    } else {
+                        final_path = path;
+                        value = path_value;
                     }
-                    final_path = path;
 
-                    value = path_value;
-
-                    //
+                    net_dinstance = final_path->length;
                     final_orientation = temp_orientation;
                     final_index = i;
+
                 }
             }
         }
     }
-    start_point = point_of_interests[final_index];
+
     start_point->setOrientation(final_orientation);
+    // remove all the point of interest picked from the vector
     point_of_interests.erase(point_of_interests.begin() + final_index);
-    if (intermediate_person_index != -1) {
-        if (final_index < intermediate_person_index)
-            intermediate_person_index--;
-        point_of_interests.erase(point_of_interests.begin() + intermediate_person_index);
+    for (int k = 0; k < intermediate_person_index.size(); k++) {
+        if (final_index < intermediate_person_index[k])
+            intermediate_person_index[k]--;
+        point_of_interests.erase(point_of_interests.begin() + intermediate_person_index[k]);
     }
+
     return final_path;
 };
 
+// function that found the angle between two points
 double angleBetweenPoints(cv::Point2d p1, cv::Point2d p2) {
     double dinst = dinstance(p1, p2);
     double x_dist = abs(p1.x - p2.x);
     return acos(x_dist / dinst);
 }
 
+//check if a value is inside the vector
+bool isInside(std::vector<int> &intermediate_person_index, int &j) {
+    for (int i = 0; i < intermediate_person_index.size(); i++) {
+        if (j == intermediate_person_index[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// check if the path pass near another person and refine it
 Path2D::Path *
 MissionPlanning::passNearAnotherPerson(Path2D::Path *path, std::vector<Position *> &point_of_interest, int index,
-                                       int &intermediate_person_index) {
+                                       std::vector<int> &intermediate_person_index) {
     for (int i = 0; i < path->lines.size(); i++) {
-
         std::vector<cv::Point2d> inter_points = path->lines[i].getIntermediatePoints();
-
+        // loop  through all the intermediate points of the path checking if there is a point that pass near another person
         for (int k = 0; k < inter_points.size(); k++) {
             cv::Point2d tmp_point = inter_points[k];
             for (int j = 0; j < point_of_interest.size(); j++) {
-                //TODO fix the radius solution for sure not optimal solution
+
                 if (j != index && !point_of_interest[j]->orientation_locked &&
+                    !isInside(intermediate_person_index, j) &&
                     dinstance(tmp_point, point_of_interest[j]->getCoordinates()) <
-                    map_p->getPeople().circles[0].radius * 1.5) {
+                    people_dimension) {
 
                     point_of_interest[j]->setOrientation(angleBetweenPoints(point_of_interest[j]->getCoordinates(),
                                                                             path->end_point.getCoordinates()));
                     Path2D::Path *tmp_path_1 = new Path2D::Path(path->start_point, *point_of_interest[j], 0.05, map_p);
                     Path2D::Path *tmp_path_2 = new Path2D::Path(*point_of_interest[j], path->end_point, 0.05, map_p);
+                    Path2D::Path *ref = nullptr;
+                    intermediate_person_index.push_back(j);
+                    ref = passNearAnotherPerson(tmp_path_2, point_of_interest, index, intermediate_person_index);
+                    if (ref != nullptr) {
+                        tmp_path_2 = ref;
+                    }
                     Path2D::Path *refined_path = new Path2D::Path(*tmp_path_1, *tmp_path_2);
-                    intermediate_person_index = j;
                     return refined_path;
                 }
             }
@@ -244,7 +298,6 @@ MissionPlanning::passNearAnotherPerson(Path2D::Path *path, std::vector<Position 
 }
 
 bool MissionPlanning::isExitReached(std::vector<Path2D::Position *> &point_of_interests) {
-
     for (int i = 0; i < point_of_interests.size(); i++) {
         Path2D::Position *tm_pos = point_of_interests[i];
         if (tm_pos->orientation_locked) {
