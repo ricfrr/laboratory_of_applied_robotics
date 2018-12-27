@@ -27,13 +27,20 @@ public:
     Path2D::Path* path_p;
 
 
-    void plan_mission_one();
+        void plan_mission_one();
     void plan_mission_two();
+
+private:
+
+    void initializePeopleDimensionDinstance();
+    double people_dimension=0;
     
 private:
     bool isExitReached(std::vector<Path2D::Position*> &point_of_interests);
     
     Path2D::Path* findOptimalPath(Position * start_point, std::vector<Path2D::Position*> &point_of_interests);
+    
+    Path2D::Path * passNearAnotherPerson(Path2D::Path * path, std::vector<Position*> &point_of_interest, int index, std::vector<int> &intermediate_person_index);
     
 };
 #endif /* MissionPlanning_hpp */

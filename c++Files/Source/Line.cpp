@@ -97,3 +97,7 @@ void Line::setIntermediatePoints(std::vector<Point2d> &intermediate_points) {
 std::vector<Point2d> Line::getIntermediatePoints() {
     return this->intermediate_points;
 };
+
+std::vector<Point2d>* Line::getIntermediatePointsPointer() {
+    return &intermediate_points;
+};
