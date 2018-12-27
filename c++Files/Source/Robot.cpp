@@ -134,6 +134,8 @@ void Robot::move(const cv::Point &location, const double &angle){
     
     if(angle == NAN)
         return;
+    if(points.empty())
+        return;
 
     
     cv::Point d = location - center;

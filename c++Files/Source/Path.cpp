@@ -127,6 +127,7 @@ void Path::setLines(std::vector<Line> lines) {
             std::cout << "endpoint orientation: " << std::round(end_point.orientation*1000)/1000
             << "\nline's endpoint orientation: " << std::round(end.orientation*1000)/1000 << std::endl;
             std::cout << "You can ignore this warning if endpoint orientation is not locked\n" << std::endl;
+            
             orientation_error = true;
         }
         if(std::round(end.getCoordinates().x) != end_point.getCoordinates().x){
@@ -246,7 +247,10 @@ void Path::findPath() {
 template <class T>
 void Path::split(Path &path, cv::Point intermediate){
     
-    double orientation_i = 0;
+    double orientation_estimation =
+    Geometry::angle_rad(path.start_point.getCoordinates(),
+                        path.end_point.getCoordinates());
+    double orientation_i = orientation_estimation;
     double orientation_e = path.end_point.orientation;
     double max_orientation = orientation_e + 2.0*M_PI;
     Path one,two;
@@ -254,14 +258,14 @@ void Path::split(Path &path, cv::Point intermediate){
     
     do{
         
-        orientation_i = 0;
+        orientation_i = orientation_estimation;
         
         if(!path.end_point.orientation_locked)
             path.end_point.orientation = orientation_e;
         
          //std::cout << "will try with endpoint orientation of " << path.end_point.getOrientation() << std::endl;
         
-    while(orientation_i < 2*M_PI){
+    while(orientation_i < orientation_estimation + 2.01*M_PI){
         
         Position point = Position(intermediate,orientation_i);
         
@@ -293,9 +297,6 @@ void Path::split(Path &path, cv::Point intermediate){
 void Path::findPathSimple(){
     
     std::vector<Line> dubin_lines = {};
-    
-    PathCoordinates path_coordinates = PathCoordinates(start_point, end_point, maxCurvature);
-    DubinPathFinder dubin_finder = DubinPathFinder(path_coordinates,getMap());
     
     setLength(0);
     

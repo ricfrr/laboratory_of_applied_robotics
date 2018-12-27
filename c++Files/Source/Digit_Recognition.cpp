@@ -127,6 +127,7 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
 //        cv::imshow("orientation_0", orientation_0);
 //        cv::imshow("orientation_1", orientation_1);
 //        cv::imshow("orientation_2", orientation_2);
+//   //     cv::imwrite("orientation_0.png", orientation_0);
 //        cv::waitKey(0);
 
 //        set_algo(templateMatching);
@@ -158,18 +159,18 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
         while(angle2 <=  (double)this->algorithm->search_angle){
 
             if (digit_1.second > this->algorithm->suf_conf - 10 &&
-                is_valid(digit.first)){
+                is_valid(digit_1.first)){
                 digit = digit_1;
                 
                 if (digit_2.second > digit_1.second &&
-                    is_valid(digit.first)){
+                    is_valid(digit_2.first)){
                     digit = digit_2;
                     break;
                 }
                 
                 break;
             }else if (digit_2.second > this->algorithm->suf_conf - 10 &&
-                                  is_valid(digit.first)){
+                                  is_valid(digit_2.first)){
                 digit = digit_2;
                 break;
             }
@@ -198,11 +199,11 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
             if(digit_2.second < digit_5.second)
                 digit_2 = digit_5;
 
-            if(digit_1.second > this->algorithm->suf_conf ){
+            if(digit_1.second > this->algorithm->suf_conf && is_valid(digit_1.first)){
                 digit = digit_1;
                 break;
             }
-            else if(digit_2.second > this->algorithm->suf_conf ){
+            else if(digit_2.second > this->algorithm->suf_conf && is_valid(digit_2.first)){
                 digit = digit_2;
                 break;
             }
@@ -233,10 +234,12 @@ bool Digit_Recognition::is_valid(int &detectedDigit){
             return true;
         case 4:
             return true;
+        case 5:
+            return true;
         case 7:
             return false;
     
         default:
-            return true;
+            return detectedDigit < 10 && detectedDigit > 0;
     }
 }

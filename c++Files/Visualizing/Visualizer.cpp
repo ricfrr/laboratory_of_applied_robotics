@@ -200,7 +200,7 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     ImageProcessing::Digit_Recognition::PeopleStorage p = p_map->getPeople();
     
     //print People
-    std::vector<People> c = p.circles;
+    std::vector<People> c = p.people;
     for (int i=0;i<c.size();i++){
         
         cv::circle(result, c[i].getCenter(), c[i].getRadius(), cv::Scalar(30,90,180), -1,LINE_8,0);

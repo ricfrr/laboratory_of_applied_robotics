@@ -39,7 +39,7 @@ void MissionPlanning::plan_mission_one() {
     std::cout << "\nplanning mission one \n" << std::endl;
 
     Digit_Recognition::PeopleStorage peops = map_p->getPeople();
-    std::vector<People> people_v = peops.circles;
+    std::vector<People> people_v = peops.people;
     std::vector<People *> people_s;
 
     for (std::vector<People>::iterator it = people_v.begin(); it != people_v.end(); it++)
@@ -52,7 +52,6 @@ void MissionPlanning::plan_mission_one() {
         return;
     }
 
-    double or1 = 0 * M_PI;
     double or2 = 1.5 * M_PI;
     std::pair<cv::Point, double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
@@ -72,6 +71,8 @@ void MissionPlanning::plan_mission_one() {
     path = new Path2D::Path(*path, *p_path);
 
     std::cout << "---- DONE ----" << std::endl;
+    
+    this->path_p = path;
 
     Visualizer v(*map_p, path);
     v.visualize();
@@ -85,7 +86,7 @@ void MissionPlanning::plan_mission_two() {
     std::cout << "planning mission two" << std::endl;
 
     Digit_Recognition::PeopleStorage peops = map_p->getPeople();
-    std::vector<People> people_v = peops.circles;
+    std::vector<People> people_v = peops.people;
     std::vector<Path2D::Position *> point_of_interest;
 
     cv::Point2d start(60, 60);

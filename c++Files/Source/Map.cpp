@@ -291,16 +291,16 @@ void Map::checkPeople(Cell &cell, Digit_Recognition::PeopleStorage &people) {
 
     std::vector<cv::Point> cell_corners = cell.getCorners();
 
-    for (int i = 0; i < people.circles.size(); i++) {
-        People guy = people.circles[i];
+    for (int i = 0; i < people.people.size(); i++) {
+        People guy = people.people[i];
 
         if (circleContact(cell_corners, &guy)) {
-            cell.set_Rescue(people.circles[i].name);
-            cell.refine_if_neccessary({people.circles[i].center, cv::Point(people.circles[i].radius, 0)});
+            cell.set_Rescue(people.people[i].name);
+            cell.refine_if_neccessary({people.people[i].center, cv::Point(people.people[i].radius, 0)});
             // if(cell.isEmpty())
 
                 // std::cout << "what!" << std::endl;
-            people.circles[i].setCell(cell);
+            people.people[i].setCell(cell);
 
         }
     }

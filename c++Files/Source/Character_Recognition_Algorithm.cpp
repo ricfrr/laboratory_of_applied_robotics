@@ -196,13 +196,14 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
    
     double angle = Geometry::angle_deg(start, end);
     
-    cv::imshow("gray", gray);
-    cv::imshow("colored", colored);
+    //cv::imshow("gray", gray);
+    //cv::imshow("colored", colored);
+    //cv::imwrite("result_angle.png", colored);
     
-    std::cout << "angle " << 90-(angle) << std::endl;
-    cv::waitKey(0);
+    //std::cout << "angle " << -90-(angle) << std::endl;
+    //cv::waitKey(0);
     
-    return  90-(angle);
+    return  -90-(angle);
     
 }
 

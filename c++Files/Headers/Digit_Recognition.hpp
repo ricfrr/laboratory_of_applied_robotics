@@ -74,6 +74,8 @@ public:
     /// \param filterRange a HSVFilterRange object that automatically creates a filter based on an input image
     void set_filter(HSVFilterRange filterRange);
     
+    private:
+    
     /// \brief extracts the rect information of regions where the filter was applied
     /// \return a vector of cv::Rect objects containing information about location and size of the digits in tne arg image
     std::vector<cv::Rect> get_regions_of_interest(cv::Mat &img);
@@ -81,7 +83,6 @@ public:
     ///the algorithm typed used to detect digits
     DigitRecognitionAlgo picked_algorithm;
     
-private:
     Character_Recognition_Algorithm * algorithm = nullptr;
     
     void initialize_algorithm();
@@ -112,7 +113,7 @@ public:
             this->search_angle = search_angle;
             this->d_angle = d_angle;
             this->extra_eroding = extra_eroding;
-        };
+        }
         
     private:
         
@@ -125,7 +126,7 @@ public:
         
     public:
         ///detected People
-        std::vector<LAR::People> circles;
+        std::vector<LAR::People> people;
         
         /*!
          * detect circles in the map
@@ -151,26 +152,26 @@ public:
                 
                 std::cout << "detected a guy called " << data[i].name << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << "\n"  <<std::endl;
                 
-                circles.push_back(data[i]);
+                people.push_back(data[i]);
             }
         }
         
         ///extract people information as Circle objects
         std::vector<Circle*> getCircles(){
             
-            std::vector<Circle*> circle_vector;
+            std::vector<Circle*> circles;
             
-            for(int i=0; i<this->circles.size(); i++){
+            for(int i=0; i<this->people.size(); i++){
                 cv::Point center;
-                center.x = circles[i].center.x;
-                center.y = circles[i].center.y;
+                center.x = people[i].center.x;
+                center.y = people[i].center.y;
                 Circle * circle_d = new Circle;
                 circle_d->setCenter(center);
-                circle_d->setRadius(circles[i].radius);
-                circle_vector.push_back(circle_d);
+                circle_d->setRadius(people[i].radius);
+                circles.push_back(circle_d);
             }
             
-            return circle_vector;
+            return circles;
         }
         
     };
