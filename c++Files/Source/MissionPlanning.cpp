@@ -75,10 +75,17 @@ void MissionPlanning::plan_mission_one() {
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
     finalPos.orientation_locked = true;
 
+    if(people_s.size() > 1)
+        or2 = Geometry::angle_rad(people_s[0]->center, people_s[1]->center);
+    
     Path2D::Path *path = new Path2D::Path(Path2D::Position(map_p->robo->center, map_p->robo->angle),
                                           Path2D::Position(people_s[0]->center, or2), 0.05, map_p);
 
     for (int i = 1; i < people_s.size(); i++) {
+        
+        if(people_s.size() > i+1)
+            or2 = Geometry::angle_rad(people_s[i]->center, people_s[i+1]->center);
+        
         Path2D::Path *p_path = new Path2D::Path(path->end_point,
                                                 Path2D::Position(people_s[i]->center, or2), 0.05, map_p);
         path = new Path2D::Path(*path, *p_path);
