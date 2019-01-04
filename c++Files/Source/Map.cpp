@@ -665,3 +665,101 @@ std::vector<Cell *> Map::getBottomNeighbors(Cell* &forCell){
     
     return cells;
 }
+
+void Map::save(const std::string &path){
+    MapEncoder::encode(this, path);
+}
+
+void Map::MapEncoder::encode(Map* map, const std::string &filepath){
+    std::cout << "/nencoding map to json file for output path -> " << filepath << std::endl;
+    
+    std::ofstream output;
+    output.open(filepath);
+    
+    output << "{\n";
+    
+    output << "\"_comment\":\"Laboratory of Applied Robotics -> Map structure\",\n";
+    
+    output << "\"Arena\":[";
+    
+    output << "{\"Point\":{\"x\":" <<
+    std::to_string(map->arena.getTopLeft().x) << ",\"y\":" <<
+    std::to_string(map->arena.getTopLeft().y) << "}},";
+    
+    output << "{\"Point\":{\"x\":" <<
+    std::to_string(map->arena.getTopRight().x) << ",\"y\":" <<
+    std::to_string(map->arena.getTopRight().y) << "}},";
+    
+    output << "{\"Point\":{\"x\":" <<
+    std::to_string(map->arena.getBottomRight().x) << ",\"y\":" <<
+    std::to_string(map->arena.getBottomRight().y) << "}},";
+    
+    output << "{\"Point\":{\"x\":" <<
+    std::to_string(map->arena.getBottomLeft().x) << ",\"y\":" <<
+    std::to_string(map->arena.getBottomLeft().y) << "}}";
+    
+    output << "],\n";
+    
+    output <<  "\"Obstacles\":[";
+    
+    bool start = true;
+    for(auto &&obst : map->obstacles.get()){
+        
+        if(!start)
+            output << ",";
+        
+        start = false;
+        
+        output << "{\"Ostacle\":[";
+        
+        bool entered = false;
+        std::string point_str;
+        for(auto &&point : obst->getCorners()){
+            entered = true;
+            point_str += "{\"Point\":{\"x\":";
+            point_str += std::to_string(point.x);
+            point_str += ",\"y\":";
+            point_str += std::to_string(point.y);
+            point_str += "}},";
+        }
+        
+        if(entered)
+            point_str.pop_back();
+        
+        output << point_str;
+        output << "]}";
+    }
+    
+    output << "],\n";
+    
+    output <<  "\"People\":[";
+    
+    start = true;
+    for(auto &&peop : map->people.people){
+        
+        if(!start)
+            output << ",\n";
+        
+        start = false;
+        
+        output << "{\"Victim\":";
+        
+        output << "{\"Center\":{\"x\":";
+        output << std::to_string(peop.center.x);
+        output << ",\"y\":";
+        output << std::to_string(peop.center.y);
+        output << "},";
+        
+        output << "\"Radius\":" << peop.radius << ",";
+        output << "\"Name\":" << peop.name;
+        
+        output <<"}}";
+        
+    }
+    
+    output << "]\n";
+    
+    output <<  "}";
+    
+    output.close();
+}

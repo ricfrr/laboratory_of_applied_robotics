@@ -24,10 +24,12 @@ int main(int argc, const char *argv[]) {
     map.setting.IMG_WIDTH = persp_img.cols;
     map.setting.IMG_LENGHT = persp_img.rows;
     map.createMap(persp_img);
+    
+    map.save("savedMap.json");
 
     map.quickCalculation = true;
     MissionPlanning m = MissionPlanning(&map);
-    m.plan_mission_one();
+    m.plan_mission_two();
 
     return 0;
 }

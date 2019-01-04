@@ -16,6 +16,8 @@
 #include "Digit_Recognition.hpp"
 #include "Clipper.hpp"
 
+#include <fstream>
+
 
 using namespace cv;
 using namespace ImageProcessing;
@@ -120,6 +122,8 @@ public:
     
     bool wasSuccess();
     
+    void save(const std::string &path);
+    
 private:
 
     // grid of the map
@@ -161,6 +165,11 @@ private:
     std::vector<Cell *> getBottomNeighbors(Cell* &forCell);
     
     bool success = false;
+    
+    struct MapEncoder {
+        
+        static void encode(Map* map, const std::string &filepath);
+    };
 };
 
 #endif /* Map_hpp */

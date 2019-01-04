@@ -120,3 +120,22 @@ std::vector<Hexagon *> Obstacle::getHexagons()
         myHexagons.push_back(&hexagons[i]);
     return myHexagons;
 };
+
+std::vector<Polygon *> Obstacle::get(){
+    std::vector<Polygon *> myPolygons;
+    
+    for(int i=0;i<hexagons.size();i++)
+        myPolygons.push_back(&hexagons[i]);
+    
+    for(int i=0;i<pentagons.size();i++)
+        myPolygons.push_back(&pentagons[i]);
+    
+    for(int i=0;i<squares.size();i++)
+        myPolygons.push_back(&squares[i]);
+    
+    for(int i=0;i<triangles.size();i++)
+        myPolygons.push_back(&triangles[i]);
+    
+    return myPolygons;
+    
+}

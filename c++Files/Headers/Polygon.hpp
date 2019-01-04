@@ -30,6 +30,8 @@ public:
     std::vector<cv::Point> getClippedCorners();
 
     std::vector<cv::Point> clipped_corners;
+    
+    virtual std::vector<cv::Point> getCorners() = 0;
 
 };
     

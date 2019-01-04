@@ -51,6 +51,8 @@ public:
      * @return list of the hexagons obstacles
      */
     std::vector<Hexagon *> getHexagons();
+    
+    std::vector<Polygon *> get();
 
 private:
     const int epsilon_approx = 7;
