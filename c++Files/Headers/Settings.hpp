@@ -81,9 +81,14 @@ public:
     InputType inputType;
     bool goodInput;
     int flag;
+    
+    const static int arena_width = 970;
 
-    int IMG_WIDTH=458;//458
-    int IMG_LENGHT=678;//678
+    inline static int IMG_WIDTH=458;//458
+    inline static int IMG_LENGHT=678;//678
+    
+    inline static double PIXEL_SCALE = 1;
+    
     int N_ROW_MAP=30;
     int N_COL_MAP=20;
     int GAP_PERSP=15;

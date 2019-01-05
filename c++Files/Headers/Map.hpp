@@ -164,11 +164,13 @@ private:
     std::vector<Cell *> getRightNeighbors(Cell* &forCell);
     std::vector<Cell *> getBottomNeighbors(Cell* &forCell);
     
-    bool success = false;
+    bool success = true;
     
     struct MapEncoder {
         
         static void encode(Map* map, const std::string &filepath);
+        
+        static cv::Point get_real_coordinates(const cv::Point &forPoint, Map* inMap);
     };
 };
 

@@ -13,16 +13,17 @@ int main(int argc, const char *argv[]) {
 
 //    std::cout << "hello world" << std::endl;
 
-//    cv::Mat persp_img;
-//    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
-//    persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
+    Settings::IMG_WIDTH = 400;
+    Settings::IMG_LENGHT = 600;
+    
+    cv::Mat persp_img;
+    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
+    persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
 
     //cv::imwrite("result_bad.png", persp_img);
-    cv::Mat persp_img = cv::imread(argv[1]);
+    //cv::Mat persp_img = cv::imread(argv[1]);
     // MAP
     Map map = Map(DigitRecognitionAlgo::tesseractOCP, 80, 10, 5, 1);
-    map.setting.IMG_WIDTH = persp_img.cols;
-    map.setting.IMG_LENGHT = persp_img.rows;
     map.createMap(persp_img);
     
     map.save("savedMap.json");

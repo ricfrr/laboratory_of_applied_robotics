@@ -11,9 +11,10 @@
 
 RobotProject::RobotProject(int argc, char * argv[]){
     
-    this->source_img_path = argv[1];
-    this->calibration_filepath = argv[2];
+    this->source_img_path       = argv[1];
+    this->calibration_filepath  = argv[2];
     this->intrinsic_calibration = argv[3];
+    this->mission               = std::atol(argv[4]);
     
     this->map = new Map;
 }
@@ -27,8 +28,8 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     
     //important settings
     // - img width and height in pixels
-    map->setting.IMG_WIDTH = persp_img.cols;
-    map->setting.IMG_LENGHT = persp_img.rows;
+//    Settings::IMG_WIDTH = persp_img.cols;
+//    Settings::IMG_LENGHT = persp_img.rows;
     
     //important Parameters (in constructor of map)
     //  - DigitRecognition min confidence
@@ -36,11 +37,23 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     //  - main CRA
     //  - min rotation angle
     map->createMap(persp_img);
+    map->save("savedMap.json");
     
     return map->wasSuccess();
 }
 
-bool RobotProject::planPath(cv::Mat const & img, Path & path){
+bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
+    
+    MissionPlanning m = MissionPlanning(map);
+    switch(mission){
+        case 1:
+            m.plan_mission_one();
+            break;
+        case 2:
+            m.plan_mission_two();
+            break;
+    }
+    
     
     return false;
 }
@@ -55,7 +68,7 @@ bool RobotProject::localize(cv::Mat const & img,
     //calculate COM
     //calculate orientation
     Robot robo;
-    robo.findRobot(img);
+    bool result = robo.findRobot(img);
     
     double x = (double)robo.center.x;
     double y = (double)robo.center.y;
@@ -65,5 +78,5 @@ bool RobotProject::localize(cv::Mat const & img,
     
     //put info to state
     
-    return false;
+    return result;
 }

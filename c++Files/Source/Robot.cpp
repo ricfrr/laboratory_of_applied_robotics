@@ -72,7 +72,7 @@ void Robot::update(const std::vector<cv::Point> &points){
 
 }
 
-void Robot::findRobot(const cv::Mat &img){
+bool Robot::findRobot(const cv::Mat &img){
     
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
@@ -121,13 +121,14 @@ void Robot::findRobot(const cv::Mat &img){
             
             if(!triangle.points.empty()){
             update(triangle.points);
-                break;
+                return true;
                 
             }
         }
     }
 //    imshow("robot", contours_img);
 //    waitKey(0);
+    return false;
 }
 
 void Robot::move(const cv::Point &location, const double &angle){

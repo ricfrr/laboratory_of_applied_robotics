@@ -161,9 +161,10 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale){
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
 
     double top_dist = cv::norm(corners[0]-corners[1]);
-    pixel_scale =top_dist/970;
+    pixel_scale =top_dist/Settings::arena_width;
     std::cout<<"pixel scale: "<<pixel_scale<<std::endl;
-
+    Settings::PIXEL_SCALE = pixel_scale;
+    
     persp_img = im_dst;
 }
 
@@ -286,6 +287,7 @@ cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf,
         findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
     storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale,
                        persp_transf);
+    
     return persp_img;
 }
 

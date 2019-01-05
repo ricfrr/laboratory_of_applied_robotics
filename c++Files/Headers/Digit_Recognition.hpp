@@ -150,10 +150,14 @@ public:
                 else
                     conf = " with extremely low confidence";
                 
+                
                 std::cout << "detected a guy called " << data[i].name << " at <" << data[i].center.x << "," << data[i].center.y << "> with a radius of " << data[i].radius << conf << "\n"  <<std::endl;
                 
                 people.push_back(data[i]);
             }
+            
+            checkSuccess();
+            
         }
         
         ///extract people information as Circle objects
@@ -172,6 +176,17 @@ public:
             }
             
             return circles;
+        }
+        
+        bool success = true;
+        
+        ///check wether all people objects where correctly identified
+        void checkSuccess(){
+            for(auto &&guy : people)
+                if(guy.confidence == 0 && guy.name == 0){
+                    success = false;
+                    break;
+                }
         }
         
     };

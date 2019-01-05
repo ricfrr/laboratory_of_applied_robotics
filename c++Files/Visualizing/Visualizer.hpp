@@ -26,13 +26,13 @@ class Visualizer {
 public:
     Visualizer();
     Visualizer(Map &map);
-    Visualizer(Map &map, Path* &path);
+    Visualizer(Map &map, Path2D::Path* &path);
     ~Visualizer();
     
     ///override the map object to visualize
     void assign_map(Map &map);
     ///override path object to visualize
-    void assign_path(Path *&path);
+    void assign_path(Path2D::Path *&path);
     ///create an image based on the information
     void visualize();
     ///simulate the robots way along the path
@@ -45,7 +45,7 @@ public:
     
 private:
     Map * p_map;
-    Path * p_path;
+    Path2D::Path * p_path;
     
     const std::string windowtitle = "window";
     

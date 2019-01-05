@@ -24,7 +24,7 @@ struct Pose
 };
 
 // A sequence of sampled robot configurations composing a (discretization of the) path
-struct Path 
+typedef struct Path
 {
   std::vector<Pose> points;
   
@@ -38,6 +38,6 @@ struct Path
   bool empty() { return points.empty(); }
   size_t size() { return points.size(); }
   void setPoints(const std::vector<Pose>& points) { this->points = points; }
-};
+}ApiPath;
 
 #endif 

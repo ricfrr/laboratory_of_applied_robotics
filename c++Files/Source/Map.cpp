@@ -3,6 +3,9 @@
 Map::Map(const DigitRecognitionAlgo &algorithm, const unsigned int &suff_confidence, const unsigned int &search_angle, const double &d_angle, const unsigned int &extra_eroding) {
     // creator
     this->people = Digit_Recognition::PeopleStorage(algorithm,suff_confidence,search_angle,d_angle,extra_eroding);
+    
+//    map_pixel_w = Settings::IMG_WIDTH;
+//    map_pixel_h = Settings::IMG_LENGHT;
 }
 
 Map::~Map() {
@@ -77,6 +80,10 @@ void Map::createMap(const Mat &img) {
     
     std::cout << "find people:\n";
     people.findCircles(img);
+    if(!people.success){
+        std::cout << "could not find all digits!!! Try to modify parameters\n\n";
+        success = false;
+    }
     
     std::cout << "find robot        ->";
     this->robo = new Robot;
@@ -187,8 +194,8 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
     }
 //std::cout << "---- DONE ----" << std::endl;
     
-    if(grid.empty() == false)
-        success = true;
+    if(grid.empty())
+        success = false;
 };
 
 void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
@@ -671,14 +678,20 @@ void Map::save(const std::string &path){
 }
 
 void Map::MapEncoder::encode(Map* map, const std::string &filepath){
-    std::cout << "/nencoding map to json file for output path -> " << filepath << std::endl;
+    std::cout << "\nencoding map to json file for output path -> " << filepath << std::endl;
+    std::cout << "\n";
     
     std::ofstream output;
     output.open(filepath);
     
     output << "{\n";
     
-    output << "\"_comment\":\"Laboratory of Applied Robotics -> Map structure\",\n";
+    output << "\"_Intro\":\"Laboratory of Applied Robotics -> Map structure\",\n";
+    
+    
+    
+    output << "\"PixelScale\":" << Settings::PIXEL_SCALE << ",\n";
+    output << "\"_ArenaPoints\":\"Arena Values are pixel points of the projected image\",\n";
     
     output << "\"Arena\":[";
     
@@ -700,6 +713,7 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
     
     output << "],\n";
     
+    output << "\"_Units\":\"All units are mm values based on pixel_scale\",\n";
     output <<  "\"Obstacles\":[";
     
     bool start = true;
@@ -716,10 +730,11 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
         std::string point_str;
         for(auto &&point : obst->getCorners()){
             entered = true;
+            cv::Point truePoint = get_real_coordinates(point, map);
             point_str += "{\"Point\":{\"x\":";
-            point_str += std::to_string(point.x);
+            point_str += std::to_string(truePoint.x);
             point_str += ",\"y\":";
-            point_str += std::to_string(point.y);
+            point_str += std::to_string(truePoint.y);
             point_str += "}},";
         }
         
@@ -744,10 +759,11 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
         
         output << "{\"Victim\":";
         
+        cv::Point trueCenter = get_real_coordinates(peop.center, map);
         output << "{\"Center\":{\"x\":";
-        output << std::to_string(peop.center.x);
+        output << std::to_string(trueCenter.x);
         output << ",\"y\":";
-        output << std::to_string(peop.center.y);
+        output << std::to_string(trueCenter.y);
         output << "},";
         
         output << "\"Radius\":" << peop.radius << ",";
@@ -762,4 +778,14 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
     output <<  "}";
     
     output.close();
+}
+
+cv::Point Map::MapEncoder::get_real_coordinates(const cv::Point &forPoint, Map* inMap){
+    
+    cv:Point start = inMap->arena.getCorners()[0];
+    
+    double x = (forPoint.x - start.x) /Settings::PIXEL_SCALE;
+    double y = (forPoint.y - start.y) /Settings::PIXEL_SCALE;
+    
+    return cv::Point(x,y);
 }

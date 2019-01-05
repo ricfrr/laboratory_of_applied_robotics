@@ -26,7 +26,7 @@ public:
     
     void update(const std::vector<cv::Point> &points = {});
     
-    void findRobot(const cv::Mat &img);
+    bool findRobot(const cv::Mat &img);
     
     void move(const cv::Point &location, const double &angle);
     
