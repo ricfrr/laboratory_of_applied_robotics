@@ -66,7 +66,8 @@ public:
                       const cv::Mat &dist_coeffs,
                       double &pixel_scale,
                       cv::Mat &persp_img);
-    
+    Mat detectRobotPlane(const cv::Mat &img);
+
     Mat findTransform(const cv::Mat &img,
                       const cv::Mat &camera_matrix,
                       const cv::Mat &dist_coeffs,
@@ -101,6 +102,9 @@ public:
     cv::Mat run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename);
 
 private:
+    cv::Mat camera_matrix, dist_coeffs;
+
+    std::vector<cv::Point> white_corners;
 
     Settings settings;
     std::string outputfilename;

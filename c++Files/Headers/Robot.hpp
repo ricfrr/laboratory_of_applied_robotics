@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Triangle.hpp"
 #include "Geometry.hpp"
+#include "Inverse_Perspective_Mapping.hpp"
 
 using namespace Geometry2D;
 
@@ -35,7 +36,10 @@ public:
     double angle;
     
     const int epsilon_approx = 7;
-    
+
+private:
+
+
 };
 
 #endif /* Robot_hpp */

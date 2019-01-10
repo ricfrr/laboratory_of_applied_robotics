@@ -73,7 +73,9 @@ void Robot::update(const std::vector<cv::Point> &points){
 }
 
 bool Robot::findRobot(const cv::Mat &img){
-    
+
+
+
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
@@ -173,3 +175,4 @@ void Robot::move(const cv::Point &location, const double &angle){
     update(points);
     
 }
+

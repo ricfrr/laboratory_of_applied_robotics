@@ -92,6 +92,7 @@ public:
     int N_ROW_MAP=30;
     int N_COL_MAP=20;
     int GAP_PERSP=15;
+    int GAP_PERSP_ROBOT=0;
     
 private:
     std::string patternToUse;
