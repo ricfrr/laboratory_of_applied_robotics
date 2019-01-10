@@ -15,8 +15,10 @@ void Arena::findArena(const Mat &img)
 {
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
-    cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
-    
+    //cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
+    cv::cvtColor(img,hsv_img,cv::COLOR_BGR2GRAY);
+
+
     // Save the image for the presentation
     cv::imwrite("hsv_img.jpg", hsv_img);
     
@@ -33,17 +35,20 @@ void Arena::findArena(const Mat &img)
 
     // Find black regions, modified color range in order to detect the shape
     cv::Mat black_mask;
-    cv::inRange(hsv_img, cv::Scalar(0, 0, 0), cv::Scalar(220, 120, 120),
-                black_mask); //
+    //cv::inRange(hsv_img, cv::Scalar(0, 0, 0), cv::Scalar(220, 80, 80),black_mask); //
+    cv::adaptiveThreshold(hsv_img,black_mask,255,cv::ADAPTIVE_THRESH_GAUSSIAN_C,cv::THRESH_BINARY,7,1);
 
     // Filter (applying dilation, blurring, dilation and erosion) the image
+    /*
     kernel = cv::getStructuringElement(cv::MORPH_RECT,
-                                       cv::Size((4 * 2) + 1, (4 * 2) + 1));
+                                       cv::Size((5 * 2) + 2, (5* 2) + 2));
     cv::dilate(black_mask, black_mask, kernel);
-    cv::GaussianBlur(black_mask, black_mask, cv::Size(9, 9), 6, 6);
+    cv::GaussianBlur(black_mask, black_mask, cv::Size(7, 7), 6, 6);
     cv::dilate(black_mask, black_mask, kernel);
-    cv::erode(black_mask, black_mask, kernel);
+    cv::erode(black_mask, black_mask, kernel);*/
 
+    //cv::imshow("black",black_mask);
+    //cv::waitKey(0);
     // Process black mask
 
     contours_img = img.clone();
