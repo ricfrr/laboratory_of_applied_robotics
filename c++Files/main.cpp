@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../c++Files/Visualizing/Visualizer.hpp"
-#include "Headers/MissionPlanning.hpp"
+
+#include "API/robot_project.h"
 
 using namespace std;
 
@@ -16,21 +17,24 @@ int main(int argc, const char *argv[]) {
     Settings::IMG_WIDTH = 400;
     Settings::IMG_LENGHT = 600;
     
-    cv::Mat persp_img;
-    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
-    persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
-
-    //cv::imwrite("result_bad.png", persp_img);
-    //cv::Mat persp_img = cv::imread(argv[1]);
-    // MAP
-    Map map = Map(DigitRecognitionAlgo::tesseractOCP, 80, 10, 5, 1);
-    map.createMap(persp_img);
+//    cv::Mat persp_img;
+//    Inverse_Perspective_Mapping ipm = Inverse_Perspective_Mapping();
+//    persp_img = ipm.run(intrinsic_calibration, argv[1], "../config/fullCalibration.yml");
+//
+//    //cv::imwrite("result_bad.png", persp_img);
+//    //cv::Mat persp_img = cv::imread(argv[1]);
+//    // MAP
+//    Map map = Map(DigitRecognitionAlgo::tesseractOCP, 80, 10, 5, 1);
+//    map.createMap(persp_img);
+//
+//    map.save("savedMap.json");
+//
+//    map.quickCalculation = true;
+//    MissionPlanning m = MissionPlanning(&map);
+//    m.plan_mission_two();
     
-    map.save("savedMap.json");
-
-    map.quickCalculation = true;
-    MissionPlanning m = MissionPlanning(&map);
-    m.plan_mission_two();
+    RobotProject project = RobotProject(argc, argv);
+    project.start();
 
     return 0;
 }

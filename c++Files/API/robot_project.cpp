@@ -9,7 +9,7 @@
 #include "robot_project.h"
 
 
-RobotProject::RobotProject(int argc, char * argv[]){
+RobotProject::RobotProject(int argc, const char * argv[]){
     
     this->source_img_path       = argv[1];
     this->calibration_filepath  = argv[2];
@@ -17,6 +17,15 @@ RobotProject::RobotProject(int argc, char * argv[]){
     this->mission               = std::atol(argv[4]);
     
     this->map = new Map;
+    
+    if(argv[5] == "quick")
+        this->map->quickCalculation = true;
+}
+
+void RobotProject::start(){
+    cv::Mat img = cv::imread(this->source_img_path);
+    preprocessMap(img);
+    planPath(img, path);
 }
 
 bool RobotProject::preprocessMap(cv::Mat const & img){
