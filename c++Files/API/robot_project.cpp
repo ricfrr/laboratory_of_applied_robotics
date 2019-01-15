@@ -40,7 +40,8 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     cv::imshow("persp",persp_img);
     cv::waitKey(0);
     robot_plane = ipm.detectRobotPlane(img);
-
+    cv::imshow("robot_plane",robot_plane);
+    cv::waitKey(0);
     //important settings
     // - img width and height in pixels
 //    Settings::IMG_WIDTH = persp_img.cols;

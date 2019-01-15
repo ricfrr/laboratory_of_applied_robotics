@@ -39,7 +39,8 @@ void ExitPoint::findExitPoint(const Mat &img)
     cv::GaussianBlur(blue_mask, blue_mask, cv::Size(9, 9), 6, 6);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
-    
+    cv::erode(blue_mask, blue_mask, kernel);
+
 
     // Process blue mask
 
@@ -62,6 +63,8 @@ void ExitPoint::findExitPoint(const Mat &img)
     }
     setCorners(corners);
     corners = getCorners();
+    imshow("exit",contours_img);
+    waitKey(0);
     //std::cout << "Exit : " << corners << std::endl;
 
 }

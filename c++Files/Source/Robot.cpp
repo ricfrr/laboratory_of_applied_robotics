@@ -75,7 +75,7 @@ void Robot::update(const std::vector<cv::Point> &points){
 double robotPerimeter(std::vector<cv::Point> corner){
     double first =abs(cv::norm(corner[0] - corner[1]));
     double second =abs(cv::norm(corner[1] - corner[2]));
-    double third =abs(cv::norm(corner[2] - corner[2]));
+    double third =abs(cv::norm(corner[2] - corner[0]));
     return first+second+third;
 }
 
@@ -86,6 +86,8 @@ bool Robot::findRobot(const cv::Mat &img){
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
+    //cv::imshow("blue mask 1", hsv_img);
+    //cv::waitKey(0);
     // Preparing the kernel matrix
     cv::Mat kernel = cv::getStructuringElement(
                                                cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
@@ -104,14 +106,15 @@ bool Robot::findRobot(const cv::Mat &img){
     kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 2, (2 * 2) + 2));
     // Filter (applying an erosion and dilation) the image
     //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(7, 7), 6, 6);
-
+    //cv::imshow("blue mask 1", blue_mask);
+    //cv::waitKey(0);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
 
 
-    cv::imshow("blue mask", blue_mask);
-    cv::waitKey(1);
+    //cv::imshow("blue mask", blue_mask);
+    //cv::waitKey(0);
     // Process red mask
     
     contours_img = img.clone();
@@ -120,12 +123,12 @@ bool Robot::findRobot(const cv::Mat &img){
     drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
                  cv::LINE_AA);
     int perimeter =0;
-
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, epsilon_approx, true);
+        drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         contours_approx = {approx_curve};
-        if (approx_curve.size() == 3 && robotPerimeter(approx_curve)>perimeter)
+        if (approx_curve.size() ==3 && robotPerimeter(approx_curve)>perimeter)
         {
             Triangle triangle = Triangle();
             perimeter = robotPerimeter(approx_curve);
@@ -138,14 +141,18 @@ bool Robot::findRobot(const cv::Mat &img){
             
             if(!triangle.points.empty()){
             update(triangle.points);
-                return true;
+               // return true;
                 
             }
         }
     }
-//    imshow("robot", contours_img);
-//    waitKey(0);
-    return false;
+    //imshow("contour robot", contours_img);
+    //waitKey(0);
+    if(perimeter>0){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 void Robot::move(const cv::Point &location, const double &angle){
