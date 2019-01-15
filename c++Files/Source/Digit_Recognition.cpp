@@ -109,8 +109,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
         std::runtime_error("too many rects and not enough digits");
 
     for(int i = 0;i<digit_images.size();i++){
-        cv::imshow("digit_"+std::to_string(i), digit_images[i]);
-        std::cout << ".";
+//        cv::imshow("digit_"+std::to_string(i), digit_images[i]);
+//        std::cout << ".";
         //do the noise reduction
         this->algorithm->prepare_uniform_window(digit_images[i]);
 
@@ -118,13 +118,16 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
         double angle = this->algorithm->determine_orientation(digit_images[i]);
 
         //two different orientations
+        cv::Mat mask_inv(digit_images[i].rows, digit_images[i].cols, CV_8UC3, cv::Scalar(255,255,255));
         cv::Mat orientation_0, orientation_1, orientation_2;
+
         orientation_0 = digit_images[i].clone();
 
         //rotate the image
-        this->algorithm->rotate_image(digit_images[i], -angle, orientation_1);
+        this->algorithm->rotate_image(orientation_0, -angle, orientation_1);
         this->algorithm->rotate_image(orientation_1, 180, orientation_2);
 
+//        cv::imshow("inversion", mask_inv);
 //        cv::imshow("orientation_0", orientation_0);
 //        cv::imshow("orientation_1", orientation_1);
 //        cv::imshow("orientation_2", orientation_2);
@@ -192,8 +195,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
             
 //            cv::imshow("rotated4", result1);
 //            cv::imshow("rotated5", result2);
-            
-           // cv::waitKey(0);
+//
+//            cv::waitKey(0);
 
             if(digit_1.second < digit_4.second)
                 digit_1 = digit_4;
