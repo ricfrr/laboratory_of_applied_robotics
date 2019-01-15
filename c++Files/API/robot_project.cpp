@@ -12,8 +12,10 @@
 RobotProject::RobotProject(int argc, const char * argv[]){
     
     this->source_img_path       = argv[1];
+    
     this->calibration_filepath  = argv[2];
     this->intrinsic_calibration = argv[3];
+    
     this->mission               = std::atol(argv[4]);
     
     this->map = new Map;
