@@ -241,9 +241,11 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
     persp_img = im_dst;
 }
 
-void Inverse_Perspective_Mapping::scalePixelsForRobo(){
-    std::vector<cv::Point> corners = white_corners;
-    double top_dist = cv::norm(corners[0] - corners[1]);
+void Inverse_Perspective_Mapping::scalePixelsForRobo(const Mat &im_dst){
+    LAR::Arena arena = LAR::Arena();
+    arena.findArena(im_dst);
+    //std::vector<cv::Point> corners = white_corners;
+    double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
     double pixel_scale = top_dist / Settings::arena_width;
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
     Settings::ROBO_PIXEL_SCALE = pixel_scale;
@@ -336,9 +338,7 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
-    
-    //save the pixel scale for the robot plane
-    scalePixelsForRobo();
+
 
     pts_dst.push_back(Point2f(settings.GAP_PERSP_ROBOT, settings.GAP_PERSP_ROBOT));
     pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP_ROBOT, settings.GAP_PERSP_ROBOT));
@@ -348,6 +348,9 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
     Mat tform = findHomography(white_corners, pts_dst);
     warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
                     cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+
+    //save the pixel scale for the robot plane
+    scalePixelsForRobo(im_dst);
 
     //cv::imshow("trasf img", im_dst);
     //cv::waitKey(0);
