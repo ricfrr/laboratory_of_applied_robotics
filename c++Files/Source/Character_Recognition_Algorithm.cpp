@@ -159,7 +159,8 @@ void Character_Recognition_Algorithm::turn_image(cv::Mat input, cv::Mat & output
 double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     
     cv::Vec4f line;
-    
+    imshow("fitline", image);
+    cv::waitKey(0);
     cv::Mat gray;
     cvtColor(image, gray, CV_BGR2GRAY); //perform gray scale conversion.
     
@@ -179,12 +180,13 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
         for (int j = 0;j<contours[i].size();j++)
             numbers.push_back(contours[i][j]);
 
-    
+
     cv::fitLine(numbers, line, CV_DIST_L1, 0,  0.01,  0.01);
 
     cv::Mat colored;
     cvtColor(gray, colored, CV_GRAY2RGB);
-    
+    imshow("fitline", colored);
+    cv::waitKey(0);
     cv::Point end =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
     cv::Point start   = cv::Point(line[2],line[3]);
     //cv::Point result = start - end;
