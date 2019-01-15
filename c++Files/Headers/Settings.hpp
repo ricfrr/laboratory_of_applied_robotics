@@ -88,6 +88,7 @@ public:
     inline static int IMG_LENGHT=678;//678
     
     inline static double PIXEL_SCALE = 1;
+    inline static double ROBO_PIXEL_SCALE = 1;
     
     int N_ROW_MAP=30;
     int N_COL_MAP=20;

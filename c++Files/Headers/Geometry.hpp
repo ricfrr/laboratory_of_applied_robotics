@@ -38,10 +38,21 @@ public:
         return (angle);
     }
     
-    static std::pair<double,double> convertPixelToMillimeter(const cv::Point &point, const cv::Point &reference){
+    static std::pair<double,double> convertPixelToMillimeterInMapPlane(const cv::Point &point, const cv::Point &reference){
         
-        double x = (point.x - reference.x) /ImageProcessing::Settings::PIXEL_SCALE;
-        double y = (point.y - reference.y) /ImageProcessing::Settings::PIXEL_SCALE;
+        return convertPixelToMillimeter(point, reference, ImageProcessing::Settings::PIXEL_SCALE);
+    }
+    
+    static std::pair<double,double> convertPixelToMillimeterInRoboPlane(const cv::Point &point, const cv::Point &reference){
+        
+        return convertPixelToMillimeter(point, reference, ImageProcessing::Settings::ROBO_PIXEL_SCALE);
+    }
+    
+private:
+    static std::pair<double,double> convertPixelToMillimeter(const cv::Point &point, const cv::Point &reference, const double &scale){
+        
+        double x = (point.x - reference.x) /scale;
+        double y = (point.y - reference.y) /scale;
         
         return std::pair<double,double>(x,y);
     }

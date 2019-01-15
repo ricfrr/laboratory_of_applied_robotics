@@ -235,10 +235,18 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
 
     double top_dist = cv::norm(corners[0] - corners[1]);
     pixel_scale = top_dist / Settings::arena_width;
-    std::cout << "pixel scale: " << pixel_scale << std::endl;
+    std::cout << "Map pixel scale: " << pixel_scale << std::endl;
     Settings::PIXEL_SCALE = pixel_scale;
 
     persp_img = im_dst;
+}
+
+void Inverse_Perspective_Mapping::scalePixelsForRobo(){
+    std::vector<cv::Point> corners = white_corners;
+    double top_dist = cv::norm(corners[0] - corners[1]);
+    double pixel_scale = top_dist / Settings::arena_width;
+    std::cout << "robot pixel scale: " << pixel_scale << std::endl;
+    Settings::ROBO_PIXEL_SCALE = pixel_scale;
 }
 
 
@@ -250,52 +258,6 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
 // Since the real size of the rectangle is known (width: 1m, height: 1.5m),
 // the fucntion returns also the pixel_scale, i.e. the size (in mm) of each
 // pixel in the top view image
-Mat Inverse_Perspective_Mapping::findTransform(
-        const std::string &calib_image_name, const cv::Mat &camera_matrix,
-        const cv::Mat &dist_coeffs, double &pixel_scale, cv::Mat &persp_img) {
-    Mat calib_image, original_image = imread(calib_image_name);
-
-    if (original_image.empty()) {
-        throw std::runtime_error("Could not open image " + calib_image_name);
-    }
-    //-------------------------TESTING-------------------------------
-    // find corners
-    //white_corners = findRobotCircle(calib_image);
-    //detectRobotPlane(original_image);
-    //-------------------------TESTING-------------------------------
-    //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //imshow("origin", original_image);
-    //imshow("undistored", calib_image);
-    //waitKey(0);
-    // find corners
-    std::vector<cv::Point> corners = findCorners(calib_image);
-
-    // Destination image
-    //Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
-    Size size(800, 1200);
-
-
-    Mat im_dst = Mat::zeros(size, CV_8UC3);
-    // Create a vector of points.
-    std::vector<Point2f> pts_dst;
-
-    pts_dst.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
-    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, settings.GAP_PERSP));
-    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
-    pts_dst.push_back(Point2f(settings.GAP_PERSP, size.height - settings.GAP_PERSP));
-
-    Mat tform = findHomography(corners, pts_dst);
-    warpPerspective(calib_image, im_dst, tform, size, cv::INTER_LINEAR,
-                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
-    //imshow("first persp", im_dst);
-    reTransform(im_dst, pixel_scale);
-    persp_img = im_dst;
-    //imshow("sec persp", im_dst);
-    imwrite("sec_persp.png", im_dst);
-    //waitKey(0);
-    return tform;
-}
 
 Mat Inverse_Perspective_Mapping::findTransform(
         const cv::Mat &img, const cv::Mat &camera_matrix,
@@ -344,21 +306,6 @@ void Inverse_Perspective_Mapping::storeAllParameters(
     fs.release();
 }
 
-cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf,
-                                         std::string image,
-                                         std::string outputfilename) {
-    loadCoefficients(intrinsic_conf, camera_matrix, dist_coeffs);
-    this->outputfilename = outputfilename;
-    double pixel_scale = 0;
-    Mat persp_img;
-    Mat persp_transf =
-            findTransform(image, camera_matrix, dist_coeffs, pixel_scale, persp_img);
-    storeAllParameters(outputfilename, camera_matrix, dist_coeffs, pixel_scale,
-                       persp_transf);
-
-    return persp_img;
-}
-
 cv::Mat Inverse_Perspective_Mapping::run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename)
 {
     loadCoefficients(intrinsic_conf, camera_matrix, dist_coeffs);
@@ -389,6 +336,9 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
     Mat im_dst = Mat::zeros(size, CV_8UC3);
     // Create a vector of points.
     std::vector<Point2f> pts_dst;
+    
+    //save the pixel scale for the robot plane
+    scalePixelsForRobo();
 
     pts_dst.push_back(Point2f(settings.GAP_PERSP_ROBOT, settings.GAP_PERSP_ROBOT));
     pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP_ROBOT, settings.GAP_PERSP_ROBOT));

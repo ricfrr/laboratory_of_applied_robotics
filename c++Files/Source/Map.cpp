@@ -787,10 +787,15 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
 cv::Point Map::MapEncoder::get_real_coordinates(const cv::Point &forPoint, Map* inMap){
     
     cv:Point start = inMap->getStartPoint();
-    std::pair<double,double> point = Geometry::convertPixelToMillimeter(forPoint, start);
-    
-//    double x = (forPoint.x - start.x) /Settings::PIXEL_SCALE;
-//    double y = (forPoint.y - start.y) /Settings::PIXEL_SCALE;
+    std::pair<double,double> point = Geometry::convertPixelToMillimeterInMapPlane(forPoint, start);
     
     return cv::Point(point.first,point.second);
+}
+
+void Map::scalePixelsForMap(){
+    std::vector<cv::Point> corners = arena.getCorners();
+    double top_dist = cv::norm(corners[0] - corners[1]);
+    double pixel_scale = top_dist / Settings::arena_width;
+    std::cout << "Map pixel scale: " << pixel_scale << std::endl;
+    Settings::PIXEL_SCALE = pixel_scale;
 }

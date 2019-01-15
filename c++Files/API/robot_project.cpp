@@ -89,7 +89,7 @@ bool RobotProject::localize(cv::Mat const & img,
     cv:Point start = map->getStartPoint();
     
     std::pair<double,double> coordinates =
-    Geometry::convertPixelToMillimeter(robo.center, start);
+    Geometry::convertPixelToMillimeterInRoboPlane(robo.center, start);
     
     double x = coordinates.first;
     double y = coordinates.second;

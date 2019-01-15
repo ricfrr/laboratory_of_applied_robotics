@@ -127,6 +127,8 @@ public:
     ///returns the startPoint (pixel value) of the arena (upper left corner)
     cv::Point getStartPoint();
     
+    void scalePixelsForMap();
+    
 private:
 
     // grid of the map
