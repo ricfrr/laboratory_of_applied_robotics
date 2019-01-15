@@ -53,6 +53,8 @@ bool comparePeople(People p1, People p2) {
 }
 
 void MissionPlanning::plan_mission_one() {
+    using fsec = std::chrono::duration<float>;
+    auto t0 = std::chrono::steady_clock::now();
 
     std::cout << "\nplanning mission one \n" << std::endl;
 
@@ -96,6 +98,9 @@ void MissionPlanning::plan_mission_one() {
     path = new Path2D::Path(*path, *p_path);
 
     std::cout << "---- DONE ----" << std::endl;
+    auto t1 = std::chrono::steady_clock::now();
+    fsec delta = t1 - t0;
+    std::cout << delta.count() << "s\n";
     
     this->path_p = path;
 
@@ -124,19 +129,19 @@ void MissionPlanning::plan_mission_two() {
     for (std::vector<People>::iterator it = people_v.begin(); it != people_v.end(); it++) {
         Path2D::Position *tmp_position = new Position(it->getCenter());
         if (it->name == 4) {
-            tmp_position->setWeight(300);
+            tmp_position->setWeight(0);
         }
         if (it->name == 2) {
-            tmp_position->setWeight(200);
+            tmp_position->setWeight(0);
         }
         if (it->name == 1) {
-            tmp_position->setWeight(100);
+            tmp_position->setWeight(0);
         }
         if (it->name == 3) {
             tmp_position->setWeight(0);
         }
         if (it->name == 5) {
-            tmp_position->setWeight(300);
+            tmp_position->setWeight(0);
         }
         point_of_interest.push_back(tmp_position);
     }
@@ -144,11 +149,11 @@ void MissionPlanning::plan_mission_two() {
     std::pair<cv::Point, double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
     finalPos.orientation_locked = true;
-    finalPos.setWeight(100);
+    finalPos.setWeight(0);
     point_of_interest.push_back(&finalPos);
 
     Path2D::Path *path = new Path();
-    Position *start_point = new Position(start, or1);
+    Position *start_point = new Position(map_p->robo->center, map_p->robo->angle);
     int i = 0;
     Path2D::Path *path_tmp;
     while (!isExitReached(point_of_interest)) {

@@ -37,6 +37,9 @@ void Obstacle::findObstacles(const Mat &img)
     cv::erode(red_mask, red_mask, kernel);
     cv::dilate(red_mask, red_mask, kernel);
 
+
+
+
     // Process red mask
 
     contours_img = img.clone();
@@ -80,6 +83,11 @@ void Obstacle::findObstacles(const Mat &img)
             hexagons.push_back(hexagon);
             //std::cout << "Hexagon : " << hexagon.getCorners() << std::endl;
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
+        }else if (approx_curve.size()>6){
+            CustomPolygon customPolygon = CustomPolygon();
+            customPolygon.setCorners(approx_curve);
+            customPolygons.push_back(customPolygon);
+            drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
     }
     imshow("shapes", contours_img);
@@ -120,6 +128,14 @@ std::vector<Hexagon *> Obstacle::getHexagons()
         myHexagons.push_back(&hexagons[i]);
     return myHexagons;
 };
+
+std::vector<CustomPolygon *> Obstacle::getCustomPolygons(){
+    std::vector<CustomPolygon *> customPolygons;
+    for(int i=0;i<this->customPolygons.size();i++)
+        customPolygons.push_back(&this->customPolygons[i]);
+    return customPolygons;
+};
+
 
 std::vector<Polygon *> Obstacle::get(){
     std::vector<Polygon *> myPolygons;

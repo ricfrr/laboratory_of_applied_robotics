@@ -12,7 +12,7 @@ dist_coeffs: !!opencv-matrix
    dt: d
    data: [ -3.3758286961253420e-01, -6.1279279258237687e-02,
        4.2272707367428282e-03, -5.0906415982477056e-03, 0. ]
-pixel_scale: 3.4845970835873213e-01
+pixel_scale: 3.4949061819966865e-01
 persp_transf: !!opencv-matrix
    rows: 3
    cols: 3

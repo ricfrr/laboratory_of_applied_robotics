@@ -62,7 +62,7 @@ void Robot::update(const std::vector<cv::Point> &points){
         std::cout << "can not find orientation of triangle" << std::endl;
         deg = 0;
     }
-    
+    angle+=M_PI;
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
     this->radius = this->radius/2;
@@ -146,8 +146,9 @@ bool Robot::findRobot(const cv::Mat &img){
             }
         }
     }
-    //imshow("contour robot", contours_img);
-    //waitKey(0);
+    /*circle(contours_img, this->center, 3, Scalar(0, 255, 0), -1, 8, 0);
+    imshow("contour robot", contours_img);
+    waitKey(0);*/
     if(perimeter>0){
         return true;
     }else{

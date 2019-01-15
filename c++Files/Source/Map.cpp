@@ -20,7 +20,7 @@ bool Map::wasSuccess(){
 }
 
 void Map::clipPoints() {
-    int radius = 10;
+    int radius = 10;// change obtaing the real value
     std::vector<cv::Point> tmp_point;
     std::vector<cv::Point> tmp_clip;
     //clipping exit-point
@@ -32,26 +32,33 @@ void Map::clipPoints() {
     std::vector<Square *> squares = obstacles.getSquares();
     std::vector<Pentagon *> pentagons = obstacles.getPentagons();
     std::vector<Hexagon *> hexagons = obstacles.getHexagons();
+    std::vector<CustomPolygon *> customPolygons= obstacles.getCustomPolygons();
 
-    for (int i = 0; i < triangles.size(); i++) {
-        tmp_point = triangles[i]->getCorners();
+
+    for (auto &triangle : triangles) {
+        tmp_point = triangle->getCorners();
         tmp_clip = clipper.clip(tmp_point, radius);
-        triangles[i]->setClippedCorners(tmp_clip);
+        triangle->setClippedCorners(tmp_clip);
     }
-    for (int i = 0; i < squares.size(); i++) {
-        tmp_point = squares[i]->getCorners();
+    for (auto &square : squares) {
+        tmp_point = square->getCorners();
         tmp_clip = clipper.clip(tmp_point, radius);
-        squares[i]->setClippedCorners(tmp_clip);
+        square->setClippedCorners(tmp_clip);
     }
-    for (int i = 0; i < pentagons.size(); i++) {
-        tmp_point = pentagons[i]->getCorners();
+    for (auto &pentagon : pentagons) {
+        tmp_point = pentagon->getCorners();
         tmp_clip = clipper.clip(tmp_point, radius);
-        pentagons[i]->setClippedCorners(tmp_clip);
+        pentagon->setClippedCorners(tmp_clip);
     }
-    for (int i = 0; i < hexagons.size(); i++) {
-        tmp_point = hexagons[i]->getCorners();
+    for (auto &hexagon : hexagons) {
+        tmp_point = hexagon->getCorners();
         tmp_clip = clipper.clip(tmp_point, radius);
-        hexagons[i]->setClippedCorners(tmp_clip);
+        hexagon->setClippedCorners(tmp_clip);
+    }
+    for (auto &customPolygon : customPolygons) {
+        tmp_point = customPolygon->getCorners();
+        tmp_clip = clipper.clip(tmp_point, radius);
+        customPolygon->setClippedCorners(tmp_clip);
     }
 
     tmp_point = arena.getCorners();
@@ -319,6 +326,8 @@ void Map::checkObstacles(Cell &cell, Obstacle &obstacles) {
     std::vector<Square *> squares = obstacles.getSquares();
     std::vector<Pentagon *> pentagons = obstacles.getPentagons();
     std::vector<Hexagon *> hexagons = obstacles.getHexagons();
+    std::vector<CustomPolygon *> customPolygons = obstacles.getCustomPolygons();
+
     std::vector<cv::Point> cell_corners = cell.getCorners();
 
         for (int k = 0; k < triangles.size(); k++) {
@@ -395,6 +404,24 @@ void Map::checkObstacles(Cell &cell, Obstacle &obstacles) {
                 break;
             }
         }
+
+    for (int k = 0; k < customPolygons.size(); k++) {
+        std::vector<cv::Point> tmp_cust = customPolygons[k]->getClippedCorners();
+        // std::cout << "CHECK HEXAGON" << std::endl;
+        if (contact(cell_corners, tmp_cust)) {
+            cell.set_Obstacle();
+            cell.refine_if_neccessary(customPolygons[k]->getClippedCorners());
+            customPolygons[k]->setCell(cell);
+            std::vector<Cell*> subcells = cell.getAllSubcells();
+
+            for(int i=0;i<subcells.size();i++){
+                if(!subcells[i]->isObstacle() && subcells[i]->getSubcells().empty() && !subcells[i]->isEmpty()){
+                    subcells[i]->set_Obstacle();
+                }
+            }
+            break;
+        }
+    }
 
 };
 

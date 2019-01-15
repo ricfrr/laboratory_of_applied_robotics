@@ -71,7 +71,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
     }
     
     
-    return false;
+    return true;
 }
 
 bool RobotProject::localize(cv::Mat const & img,
