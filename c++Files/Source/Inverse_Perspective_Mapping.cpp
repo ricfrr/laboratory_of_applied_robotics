@@ -55,8 +55,8 @@ std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
     cv::GaussianBlur(white_mask, white_mask, cv::Size(5, 5), 2, 2);
     cv::dilate(white_mask, white_mask, kernel);
     cv::erode(white_mask, white_mask, kernel);
-    //cv::imshow("white mask", white_mask);
-    //cv::waitKey(0);
+//    cv::imshow("white mask", white_mask);
+//    cv::waitKey(0);
 
     std::vector<Vec3f> circles;
 
@@ -94,8 +94,8 @@ std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
 
     std::cout << "found : " << circles.size() << " circles " << std::endl;
 
-    //cv::imshow("hsv_img ", hsv_img);
-    //cv::waitKey(0);
+    cv::imshow("hsv_img ", hsv_img);
+    cv::waitKey(0);
     return circle_markers;
 }
 

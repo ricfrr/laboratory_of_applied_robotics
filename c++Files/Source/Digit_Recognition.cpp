@@ -89,6 +89,8 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
 
 std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
+    bool found_one = false;
+    
     //*** new Marvin
     
     std::cout << "\nstarted detecting the digits ";
@@ -99,8 +101,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     cv::Mat source = img_input.clone();
 
     std::vector<cv::Mat> digit_images = this->algorithm->preprocessing(source, filtered, rects);
-    //cv::imshow("filtered", filtered);
-    //cv::waitKey(0);
+//    cv::imshow("filtered", filtered);
+//    cv::waitKey(0);
     
 
     std::vector<LAR::People> results;
@@ -131,7 +133,7 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
 //        cv::imshow("orientation_0", orientation_0);
 //        cv::imshow("orientation_1", orientation_1);
 //        cv::imshow("orientation_2", orientation_2);
-//   //     cv::imwrite("orientation_0.png", orientation_0);
+////   //     cv::imwrite("orientation_0.png", orientation_0);
 //        cv::waitKey(0);
 
 //        set_algo(templateMatching);
@@ -212,11 +214,16 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
                 break;
             }
         }
+        
+        if(digit.first == 1)
+            found_one = true;
 
         //create the people data
         if(is_valid(digit.first))
             results.push_back(LAR::People(digit,rects[i]));
-        else if (digit.first == 7)
+        else if (digit.first == 7 && !found_one)
+            results.push_back(LAR::People({1,1},rects[i]));
+        else if (!found_one)
             results.push_back(LAR::People({1,1},rects[i]));
         else
             results.push_back(LAR::People({0,0},rects[i]));
