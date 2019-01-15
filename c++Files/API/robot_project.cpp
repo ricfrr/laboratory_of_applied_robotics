@@ -86,8 +86,13 @@ bool RobotProject::localize(cv::Mat const & img,
     Robot robo;
     bool result = robo.findRobot(robot_plane);
     
-    double x = (double)robo.center.x;
-    double y = (double)robo.center.y;
+    cv:Point start = map->getStartPoint();
+    
+    std::pair<double,double> coordinates =
+    Geometry::convertPixelToMillimeterInRoboPlane(robo.center, start);
+    
+    double x = coordinates.first;
+    double y = coordinates.second;
     double theta = robo.angle;
     
     state = {x,y,theta};

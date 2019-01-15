@@ -12,6 +12,8 @@
 #include <opencv2/core.hpp>
 #include <stdio.h>
 
+#include "Settings.hpp"
+
 using namespace cv;
 
 struct Geometry{
@@ -34,6 +36,25 @@ public:
         double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
         double angle = std::atan2(result.y/rho, result.x/rho);
         return (angle);
+    }
+    
+    static std::pair<double,double> convertPixelToMillimeterInMapPlane(const cv::Point &point, const cv::Point &reference){
+        
+        return convertPixelToMillimeter(point, reference, ImageProcessing::Settings::PIXEL_SCALE);
+    }
+    
+    static std::pair<double,double> convertPixelToMillimeterInRoboPlane(const cv::Point &point, const cv::Point &reference){
+        
+        return convertPixelToMillimeter(point, reference, ImageProcessing::Settings::ROBO_PIXEL_SCALE);
+    }
+    
+private:
+    static std::pair<double,double> convertPixelToMillimeter(const cv::Point &point, const cv::Point &reference, const double &scale){
+        
+        double x = (point.x - reference.x) /scale;
+        double y = (point.y - reference.y) /scale;
+        
+        return std::pair<double,double>(x,y);
     }
     
 };

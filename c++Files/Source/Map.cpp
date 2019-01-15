@@ -704,6 +704,10 @@ void Map::save(const std::string &path){
     MapEncoder::encode(this, path);
 }
 
+cv::Point Map::getStartPoint(){
+    return arena.getCorners()[0];
+}
+
 void Map::MapEncoder::encode(Map* map, const std::string &filepath){
     std::cout << "\nencoding map to json file for output path -> " << filepath << std::endl;
     std::cout << "\n";
@@ -809,10 +813,16 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
 
 cv::Point Map::MapEncoder::get_real_coordinates(const cv::Point &forPoint, Map* inMap){
     
-    cv:Point start = inMap->arena.getCorners()[0];
+    cv:Point start = inMap->getStartPoint();
+    std::pair<double,double> point = Geometry::convertPixelToMillimeterInMapPlane(forPoint, start);
     
-    double x = (forPoint.x - start.x) /Settings::PIXEL_SCALE;
-    double y = (forPoint.y - start.y) /Settings::PIXEL_SCALE;
-    
-    return cv::Point(x,y);
+    return cv::Point(point.first,point.second);
+}
+
+void Map::scalePixelsForMap(){
+    std::vector<cv::Point> corners = arena.getCorners();
+    double top_dist = cv::norm(corners[0] - corners[1]);
+    double pixel_scale = top_dist / Settings::arena_width;
+    std::cout << "Map pixel scale: " << pixel_scale << std::endl;
+    Settings::PIXEL_SCALE = pixel_scale;
 }

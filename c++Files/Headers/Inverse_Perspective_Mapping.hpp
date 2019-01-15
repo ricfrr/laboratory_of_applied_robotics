@@ -61,18 +61,12 @@ public:
      * @param persp_img image after trasformation
      * @return
      */
-    Mat findTransform(const std::string &calib_image_name,
-                      const cv::Mat &camera_matrix,
-                      const cv::Mat &dist_coeffs,
-                      double &pixel_scale,
-                      cv::Mat &persp_img);
-    Mat detectRobotPlane(const cv::Mat &img);
-
     Mat findTransform(const cv::Mat &img,
                       const cv::Mat &camera_matrix,
                       const cv::Mat &dist_coeffs,
                       double &pixel_scale,
                       cv::Mat &persp_img);
+    Mat detectRobotPlane(const cv::Mat &img);
     /*!
      *  Store all the parameters to a file, for a later use, using the FileStorage
      *  class methods
@@ -97,9 +91,9 @@ public:
      * @param outputfilename
      * @return the image after transformation
      */
-    cv::Mat run(std::string intrinsic_conf, std::string image, std::string outputfilename);
-    
     cv::Mat run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename);
+    
+    void scalePixelsForRobo();
 
 private:
     cv::Mat camera_matrix, dist_coeffs;
