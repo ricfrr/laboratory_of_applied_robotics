@@ -72,6 +72,13 @@ void Robot::update(const std::vector<cv::Point> &points){
 
 }
 
+double robotPerimeter(std::vector<cv::Point> corner){
+    double first =abs(cv::norm(corner[0] - corner[1]));
+    double second =abs(cv::norm(corner[1] - corner[2]));
+    double third =abs(cv::norm(corner[2] - corner[2]));
+    return first+second+third;
+}
+
 bool Robot::findRobot(const cv::Mat &img){
 
 
@@ -94,11 +101,17 @@ bool Robot::findRobot(const cv::Mat &img){
     cv::inRange(hsv_img, cv::Scalar(75, 50, 50), cv::Scalar(130, 255, 255), blue_mask);
     
     // Filter (applying dilation, blurring, dilation and erosion) the image
-    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((1 * 2) + 1, (1 * 2) + 1));
+    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 2, (2 * 2) + 2));
     // Filter (applying an erosion and dilation) the image
+    //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(7, 7), 6, 6);
+
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
-    
+    cv::erode(blue_mask, blue_mask, kernel);
+
+
+    cv::imshow("blue mask", blue_mask);
+    cv::waitKey(1);
     // Process red mask
     
     contours_img = img.clone();
@@ -106,14 +119,16 @@ bool Robot::findRobot(const cv::Mat &img){
                      cv::CHAIN_APPROX_SIMPLE);
     drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
                  cv::LINE_AA);
-    
+    int perimeter =0;
+
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, epsilon_approx, true);
         contours_approx = {approx_curve};
-        if (approx_curve.size() == 3)
+        if (approx_curve.size() == 3 && robotPerimeter(approx_curve)>perimeter)
         {
             Triangle triangle = Triangle();
+            perimeter = robotPerimeter(approx_curve);
             triangle.setCorners(approx_curve);
 
            // std::cout << "Triangle : " << triangle.getCorners() << std::endl;

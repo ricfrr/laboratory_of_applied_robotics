@@ -52,17 +52,27 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
     returnedImg = original_img.clone();
     cv::findContours(filtered_img, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     
-    displayImage(filtered_img, "contours");
-    //cv::waitKey(0);
+    cv::imshow("contours", filtered_img);
+    cv::waitKey(0);
     
     std::vector<cv::Rect> boundRect(contours.size());
     for (int i=0; i<contours.size(); ++i)
     {
         double area = cv::contourArea(contours[i]);
         if (area < this->MIN_AREA_SIZE) continue; // filter too small contours to remove false positives
+        
         approxPolyDP(contours[i], approx_curve, 2, true);
+        
+//        std::cout << "number of points: " << contours[i].size() << std::endl;
+//        std::cout << "area            : " << area << std::endl;
+        
         contours_approx = {approx_curve};
+        
         drawContours(returnedImg, contours_approx, -1, cv::Scalar(0,170,220), 3, cv::LINE_AA);
+        
+        imshow("contours_"+std::to_string(i), returnedImg);
+        cv::waitKey(0);
+        
         boundRect[i] = boundingRect(cv::Mat(approx_curve)); // find bounding box for each green blob
     }
     
@@ -108,7 +118,7 @@ std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img
     
     //find a filter
     Color_Processing color;
-    std::string filename = "../data/calib/filter_.png"; //the link might has to be adapted
+    std::string filename = "../data/calib/filter_3.png"; //the link might has to be adapted
     color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;
@@ -159,7 +169,8 @@ void Character_Recognition_Algorithm::turn_image(cv::Mat input, cv::Mat & output
 double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     
     cv::Vec4f line;
-    
+    imshow("fitline", image);
+    cv::waitKey(0);
     cv::Mat gray;
     cvtColor(image, gray, CV_BGR2GRAY); //perform gray scale conversion.
     
@@ -179,12 +190,13 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
         for (int j = 0;j<contours[i].size();j++)
             numbers.push_back(contours[i][j]);
 
-    
+
     cv::fitLine(numbers, line, CV_DIST_L1, 0,  0.01,  0.01);
 
     cv::Mat colored;
     cvtColor(gray, colored, CV_GRAY2RGB);
-    
+    imshow("fitline", colored);
+    cv::waitKey(0);
     cv::Point end =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
     cv::Point start   = cv::Point(line[2],line[3]);
     //cv::Point result = start - end;

@@ -62,7 +62,7 @@ void Map::clipPoints() {
 }
 
 
-void Map::createMap(const Mat &img) {
+void Map::createMap(const Mat &img,const Mat &robot_plane) {
    
     std::cout << "\nCREATING MAP\n" << std::endl;
     
@@ -87,7 +87,7 @@ void Map::createMap(const Mat &img) {
     
     std::cout << "find robot        ->";
     this->robo = new Robot;
-    robo->findRobot(img);
+    robo->findRobot(robot_plane);
     std::cout << " done" << std::endl;
     
     std::cout << "clip points       ->";

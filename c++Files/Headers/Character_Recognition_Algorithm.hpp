@@ -134,7 +134,7 @@ public:
     Character_Recognition_Algorithm();
     ~Character_Recognition_Algorithm(){}
     
-    const double MIN_AREA_SIZE = 200;
+    const double MIN_AREA_SIZE = 2000;
     
     HSVFilterRange filter = HSVFilterRange();
     

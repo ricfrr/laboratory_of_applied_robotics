@@ -99,6 +99,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     cv::Mat source = img_input.clone();
 
     std::vector<cv::Mat> digit_images = this->algorithm->preprocessing(source, filtered, rects);
+    cv::imshow("filtered", filtered);
+    cv::waitKey(0);
     
 
     std::vector<LAR::People> results;
@@ -107,8 +109,7 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
         std::runtime_error("too many rects and not enough digits");
 
     for(int i = 0;i<digit_images.size();i++){
-        //cv::imshow("digit_"+std::to_string(i), digit_images[i]);
-
+        cv::imshow("digit_"+std::to_string(i), digit_images[i]);
         std::cout << ".";
         //do the noise reduction
         this->algorithm->prepare_uniform_window(digit_images[i]);

@@ -49,7 +49,7 @@ public:
      * create a map given the a photo of the arena
      * @param img photo of the arena after perspective transformation
      */
-    void createMap(const Mat &img);
+    void createMap(const Mat &img,const Mat &robot_plane);
 
     void getPixelDimensions(int &width, int &height);
 

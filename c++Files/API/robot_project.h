@@ -15,7 +15,7 @@ class RobotProject
 {
 public:
   // Constructor taking as argument the command line parameters
-  RobotProject(int argc, const char * argv[]);
+  RobotProject(int argc, char * argv[]);
 
   // Method invoked to preprocess the map (extrinsic calibration + reconstruction of layout)
   bool preprocessMap(cv::Mat const & img);
@@ -31,6 +31,9 @@ public:
   void start();
     
 private:
+
+    Inverse_Perspective_Mapping ipm;
+
     std::string source_img_path;
     std::string calibration_filepath = "../config/fullCalibration.yml";
     std::string intrinsic_calibration;
