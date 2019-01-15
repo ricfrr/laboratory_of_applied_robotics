@@ -52,8 +52,8 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
     returnedImg = original_img.clone();
     cv::findContours(filtered_img, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     
-    //cv::imshow("contours", filtered_img);
-    //cv::waitKey(0);
+  //  cv::imshow("contours", filtered_img);
+//    cv::waitKey(0);
     
     std::vector<cv::Rect> boundRect(contours.size());
     for (int i=0; i<contours.size(); ++i)
@@ -70,8 +70,8 @@ std::vector<cv::Rect> Character_Recognition_Algorithm::extract_regions_of_intere
         
         drawContours(returnedImg, contours_approx, -1, cv::Scalar(0,170,220), 3, cv::LINE_AA);
         
-        //imshow("contours_"+std::to_string(i), returnedImg);
-        //cv::waitKey(0);
+//        imshow("contours_"+std::to_string(i), returnedImg);
+//        cv::waitKey(0);
         
         boundRect[i] = boundingRect(cv::Mat(approx_curve)); // find bounding box for each green blob
     }
@@ -169,8 +169,8 @@ void Character_Recognition_Algorithm::turn_image(cv::Mat input, cv::Mat & output
 double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     
     cv::Vec4f line;
-    //imshow("fitline", image);
-    //cv::waitKey(0);
+//    imshow("fitline", image);
+//    cv::waitKey(0);
     cv::Mat gray;
     cvtColor(image, gray, CV_BGR2GRAY); //perform gray scale conversion.
     
@@ -195,8 +195,8 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
 
     cv::Mat colored;
     cvtColor(gray, colored, CV_GRAY2RGB);
-    //imshow("fitline", colored);
-    //cv::waitKey(0);
+//    imshow("fitline", colored);
+//    cv::waitKey(0);
     cv::Point end =   cv::Point(line[2]+100*line[0],line[3]+100*line[1]);
     cv::Point start   = cv::Point(line[2],line[3]);
     //cv::Point result = start - end;
@@ -204,16 +204,16 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
     
     cv::line(gray, start, end, cv::Scalar(0,0,255));
     cv::line(colored, start, end, cv::Scalar(0,0,255));
-    //cv::line(colored, cv::Point(colored.cols/2,colored.rows/2), plot_result, cv::Scalar(255,0,0));
+//    cv::line(colored, cv::Point(colored.cols/2,colored.rows/2), plot_result, cv::Scalar(255,0,0));
    
     double angle = Geometry::angle_deg(start, end);
     
-    //cv::imshow("gray", gray);
-    //cv::imshow("colored", colored);
-    //cv::imwrite("result_angle.png", colored);
-    
-    //std::cout << "angle " << -90-(angle) << std::endl;
-    //cv::waitKey(0);
+//    cv::imshow("gray", gray);
+//    cv::imshow("colored", colored);
+//    cv::imwrite("result_angle.png", colored);
+//
+//    std::cout << "angle " << -90-(angle) << std::endl;
+//    cv::waitKey(0);
     
     return  -90-(angle);
     

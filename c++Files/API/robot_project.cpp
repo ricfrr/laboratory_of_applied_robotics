@@ -18,7 +18,7 @@ RobotProject::RobotProject(int argc,  char * argv[]){
     this->mission               = std::atol(argv[4]);
     this->ipm = Inverse_Perspective_Mapping();
     
-    this->map = new Map(DigitRecognitionAlgo::tesseractOCP, 60, 15, 3.0,1);
+    this->map = new Map(DigitRecognitionAlgo::tesseractOCP, 70, 20, 2.0,0);
     
     if(argv[5] == "quick")
         this->map->quickCalculation = true;
@@ -37,8 +37,8 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
 
     persp_img = ipm.run(this->intrinsic_calibration, img, calibration_filepath);
     //detect the robot plane
-    cv::imshow("persp",persp_img);
-    cv::waitKey(0);
+//    cv::imshow("persp",persp_img);
+//    cv::waitKey(0);
     robot_plane = ipm.detectRobotPlane(img);
     cv::imshow("robot_plane",robot_plane);
     cv::waitKey(0);
