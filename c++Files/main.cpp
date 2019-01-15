@@ -85,7 +85,7 @@ int main(int argc, char * argv[])
     {
 
         std::vector<double> state;
-        if (!rp.localize(frames[0], state))
+        if (!rp.localize(frames[i], state))
         {
             std::cerr << "(Warning) Failed localization" << std::endl;
             continue;

@@ -80,8 +80,8 @@ void Arena::findArena(const Mat &img)
                 corners = approx_curve;
             }
         }
-        // drawContours(contours_img, contours_approx_smallest, -1, cv::Scalar(0,
-        // 170, 220), 5, cv::LINE_AA);
+        drawContours(contours_img, contours_approx_smallest, -1, cv::Scalar(0,
+         170, 220), 5, cv::LINE_AA);
     }
 
     //std::cout << "Arena : " << corners << std::endl;

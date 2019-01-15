@@ -18,7 +18,7 @@ RobotProject::RobotProject(int argc,  char * argv[]){
     this->mission               = std::atol(argv[4]);
     this->ipm = Inverse_Perspective_Mapping();
     
-    this->map = new Map(DigitRecognitionAlgo::tesseractOCP, 70, 20, 2.0,0);
+    this->map = new Map(DigitRecognitionAlgo::tesseractOCP, 80, 15, 3.0,0);
     
     if(argv[5] == "quick")
         this->map->quickCalculation = true;
@@ -71,7 +71,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
     }
     
     
-    return false;
+    return true;
 }
 
 bool RobotProject::localize(cv::Mat const & img,

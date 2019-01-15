@@ -188,6 +188,15 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
         colorAllCellsContainingObstacle(cs, result);
         cv::fillConvexPoly(result, pen[i]->getCorners(), cv::Scalar(100,100,100));
     }
+
+    //print Custom Polygons
+    std::vector<CustomPolygon*> cst_pol = obstacle.getCustomPolygons();
+    for (int i=0;i<cst_pol.size();i++){
+
+        std::vector<Cell*> cs = cst_pol[i]->getCell();
+        colorAllCellsContainingObstacle(cs, result);
+        cv::fillConvexPoly(result, cst_pol[i]->getCorners(), cv::Scalar(100,100,100));
+    }
     
     //print exit point
     ExitPoint ex = p_map->getExitPoint();

@@ -5,6 +5,7 @@
 #include "Cell.hpp"
 #include "ExitPoint.hpp"
 #include "Hexagon.hpp"
+#include "CustomPolygon.hpp"
 #include "Obstacle.hpp"
 #include "Pentagon.hpp"
 #include "Square.hpp"
