@@ -84,11 +84,8 @@ public:
     
     const static int arena_width = 970;
 
-    inline static int IMG_WIDTH=458;//458
-    inline static int IMG_LENGHT=678;//678
-    
-    inline static double PIXEL_SCALE = 1;
-    inline static double ROBO_PIXEL_SCALE = 1;
+    const static int IMG_WIDTH=458;//458
+    const static int IMG_LENGHT=678;//678
     
     int N_ROW_MAP=30;
     int N_COL_MAP=20;

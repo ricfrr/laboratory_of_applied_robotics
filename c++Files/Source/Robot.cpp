@@ -64,8 +64,8 @@ void Robot::update(const std::vector<cv::Point> &points){
     }
     angle+=M_PI;
     // center of the wheel of the robot
-    center_wheel.x = (int)(center.x + 50*ImageProcessing::Settings::PIXEL_SCALE*cos(angle));
-    center_wheel.y = (int)(center.y + 50*ImageProcessing::Settings::PIXEL_SCALE*sin(angle));
+    center_wheel.x = (int)(center.x + 50*map_pixelscale*cos(angle));
+    center_wheel.y = (int)(center.y + 50*map_pixelscale*sin(angle));
 
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
@@ -168,7 +168,7 @@ cv::Point Robot::getPosition(){
 cv::Point2d Robot::getPosition2d(const cv::Point &ref,const cv::Point &error){
     
     //ref is the arena start point and error the distance to the white circle
-    std::pair<double, double> result = Geometry::convertPixelToMillimeterInMapPlane(getPosition(), ref-error);
+    std::pair<double, double> result = Geometry::convertPixelToMillimeterInMapPlane(getPosition(), ref-error,map_pixelscale);
     
     return cv::Point2d(result.first,result.second);
 }
@@ -176,7 +176,7 @@ cv::Point2d Robot::getPosition2d(const cv::Point &ref,const cv::Point &error){
 cv::Point2d Robot::getPosition2dRobotFrame(const cv::Point &ref, const cv::Point &error){
     
     std::pair<double,double> result =
-    Geometry::convertPixelToMillimeterInMapPlane(initialPosition, ref-error);
+    Geometry::convertPixelToMillimeterInMapPlane(initialPosition, ref-error,map_pixelscale);
     
     return getPosition2d(ref,error) - cv::Point2d(result.first,result.second);
 }
@@ -226,5 +226,25 @@ void Robot::move(const cv::Point &location, const double &angle){
     
     update(points);
     
+}
+
+void Robot::scalePixelsForRobo(const Mat &onPlane){
+    LAR::Arena arena = LAR::Arena();
+    arena.findArena(onPlane);
+    //std::vector<cv::Point> corners = white_corners;
+    double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
+    double pixel_scale = top_dist / ImageProcessing::Settings::arena_width;
+    std::cout << "robot pixel scale: " << pixel_scale << std::endl;
+    robo_pixelscale = pixel_scale;
+}
+
+void Robot::scalePixelsForMap(const Mat &onPlane){
+    LAR::Arena arena = LAR::Arena();
+    arena.findArena(onPlane);
+    //std::vector<cv::Point> corners = white_corners;
+    double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
+    double pixel_scale = top_dist / ImageProcessing::Settings::arena_width;
+    std::cout << "robot pixel scale: " << pixel_scale << std::endl;
+    map_pixelscale = pixel_scale;
 }
 

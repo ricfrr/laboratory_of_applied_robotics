@@ -81,7 +81,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
         for (int j =0; j<intermediate_points.size(); j++){
             //int_point_counter*5*Setting::PIXEL_SCALE i the distance from the starting point
             
-            std::pair<double,double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],map->getStartPoint());
+            std::pair<double,double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],map->getStartPoint(),map->robo->map_pixelscale);
             
             pose.push_back(Pose(
                                 int_point_counter/points_number,mm_point.first,mm_point.second

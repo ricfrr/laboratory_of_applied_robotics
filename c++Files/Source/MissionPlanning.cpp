@@ -129,7 +129,8 @@ void MissionPlanning::plan_mission_two() {
     // add people and end point to the point of interest vector
     for (std::vector<People>::iterator it = people_v.begin(); it != people_v.end(); it++) {
         Path2D::Position *tmp_position = new Position(it->getCenter());
-        tmp_position->setWeight(5*10*Settings::PIXEL_SCALE); // 5: bonus in second , 10 is the velocity of the robot 10mm/s so 5*10*pixel_scale give me the rewards
+        //tmp_position->setWeight(5*10*Settings::PIXEL_SCALE); // 5: bonus in second , 10 is the velocity of the robot 10mm/s so 5*10*pixel_scale give me the rewards
+        tmp_position->setWeight(5*10*map_p->robo->map_pixelscale);
         point_of_interest.push_back(tmp_position);
     }
 

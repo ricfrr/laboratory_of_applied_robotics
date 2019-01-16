@@ -236,7 +236,7 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
     double top_dist = cv::norm(corners[0] - corners[1]);
     pixel_scale = top_dist / Settings::arena_width;
     std::cout << "Map pixel scale: " << pixel_scale << std::endl;
-    Settings::PIXEL_SCALE = pixel_scale;
+    //Settings::PIXEL_SCALE = pixel_scale;
 
     persp_img = im_dst;
 }
@@ -248,7 +248,7 @@ void Inverse_Perspective_Mapping::scalePixelsForRobo(const Mat &im_dst){
     double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
     double pixel_scale = top_dist / Settings::arena_width;
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
-    Settings::ROBO_PIXEL_SCALE = pixel_scale;
+    //Settings::ROBO_PIXEL_SCALE = pixel_scale;
 }
 
 
