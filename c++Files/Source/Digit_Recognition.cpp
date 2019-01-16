@@ -225,6 +225,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
             results.push_back(LAR::People({1,1},rects[i]));
         else if (!found_one)
             results.push_back(LAR::People({1,1},rects[i]));
+        else if (!found_one)
+            results.push_back(LAR::People({1,1},rects[i]));
         else
             results.push_back(LAR::People({0,0},rects[i]));
 
