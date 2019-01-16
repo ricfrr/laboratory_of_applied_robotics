@@ -1,0 +1,55 @@
+\hypertarget{class_path2_d_1_1_path_finder_1_1_collision_detector}{}\section{Path2D\+:\+:Path\+Finder\+:\+:Collision\+Detector Class Reference}
+\label{class_path2_d_1_1_path_finder_1_1_collision_detector}\index{Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector@{Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector}}
+
+
+detector of collision between obstacles and path  
+
+
+
+
+{\ttfamily \#include $<$Path\+Finder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_1_1_collision_detector_ab0dd27f4e4b0e901be9ad1ef7c938949}\label{class_path2_d_1_1_path_finder_1_1_collision_detector_ab0dd27f4e4b0e901be9ad1ef7c938949}} 
+\mbox{\hyperlink{class_path2_d_1_1_path_finder_1_1_collision_detector_ab0dd27f4e4b0e901be9ad1ef7c938949}{Collision\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em constructor of Collision\+Detector\+\_\+hpp class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_1_1_collision_detector_a978b6fc7e1d64833e0feb22c41db1383}\label{class_path2_d_1_1_path_finder_1_1_collision_detector_a978b6fc7e1d64833e0feb22c41db1383}} 
+\mbox{\hyperlink{class_path2_d_1_1_path_finder_1_1_collision_detector_a978b6fc7e1d64833e0feb22c41db1383}{$\sim$\+Collision\+Detector}} ()
+\begin{DoxyCompactList}\small\item\em destructor of Collision\+Detector\+\_\+hpp class \end{DoxyCompactList}\item 
+std\+::pair$<$ bool, \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ \mbox{\hyperlink{class_path2_d_1_1_path_finder_1_1_collision_detector_a3ff8fb92d990f44157c0b2469b1c9a24}{detect\+Collision}} (std\+::vector$<$ \mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}} $>$ \&lines\+\_\+i, \mbox{\hyperlink{class_map}{Map}} $\ast$map, double max\+\_\+curvature)
+\begin{DoxyCompactList}\small\item\em given a vector of lines detect if the path is feasible \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+detector of collision between obstacles and path 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_path_finder_1_1_collision_detector_a3ff8fb92d990f44157c0b2469b1c9a24}\label{class_path2_d_1_1_path_finder_1_1_collision_detector_a3ff8fb92d990f44157c0b2469b1c9a24}} 
+\index{Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector@{Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector}!detect\+Collision@{detect\+Collision}}
+\index{detect\+Collision@{detect\+Collision}!Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector@{Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector}}
+\subsubsection{\texorpdfstring{detect\+Collision()}{detectCollision()}}
+{\footnotesize\ttfamily std\+::pair$<$bool,\mbox{\hyperlink{class_cell}{Cell}}$\ast$$>$ Path2\+D\+::\+Path\+Finder\+::\+Collision\+Detector\+::detect\+Collision (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}} $>$ \&}]{lines\+\_\+i,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map,  }\item[{double}]{max\+\_\+curvature }\end{DoxyParamCaption})}
+
+
+
+given a vector of lines detect if the path is feasible 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lines\+\_\+i} & vector of line that we want to check \\
+\hline
+{\em map} & map of the arena \\
+\hline
+{\em max\+\_\+curvature} & curvature of the path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if there is a collision false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Path\+Finder.\+hpp\end{DoxyCompactItemize}

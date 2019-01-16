@@ -1,0 +1,51 @@
+\hypertarget{class_image_processing_1_1_color___processing}{}\section{Image\+Processing\+:\+:Color\+\_\+\+Processing Class Reference}
+\label{class_image_processing_1_1_color___processing}\index{Image\+Processing\+::\+Color\+\_\+\+Processing@{Image\+Processing\+::\+Color\+\_\+\+Processing}}
+
+
+A class that helps to extract information about the color values of pixels in an image.  
+
+
+
+
+{\ttfamily \#include $<$Color\+\_\+\+Processing.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_ae6357f66cadc70bb8f087cf9b0222cd2}\label{class_image_processing_1_1_color___processing_ae6357f66cadc70bb8f087cf9b0222cd2}} 
+void \mbox{\hyperlink{class_image_processing_1_1_color___processing_ae6357f66cadc70bb8f087cf9b0222cd2}{load\+\_\+pixels}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em load all relevant pixels for evaluation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a34be73aacbf881359947e4e323779bc7}\label{class_image_processing_1_1_color___processing_a34be73aacbf881359947e4e323779bc7}} 
+\mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} \mbox{\hyperlink{class_image_processing_1_1_color___processing_a34be73aacbf881359947e4e323779bc7}{get\+Filter}} ()
+\begin{DoxyCompactList}\small\item\em creating and return an \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range}{H\+S\+V\+Filter\+Range}} filter object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a9ee0aca190f2e0bcbacadfdcb5d3f98f}\label{class_image_processing_1_1_color___processing_a9ee0aca190f2e0bcbacadfdcb5d3f98f}} 
+void \mbox{\hyperlink{class_image_processing_1_1_color___processing_a9ee0aca190f2e0bcbacadfdcb5d3f98f}{find\+\_\+black\+\_\+threshold}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em find the lower values of s and v \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a3e1aee532a7df264fde28dfdbafba4d5}\label{class_image_processing_1_1_color___processing_a3e1aee532a7df264fde28dfdbafba4d5}} 
+void \mbox{\hyperlink{class_image_processing_1_1_color___processing_a3e1aee532a7df264fde28dfdbafba4d5}{calibrate\+\_\+color}} (const std\+::string filename)
+\begin{DoxyCompactList}\small\item\em use an image to create a color filter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_ab0075249337c1147d6425a1899a16464}\label{class_image_processing_1_1_color___processing_ab0075249337c1147d6425a1899a16464}} 
+void \mbox{\hyperlink{class_image_processing_1_1_color___processing_ab0075249337c1147d6425a1899a16464}{demo}} (cv\+::\+Mat \&img)
+\begin{DoxyCompactList}\small\item\em a demo function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a8a027ab4f4c0a4736ff78785c172affd}\label{class_image_processing_1_1_color___processing_a8a027ab4f4c0a4736ff78785c172affd}} 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{class_image_processing_1_1_color___processing_a8a027ab4f4c0a4736ff78785c172affd}{range}} = std\+::pair$<$double,double$>$ (0,0)
+\begin{DoxyCompactList}\small\item\em when implemeting a black filter the lowest SV values are stored in the range \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a42ac41f06222b9175e029516e39d24d9}\label{class_image_processing_1_1_color___processing_a42ac41f06222b9175e029516e39d24d9}} 
+std\+::pair$<$ double, double $>$ \mbox{\hyperlink{class_image_processing_1_1_color___processing_a42ac41f06222b9175e029516e39d24d9}{black\+\_\+threshold}} = std\+::pair$<$double,double$>$ (0,0)
+\begin{DoxyCompactList}\small\item\em the givent threshold -\/ acts like an additional black filter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_color___processing_a0f409e933954d9a45d82886264842529}\label{class_image_processing_1_1_color___processing_a0f409e933954d9a45d82886264842529}} 
+std\+::vector$<$ cv\+::\+Vec3b $>$ \mbox{\hyperlink{class_image_processing_1_1_color___processing_a0f409e933954d9a45d82886264842529}{pixels}}
+\begin{DoxyCompactList}\small\item\em the pixels stored for evaluation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class that helps to extract information about the color values of pixels in an image. 
+
+This class helps generating a color filter given an image. It will run through the pixels of an input image and store the highest and lowest H\+SV values. Given that information it creates a filter for that color range. Also it is possible to construct a black filter, meaning to get the lowest SV values of an Image. This way it is possible to extract dark regions of an image 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Color\+\_\+\+Processing.\+hpp\end{DoxyCompactItemize}

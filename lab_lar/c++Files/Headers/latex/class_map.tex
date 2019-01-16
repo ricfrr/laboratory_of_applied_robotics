@@ -1,0 +1,168 @@
+\hypertarget{class_map}{}\section{Map Class Reference}
+\label{class_map}\index{Map@{Map}}
+
+
+Class for handling the map.  
+
+
+
+
+{\ttfamily \#include $<$Map.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_map_a0f5ad0fd4563497b4214038cbca8b582}{Map}} ()
+\item 
+\mbox{\hyperlink{class_map_aa403fbe09394ccf39747588f5168e3b2}{$\sim$\+Map}} ()
+\item 
+void \mbox{\hyperlink{class_map_a02537656e91e97077dfdfc5d84c3027b}{create\+Map}} (const Mat \&img)
+\item 
+\mbox{\Hypertarget{class_map_aaba4246a4400e03db7218828402994df}\label{class_map_aaba4246a4400e03db7218828402994df}} 
+void {\bfseries get\+Pixel\+Dimensions} (int \&width, int \&height)
+\item 
+\mbox{\Hypertarget{class_map_a8eb8b7841ba4ccf02646fe2c288c7fc5}\label{class_map_a8eb8b7841ba4ccf02646fe2c288c7fc5}} 
+void {\bfseries get\+Arena\+Cells} (std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$ \&cells)
+\item 
+\mbox{\Hypertarget{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}\label{class_map_a0bc04be78a3badfaa364bc3f48fbfdfe}} 
+void {\bfseries get\+Grid} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$$>$$>$ \&grid)
+\item 
+\mbox{\Hypertarget{class_map_adf1aceac80d4cbfc91a5cf158c009c9d}\label{class_map_adf1aceac80d4cbfc91a5cf158c009c9d}} 
+\mbox{\hyperlink{class_cell}{Cell}} $\ast$ {\bfseries get\+Cell} (cv\+::\+Point for\+Point)
+\item 
+\mbox{\Hypertarget{class_map_a5bb3db6b37f85b3c3c28af7eafdba9f5}\label{class_map_a5bb3db6b37f85b3c3c28af7eafdba9f5}} 
+\mbox{\hyperlink{class_l_a_r_1_1_obstacle}{L\+A\+R\+::\+Obstacle}} {\bfseries get\+Obstacles} ()
+\item 
+\mbox{\Hypertarget{class_map_a8b8801b63526341b3ba9da76d26c539a}\label{class_map_a8b8801b63526341b3ba9da76d26c539a}} 
+\mbox{\hyperlink{struct_image_processing_1_1_digit___recognition_1_1_people_storage}{Digit\+\_\+\+Recognition\+::\+People\+Storage}} {\bfseries get\+People} ()
+\item 
+\mbox{\Hypertarget{class_map_a2dd05b2491aecf1f84c3f84ef53aea6b}\label{class_map_a2dd05b2491aecf1f84c3f84ef53aea6b}} 
+\mbox{\hyperlink{class_l_a_r_1_1_exit_point}{L\+A\+R\+::\+Exit\+Point}} {\bfseries get\+Exit\+Point} ()
+\item 
+\mbox{\Hypertarget{class_map_a508e78745bbbc96a64fa0e72d010680a}\label{class_map_a508e78745bbbc96a64fa0e72d010680a}} 
+bool {\bfseries circle\+Contact} (std\+::vector$<$ cv\+::\+Point $>$ corners, \mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}} $\ast$circle)
+\item 
+\mbox{\Hypertarget{class_map_ab65977297f93239ddabed51ea15fc8fe}\label{class_map_ab65977297f93239ddabed51ea15fc8fe}} 
+double {\bfseries distance\+Between\+Two\+Points} (double x, double y, double a, double b)
+\item 
+int \mbox{\hyperlink{class_map_a2ed476fb2f9142980ce447df2b066638}{get\+Image\+Width}} ()
+\begin{DoxyCompactList}\small\item\em return the width of the image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a77781f371aaf9f386f993714dbef40ec}{get\+Image\+Height}} ()
+\begin{DoxyCompactList}\small\item\em return the height of the image \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a56085c67347222241299765fe89e615d}{get\+Grid\+Col\+Num}} ()
+\begin{DoxyCompactList}\small\item\em return the number of columns in the grid \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}{get\+Grid\+Row\+Num}} ()
+\begin{DoxyCompactList}\small\item\em return the number of rows in the grid \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a4caa93dd96a400c6fc12de7ca68e7518}\label{class_map_a4caa93dd96a400c6fc12de7ca68e7518}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a4caa93dd96a400c6fc12de7ca68e7518}{get\+Nearest\+Neighbors}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring cells for a cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}\label{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a5034e15f3f4fbd3a0b2e09ed7415dc3e}{get\+Empty\+Nearest\+Neighbors}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring empty cells for a cell \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}\label{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_map_a9bf65dfd56c7a8e1c51573985a7e2277}{get\+Nearest\+Neighbors}} (cv\+::\+Point cell\+In\+Point)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring cells for a cell at a point \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}\label{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}} 
+std\+::vector$<$ std\+::vector$<$ cv\+::\+Point $>$ $>$ \mbox{\hyperlink{class_map_abf9cc0e6b79fbc7401b62d7dafcdcbd1}{get\+Empty\+Nearest\+Neighbors\+Points}} (\mbox{\hyperlink{class_cell}{Cell}} $\ast$\&cell)
+\begin{DoxyCompactList}\small\item\em returns 4 vectors with top, right, bottom \& left neighboring center points of empty cells for a cell \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_map_a550c4a27e88ecaed45b6fe075c647751}\label{class_map_a550c4a27e88ecaed45b6fe075c647751}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_cell}{Cell}} $\ast$ $>$ $>$ {\bfseries grid}
+\item 
+\mbox{\Hypertarget{class_map_acb457d584b56b2f61a2f191f60c1c15c}\label{class_map_acb457d584b56b2f61a2f191f60c1c15c}} 
+double \mbox{\hyperlink{class_map_acb457d584b56b2f61a2f191f60c1c15c}{n\+\_\+multiplier}} = 2.\+0
+\begin{DoxyCompactList}\small\item\em the distance a neighboring cell is given based on cell width/height and a multiplier \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_map_ad766d9e026f8085e6b113d8274b2b109}\label{class_map_ad766d9e026f8085e6b113d8274b2b109}} 
+bool \mbox{\hyperlink{class_map_ad766d9e026f8085e6b113d8274b2b109}{quick\+Calculation}} = true
+\begin{DoxyCompactList}\small\item\em a flag that indicates that the path planning algorithm should skip possible solution and have a shorter calculation time \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for handling the map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_map_a0f5ad0fd4563497b4214038cbca8b582}\label{class_map_a0f5ad0fd4563497b4214038cbca8b582}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection{\texorpdfstring{Map()}{Map()}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of the \mbox{\hyperlink{class_map}{Map}} class \mbox{\Hypertarget{class_map_aa403fbe09394ccf39747588f5168e3b2}\label{class_map_aa403fbe09394ccf39747588f5168e3b2}} 
+\index{Map@{Map}!````~Map@{$\sim$\+Map}}
+\index{````~Map@{$\sim$\+Map}!Map@{Map}}
+\subsubsection{\texorpdfstring{$\sim$\+Map()}{~Map()}}
+{\footnotesize\ttfamily Map\+::$\sim$\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of the \mbox{\hyperlink{class_map}{Map}} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_map_a02537656e91e97077dfdfc5d84c3027b}\label{class_map_a02537656e91e97077dfdfc5d84c3027b}} 
+\index{Map@{Map}!create\+Map@{create\+Map}}
+\index{create\+Map@{create\+Map}!Map@{Map}}
+\subsubsection{\texorpdfstring{create\+Map()}{createMap()}}
+{\footnotesize\ttfamily void Map\+::create\+Map (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+create a map given the a photo of the arena 
+\begin{DoxyParams}{Parameters}
+{\em img} & photo of the arena after perspective transformation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_map_a56085c67347222241299765fe89e615d}\label{class_map_a56085c67347222241299765fe89e615d}} 
+\index{Map@{Map}!get\+Grid\+Col\+Num@{get\+Grid\+Col\+Num}}
+\index{get\+Grid\+Col\+Num@{get\+Grid\+Col\+Num}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Grid\+Col\+Num()}{getGridColNum()}}
+{\footnotesize\ttfamily int Map\+::get\+Grid\+Col\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the number of columns in the grid 
+
+\begin{DoxyReturn}{Returns}
+the number of columns in the grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}\label{class_map_a1cb1dccec0a3f9f2d25f5f3dfb224942}} 
+\index{Map@{Map}!get\+Grid\+Row\+Num@{get\+Grid\+Row\+Num}}
+\index{get\+Grid\+Row\+Num@{get\+Grid\+Row\+Num}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Grid\+Row\+Num()}{getGridRowNum()}}
+{\footnotesize\ttfamily int Map\+::get\+Grid\+Row\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the number of rows in the grid 
+
+\begin{DoxyReturn}{Returns}
+the number of rows in the grid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a77781f371aaf9f386f993714dbef40ec}\label{class_map_a77781f371aaf9f386f993714dbef40ec}} 
+\index{Map@{Map}!get\+Image\+Height@{get\+Image\+Height}}
+\index{get\+Image\+Height@{get\+Image\+Height}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Image\+Height()}{getImageHeight()}}
+{\footnotesize\ttfamily int Map\+::get\+Image\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the height of the image 
+
+\begin{DoxyReturn}{Returns}
+the height of the image 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_map_a2ed476fb2f9142980ce447df2b066638}\label{class_map_a2ed476fb2f9142980ce447df2b066638}} 
+\index{Map@{Map}!get\+Image\+Width@{get\+Image\+Width}}
+\index{get\+Image\+Width@{get\+Image\+Width}!Map@{Map}}
+\subsubsection{\texorpdfstring{get\+Image\+Width()}{getImageWidth()}}
+{\footnotesize\ttfamily int Map\+::get\+Image\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the width of the image 
+
+\begin{DoxyReturn}{Returns}
+the width of the image 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Map.\+hpp\end{DoxyCompactItemize}

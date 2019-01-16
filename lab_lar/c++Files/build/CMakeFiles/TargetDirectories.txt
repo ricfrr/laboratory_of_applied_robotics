@@ -1,0 +1,3 @@
+/home/robotics/robotics/nxt_controller/pc/laboratory_of_applied_robotics/c++Files/build/CMakeFiles/edit_cache.dir
+/home/robotics/robotics/nxt_controller/pc/laboratory_of_applied_robotics/c++Files/build/CMakeFiles/rebuild_cache.dir
+/home/robotics/robotics/nxt_controller/pc/laboratory_of_applied_robotics/c++Files/build/CMakeFiles/lar.dir

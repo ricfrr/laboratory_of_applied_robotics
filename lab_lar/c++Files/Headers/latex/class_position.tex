@@ -1,0 +1,111 @@
+\hypertarget{class_position}{}\section{Position Class Reference}
+\label{class_position}\index{Position@{Position}}
+
+
+describes a position of a point using x and y coordinates and orientation  
+
+
+
+
+{\ttfamily \#include $<$Position.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_position_a369a577425f8ba02e8750d04b6a088db}\label{class_position_a369a577425f8ba02e8750d04b6a088db}} 
+\mbox{\hyperlink{class_position_a369a577425f8ba02e8750d04b6a088db}{Position}} ()
+\begin{DoxyCompactList}\small\item\em constructor of the \mbox{\hyperlink{class_position}{Position}} class \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_position_adafef18a82e49bf4c91ff0a31b82ff05}{Position}} (cv\+::\+Point2d pos, double orient)
+\begin{DoxyCompactList}\small\item\em constructor of the \mbox{\hyperlink{class_position}{Position}} class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_position_abe83df4cab7af756636b4e39e4378f4a}\label{class_position_abe83df4cab7af756636b4e39e4378f4a}} 
+\mbox{\hyperlink{class_position_abe83df4cab7af756636b4e39e4378f4a}{$\sim$\+Position}} ()
+\begin{DoxyCompactList}\small\item\em destructor of the \mbox{\hyperlink{class_position}{Position}} class \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_position_acf00d240f456cc9b2c2910e803f53605}{set\+Position}} (cv\+::\+Point2d position\+\_\+p, double orientation\+\_\+p)
+\begin{DoxyCompactList}\small\item\em set the values of the position \end{DoxyCompactList}\item 
+cv\+::\+Point2d \mbox{\hyperlink{class_position_a9de96881a3ea441b4cfb26339172dc6f}{get\+Coordinates}} ()
+\begin{DoxyCompactList}\small\item\em return the coordinates of the position \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_position_af0b1158a379d54dd7ee08164eafe262e}{get\+Orientation}} ()
+\begin{DoxyCompactList}\small\item\em return the orientation of the position \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_position_abdbf5ff8fe616dbc3c9381fce3758845}\label{class_position_abdbf5ff8fe616dbc3c9381fce3758845}} 
+bool {\bfseries orientation\+\_\+locked} = false
+\item 
+\mbox{\Hypertarget{class_position_ad31b8c464b0cee9201cf39f395eb365f}\label{class_position_ad31b8c464b0cee9201cf39f395eb365f}} 
+double {\bfseries orientation}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+describes a position of a point using x and y coordinates and orientation 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_position_adafef18a82e49bf4c91ff0a31b82ff05}\label{class_position_adafef18a82e49bf4c91ff0a31b82ff05}} 
+\index{Position@{Position}!Position@{Position}}
+\index{Position@{Position}!Position@{Position}}
+\subsubsection{\texorpdfstring{Position()}{Position()}}
+{\footnotesize\ttfamily Position\+::\+Position (\begin{DoxyParamCaption}\item[{cv\+::\+Point2d}]{pos,  }\item[{double}]{orient }\end{DoxyParamCaption})}
+
+
+
+constructor of the \mbox{\hyperlink{class_position}{Position}} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & x and y coordinates \\
+\hline
+{\em orient} & orientation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_position_a9de96881a3ea441b4cfb26339172dc6f}\label{class_position_a9de96881a3ea441b4cfb26339172dc6f}} 
+\index{Position@{Position}!get\+Coordinates@{get\+Coordinates}}
+\index{get\+Coordinates@{get\+Coordinates}!Position@{Position}}
+\subsubsection{\texorpdfstring{get\+Coordinates()}{getCoordinates()}}
+{\footnotesize\ttfamily cv\+::\+Point2d Position\+::get\+Coordinates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the coordinates of the position 
+
+\begin{DoxyReturn}{Returns}
+the coordinates of the position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_position_af0b1158a379d54dd7ee08164eafe262e}\label{class_position_af0b1158a379d54dd7ee08164eafe262e}} 
+\index{Position@{Position}!get\+Orientation@{get\+Orientation}}
+\index{get\+Orientation@{get\+Orientation}!Position@{Position}}
+\subsubsection{\texorpdfstring{get\+Orientation()}{getOrientation()}}
+{\footnotesize\ttfamily double Position\+::get\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the orientation of the position 
+
+\begin{DoxyReturn}{Returns}
+the orientation of the position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_position_acf00d240f456cc9b2c2910e803f53605}\label{class_position_acf00d240f456cc9b2c2910e803f53605}} 
+\index{Position@{Position}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Position@{Position}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Position\+::set\+Position (\begin{DoxyParamCaption}\item[{cv\+::\+Point2d}]{position\+\_\+p,  }\item[{double}]{orientation\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+set the values of the position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position\+\_\+p} & coordinates \\
+\hline
+{\em orientation\+\_\+p} & orientation \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Position.\+hpp\end{DoxyCompactItemize}

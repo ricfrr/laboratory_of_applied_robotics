@@ -1,0 +1,103 @@
+\hypertarget{class_path2_d_1_1_dubin_path_finder}{}\section{Path2D\+:\+:Dubin\+Path\+Finder Class Reference}
+\label{class_path2_d_1_1_dubin_path_finder}\index{Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}}
+
+
+Class that given the path coordinates allow to find the path using the dubins path algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Dubin\+Path\+Finder.\+hpp$>$}
+
+Inheritance diagram for Path2D\+:\+:Dubin\+Path\+Finder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_path2_d_1_1_dubin_path_finder}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_1_1_possible_dubin_path}{Possible\+Dubin\+Path}}
+\begin{DoxyCompactList}\small\item\em class that describes a possible dubin path (useful during the calculation) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_path2_d_1_1_dubin_path_finder_1_1standard_conf}{standard\+Conf}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_a663ec1b97f56c4a36cbe242752d1253a}{Dubin\+Path\+Finder}} (\mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}} path\+\_\+coordinates\+\_\+i, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\begin{DoxyCompactList}\small\item\em constructor of the \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder}{Dubin\+Path\+Finder}} class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path2_d_1_1_dubin_path_finder_aa7bc3ba033b48ad8657e9c20b33c8f50}\label{class_path2_d_1_1_dubin_path_finder_aa7bc3ba033b48ad8657e9c20b33c8f50}} 
+{\bfseries Dubin\+Path\+Finder} (\mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_dubin_path_finder_a053bc3ec20cfaf50927f055f2b0964d8}\label{class_path2_d_1_1_dubin_path_finder_a053bc3ec20cfaf50927f055f2b0964d8}} 
+\mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_a053bc3ec20cfaf50927f055f2b0964d8}{$\sim$\+Dubin\+Path\+Finder}} ()
+\begin{DoxyCompactList}\small\item\em destructor of the \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder}{Dubin\+Path\+Finder}} class \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}} $>$ \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_abc1e93ad55c02aec66807fea41729ff6}{dubin\+Shortest\+Path}} (std\+::vector$<$ cv\+::\+Point $>$ \&alternative\+\_\+\+Points)
+\begin{DoxyCompactList}\small\item\em function that find the dubins shortest path and return a vector of line \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}} $>$ \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder_a53d6ee86e364b403274f403af6e5088e}{shortest\+Path}} (std\+::vector$<$ cv\+::\+Point $>$ \&alternative\+\_\+\+Points)
+\begin{DoxyCompactList}\small\item\em function that find the dubins shortest path and return a vector of line \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class that given the path coordinates allow to find the path using the dubins path algorithm. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_dubin_path_finder_a663ec1b97f56c4a36cbe242752d1253a}\label{class_path2_d_1_1_dubin_path_finder_a663ec1b97f56c4a36cbe242752d1253a}} 
+\index{Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}!Dubin\+Path\+Finder@{Dubin\+Path\+Finder}}
+\index{Dubin\+Path\+Finder@{Dubin\+Path\+Finder}!Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}}
+\subsubsection{\texorpdfstring{Dubin\+Path\+Finder()}{DubinPathFinder()}}
+{\footnotesize\ttfamily Path2\+D\+::\+Dubin\+Path\+Finder\+::\+Dubin\+Path\+Finder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path2_d_1_1_element_1_1_path_coordinates}{Path\+Coordinates}}}]{path\+\_\+coordinates\+\_\+i,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+constructor of the \mbox{\hyperlink{class_path2_d_1_1_dubin_path_finder}{Dubin\+Path\+Finder}} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+coordinates\+\_\+i} & coordinates of the path that we want to find \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_dubin_path_finder_abc1e93ad55c02aec66807fea41729ff6}\label{class_path2_d_1_1_dubin_path_finder_abc1e93ad55c02aec66807fea41729ff6}} 
+\index{Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}!dubin\+Shortest\+Path@{dubin\+Shortest\+Path}}
+\index{dubin\+Shortest\+Path@{dubin\+Shortest\+Path}!Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}}
+\subsubsection{\texorpdfstring{dubin\+Shortest\+Path()}{dubinShortestPath()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}}$>$ Path2\+D\+::\+Dubin\+Path\+Finder\+::dubin\+Shortest\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{alternative\+\_\+\+Points }\end{DoxyParamCaption})}
+
+
+
+function that find the dubins shortest path and return a vector of line 
+
+\begin{DoxyItemize}
+\item alternative\+\_\+\+Points a point set for every obsticle that was found along the way \begin{DoxyReturn}{Returns}
+vector of lines which describes the path 
+\end{DoxyReturn}
+\end{DoxyItemize}
+\mbox{\Hypertarget{class_path2_d_1_1_dubin_path_finder_a53d6ee86e364b403274f403af6e5088e}\label{class_path2_d_1_1_dubin_path_finder_a53d6ee86e364b403274f403af6e5088e}} 
+\index{Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}!shortest\+Path@{shortest\+Path}}
+\index{shortest\+Path@{shortest\+Path}!Path2\+D\+::\+Dubin\+Path\+Finder@{Path2\+D\+::\+Dubin\+Path\+Finder}}
+\subsubsection{\texorpdfstring{shortest\+Path()}{shortestPath()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_path2_d_1_1_element_1_1_line}{Line}}$>$ Path2\+D\+::\+Dubin\+Path\+Finder\+::shortest\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{alternative\+\_\+\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+function that find the dubins shortest path and return a vector of line 
+
+\begin{DoxyItemize}
+\item alternative\+\_\+\+Points a point set for every obsticle that was found along the way \begin{DoxyReturn}{Returns}
+vector of lines which describes the path 
+\end{DoxyReturn}
+\end{DoxyItemize}
+
+
+Implements \mbox{\hyperlink{class_path2_d_1_1_path_finder_a5d050326067c313925d87ac37612a181}{Path2\+D\+::\+Path\+Finder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Dubin\+Path\+Finder.\+hpp\end{DoxyCompactItemize}

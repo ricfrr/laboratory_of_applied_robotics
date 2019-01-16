@@ -1,0 +1,122 @@
+\hypertarget{class_rectangle}{}\section{Rectangle Class Reference}
+\label{class_rectangle}\index{Rectangle@{Rectangle}}
+
+
+Class for handling square in the map.  
+
+
+
+
+{\ttfamily \#include $<$Rectangle.\+hpp$>$}
+
+Inheritance diagram for Rectangle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_rectangle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rectangle_a8a933e0ebd9e80ce91e61ffe87fd577e}{Rectangle}} ()
+\item 
+\mbox{\Hypertarget{class_rectangle_a98bb642b8f2ebe0e33b4de980ecb42fa}\label{class_rectangle_a98bb642b8f2ebe0e33b4de980ecb42fa}} 
+{\bfseries Rectangle} (std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_polygon_a347474823f6113a34fdefeee276d1b9e}{points}})
+\item 
+\mbox{\hyperlink{class_rectangle_a494c076b13aadf26efdce07d23c61ddd}{$\sim$\+Rectangle}} ()
+\item 
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_rectangle_ae250a28affce22b4a363d1a0213df9fa}{get\+Corners}} ()
+\item 
+void \mbox{\hyperlink{class_rectangle_abd4c59ad5fa7010563f2efb95c553b24}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
+\item 
+\mbox{\Hypertarget{class_rectangle_a679fadb201becac2a2eb45a689426ab0}\label{class_rectangle_a679fadb201becac2a2eb45a689426ab0}} 
+cv\+::\+Point {\bfseries get\+Top\+Left} ()
+\item 
+\mbox{\Hypertarget{class_rectangle_a2e4b7aa32ed159fe44e580d6add40e26}\label{class_rectangle_a2e4b7aa32ed159fe44e580d6add40e26}} 
+void {\bfseries set\+Top\+Left} (cv\+::\+Point top\+Left)
+\item 
+\mbox{\Hypertarget{class_rectangle_a2591c940d45e3449f63f95eb13c0aba1}\label{class_rectangle_a2591c940d45e3449f63f95eb13c0aba1}} 
+cv\+::\+Point {\bfseries get\+Top\+Right} ()
+\item 
+\mbox{\Hypertarget{class_rectangle_a529ad55b3f154a231b6aad0162d8430f}\label{class_rectangle_a529ad55b3f154a231b6aad0162d8430f}} 
+void {\bfseries set\+Top\+Right} (cv\+::\+Point top\+Right)
+\item 
+\mbox{\Hypertarget{class_rectangle_a33b9ffde2e54e9577cb369a59e965adc}\label{class_rectangle_a33b9ffde2e54e9577cb369a59e965adc}} 
+cv\+::\+Point {\bfseries get\+Bottom\+Left} ()
+\item 
+\mbox{\Hypertarget{class_rectangle_ab393bd8f13ec5b90ed02f8d246f03ec0}\label{class_rectangle_ab393bd8f13ec5b90ed02f8d246f03ec0}} 
+void {\bfseries set\+Bottom\+Left} (cv\+::\+Point bottom\+Left)
+\item 
+\mbox{\Hypertarget{class_rectangle_a5b5aa3a6581a32dd9e2cfc27dbda4229}\label{class_rectangle_a5b5aa3a6581a32dd9e2cfc27dbda4229}} 
+cv\+::\+Point {\bfseries get\+Bottom\+Right} ()
+\item 
+\mbox{\Hypertarget{class_rectangle_af5cf0dfffa35328bf5d7e890d0363354}\label{class_rectangle_af5cf0dfffa35328bf5d7e890d0363354}} 
+void {\bfseries set\+Bottom\+Right} (cv\+::\+Point bottom\+Right)
+\item 
+\mbox{\Hypertarget{class_rectangle_ac88c4a06b2688500d1209957eba41335}\label{class_rectangle_ac88c4a06b2688500d1209957eba41335}} 
+void {\bfseries find\+Half} (int \&half\+\_\+h, int \&half\+\_\+w, const std\+::vector$<$ cv\+::\+Point $>$ \&corners)
+\item 
+\mbox{\Hypertarget{class_rectangle_a415da71ec3ad29982ab35efcfd447b37}\label{class_rectangle_a415da71ec3ad29982ab35efcfd447b37}} 
+void \mbox{\hyperlink{class_rectangle_a415da71ec3ad29982ab35efcfd447b37}{assign\+\_\+points}} ()
+\begin{DoxyCompactList}\small\item\em assignes points to 1., 2., 3 etc point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_rectangle_a705f4807bb92477bef644fcd63ed6c20}\label{class_rectangle_a705f4807bb92477bef644fcd63ed6c20}} 
+cv\+::\+Point {\bfseries top\+\_\+left}
+\item 
+\mbox{\Hypertarget{class_rectangle_aa6c87573306e8ee0a7470350bfe2a17f}\label{class_rectangle_aa6c87573306e8ee0a7470350bfe2a17f}} 
+cv\+::\+Point {\bfseries top\+\_\+right}
+\item 
+\mbox{\Hypertarget{class_rectangle_a5d2107189bd36969453560dce722ce6d}\label{class_rectangle_a5d2107189bd36969453560dce722ce6d}} 
+cv\+::\+Point {\bfseries bottom\+\_\+left}
+\item 
+\mbox{\Hypertarget{class_rectangle_a6ed1f4dfabeb0930b864e08fb5be5915}\label{class_rectangle_a6ed1f4dfabeb0930b864e08fb5be5915}} 
+cv\+::\+Point {\bfseries bottom\+\_\+right}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for handling square in the map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rectangle_a8a933e0ebd9e80ce91e61ffe87fd577e}\label{class_rectangle_a8a933e0ebd9e80ce91e61ffe87fd577e}} 
+\index{Rectangle@{Rectangle}!Rectangle@{Rectangle}}
+\index{Rectangle@{Rectangle}!Rectangle@{Rectangle}}
+\subsubsection{\texorpdfstring{Rectangle()}{Rectangle()}}
+{\footnotesize\ttfamily Rectangle\+::\+Rectangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of square class \mbox{\Hypertarget{class_rectangle_a494c076b13aadf26efdce07d23c61ddd}\label{class_rectangle_a494c076b13aadf26efdce07d23c61ddd}} 
+\index{Rectangle@{Rectangle}!````~Rectangle@{$\sim$\+Rectangle}}
+\index{````~Rectangle@{$\sim$\+Rectangle}!Rectangle@{Rectangle}}
+\subsubsection{\texorpdfstring{$\sim$\+Rectangle()}{~Rectangle()}}
+{\footnotesize\ttfamily Rectangle\+::$\sim$\+Rectangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of square class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rectangle_ae250a28affce22b4a363d1a0213df9fa}\label{class_rectangle_ae250a28affce22b4a363d1a0213df9fa}} 
+\index{Rectangle@{Rectangle}!get\+Corners@{get\+Corners}}
+\index{get\+Corners@{get\+Corners}!Rectangle@{Rectangle}}
+\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Rectangle\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of corners \begin{DoxyReturn}{Returns}
+the list of corners 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rectangle_abd4c59ad5fa7010563f2efb95c553b24}\label{class_rectangle_abd4c59ad5fa7010563f2efb95c553b24}} 
+\index{Rectangle@{Rectangle}!set\+Corners@{set\+Corners}}
+\index{set\+Corners@{set\+Corners}!Rectangle@{Rectangle}}
+\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
+{\footnotesize\ttfamily void Rectangle\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em corners} & return the list of corners \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Rectangle.\+hpp\end{DoxyCompactItemize}
