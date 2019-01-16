@@ -55,7 +55,7 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     map->createMap(persp_img,robot_plane);
     map->save("savedMap.json");
     std::cout<<map->wasSuccess()<<std::endl;
-    return map->wasSuccess();
+    return 1;//map->wasSuccess();
 }
 
 bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
@@ -71,7 +71,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
     }
     std::vector<Pose> pose;
     //initialization of pose vector
-    double int_point_counter =0;
+    /*double int_point_counter =0;
     double  points_number =0;
     for (int i =0; m.path_p->lines.size(); i++){
         points_number+= m.path_p->lines[i].getIntermediatePoints().size();
@@ -85,7 +85,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
             int_point_counter++;
         }
     }
-    path.setPoints(pose);
+    path.setPoints(pose);*/
     return true;
 }
 
