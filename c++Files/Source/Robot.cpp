@@ -143,9 +143,6 @@ bool Robot::findRobot(const cv::Mat &img){
             
             if(!triangle.points.empty()){
             update(triangle.points);
-            
-                //very first initialization
-                initialAngle = angle;
                 
             }
         }
@@ -162,22 +159,18 @@ bool Robot::findRobot(const cv::Mat &img){
     }
 }
 
-cv::Point Robot::getOr(const cv::Point &ref){
+cv::Point Robot::getPosition(){
     
-    cv::Point Ob = center;
+    //both in robot
+    return center_wheel - initialPosition;
+}
+
+cv::Point Robot::getPosition2d(const cv::Point &ref,const cv::Point &error){
     
-    std::pair<double, double> Obmap =
-    Geometry::convertPixelToMillimeterInRoboPlane(Ob,ref);
+    //ref is the arena start point and error the distance to the white circle
+    std::pair<double, double> result = Geometry::convertPixelToMillimeterInMapPlane(getPosition(), ref-error);
     
-    cv::Point2d ObmapPoint =
-    cv::Point2d(Obmap.first,Obmap.second)*ImageProcessing::Settings::PIXEL_SCALE;
-    
-    Ob = cv::Point(ObmapPoint);
-    
-    cv::Point Or = cv::Point(5,0)*ImageProcessing::Settings::PIXEL_SCALE + Ob;
-    
-    return Or;
-    
+    return cv::Point2d(result.first,result.second);
 }
 
 void Robot::move(const cv::Point &location, const double &angle){

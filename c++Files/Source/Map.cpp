@@ -96,6 +96,9 @@ void Map::createMap(const Mat &img,const Mat &robot_plane) {
     std::cout << "find robot        ->";
     this->robo = new Robot;
     robo->findRobot(robot_plane);
+    robo->initialPosition = robo->getPosition();
+    robo->initialAngle = robo->angle;
+    std::cout << " position in map: (" << robo->initialPosition.x << "," << robo->initialPosition.y << ")";
     std::cout << " done" << std::endl;
     
     std::cout << "clip points       ->";

@@ -219,8 +219,10 @@ cv::Mat Visualizer::print_shapes(cv::Mat &result){
     }
     
     //print Car
-    if(!car->points.empty())
+    if(!car->points.empty()){
         cv::fillConvexPoly(result, car->points, cv::Scalar(255,100,0));
+        cv::circle(result, car->initialPosition, 20, cv::Scalar(0,0,0));
+    }
     
     
     return result;

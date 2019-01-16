@@ -40,10 +40,13 @@ public:
     double angle;
     
     const int epsilon_approx = 7;
+
     
-    /// computes the reference Point Ob in Pixels in Map reference frame
-    cv::Point getOr(const cv::Point &ref);
+    /// computes the position in Pixels in Map reference frame
+    cv::Point getPosition();
     
+    /// computes the position in mm in Map reference frame
+    cv::Point getPosition2d(const cv::Point &ref, const cv::Point &error = cv::Point(0,0));
     
 
 private:
