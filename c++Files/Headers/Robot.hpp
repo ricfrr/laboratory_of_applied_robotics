@@ -31,12 +31,20 @@ public:
     
     void move(const cv::Point &location, const double &angle);
     
+    cv::Point initialPosition = cv::Point(0,0);
+    double initialAngle = 0;
+    
     double radius;
     cv::Point center;
     cv::Point center_wheel;
     double angle;
     
     const int epsilon_approx = 7;
+    
+    /// computes the reference Point Ob in Pixels in Map reference frame
+    cv::Point getOr(const cv::Point &ref);
+    
+    
 
 private:
 

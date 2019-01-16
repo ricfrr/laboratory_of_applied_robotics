@@ -128,6 +128,9 @@ public:
     ///returns the startPoint (pixel value) of the arena (upper left corner)
     cv::Point getStartPoint();
     
+    ///get the position of the robot
+    cv::Point2d getPosition();
+    
     void scalePixelsForMap();
     
 private:

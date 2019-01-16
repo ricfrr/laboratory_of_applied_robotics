@@ -143,7 +143,9 @@ bool Robot::findRobot(const cv::Mat &img){
             
             if(!triangle.points.empty()){
             update(triangle.points);
-               // return true;
+            
+                //very first initialization
+                initialAngle = angle;
                 
             }
         }
@@ -158,6 +160,24 @@ bool Robot::findRobot(const cv::Mat &img){
     }else{
         return false;
     }
+}
+
+cv::Point Robot::getOr(const cv::Point &ref){
+    
+    cv::Point Ob = center;
+    
+    std::pair<double, double> Obmap =
+    Geometry::convertPixelToMillimeterInRoboPlane(Ob,ref);
+    
+    cv::Point2d ObmapPoint =
+    cv::Point2d(Obmap.first,Obmap.second)*ImageProcessing::Settings::PIXEL_SCALE;
+    
+    Ob = cv::Point(ObmapPoint);
+    
+    cv::Point Or = cv::Point(5,0)*ImageProcessing::Settings::PIXEL_SCALE + Ob;
+    
+    return Or;
+    
 }
 
 void Robot::move(const cv::Point &location, const double &angle){
