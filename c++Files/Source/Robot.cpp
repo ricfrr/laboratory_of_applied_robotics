@@ -63,6 +63,10 @@ void Robot::update(const std::vector<cv::Point> &points){
         deg = 0;
     }
     angle+=M_PI;
+    // center of the wheel of the robot
+    center_wheel.x = (int)(center.x + 50*ImageProcessing::Settings::PIXEL_SCALE*cos(angle));
+    center_wheel.y = (int)(center.y + 50*ImageProcessing::Settings::PIXEL_SCALE*sin(angle));
+
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
     this->radius = this->radius/2;
@@ -80,8 +84,6 @@ double robotPerimeter(std::vector<cv::Point> corner){
 }
 
 bool Robot::findRobot(const cv::Mat &img){
-
-
 
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
@@ -146,9 +148,11 @@ bool Robot::findRobot(const cv::Mat &img){
             }
         }
     }
-    /*circle(contours_img, this->center, 3, Scalar(0, 255, 0), -1, 8, 0);
+    circle(contours_img, this->center, 3, Scalar(0, 255, 0), -2, 8, 0);
+    circle(contours_img, this->center_wheel, 3, Scalar(255, 255, 0), -2, 8, 0);
+
     imshow("contour robot", contours_img);
-    waitKey(0);*/
+    waitKey(0);
     if(perimeter>0){
         return true;
     }else{

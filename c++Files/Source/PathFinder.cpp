@@ -123,7 +123,7 @@ std::pair<bool,Cell*> collision(cv::Point2d point, Map *map) {
 
 std::pair<bool,Cell*> PathFinder::CollisionDetector::detectCollision(std::vector<Line> &lines_i, Map *map, double max_curvature) {
     
-    int diameter = 2;
+    int diameter = 5; //TODO fix the distance between points
     for (int i = 0; i < lines_i.size(); i++) {
         
         //find the intermediate point and detect if it is a collision

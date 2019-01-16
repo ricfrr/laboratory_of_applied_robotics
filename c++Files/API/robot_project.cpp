@@ -69,8 +69,23 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
             m.plan_mission_two();
             break;
     }
-    
-    
+    std::vector<Pose> pose;
+    //initialization of pose vector
+    double int_point_counter =0;
+    double  points_number =0;
+    for (int i =0; m.path_p->lines.size(); i++){
+        points_number+= m.path_p->lines[i].getIntermediatePoints().size();
+    }
+    for (int i =0; m.path_p->lines.size(); i++){
+        std::vector<cv::Point2d> intermediate_points = m.path_p->lines[i].getIntermediatePoints();
+        for (int j =0; j<intermediate_points.size(); j++){
+            //int_point_counter*5*Setting::PIXEL_SCALE i the distance from the starting point
+            std::pair<double,double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],map->getStartPoint());
+            pose.push_back(Pose(int_point_counter/points_number,mm_point.first,mm_point.second,Geometry::angle_rad(intermediate_points[j],intermediate_points[j+1]),m.path_p->lines[i].getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
+            int_point_counter++;
+        }
+    }
+    path.setPoints(pose);
     return true;
 }
 

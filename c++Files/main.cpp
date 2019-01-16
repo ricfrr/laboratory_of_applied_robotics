@@ -90,6 +90,7 @@ int main(int argc, char * argv[])
             std::cerr << "(Warning) Failed localization" << std::endl;
             continue;
         }
+
         i++;
     }
 

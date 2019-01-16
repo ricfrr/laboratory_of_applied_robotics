@@ -34,6 +34,7 @@ private:
 
     void initializePeopleDimensionDinstance();
     double people_dimension=0;
+    double curvature = 0.1; //  TODO 0.1 should be the real value
     
 private:
     bool isExitReached(std::vector<Path2D::Position*> &point_of_interests);
