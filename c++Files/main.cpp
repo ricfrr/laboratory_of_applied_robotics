@@ -58,40 +58,59 @@ void extract_frames(const string &videoFilePath, std::vector<cv::Mat> &frames) {
     return 0;
 }*/
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char *argv[]) {
+    //camera opening
+    cv::VideoCapture vc;
+    if (vc.open(0)) {
+        // Set up the capture device properties
+        if (!(vc.set(cv::CAP_PROP_FRAME_WIDTH, 1280)
+              && vc.set(cv::CAP_PROP_FRAME_HEIGHT, 1024)
+              && vc.set(cv::CAP_PROP_FPS, 30))) {
+            throw std::runtime_error("Failed to set parameters");
+        }
+    }
 
 
-    RobotProject rp = RobotProject(argc,argv);
+    RobotProject rp = RobotProject(argc, argv);
     //RobotProject rp(argc, argv);
     std::vector<cv::Mat> frames;
-    cv:Mat img = imread(argv[1]);
+    cv:
+    Mat img;
+    img = imread(argv[1]);
+    //vc.read(img);
     //extract_frames(argv[1],frames);
-    if (!rp.preprocessMap(img))
-    {
+    if (!rp.preprocessMap(img)) {
         std::cerr << "(Critical) Failed to preprocess map" << std::endl;
         return false;
     }
 
     ApiPath path;
-    if (!rp.planPath(frames[0], path))
-    {
+    if (!rp.planPath(frames[0], path)) {
         std::cerr << "(Critical) Failed to plan path" << std::endl;
         return false;
     }
 
-    int i =0;
-    while (i<frames.size())
-    {
-
+    bool terminating = false;
+    while (!terminating) {
+        vc.read(img);
         std::vector<double> state;
-        if (!rp.localize(frames[i], state))
-        {
+        if (!rp.localize(img, state)) {
             std::cerr << "(Warning) Failed localization" << std::endl;
             continue;
         }
 
-        i++;
+        char c;
+        c = cv::waitKey(30);
+        switch (c)
+        {
+            case 'q':
+                std::cout << "Terminating!" << std::endl;
+                terminating = true;
+                break;
+            default:
+                break;
+        }
+
     }
 
     return 0;
