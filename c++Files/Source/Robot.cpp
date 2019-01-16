@@ -64,8 +64,8 @@ void Robot::update(const std::vector<cv::Point> &points){
     }
     angle+=M_PI;
     // center of the wheel of the robot
-    center_wheel.x = (int)(center.x + 5*ImageProcessing::Settings::PIXEL_SCALE*cos(angle));
-    center_wheel.y = (int)(center.y + 5*ImageProcessing::Settings::PIXEL_SCALE*sin(angle));
+    center_wheel.x = (int)(center.x + 50*ImageProcessing::Settings::PIXEL_SCALE*cos(angle));
+    center_wheel.y = (int)(center.y + 50*ImageProcessing::Settings::PIXEL_SCALE*sin(angle));
 
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);

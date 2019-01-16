@@ -77,31 +77,32 @@ void MissionPlanning::plan_mission_one() {
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
     finalPos.orientation_locked = true;
 
-    if(people_s.size() > 1)
+    if (people_s.size() > 1)
         or2 = Geometry::angle_rad(people_s[0]->center, people_s[1]->center);
-    
+
     Path2D::Path *path = new Path2D::Path(Path2D::Position(map_p->robo->center, map_p->robo->angle),
-                                          Path2D::Position(people_s[0]->center, or2), 0.05, map_p);
+                                          Path2D::Position(people_s[0]->center, or2), this->curvature, map_p);
 
     for (int i = 1; i < people_s.size(); i++) {
-        
-        if(people_s.size() > i+1)
-            or2 = Geometry::angle_rad(people_s[i]->center, people_s[i+1]->center);
-        
+
+        if (people_s.size() > i + 1)
+            or2 = Geometry::angle_rad(people_s[i]->center, people_s[i + 1]->center);
+
         Path2D::Path *p_path = new Path2D::Path(path->end_point,
-                                                Path2D::Position(people_s[i]->center, or2), 0.05, map_p);
+                                                Path2D::Position(people_s[i]->center, or2), this->curvature,
+                                                map_p); //fix the orientation wi
         path = new Path2D::Path(*path, *p_path);
     }
 
     Path2D::Path *p_path = new Path2D::Path(path->end_point,
-                                            finalPos, 0.05, map_p);
+                                            finalPos, this->curvature, map_p);
     path = new Path2D::Path(*path, *p_path);
 
     std::cout << "---- DONE ----" << std::endl;
     auto t1 = std::chrono::steady_clock::now();
     fsec delta = t1 - t0;
     std::cout << delta.count() << "s\n";
-    
+
     this->path_p = path;
 
     Visualizer v(*map_p, path);
@@ -122,27 +123,13 @@ void MissionPlanning::plan_mission_two() {
     std::vector<People> people_v = peops.people;
     std::vector<Path2D::Position *> point_of_interest;
 
-    cv::Point2d start(60, 60);
-    double or1 = 0 * M_PI;
+    //cv::Point2d start(60, 60);
+    //double or1 = 0 * M_PI;
 
     // add people and end point to the point of interest vector
     for (std::vector<People>::iterator it = people_v.begin(); it != people_v.end(); it++) {
         Path2D::Position *tmp_position = new Position(it->getCenter());
-        if (it->name == 4) {
-            tmp_position->setWeight(0);
-        }
-        if (it->name == 2) {
-            tmp_position->setWeight(0);
-        }
-        if (it->name == 1) {
-            tmp_position->setWeight(0);
-        }
-        if (it->name == 3) {
-            tmp_position->setWeight(0);
-        }
-        if (it->name == 5) {
-            tmp_position->setWeight(0);
-        }
+        tmp_position->setWeight(5*10*Settings::PIXEL_SCALE); // 5: bonus in second , 10 is the velocity of the robot 10mm/s so 5*10*pixel_scale give me the rewards
         point_of_interest.push_back(tmp_position);
     }
 
@@ -217,7 +204,7 @@ MissionPlanning::findOptimalPath(Position *start_point, std::vector<Path2D::Posi
                 else
                     j = orientation_number;//to finish the loop immediately when the algorithm check the end point
 
-                path = new Path2D::Path(*start_point, *point_of_interests[i], 0.05, map_p);
+                path = new Path2D::Path(*start_point, *point_of_interests[i], this->curvature, map_p);
                 path_value = path->length - point_of_interests[i]->getWeight();
                 // if the path that we have found is better than the one that we already have, update the parameters
                 if (value > path_value) {
@@ -293,8 +280,10 @@ MissionPlanning::passNearAnotherPerson(Path2D::Path *path, std::vector<Position 
 
                     point_of_interest[j]->setOrientation(angleBetweenPoints(point_of_interest[j]->getCoordinates(),
                                                                             path->end_point.getCoordinates()));
-                    Path2D::Path *tmp_path_1 = new Path2D::Path(path->start_point, *point_of_interest[j], 0.05, map_p);
-                    Path2D::Path *tmp_path_2 = new Path2D::Path(*point_of_interest[j], path->end_point, 0.05, map_p);
+                    Path2D::Path *tmp_path_1 = new Path2D::Path(path->start_point, *point_of_interest[j],
+                                                                this->curvature, map_p);
+                    Path2D::Path *tmp_path_2 = new Path2D::Path(*point_of_interest[j], path->end_point, this->curvature,
+                                                                map_p);
                     Path2D::Path *ref = nullptr;
                     intermediate_person_index.push_back(j);
                     ref = passNearAnotherPerson(tmp_path_2, point_of_interest, index, intermediate_person_index);

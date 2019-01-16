@@ -37,7 +37,16 @@ public:
         double angle = std::atan2(result.y/rho, result.x/rho);
         return (angle);
     }
-    
+
+    static double angle_rad_for_robots(const Point start, const Point end)
+    {
+        cv::Point result = end - start;
+        double rho = std::sqrt(std::pow(result.x,2) + std::pow(result.y,2));
+        double angle = std::atan2(result.y/rho, result.x/rho);
+        return (angle);
+    }
+
+
     static std::pair<double,double> convertPixelToMillimeterInMapPlane(const cv::Point &point, const cv::Point &reference){
         
         return convertPixelToMillimeter(point, reference, ImageProcessing::Settings::PIXEL_SCALE);
