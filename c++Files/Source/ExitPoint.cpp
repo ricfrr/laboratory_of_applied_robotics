@@ -53,8 +53,10 @@ void ExitPoint::findExitPoint(const Mat &img)
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, epsilon_approx, true);
-
-        if (approx_curve.size() == 4)
+        double area = cv::contourArea(contours[i]);
+        
+        
+        if (approx_curve.size() == 4 && area > 2000)
         {
             corners = approx_curve;
             contours_approx = {approx_curve};

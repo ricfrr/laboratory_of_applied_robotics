@@ -89,6 +89,8 @@ std::vector<cv::Rect> Digit_Recognition::get_regions_of_interest(cv::Mat &img){
 
 std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat img_input){
     
+    bool found_one = false;
+    
     //*** new Marvin
     
     std::cout << "\nstarted detecting the digits ";
@@ -212,11 +214,16 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
                 break;
             }
         }
+        
+        if(digit.first == 1)
+            found_one = true;
 
         //create the people data
         if(is_valid(digit.first))
             results.push_back(LAR::People(digit,rects[i]));
         else if (digit.first == 7)
+            results.push_back(LAR::People({1,1},rects[i]));
+        else if (!found_one)
             results.push_back(LAR::People({1,1},rects[i]));
         else
             results.push_back(LAR::People({0,0},rects[i]));
