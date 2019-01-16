@@ -71,7 +71,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
     }
     std::vector<Pose> pose;
     //initialization of pose vector
-    /*double int_point_counter =0;
+    double int_point_counter =0;
     double  points_number =0;
     for (int i =0; m.path_p->lines.size(); i++){
         points_number+= m.path_p->lines[i].getIntermediatePoints().size();
@@ -80,12 +80,17 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
         std::vector<cv::Point2d> intermediate_points = m.path_p->lines[i].getIntermediatePoints();
         for (int j =0; j<intermediate_points.size(); j++){
             //int_point_counter*5*Setting::PIXEL_SCALE i the distance from the starting point
+            
             std::pair<double,double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],map->getStartPoint());
-            pose.push_back(Pose(int_point_counter/points_number,mm_point.first,mm_point.second,Geometry::angle_rad(intermediate_points[j],intermediate_points[j+1]),m.path_p->lines[i].getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
+            
+            pose.push_back(Pose(
+                                int_point_counter/points_number,mm_point.first,mm_point.second
+                                ,map->robo->getAngleForRobotFrame(),
+                                m.path_p->lines[i].getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
             int_point_counter++;
         }
     }
-    path.setPoints(pose);*/
+    path.setPoints(pose);
     return true;
 }
 
@@ -103,11 +108,10 @@ bool RobotProject::localize(cv::Mat const & img,
     
     cv:Point start = map->getStartPoint();
     
-    std::pair<double,double> coordinates =
-    Geometry::convertPixelToMillimeterInRoboPlane(robo.center, start);
+    cv::Point2d coordinates = map->robo->getPosition2dRobotFrame(start);
     
-    double x = coordinates.first;
-    double y = coordinates.second;
+    double x = coordinates.x;
+    double y = coordinates.y;
     double theta = robo.angle;
     
     state = {x,y,theta};

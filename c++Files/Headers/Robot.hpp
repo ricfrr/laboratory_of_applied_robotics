@@ -46,7 +46,11 @@ public:
     cv::Point getPosition();
     
     /// computes the position in mm in Map reference frame
-    cv::Point getPosition2d(const cv::Point &ref, const cv::Point &error = cv::Point(0,0));
+    cv::Point2d getPosition2d(const cv::Point &ref, const cv::Point &error = cv::Point(0,0));
+    
+    cv::Point2d getPosition2dRobotFrame(const cv::Point &ref, const cv::Point &error = cv::Point(0,0));
+    
+    double getAngleForRobotFrame();
     
 
 private:

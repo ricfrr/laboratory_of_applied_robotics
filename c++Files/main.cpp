@@ -60,15 +60,15 @@ void extract_frames(const string &videoFilePath, std::vector<cv::Mat> &frames) {
 
 int main(int argc, char *argv[]) {
     //camera opening
-    cv::VideoCapture vc;
-    if (vc.open(0)) {
-        // Set up the capture device properties
-        if (!(vc.set(cv::CAP_PROP_FRAME_WIDTH, 1280)
-              && vc.set(cv::CAP_PROP_FRAME_HEIGHT, 1024)
-              && vc.set(cv::CAP_PROP_FPS, 30))) {
-            throw std::runtime_error("Failed to set parameters");
-        }
-    }
+//    cv::VideoCapture vc;
+//    if (vc.open(0)) {
+//        // Set up the capture device properties
+//        if (!(vc.set(cv::CAP_PROP_FRAME_WIDTH, 1280)
+//              && vc.set(cv::CAP_PROP_FRAME_HEIGHT, 1024)
+//              && vc.set(cv::CAP_PROP_FPS, 30))) {
+//            throw std::runtime_error("Failed to set parameters");
+//        }
+//    }
 
 
     RobotProject rp = RobotProject(argc, argv);
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 
     bool terminating = false;
     while (!terminating) {
-        vc.read(img);
+        //vc.read(img);
         std::vector<double> state;
         if (!rp.localize(img, state)) {
             std::cerr << "(Warning) Failed localization" << std::endl;

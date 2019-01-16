@@ -165,12 +165,24 @@ cv::Point Robot::getPosition(){
     return center_wheel - initialPosition;
 }
 
-cv::Point Robot::getPosition2d(const cv::Point &ref,const cv::Point &error){
+cv::Point2d Robot::getPosition2d(const cv::Point &ref,const cv::Point &error){
     
     //ref is the arena start point and error the distance to the white circle
     std::pair<double, double> result = Geometry::convertPixelToMillimeterInMapPlane(getPosition(), ref-error);
     
     return cv::Point2d(result.first,result.second);
+}
+
+cv::Point2d Robot::getPosition2dRobotFrame(const cv::Point &ref, const cv::Point &error){
+    
+    std::pair<double,double> result =
+    Geometry::convertPixelToMillimeterInMapPlane(initialPosition, ref-error);
+    
+    return getPosition2d(ref,error) - cv::Point2d(result.first,result.second);
+}
+
+double Robot::getAngleForRobotFrame(){
+    return initialAngle - angle;
 }
 
 void Robot::move(const cv::Point &location, const double &angle){
