@@ -1,0 +1,95 @@
+\hypertarget{class_path_finder}{}\section{Path\+Finder Class Reference}
+\label{class_path_finder}\index{Path\+Finder@{Path\+Finder}}
+
+
+abstract class for finding a path between two Positions  This class is a basis for more defined classes based on this class structure. For example a Dubins\+Path\+Finder class could be used to find a path using Dubin\+Curves, or an Spline\+Path\+Finder could be made to find a Spline\+Curve. Anyway this class does not just contain the basic structure of future specialized implementations but also usefull tools every Path\+Finding algorithm needs, such as a collision detection class nested inside. Given a map object this class can be used to see if the picked path is colliding with obstacles in the map.  
+
+
+
+
+{\ttfamily \#include $<$Path\+Finder.\+hpp$>$}
+
+Inheritance diagram for Path\+Finder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_path_finder}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_path_finder_1_1_collision_detector}{Collision\+Detector}}
+\begin{DoxyCompactList}\small\item\em detector of collision between obstacles and path \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_path_finder_af9395c561cc945d0f652aef244b3c7b3}{Path\+Finder}} (\mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}} path\+\_\+coordinates\+\_\+i, \mbox{\hyperlink{class_map}{Map}} $\ast$map\+\_\+i)
+\begin{DoxyCompactList}\small\item\em constructor of the \mbox{\hyperlink{class_path_finder}{Path\+Finder}} class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path_finder_a0761f248c1ebaacf3e47a4021ca25256}\label{class_path_finder_a0761f248c1ebaacf3e47a4021ca25256}} 
+\mbox{\hyperlink{class_path_finder_a0761f248c1ebaacf3e47a4021ca25256}{Path\+Finder}} ()
+\begin{DoxyCompactList}\small\item\em destructor of the \mbox{\hyperlink{class_path_finder}{Path\+Finder}} class \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \mbox{\hyperlink{class_line}{Line}} $>$ \mbox{\hyperlink{class_path_finder_aee7b3017f8f532f9368d2d996d191a10}{shortest\+Path}} (std\+::vector$<$ cv\+::\+Point $>$ \&alternative\+\_\+\+Points)=0
+\begin{DoxyCompactList}\small\item\em function that find the dubins shortest path and return a vector of line \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path_finder_a528b68598c5a5c2fe5df8cff5ebe1caa}\label{class_path_finder_a528b68598c5a5c2fe5df8cff5ebe1caa}} 
+\mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}} {\bfseries path\+\_\+coordinates} = \mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}}(\mbox{\hyperlink{class_position}{Position}}(), \mbox{\hyperlink{class_position}{Position}}(), 0)
+\item 
+\mbox{\Hypertarget{class_path_finder_a34176bf4f44d8ff4e30f5b50dd7fc535}\label{class_path_finder_a34176bf4f44d8ff4e30f5b50dd7fc535}} 
+double {\bfseries length}
+\item 
+\mbox{\Hypertarget{class_path_finder_ac83316280ebe15705e2fd115723201de}\label{class_path_finder_ac83316280ebe15705e2fd115723201de}} 
+\mbox{\hyperlink{class_map}{Map}} $\ast$ {\bfseries map}
+\item 
+\mbox{\Hypertarget{class_path_finder_ae3ac1663bc734e1ea6fb87210b09d923}\label{class_path_finder_ae3ac1663bc734e1ea6fb87210b09d923}} 
+\mbox{\hyperlink{class_path_finder_1_1_collision_detector}{Collision\+Detector}} {\bfseries collision\+Detector}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+abstract class for finding a path between two Positions  This class is a basis for more defined classes based on this class structure. For example a Dubins\+Path\+Finder class could be used to find a path using Dubin\+Curves, or an Spline\+Path\+Finder could be made to find a Spline\+Curve. Anyway this class does not just contain the basic structure of future specialized implementations but also usefull tools every Path\+Finding algorithm needs, such as a collision detection class nested inside. Given a map object this class can be used to see if the picked path is colliding with obstacles in the map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_path_finder_af9395c561cc945d0f652aef244b3c7b3}\label{class_path_finder_af9395c561cc945d0f652aef244b3c7b3}} 
+\index{Path\+Finder@{Path\+Finder}!Path\+Finder@{Path\+Finder}}
+\index{Path\+Finder@{Path\+Finder}!Path\+Finder@{Path\+Finder}}
+\subsubsection{\texorpdfstring{Path\+Finder()}{PathFinder()}}
+{\footnotesize\ttfamily Path\+Finder\+::\+Path\+Finder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path_coordinates}{Path\+Coordinates}}}]{path\+\_\+coordinates\+\_\+i,  }\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+constructor of the \mbox{\hyperlink{class_path_finder}{Path\+Finder}} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+coordinates\+\_\+i} & coordinates of the path that we want to find \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path_finder_aee7b3017f8f532f9368d2d996d191a10}\label{class_path_finder_aee7b3017f8f532f9368d2d996d191a10}} 
+\index{Path\+Finder@{Path\+Finder}!shortest\+Path@{shortest\+Path}}
+\index{shortest\+Path@{shortest\+Path}!Path\+Finder@{Path\+Finder}}
+\subsubsection{\texorpdfstring{shortest\+Path()}{shortestPath()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\mbox{\hyperlink{class_line}{Line}}$>$ Path\+Finder\+::shortest\+Path (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{alternative\+\_\+\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+function that find the dubins shortest path and return a vector of line 
+
+\begin{DoxyItemize}
+\item alternative\+\_\+\+Points a point set for every obsticle that was found along the way \begin{DoxyReturn}{Returns}
+vector of lines which describes the path 
+\end{DoxyReturn}
+\end{DoxyItemize}
+
+
+Implemented in \mbox{\hyperlink{class_dubin_path_finder_adc5d730f6226c4d92202b0ff4126cbb2}{Dubin\+Path\+Finder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Path\+Finder.\+hpp\end{DoxyCompactItemize}

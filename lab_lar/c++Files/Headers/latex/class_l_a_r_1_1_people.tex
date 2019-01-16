@@ -1,0 +1,89 @@
+\hypertarget{class_l_a_r_1_1_people}{}\section{L\+AR\+:\+:People Class Reference}
+\label{class_l_a_r_1_1_people}\index{L\+A\+R\+::\+People@{L\+A\+R\+::\+People}}
+
+
+class for representing people in the map that have to be collected  
+
+
+
+
+{\ttfamily \#include $<$People.\+hpp$>$}
+
+Inheritance diagram for L\+AR\+:\+:People\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_l_a_r_1_1_people}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_l_a_r_1_1_people_a87e2350faa20d4ac7298123f19b73953}{People}} ()
+\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_ac084ff2a18f915084612514bbd1e3ca6}\label{class_l_a_r_1_1_people_ac084ff2a18f915084612514bbd1e3ca6}} 
+{\bfseries People} (std\+::pair$<$ int, int $>$ digit, cv\+::\+Rect rect)
+\item 
+\mbox{\hyperlink{class_l_a_r_1_1_people_a8a5dde9291e7d0aa0419971ed5b421e3}{$\sim$\+People}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}} $\ast$ $>$ \mbox{\hyperlink{class_l_a_r_1_1_people_a7b1aca80884524498197a57dc704e516}{get\+Circles}} ()
+\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a35953fba4aeb0780ea55eb1cce336423}\label{class_l_a_r_1_1_people_a35953fba4aeb0780ea55eb1cce336423}} 
+void {\bfseries add\+Circle} (\mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}} $\ast$\&circle)
+\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a4f50f2b15a657bf06082f5019d7b1735}\label{class_l_a_r_1_1_people_a4f50f2b15a657bf06082f5019d7b1735}} 
+void {\bfseries clear\+Circles} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_addf5a566f9f3f56158b1650f688a91bb}\label{class_l_a_r_1_1_people_addf5a566f9f3f56158b1650f688a91bb}} 
+int \mbox{\hyperlink{class_l_a_r_1_1_people_addf5a566f9f3f56158b1650f688a91bb}{name}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_l_a_r_1_1_people}{People}} have names -\/ represented by a digit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a0d85abfa8350cce48a5d4414a1dfcdd5}\label{class_l_a_r_1_1_people_a0d85abfa8350cce48a5d4414a1dfcdd5}} 
+int \mbox{\hyperlink{class_l_a_r_1_1_people_a0d85abfa8350cce48a5d4414a1dfcdd5}{confidence}}
+\begin{DoxyCompactList}\small\item\em confidence that name is the correct digit \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a601ada9c3e408cc930a778961166364c}\label{class_l_a_r_1_1_people_a601ada9c3e408cc930a778961166364c}} 
+const int {\bfseries epsilon\+\_\+approx} = 7
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for representing people in the map that have to be collected 
+
+\mbox{\hyperlink{class_l_a_r_1_1_people}{People}} are round objects with green background that need to be collected before exiting the map. \mbox{\hyperlink{class_l_a_r_1_1_people}{People}} have a unique identifier given by a digit. This identifier is their name. \mbox{\hyperlink{class_l_a_r_1_1_people}{People}} inherit all shape characteristics of Circles, because their have circular shapes. In addition to their name and form people have a confidence level assigned to them indicating how confident the character recognition algorithm was when detecting their name. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a87e2350faa20d4ac7298123f19b73953}\label{class_l_a_r_1_1_people_a87e2350faa20d4ac7298123f19b73953}} 
+\index{L\+A\+R\+::\+People@{L\+A\+R\+::\+People}!People@{People}}
+\index{People@{People}!L\+A\+R\+::\+People@{L\+A\+R\+::\+People}}
+\subsubsection{\texorpdfstring{People()}{People()}}
+{\footnotesize\ttfamily L\+A\+R\+::\+People\+::\+People (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of people class \mbox{\Hypertarget{class_l_a_r_1_1_people_a8a5dde9291e7d0aa0419971ed5b421e3}\label{class_l_a_r_1_1_people_a8a5dde9291e7d0aa0419971ed5b421e3}} 
+\index{L\+A\+R\+::\+People@{L\+A\+R\+::\+People}!````~People@{$\sim$\+People}}
+\index{````~People@{$\sim$\+People}!L\+A\+R\+::\+People@{L\+A\+R\+::\+People}}
+\subsubsection{\texorpdfstring{$\sim$\+People()}{~People()}}
+{\footnotesize\ttfamily L\+A\+R\+::\+People\+::$\sim$\+People (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of people class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_l_a_r_1_1_people_a7b1aca80884524498197a57dc704e516}\label{class_l_a_r_1_1_people_a7b1aca80884524498197a57dc704e516}} 
+\index{L\+A\+R\+::\+People@{L\+A\+R\+::\+People}!get\+Circles@{get\+Circles}}
+\index{get\+Circles@{get\+Circles}!L\+A\+R\+::\+People@{L\+A\+R\+::\+People}}
+\subsubsection{\texorpdfstring{get\+Circles()}{getCircles()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}}$\ast$$>$ L\+A\+R\+::\+People\+::get\+Circles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+detect circles in the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the map\\
+\hline
+\end{DoxyParams}
+return the list of circle in the map \begin{DoxyReturn}{Returns}
+list of circle 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+People.\+hpp\end{DoxyCompactItemize}

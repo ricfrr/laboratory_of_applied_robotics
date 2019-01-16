@@ -1,0 +1,122 @@
+\hypertarget{class_geometry2_d_1_1_rectangle}{}\section{Geometry2D\+:\+:Rectangle Class Reference}
+\label{class_geometry2_d_1_1_rectangle}\index{Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}}
+
+
+Class for handling square in the map.  
+
+
+
+
+{\ttfamily \#include $<$Rectangle.\+hpp$>$}
+
+Inheritance diagram for Geometry2D\+:\+:Rectangle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_geometry2_d_1_1_rectangle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_geometry2_d_1_1_rectangle_a2a2140f72054ed537c35bcd90bcdd593}{Rectangle}} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a317593dc0f052818e86495ef1ec3b30e}\label{class_geometry2_d_1_1_rectangle_a317593dc0f052818e86495ef1ec3b30e}} 
+{\bfseries Rectangle} (std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_geometry2_d_1_1_polygon_ab965e028324c2199022da00ff7eef14b}{points}})
+\item 
+\mbox{\hyperlink{class_geometry2_d_1_1_rectangle_a8fbc2f925d0b9e501cce72ec5282518a}{$\sim$\+Rectangle}} ()
+\item 
+std\+::vector$<$ cv\+::\+Point $>$ \mbox{\hyperlink{class_geometry2_d_1_1_rectangle_abe1ebd4b4d74c433120fdf9626a8dd65}{get\+Corners}} ()
+\item 
+void \mbox{\hyperlink{class_geometry2_d_1_1_rectangle_a5fc314db2e50e7b7b9360900d37ad212}{set\+Corners}} (std\+::vector$<$ cv\+::\+Point $>$ corners)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a80d298e1dd64b46a6361f0f3d45fe0f7}\label{class_geometry2_d_1_1_rectangle_a80d298e1dd64b46a6361f0f3d45fe0f7}} 
+cv\+::\+Point {\bfseries get\+Top\+Left} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_ac145e03588d1f1eb371f8547f7a6bd2d}\label{class_geometry2_d_1_1_rectangle_ac145e03588d1f1eb371f8547f7a6bd2d}} 
+void {\bfseries set\+Top\+Left} (cv\+::\+Point top\+Left)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_af5b3d717ab45f875c7c36caa2dd38be7}\label{class_geometry2_d_1_1_rectangle_af5b3d717ab45f875c7c36caa2dd38be7}} 
+cv\+::\+Point {\bfseries get\+Top\+Right} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a00005d17343775c529a8cbacd0956bdb}\label{class_geometry2_d_1_1_rectangle_a00005d17343775c529a8cbacd0956bdb}} 
+void {\bfseries set\+Top\+Right} (cv\+::\+Point top\+Right)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_ae07e78781178d09dd568e403e59517be}\label{class_geometry2_d_1_1_rectangle_ae07e78781178d09dd568e403e59517be}} 
+cv\+::\+Point {\bfseries get\+Bottom\+Left} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_adbb3a9c4eabc748a1345447c48f7f39a}\label{class_geometry2_d_1_1_rectangle_adbb3a9c4eabc748a1345447c48f7f39a}} 
+void {\bfseries set\+Bottom\+Left} (cv\+::\+Point bottom\+Left)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a86f70f7f5fac9bdfc0e9b3d293ae6196}\label{class_geometry2_d_1_1_rectangle_a86f70f7f5fac9bdfc0e9b3d293ae6196}} 
+cv\+::\+Point {\bfseries get\+Bottom\+Right} ()
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_af037850b78e24d8588433fc877008ed3}\label{class_geometry2_d_1_1_rectangle_af037850b78e24d8588433fc877008ed3}} 
+void {\bfseries set\+Bottom\+Right} (cv\+::\+Point bottom\+Right)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_ab4acb2a2f42304eed025b3efded350d0}\label{class_geometry2_d_1_1_rectangle_ab4acb2a2f42304eed025b3efded350d0}} 
+void {\bfseries find\+Half} (int \&half\+\_\+h, int \&half\+\_\+w, const std\+::vector$<$ cv\+::\+Point $>$ \&corners)
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_af9a483434ded2dac880fa682d2386dad}\label{class_geometry2_d_1_1_rectangle_af9a483434ded2dac880fa682d2386dad}} 
+void \mbox{\hyperlink{class_geometry2_d_1_1_rectangle_af9a483434ded2dac880fa682d2386dad}{assign\+\_\+points}} ()
+\begin{DoxyCompactList}\small\item\em assignes points to 1., 2., 3 etc point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_aafa948683645e0038ff747cdbf7941e7}\label{class_geometry2_d_1_1_rectangle_aafa948683645e0038ff747cdbf7941e7}} 
+cv\+::\+Point {\bfseries top\+\_\+left}
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a36c16fe3933944c63bfb3206363a37da}\label{class_geometry2_d_1_1_rectangle_a36c16fe3933944c63bfb3206363a37da}} 
+cv\+::\+Point {\bfseries top\+\_\+right}
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_ad7407dd1e39e1851c3474da1bde23ee0}\label{class_geometry2_d_1_1_rectangle_ad7407dd1e39e1851c3474da1bde23ee0}} 
+cv\+::\+Point {\bfseries bottom\+\_\+left}
+\item 
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_ad7063cea41888253546f8f9d44dc4cd4}\label{class_geometry2_d_1_1_rectangle_ad7063cea41888253546f8f9d44dc4cd4}} 
+cv\+::\+Point {\bfseries bottom\+\_\+right}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for handling square in the map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a2a2140f72054ed537c35bcd90bcdd593}\label{class_geometry2_d_1_1_rectangle_a2a2140f72054ed537c35bcd90bcdd593}} 
+\index{Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}!Rectangle@{Rectangle}}
+\index{Rectangle@{Rectangle}!Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}}
+\subsubsection{\texorpdfstring{Rectangle()}{Rectangle()}}
+{\footnotesize\ttfamily Geometry2\+D\+::\+Rectangle\+::\+Rectangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor of square class \mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a8fbc2f925d0b9e501cce72ec5282518a}\label{class_geometry2_d_1_1_rectangle_a8fbc2f925d0b9e501cce72ec5282518a}} 
+\index{Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}!````~Rectangle@{$\sim$\+Rectangle}}
+\index{````~Rectangle@{$\sim$\+Rectangle}!Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}}
+\subsubsection{\texorpdfstring{$\sim$\+Rectangle()}{~Rectangle()}}
+{\footnotesize\ttfamily Geometry2\+D\+::\+Rectangle\+::$\sim$\+Rectangle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of square class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_abe1ebd4b4d74c433120fdf9626a8dd65}\label{class_geometry2_d_1_1_rectangle_abe1ebd4b4d74c433120fdf9626a8dd65}} 
+\index{Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}!get\+Corners@{get\+Corners}}
+\index{get\+Corners@{get\+Corners}!Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}}
+\subsubsection{\texorpdfstring{get\+Corners()}{getCorners()}}
+{\footnotesize\ttfamily std\+::vector$<$cv\+::\+Point$>$ Geometry2\+D\+::\+Rectangle\+::get\+Corners (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of corners \begin{DoxyReturn}{Returns}
+the list of corners 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_geometry2_d_1_1_rectangle_a5fc314db2e50e7b7b9360900d37ad212}\label{class_geometry2_d_1_1_rectangle_a5fc314db2e50e7b7b9360900d37ad212}} 
+\index{Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}!set\+Corners@{set\+Corners}}
+\index{set\+Corners@{set\+Corners}!Geometry2\+D\+::\+Rectangle@{Geometry2\+D\+::\+Rectangle}}
+\subsubsection{\texorpdfstring{set\+Corners()}{setCorners()}}
+{\footnotesize\ttfamily void Geometry2\+D\+::\+Rectangle\+::set\+Corners (\begin{DoxyParamCaption}\item[{std\+::vector$<$ cv\+::\+Point $>$}]{corners }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em corners} & return the list of corners \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Rectangle.\+hpp\end{DoxyCompactItemize}

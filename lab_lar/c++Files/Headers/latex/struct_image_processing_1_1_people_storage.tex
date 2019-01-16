@@ -1,0 +1,50 @@
+\hypertarget{struct_image_processing_1_1_people_storage}{}\section{Image\+Processing\+:\+:People\+Storage Struct Reference}
+\label{struct_image_processing_1_1_people_storage}\index{Image\+Processing\+::\+People\+Storage@{Image\+Processing\+::\+People\+Storage}}
+
+
+Helper object to find people in the map.  
+
+
+
+
+{\ttfamily \#include $<$Digit\+\_\+\+Recognition.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_people_storage_a5dce79322ec3418fbeed1f3140d7db81}\label{struct_image_processing_1_1_people_storage_a5dce79322ec3418fbeed1f3140d7db81}} 
+{\bfseries People\+Storage} (const Mat \&img)
+\item 
+void \mbox{\hyperlink{struct_image_processing_1_1_people_storage_a015359691478ed0b1f08e09b8dedc520}{find\+Circles}} (const Mat \&img)
+\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_people_storage_a1979743b2088d0dedb90e9ddee9153a3}\label{struct_image_processing_1_1_people_storage_a1979743b2088d0dedb90e9ddee9153a3}} 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}} $\ast$ $>$ \mbox{\hyperlink{struct_image_processing_1_1_people_storage_a1979743b2088d0dedb90e9ddee9153a3}{get\+Circles}} ()
+\begin{DoxyCompactList}\small\item\em extract people information as Circle objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_people_storage_a34d14ed3d729ca9dfe8dee8994fceee9}\label{struct_image_processing_1_1_people_storage_a34d14ed3d729ca9dfe8dee8994fceee9}} 
+std\+::vector$<$ \mbox{\hyperlink{class_people}{People}} $>$ \mbox{\hyperlink{struct_image_processing_1_1_people_storage_a34d14ed3d729ca9dfe8dee8994fceee9}{circles}}
+\begin{DoxyCompactList}\small\item\em detected \mbox{\hyperlink{class_people}{People}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper object to find people in the map. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_image_processing_1_1_people_storage_a015359691478ed0b1f08e09b8dedc520}\label{struct_image_processing_1_1_people_storage_a015359691478ed0b1f08e09b8dedc520}} 
+\index{Image\+Processing\+::\+People\+Storage@{Image\+Processing\+::\+People\+Storage}!find\+Circles@{find\+Circles}}
+\index{find\+Circles@{find\+Circles}!Image\+Processing\+::\+People\+Storage@{Image\+Processing\+::\+People\+Storage}}
+\subsubsection{\texorpdfstring{find\+Circles()}{findCircles()}}
+{\footnotesize\ttfamily void Image\+Processing\+::\+People\+Storage\+::find\+Circles (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+detect circles in the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the map \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Digit\+\_\+\+Recognition.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\hypertarget{struct_image_processing_1_1_h_s_v_filter_range}{}\section{Image\+Processing\+:\+:H\+S\+V\+Filter\+Range Struct Reference}
+\label{struct_image_processing_1_1_h_s_v_filter_range}\index{Image\+Processing\+::\+H\+S\+V\+Filter\+Range@{Image\+Processing\+::\+H\+S\+V\+Filter\+Range}}
+
+
+A structure that helps creating a color filter.  
+
+
+
+
+{\ttfamily \#include $<$Color\+\_\+\+Processing.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_h_s_v_filter_range_a18e8316b637cccf1ad274e7d24bd30ff}\label{struct_image_processing_1_1_h_s_v_filter_range_a18e8316b637cccf1ad274e7d24bd30ff}} 
+{\bfseries H\+S\+V\+Filter\+Range} (std\+::string quality)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_h_s_v_filter_range_a739193d1bd8a9deb6bc3c1639add2156}\label{struct_image_processing_1_1_h_s_v_filter_range_a739193d1bd8a9deb6bc3c1639add2156}} 
+cv\+::\+Scalar \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range_a739193d1bd8a9deb6bc3c1639add2156}{ub}} = cv\+::\+Scalar(90, 255, 255)
+\begin{DoxyCompactList}\small\item\em the upper bound of the filter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_h_s_v_filter_range_abdd2bdaacd9ab1270b470e3913e0340e}\label{struct_image_processing_1_1_h_s_v_filter_range_abdd2bdaacd9ab1270b470e3913e0340e}} 
+cv\+::\+Scalar \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range_abdd2bdaacd9ab1270b470e3913e0340e}{lb}} = cv\+::\+Scalar(48, 53, 102)
+\begin{DoxyCompactList}\small\item\em the lower bound of the filter \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_image_processing_1_1_h_s_v_filter_range_a799a98eb547d036576f3d690ac25179f}\label{struct_image_processing_1_1_h_s_v_filter_range_a799a98eb547d036576f3d690ac25179f}} 
+std\+::string \mbox{\hyperlink{struct_image_processing_1_1_h_s_v_filter_range_a799a98eb547d036576f3d690ac25179f}{saved\+\_\+quality}} = \char`\"{}bad\char`\"{}
+\begin{DoxyCompactList}\small\item\em the saved tag \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A structure that helps creating a color filter. 
+
+This structure contains several filter values for a given tag. It is able to store different values and dynamically change to another filter while keeping another filter in the back up. This allows the use of different filters to find a fitting one for a specific image 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Color\+\_\+\+Processing.\+hpp\end{DoxyCompactItemize}

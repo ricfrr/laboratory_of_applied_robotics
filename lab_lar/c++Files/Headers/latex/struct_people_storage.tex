@@ -1,0 +1,50 @@
+\hypertarget{struct_people_storage}{}\section{People\+Storage Struct Reference}
+\label{struct_people_storage}\index{People\+Storage@{People\+Storage}}
+
+
+Helper object to find people in the map.  
+
+
+
+
+{\ttfamily \#include $<$Digit\+\_\+\+Recognition.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_people_storage_a6aa999011975c71c5dac2c011d0fba4c}\label{struct_people_storage_a6aa999011975c71c5dac2c011d0fba4c}} 
+{\bfseries People\+Storage} (const Mat \&img)
+\item 
+void \mbox{\hyperlink{struct_people_storage_a97206f5a49064a68924059861deab436}{find\+Circles}} (const Mat \&img)
+\item 
+\mbox{\Hypertarget{struct_people_storage_a461a143e3b928603f383eccf65a79bdf}\label{struct_people_storage_a461a143e3b928603f383eccf65a79bdf}} 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_circle}{Circle}} $\ast$ $>$ \mbox{\hyperlink{struct_people_storage_a461a143e3b928603f383eccf65a79bdf}{get\+Circles}} ()
+\begin{DoxyCompactList}\small\item\em extract people information as Circle objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_people_storage_a00dd487841221f7b5094934c1409957a}\label{struct_people_storage_a00dd487841221f7b5094934c1409957a}} 
+std\+::vector$<$ \mbox{\hyperlink{class_people}{People}} $>$ \mbox{\hyperlink{struct_people_storage_a00dd487841221f7b5094934c1409957a}{circles}}
+\begin{DoxyCompactList}\small\item\em detected \mbox{\hyperlink{class_people}{People}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper object to find people in the map. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_people_storage_a97206f5a49064a68924059861deab436}\label{struct_people_storage_a97206f5a49064a68924059861deab436}} 
+\index{People\+Storage@{People\+Storage}!find\+Circles@{find\+Circles}}
+\index{find\+Circles@{find\+Circles}!People\+Storage@{People\+Storage}}
+\subsubsection{\texorpdfstring{find\+Circles()}{findCircles()}}
+{\footnotesize\ttfamily void People\+Storage\+::find\+Circles (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+detect circles in the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & image of the map \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Digit\+\_\+\+Recognition.\+hpp\end{DoxyCompactItemize}

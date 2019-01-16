@@ -1,0 +1,164 @@
+\hypertarget{class_image_processing_1_1_settings}{}\section{Image\+Processing\+:\+:Settings Class Reference}
+\label{class_image_processing_1_1_settings}\index{Image\+Processing\+::\+Settings@{Image\+Processing\+::\+Settings}}
+
+
+A data structure that stores important information for calibrating a camera.  
+
+
+
+
+{\ttfamily \#include $<$Settings.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_aeffea40ead0e3443e0927daf900fc172}\label{class_image_processing_1_1_settings_aeffea40ead0e3443e0927daf900fc172}} 
+enum {\bfseries Pattern} \{ {\bfseries N\+O\+T\+\_\+\+E\+X\+I\+S\+T\+I\+NG}, 
+{\bfseries C\+H\+E\+S\+S\+B\+O\+A\+RD}, 
+{\bfseries C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}, 
+{\bfseries A\+S\+Y\+M\+M\+E\+T\+R\+I\+C\+\_\+\+C\+I\+R\+C\+L\+E\+S\+\_\+\+G\+R\+ID}
+ \}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_ae6844d76686856698ebea9c09d62ecdb}\label{class_image_processing_1_1_settings_ae6844d76686856698ebea9c09d62ecdb}} 
+enum {\bfseries Input\+Type} \{ {\bfseries I\+N\+V\+A\+L\+ID}, 
+{\bfseries C\+A\+M\+E\+RA}, 
+{\bfseries V\+I\+D\+E\+O\+\_\+\+F\+I\+LE}, 
+{\bfseries I\+M\+A\+G\+E\+\_\+\+L\+I\+ST}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a7d5a7bf8c716718f5ec670c8835b0138}\label{class_image_processing_1_1_settings_a7d5a7bf8c716718f5ec670c8835b0138}} 
+void {\bfseries write} (File\+Storage \&fs) const
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a277e9672d7d34cd5ab2615a75d084471}\label{class_image_processing_1_1_settings_a277e9672d7d34cd5ab2615a75d084471}} 
+void {\bfseries read\+File} (const File\+Node \&node)
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a0bf9b68388092c76621e24e2a65463eb}\label{class_image_processing_1_1_settings_a0bf9b68388092c76621e24e2a65463eb}} 
+void {\bfseries validate} ()
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a62a6a119ead25cab4db6f41fcfa74080}\label{class_image_processing_1_1_settings_a62a6a119ead25cab4db6f41fcfa74080}} 
+Mat {\bfseries next\+Image} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a993c90f02ccf14c1ddfe6a009bc2cb55}\label{class_image_processing_1_1_settings_a993c90f02ccf14c1ddfe6a009bc2cb55}} 
+static bool {\bfseries read\+String\+List} (const std\+::string \&filename, std\+::vector$<$ std\+::string $>$ \&l)
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a52f9c0f12943a2ed76a7ab6592668420}\label{class_image_processing_1_1_settings_a52f9c0f12943a2ed76a7ab6592668420}} 
+static bool {\bfseries is\+List\+Of\+Images} (const std\+::string \&filename)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a770816e7e69514da9c30b6cd8d4884d3}\label{class_image_processing_1_1_settings_a770816e7e69514da9c30b6cd8d4884d3}} 
+Size {\bfseries board\+Size}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a18737bf420fac72e36996613e18353b1}\label{class_image_processing_1_1_settings_a18737bf420fac72e36996613e18353b1}} 
+Pattern \mbox{\hyperlink{class_image_processing_1_1_settings_a18737bf420fac72e36996613e18353b1}{calibration\+Pattern}}
+\begin{DoxyCompactList}\small\item\em The size of the board -\/$>$ Number of items by width and height. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_affaf2de3b7bed5e18f5474441d63f024}\label{class_image_processing_1_1_settings_affaf2de3b7bed5e18f5474441d63f024}} 
+float \mbox{\hyperlink{class_image_processing_1_1_settings_affaf2de3b7bed5e18f5474441d63f024}{square\+Size}}
+\begin{DoxyCompactList}\small\item\em One of the Chessboard, circles, or asymmetric circle pattern. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_aad57c66429dc3484941f9a3cd59370ce}\label{class_image_processing_1_1_settings_aad57c66429dc3484941f9a3cd59370ce}} 
+int \mbox{\hyperlink{class_image_processing_1_1_settings_aad57c66429dc3484941f9a3cd59370ce}{nr\+Frames}}
+\begin{DoxyCompactList}\small\item\em The size of a square in your defined unit (point, millimeter,etc). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a9b0ecbce66c879fc8d61a6a2a993c5fd}\label{class_image_processing_1_1_settings_a9b0ecbce66c879fc8d61a6a2a993c5fd}} 
+float \mbox{\hyperlink{class_image_processing_1_1_settings_a9b0ecbce66c879fc8d61a6a2a993c5fd}{aspect\+Ratio}}
+\begin{DoxyCompactList}\small\item\em The number of frames to use from the input for calibration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_afd5b79837c5327d257817648761eef95}\label{class_image_processing_1_1_settings_afd5b79837c5327d257817648761eef95}} 
+int \mbox{\hyperlink{class_image_processing_1_1_settings_afd5b79837c5327d257817648761eef95}{delay}}
+\begin{DoxyCompactList}\small\item\em The aspect ratio. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a34bf85a7d8cee8e26c268ae81d76d1fb}\label{class_image_processing_1_1_settings_a34bf85a7d8cee8e26c268ae81d76d1fb}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a34bf85a7d8cee8e26c268ae81d76d1fb}{write\+Points}}
+\begin{DoxyCompactList}\small\item\em In case of a video input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a74c1f84a8fcfa3fd43d4273a4abdbf03}\label{class_image_processing_1_1_settings_a74c1f84a8fcfa3fd43d4273a4abdbf03}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a74c1f84a8fcfa3fd43d4273a4abdbf03}{write\+Extrinsics}}
+\begin{DoxyCompactList}\small\item\em Write detected feature points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a3f93b4ed0bf1c90a122fc8d8b6630128}\label{class_image_processing_1_1_settings_a3f93b4ed0bf1c90a122fc8d8b6630128}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a3f93b4ed0bf1c90a122fc8d8b6630128}{calib\+Zero\+Tangent\+Dist}}
+\begin{DoxyCompactList}\small\item\em Write extrinsic parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a05eba3525178046e88102404e284ed7c}\label{class_image_processing_1_1_settings_a05eba3525178046e88102404e284ed7c}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a05eba3525178046e88102404e284ed7c}{calib\+Fix\+Principal\+Point}}
+\begin{DoxyCompactList}\small\item\em Assume zero tangential distortion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a484283e00b41f90e084d6fb42e96780f}\label{class_image_processing_1_1_settings_a484283e00b41f90e084d6fb42e96780f}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a484283e00b41f90e084d6fb42e96780f}{flip\+Vertical}}
+\begin{DoxyCompactList}\small\item\em Fix the principal point at the center. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a8c2a51c40957f7164e3094ab4f9304db}\label{class_image_processing_1_1_settings_a8c2a51c40957f7164e3094ab4f9304db}} 
+std\+::string \mbox{\hyperlink{class_image_processing_1_1_settings_a8c2a51c40957f7164e3094ab4f9304db}{output\+File\+Name}}
+\begin{DoxyCompactList}\small\item\em Flip the captured images around the horizontal axis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_af614d8c9e03229a715aabe03baee3008}\label{class_image_processing_1_1_settings_af614d8c9e03229a715aabe03baee3008}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_af614d8c9e03229a715aabe03baee3008}{show\+Undistorsed}}
+\begin{DoxyCompactList}\small\item\em The name of the file where to write. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_ad1212876e0e534640f0096a132930a19}\label{class_image_processing_1_1_settings_ad1212876e0e534640f0096a132930a19}} 
+std\+::string \mbox{\hyperlink{class_image_processing_1_1_settings_ad1212876e0e534640f0096a132930a19}{input}}
+\begin{DoxyCompactList}\small\item\em Show undistorted images after calibration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a6f0c203a97c20e1d9c4f29283f4da453}\label{class_image_processing_1_1_settings_a6f0c203a97c20e1d9c4f29283f4da453}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a6f0c203a97c20e1d9c4f29283f4da453}{use\+Fisheye}}
+\begin{DoxyCompactList}\small\item\em The input -\/$>$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a9e5d88798f010baa09e4ec8cdc9ad92d}\label{class_image_processing_1_1_settings_a9e5d88798f010baa09e4ec8cdc9ad92d}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a9e5d88798f010baa09e4ec8cdc9ad92d}{fix\+K1}}
+\begin{DoxyCompactList}\small\item\em use fisheye camera model for calibration \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a58a9f97a372dadbeffe9cbe0ae264dc0}\label{class_image_processing_1_1_settings_a58a9f97a372dadbeffe9cbe0ae264dc0}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a58a9f97a372dadbeffe9cbe0ae264dc0}{fix\+K2}}
+\begin{DoxyCompactList}\small\item\em fix K1 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_adb6615160ba4082b8cfec03630c6bfda}\label{class_image_processing_1_1_settings_adb6615160ba4082b8cfec03630c6bfda}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_adb6615160ba4082b8cfec03630c6bfda}{fix\+K3}}
+\begin{DoxyCompactList}\small\item\em fix K2 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a12061e116fb40bf0d978c5a410f5b0fb}\label{class_image_processing_1_1_settings_a12061e116fb40bf0d978c5a410f5b0fb}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a12061e116fb40bf0d978c5a410f5b0fb}{fix\+K4}}
+\begin{DoxyCompactList}\small\item\em fix K3 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a5e692d58e1a9989e0ac6a052b87f44b3}\label{class_image_processing_1_1_settings_a5e692d58e1a9989e0ac6a052b87f44b3}} 
+bool \mbox{\hyperlink{class_image_processing_1_1_settings_a5e692d58e1a9989e0ac6a052b87f44b3}{fix\+K5}}
+\begin{DoxyCompactList}\small\item\em fix K4 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a9d854e18ea0c4693d9a0d6b47ddcd8c8}\label{class_image_processing_1_1_settings_a9d854e18ea0c4693d9a0d6b47ddcd8c8}} 
+int \mbox{\hyperlink{class_image_processing_1_1_settings_a9d854e18ea0c4693d9a0d6b47ddcd8c8}{camera\+ID}}
+\begin{DoxyCompactList}\small\item\em fix K5 distortion coefficient \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_acf96810491b5b4294d0113947dbae6bf}\label{class_image_processing_1_1_settings_acf96810491b5b4294d0113947dbae6bf}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries image\+List}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a87a4fa75aba428a642c2fcf949ff0d5f}\label{class_image_processing_1_1_settings_a87a4fa75aba428a642c2fcf949ff0d5f}} 
+size\+\_\+t {\bfseries at\+Image\+List}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a1915c6c5158c596046274ef373f62c1f}\label{class_image_processing_1_1_settings_a1915c6c5158c596046274ef373f62c1f}} 
+Video\+Capture {\bfseries input\+Capture}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a06a945816fae187dd843977b940bc5d3}\label{class_image_processing_1_1_settings_a06a945816fae187dd843977b940bc5d3}} 
+Input\+Type {\bfseries input\+Type}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_afeeb7232aad369617e2040cfeb671b8d}\label{class_image_processing_1_1_settings_afeeb7232aad369617e2040cfeb671b8d}} 
+bool {\bfseries good\+Input}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_acf5d3ccd5604f4cea2791217232a108e}\label{class_image_processing_1_1_settings_acf5d3ccd5604f4cea2791217232a108e}} 
+int {\bfseries flag}
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_aec0ecc1ddb129f9b7324dae1ebe8b3df}\label{class_image_processing_1_1_settings_aec0ecc1ddb129f9b7324dae1ebe8b3df}} 
+int {\bfseries I\+M\+G\+\_\+\+W\+I\+D\+TH} =458
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a04117225ed3427052ceb1de25a3d7d4f}\label{class_image_processing_1_1_settings_a04117225ed3427052ceb1de25a3d7d4f}} 
+int {\bfseries I\+M\+G\+\_\+\+L\+E\+N\+G\+HT} =678
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a7cd3967b4b4e20e4752c8d36eab43129}\label{class_image_processing_1_1_settings_a7cd3967b4b4e20e4752c8d36eab43129}} 
+int {\bfseries N\+\_\+\+R\+O\+W\+\_\+\+M\+AP} =30
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_a98b824c588ec4a7abecba2106ae8278d}\label{class_image_processing_1_1_settings_a98b824c588ec4a7abecba2106ae8278d}} 
+int {\bfseries N\+\_\+\+C\+O\+L\+\_\+\+M\+AP} =20
+\item 
+\mbox{\Hypertarget{class_image_processing_1_1_settings_abce4933b9d75aaeacc8c6f0faacd5b1f}\label{class_image_processing_1_1_settings_abce4933b9d75aaeacc8c6f0faacd5b1f}} 
+int {\bfseries G\+A\+P\+\_\+\+P\+E\+R\+SP} =15
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A data structure that stores important information for calibrating a camera. 
+
+It decides which input stream and calibration method will be used. It can be used to construct the Calibration\+\_\+\+Intrinsic object. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_image_processing_1_1_calibration___instrinsic}{Calibration\+\_\+\+Instrinsic}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Settings.\+hpp\end{DoxyCompactItemize}

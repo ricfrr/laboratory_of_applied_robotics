@@ -1,0 +1,235 @@
+\hypertarget{class_path2_d_1_1_line}{}\section{Path2D\+:\+:Line Class Reference}
+\label{class_path2_d_1_1_line}\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+
+
+\mbox{\hyperlink{class_path2_d_1_1_line}{Line}} class that describes the basic line of a path.  
+
+
+
+
+{\ttfamily \#include $<$Line.\+hpp$>$}
+
+Inheritance diagram for Path2D\+:\+:Line\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_path2_d_1_1_line}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_line_ae5f6a3ad572c2ec06701a32050f42a73}\label{class_path2_d_1_1_line_ae5f6a3ad572c2ec06701a32050f42a73}} 
+\mbox{\hyperlink{class_path2_d_1_1_line_ae5f6a3ad572c2ec06701a32050f42a73}{Line}} ()
+\begin{DoxyCompactList}\small\item\em constructor of \mbox{\hyperlink{class_path2_d_1_1_line}{Line}} class \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_path2_d_1_1_line_a090e0982e8ad1fdc2cb2af716cda408c}{Line}} (\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} start\+\_\+point, \mbox{\hyperlink{class_path2_d_1_1_position}{Position}} end\+\_\+point)
+\begin{DoxyCompactList}\small\item\em contrusctor of \mbox{\hyperlink{class_path2_d_1_1_line}{Line}} class \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path2_d_1_1_line_af337b27d2749114d6dd11583b2e7a8b6}\label{class_path2_d_1_1_line_af337b27d2749114d6dd11583b2e7a8b6}} 
+\mbox{\hyperlink{class_path2_d_1_1_line_af337b27d2749114d6dd11583b2e7a8b6}{$\sim$\+Line}} ()
+\begin{DoxyCompactList}\small\item\em destructor of the line path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path2_d_1_1_line_a981461ff075dfd005665498903c2f1fa}{set\+Start\+Point}} (\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} start\+\_\+point\+\_\+i)
+\begin{DoxyCompactList}\small\item\em set the start position of the path \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} \mbox{\hyperlink{class_path2_d_1_1_line_acc1c9a6fdc72ae5286fc50bdc38a3fa9}{get\+Start\+Point}} ()
+\begin{DoxyCompactList}\small\item\em return the start point of the path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path2_d_1_1_line_aa937427619ef1923ab1cbc1aeb2e09f4}{set\+End\+Point}} (\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} end\+\_\+point\+\_\+i)
+\begin{DoxyCompactList}\small\item\em set the end point of the path \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} \mbox{\hyperlink{class_path2_d_1_1_line_a71a3bb49c9a715a08138492e915126ab}{get\+End\+Point}} ()
+\begin{DoxyCompactList}\small\item\em return the end point of the path \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_path2_d_1_1_line_a8934b16e891581297a40736e3bbee8f4}{set\+Length}} (double length\+\_\+i)
+\begin{DoxyCompactList}\small\item\em set the length of the path \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path2_d_1_1_line_a045b4ef907ad20703f00db4aec3971cd}{get\+Length}} ()
+\item 
+\mbox{\hyperlink{class_path2_d_1_1_position}{Position}} \mbox{\hyperlink{class_path2_d_1_1_line_a20b5965f24a983882c32b0bb65c08b4e}{find\+Point\+Distance}} (double k, \mbox{\hyperlink{class_path2_d_1_1_position}{Position}} start, double length)
+\begin{DoxyCompactList}\small\item\em function that given the curvature the start point and the lenght of the path allow to find the end point of the line \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path2_d_1_1_line_ad9ade8519fb65590d1d17162f05fa057}{sinc}} (double inp)
+\begin{DoxyCompactList}\small\item\em Implementation of function sinc(t), returning 1 for t==0, and sin(t)/t. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path2_d_1_1_line_adac6f454be2ea8a8b6a05ae8212c093c}{mod2pi}} (double ang)
+\begin{DoxyCompactList}\small\item\em Normalize an angle (in range \mbox{[}0,2$\ast$pi)) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_path2_d_1_1_line_a48ff293e67c6dffbb1485b1afc8fcda2}\label{class_path2_d_1_1_line_a48ff293e67c6dffbb1485b1afc8fcda2}} 
+void \mbox{\hyperlink{class_path2_d_1_1_line_a48ff293e67c6dffbb1485b1afc8fcda2}{set\+Curvature}} (double curvature\+\_\+i)
+\begin{DoxyCompactList}\small\item\em allow to set the curvature of the line \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_path2_d_1_1_line_aa02fa9c098cae2cf5931c443d828bd38}{get\+Curvature}} ()
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_line_a79e141bbfcc0d5c83d95d33cc3bee9c8}\label{class_path2_d_1_1_line_a79e141bbfcc0d5c83d95d33cc3bee9c8}} 
+void {\bfseries set\+Intermediate\+Points} (std\+::vector$<$ Point2d $>$ \&intermediate\+\_\+points)
+\item 
+\mbox{\Hypertarget{class_path2_d_1_1_line_a8c0a2b1c0907f4dc38fa42f61aa18542}\label{class_path2_d_1_1_line_a8c0a2b1c0907f4dc38fa42f61aa18542}} 
+std\+::vector$<$ Point2d $>$ {\bfseries get\+Intermediate\+Points} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{class_path2_d_1_1_line}{Line}} class that describes the basic line of a path. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a090e0982e8ad1fdc2cb2af716cda408c}\label{class_path2_d_1_1_line_a090e0982e8ad1fdc2cb2af716cda408c}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!Line@{Line}}
+\index{Line@{Line}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{Line()}{Line()}}
+{\footnotesize\ttfamily Path2\+D\+::\+Line\+::\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path2_d_1_1_position}{Position}}}]{start\+\_\+point,  }\item[{\mbox{\hyperlink{class_path2_d_1_1_position}{Position}}}]{end\+\_\+point }\end{DoxyParamCaption})}
+
+
+
+contrusctor of \mbox{\hyperlink{class_path2_d_1_1_line}{Line}} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+point} & start point of the path \\
+\hline
+{\em end\+\_\+point} & end point of the path \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a20b5965f24a983882c32b0bb65c08b4e}\label{class_path2_d_1_1_line_a20b5965f24a983882c32b0bb65c08b4e}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!find\+Point\+Distance@{find\+Point\+Distance}}
+\index{find\+Point\+Distance@{find\+Point\+Distance}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{find\+Point\+Distance()}{findPointDistance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_path2_d_1_1_position}{Position}} Path2\+D\+::\+Line\+::find\+Point\+Distance (\begin{DoxyParamCaption}\item[{double}]{k,  }\item[{\mbox{\hyperlink{class_path2_d_1_1_position}{Position}}}]{start,  }\item[{double}]{length }\end{DoxyParamCaption})}
+
+
+
+function that given the curvature the start point and the lenght of the path allow to find the end point of the line 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & curvature \\
+\hline
+{\em start} & start point of the line \\
+\hline
+{\em length} & length of the line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_aa02fa9c098cae2cf5931c443d828bd38}\label{class_path2_d_1_1_line_aa02fa9c098cae2cf5931c443d828bd38}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!get\+Curvature@{get\+Curvature}}
+\index{get\+Curvature@{get\+Curvature}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{get\+Curvature()}{getCurvature()}}
+{\footnotesize\ttfamily double Path2\+D\+::\+Line\+::get\+Curvature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the curvature of the line \begin{DoxyReturn}{Returns}
+curvature of the line 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a71a3bb49c9a715a08138492e915126ab}\label{class_path2_d_1_1_line_a71a3bb49c9a715a08138492e915126ab}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!get\+End\+Point@{get\+End\+Point}}
+\index{get\+End\+Point@{get\+End\+Point}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{get\+End\+Point()}{getEndPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_path2_d_1_1_position}{Position}} Path2\+D\+::\+Line\+::get\+End\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the end point of the path 
+
+\begin{DoxyReturn}{Returns}
+the end point of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a045b4ef907ad20703f00db4aec3971cd}\label{class_path2_d_1_1_line_a045b4ef907ad20703f00db4aec3971cd}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!get\+Length@{get\+Length}}
+\index{get\+Length@{get\+Length}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{get\+Length()}{getLength()}}
+{\footnotesize\ttfamily double Path2\+D\+::\+Line\+::get\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the length of the path \begin{DoxyReturn}{Returns}
+the length of the path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_acc1c9a6fdc72ae5286fc50bdc38a3fa9}\label{class_path2_d_1_1_line_acc1c9a6fdc72ae5286fc50bdc38a3fa9}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!get\+Start\+Point@{get\+Start\+Point}}
+\index{get\+Start\+Point@{get\+Start\+Point}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{get\+Start\+Point()}{getStartPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_path2_d_1_1_position}{Position}} Path2\+D\+::\+Line\+::get\+Start\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the start point of the path 
+
+\begin{DoxyReturn}{Returns}
+the start point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_adac6f454be2ea8a8b6a05ae8212c093c}\label{class_path2_d_1_1_line_adac6f454be2ea8a8b6a05ae8212c093c}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!mod2pi@{mod2pi}}
+\index{mod2pi@{mod2pi}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{mod2pi()}{mod2pi()}}
+{\footnotesize\ttfamily double Path2\+D\+::\+Line\+::mod2pi (\begin{DoxyParamCaption}\item[{double}]{ang }\end{DoxyParamCaption})}
+
+
+
+Normalize an angle (in range \mbox{[}0,2$\ast$pi)) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ang} & input angle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the normalize angle in range \mbox{[}0,2$\ast$pi\mbox{]} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_path2_d_1_1_line_aa937427619ef1923ab1cbc1aeb2e09f4}\label{class_path2_d_1_1_line_aa937427619ef1923ab1cbc1aeb2e09f4}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!set\+End\+Point@{set\+End\+Point}}
+\index{set\+End\+Point@{set\+End\+Point}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{set\+End\+Point()}{setEndPoint()}}
+{\footnotesize\ttfamily void Path2\+D\+::\+Line\+::set\+End\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path2_d_1_1_position}{Position}}}]{end\+\_\+point\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+set the end point of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em end\+\_\+point\+\_\+i} & the end point of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a8934b16e891581297a40736e3bbee8f4}\label{class_path2_d_1_1_line_a8934b16e891581297a40736e3bbee8f4}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!set\+Length@{set\+Length}}
+\index{set\+Length@{set\+Length}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{set\+Length()}{setLength()}}
+{\footnotesize\ttfamily void Path2\+D\+::\+Line\+::set\+Length (\begin{DoxyParamCaption}\item[{double}]{length\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+set the length of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em length\+\_\+i} & the length of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path2_d_1_1_line_a981461ff075dfd005665498903c2f1fa}\label{class_path2_d_1_1_line_a981461ff075dfd005665498903c2f1fa}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!set\+Start\+Point@{set\+Start\+Point}}
+\index{set\+Start\+Point@{set\+Start\+Point}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{set\+Start\+Point()}{setStartPoint()}}
+{\footnotesize\ttfamily void Path2\+D\+::\+Line\+::set\+Start\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_path2_d_1_1_position}{Position}}}]{start\+\_\+point\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+set the start position of the path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+point\+\_\+i} & start point of the path \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_path2_d_1_1_line_ad9ade8519fb65590d1d17162f05fa057}\label{class_path2_d_1_1_line_ad9ade8519fb65590d1d17162f05fa057}} 
+\index{Path2\+D\+::\+Line@{Path2\+D\+::\+Line}!sinc@{sinc}}
+\index{sinc@{sinc}!Path2\+D\+::\+Line@{Path2\+D\+::\+Line}}
+\subsubsection{\texorpdfstring{sinc()}{sinc()}}
+{\footnotesize\ttfamily double Path2\+D\+::\+Line\+::sinc (\begin{DoxyParamCaption}\item[{double}]{inp }\end{DoxyParamCaption})}
+
+
+
+Implementation of function sinc(t), returning 1 for t==0, and sin(t)/t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inp} & input angle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 for inp==0 otherwise sin(inp)/inp 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Line.\+hpp\end{DoxyCompactItemize}

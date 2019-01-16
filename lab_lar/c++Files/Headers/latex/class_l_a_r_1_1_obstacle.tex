@@ -1,0 +1,107 @@
+\hypertarget{class_l_a_r_1_1_obstacle}{}\section{L\+AR\+:\+:Obstacle Class Reference}
+\label{class_l_a_r_1_1_obstacle}\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+
+
+class for handling obstacles in the map  
+
+
+
+
+{\ttfamily \#include $<$Obstacle.\+hpp$>$}
+
+Inheritance diagram for L\+AR\+:\+:Obstacle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_l_a_r_1_1_obstacle}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_l_a_r_1_1_obstacle_a50654be1a82945b51a2078aec80ffed3}{Obstacle}} ()
+\item 
+\mbox{\hyperlink{class_l_a_r_1_1_obstacle_aa0717ccb71e9331a56581282b934453c}{$\sim$\+Obstacle}} ()
+\item 
+void \mbox{\hyperlink{class_l_a_r_1_1_obstacle_aa3fd1dea2442cf16e78a7c95a6e55150}{find\+Obstacles}} (const Mat \&img)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_triangle}{Triangle}} $\ast$ $>$ \mbox{\hyperlink{class_l_a_r_1_1_obstacle_a3cf38a39212e094c8712e3abfd3fd355}{get\+Triangles}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_square}{Square}} $\ast$ $>$ \mbox{\hyperlink{class_l_a_r_1_1_obstacle_a2fa87a62ae0c59e84b18363eb3d94505}{get\+Squares}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_pentagon}{Pentagon}} $\ast$ $>$ \mbox{\hyperlink{class_l_a_r_1_1_obstacle_af05966394f29bfa13777369db076d60a}{get\+Pentagons}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_geometry2_d_1_1_hexagon}{Hexagon}} $\ast$ $>$ \mbox{\hyperlink{class_l_a_r_1_1_obstacle_af099a0d58043207698ab8953b7bb6885}{get\+Hexagons}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for handling obstacles in the map 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_a50654be1a82945b51a2078aec80ffed3}\label{class_l_a_r_1_1_obstacle_a50654be1a82945b51a2078aec80ffed3}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!Obstacle@{Obstacle}}
+\index{Obstacle@{Obstacle}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{Obstacle()}{Obstacle()}}
+{\footnotesize\ttfamily L\+A\+R\+::\+Obstacle\+::\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+contstructor of the \mbox{\hyperlink{class_l_a_r_1_1_obstacle}{Obstacle}} class \mbox{\Hypertarget{class_l_a_r_1_1_obstacle_aa0717ccb71e9331a56581282b934453c}\label{class_l_a_r_1_1_obstacle_aa0717ccb71e9331a56581282b934453c}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!````~Obstacle@{$\sim$\+Obstacle}}
+\index{````~Obstacle@{$\sim$\+Obstacle}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{$\sim$\+Obstacle()}{~Obstacle()}}
+{\footnotesize\ttfamily L\+A\+R\+::\+Obstacle\+::$\sim$\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+destructor of the \mbox{\hyperlink{class_l_a_r_1_1_obstacle}{Obstacle}} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_aa3fd1dea2442cf16e78a7c95a6e55150}\label{class_l_a_r_1_1_obstacle_aa3fd1dea2442cf16e78a7c95a6e55150}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!find\+Obstacles@{find\+Obstacles}}
+\index{find\+Obstacles@{find\+Obstacles}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{find\+Obstacles()}{findObstacles()}}
+{\footnotesize\ttfamily void L\+A\+R\+::\+Obstacle\+::find\+Obstacles (\begin{DoxyParamCaption}\item[{const Mat \&}]{img }\end{DoxyParamCaption})}
+
+retrieve the obstacles given a photo of the map 
+\begin{DoxyParams}{Parameters}
+{\em img} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_af099a0d58043207698ab8953b7bb6885}\label{class_l_a_r_1_1_obstacle_af099a0d58043207698ab8953b7bb6885}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!get\+Hexagons@{get\+Hexagons}}
+\index{get\+Hexagons@{get\+Hexagons}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{get\+Hexagons()}{getHexagons()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_geometry2_d_1_1_hexagon}{Hexagon}} $\ast$$>$ L\+A\+R\+::\+Obstacle\+::get\+Hexagons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the hexagons obstacles \begin{DoxyReturn}{Returns}
+list of the hexagons obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_af05966394f29bfa13777369db076d60a}\label{class_l_a_r_1_1_obstacle_af05966394f29bfa13777369db076d60a}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!get\+Pentagons@{get\+Pentagons}}
+\index{get\+Pentagons@{get\+Pentagons}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{get\+Pentagons()}{getPentagons()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_geometry2_d_1_1_pentagon}{Pentagon}} $\ast$$>$ L\+A\+R\+::\+Obstacle\+::get\+Pentagons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the pentagons obstacles \begin{DoxyReturn}{Returns}
+list of the pentagons obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_a2fa87a62ae0c59e84b18363eb3d94505}\label{class_l_a_r_1_1_obstacle_a2fa87a62ae0c59e84b18363eb3d94505}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!get\+Squares@{get\+Squares}}
+\index{get\+Squares@{get\+Squares}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{get\+Squares()}{getSquares()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_geometry2_d_1_1_square}{Square}} $\ast$$>$ L\+A\+R\+::\+Obstacle\+::get\+Squares (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the squares obstacles \begin{DoxyReturn}{Returns}
+list of the squares obstacles 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_l_a_r_1_1_obstacle_a3cf38a39212e094c8712e3abfd3fd355}\label{class_l_a_r_1_1_obstacle_a3cf38a39212e094c8712e3abfd3fd355}} 
+\index{L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}!get\+Triangles@{get\+Triangles}}
+\index{get\+Triangles@{get\+Triangles}!L\+A\+R\+::\+Obstacle@{L\+A\+R\+::\+Obstacle}}
+\subsubsection{\texorpdfstring{get\+Triangles()}{getTriangles()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_geometry2_d_1_1_triangle}{Triangle}} $\ast$$>$ L\+A\+R\+::\+Obstacle\+::get\+Triangles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+return the list of the triangles obstacles \begin{DoxyReturn}{Returns}
+list of the triangles obstacles 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Obstacle.\+hpp\end{DoxyCompactItemize}
