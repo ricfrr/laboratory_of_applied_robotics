@@ -33,6 +33,7 @@ public:
     
     double radius;
     cv::Point center;
+    cv::Point center_wheel;
     double angle;
     
     const int epsilon_approx = 7;

@@ -69,6 +69,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
             m.plan_mission_two();
             break;
     }
+    m.path_p->lines[0].getIntermediatePoints();
     
     
     return true;

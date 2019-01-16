@@ -20,7 +20,8 @@ bool Map::wasSuccess(){
 }
 
 void Map::clipPoints() {
-    int radius = 10;// change obtaing the real value
+    int radius = 122*Settings::PIXEL_SCALE;// 12,20 cm
+
     std::vector<cv::Point> tmp_point;
     std::vector<cv::Point> tmp_clip;
     //clipping exit-point
