@@ -33,7 +33,7 @@ public:
 
 
 private:
-  const int epsilon_approx = 20; // value for detect poly
+  const int epsilon_approx = 7; // value for detect poly
 };
 }
 #endif /* ExitPoint_hpp */

@@ -47,14 +47,14 @@ public:
     }
 
 
-    static std::pair<double,double> convertPixelToMillimeterInMapPlane(const cv::Point &point, const cv::Point &reference){
+    static std::pair<double,double> convertPixelToMillimeterInMapPlane(const cv::Point &point, const cv::Point &reference, const double &scale = 1){
         
-        return convertPixelToMillimeter(point, reference, PIXEL_SCALE);
+        return convertPixelToMillimeter(point, reference, scale);
     }
     
-    static std::pair<double,double> convertPixelToMillimeterInRoboPlane(const cv::Point &point, const cv::Point &reference){
+    static std::pair<double,double> convertPixelToMillimeterInRoboPlane(const cv::Point &point, const cv::Point &reference, const double &scale = 1){
         
-        return convertPixelToMillimeter(point, reference, ROBO_PIXEL_SCALE);
+        return convertPixelToMillimeter(point, reference, scale);
     }
     
 private:

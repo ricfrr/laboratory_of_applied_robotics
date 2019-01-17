@@ -52,6 +52,12 @@ public:
     
     double getAngleForRobotFrame();
     
+    double map_pixelscale = 1;
+    double robo_pixelscale = 1;
+    
+    void scalePixelsForRobo(const Mat &onPlane);
+    void scalePixelsForMap(const Mat &onPlane);
+    
 
 private:
 

@@ -20,7 +20,7 @@ bool Map::wasSuccess(){
 }
 
 void Map::clipPoints() {
-    int radius = 122*PIXEL_SCALE;// 12,20 cm
+    int radius = 122*robo->map_pixelscale;// 12,20 cm
 
     std::vector<cv::Point> tmp_point;
     std::vector<cv::Point> tmp_clip;
@@ -95,6 +95,10 @@ void Map::createMap(const Mat &img,const Mat &robot_plane) {
     
     std::cout << "find robot        ->";
     this->robo = new Robot;
+    
+    this->robo->scalePixelsForRobo(robot_plane);
+    this->robo->scalePixelsForMap(img);
+    
     robo->findRobot(robot_plane);
     robo->initialPosition = robo->getPosition();
     robo->initialAngle = robo->angle;
@@ -725,7 +729,7 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
     
     
     
-    output << "\"PixelScale\":" << PIXEL_SCALE << ",\n";
+    output << "\"PixelScale\":" << map->robo->map_pixelscale << ",\n";
     output << "\"_ArenaPoints\":\"Arena Values are pixel points of the projected image\",\n";
     
     output << "\"Arena\":[";
@@ -818,7 +822,7 @@ void Map::MapEncoder::encode(Map* map, const std::string &filepath){
 cv::Point Map::MapEncoder::get_real_coordinates(const cv::Point &forPoint, Map* inMap){
     
     cv:Point start = inMap->getStartPoint();
-    std::pair<double,double> point = Geometry::convertPixelToMillimeterInMapPlane(forPoint, start);
+    std::pair<double,double> point = Geometry::convertPixelToMillimeterInMapPlane(forPoint, start,inMap->robo->map_pixelscale);
     
     return cv::Point(point.first,point.second);
 }
@@ -828,5 +832,5 @@ void Map::scalePixelsForMap(){
     double top_dist = cv::norm(corners[0] - corners[1]);
     double pixel_scale = top_dist / Settings::arena_width;
     std::cout << "Map pixel scale: " << pixel_scale << std::endl;
-    PIXEL_SCALE = pixel_scale;
+    //Settings::PIXEL_SCALE = pixel_scale;
 }
