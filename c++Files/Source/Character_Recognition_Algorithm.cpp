@@ -118,7 +118,7 @@ std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img
     
     //find a filter
     Color_Processing color;
-    std::string filename = "../data/calib/filter_2.png"; //the link might has to be adapted
+    std::string filename = filter_img;
     color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;
@@ -191,6 +191,9 @@ double Character_Recognition_Algorithm::determine_orientation(cv::Mat image){
             numbers.push_back(contours[i][j]);
 
 
+    if(numbers.empty())
+        return 0;
+    
     cv::fitLine(numbers, line, CV_DIST_L1, 0,  0.01,  0.01);
 
     cv::Mat colored;

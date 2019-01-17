@@ -136,6 +136,8 @@ public:
     
     const double MIN_AREA_SIZE = 2000;
     
+    std::string filter_img = "../data/calib/filter_2.png";
+    
     HSVFilterRange filter = HSVFilterRange();
     
     //the folowing functions are used for preparing an image to find the parts containing digits

@@ -128,6 +128,7 @@ public:
         ///detected People
         std::vector<LAR::People> people;
         
+        std::string filter_img = "../data/calib/filter_2.png";
         /*!
          * detect circles in the map
          * @param img image of the map
@@ -135,6 +136,8 @@ public:
         void findCircles(const Mat &img){
             
             Digit_Recognition dg_recognition = Digit_Recognition(algorithm,suff_confidence,search_angle,d_angle,extra_eroding);
+            
+            dg_recognition.algorithm->filter_img = filter_img;
             
             std::vector<LAR::People> data = dg_recognition.detect_digits_for_map(img);
             for (int i = 0; i < data.size(); i++)
@@ -183,7 +186,7 @@ public:
         ///check wether all people objects where correctly identified
         void checkSuccess(){
             for(auto &&guy : people)
-                if(guy.confidence == 0 && guy.name == 0){
+                if(guy.confidence == 0){
                     success = false;
                     break;
                 }

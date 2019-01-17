@@ -133,6 +133,10 @@ public:
     
     void scalePixelsForMap();
     
+    std::string findBestFilter(const std::vector<std::string> &filter, const Mat &img);
+    
+    void setFilterPath(const std::string &imgPath);
+    
 private:
 
     // grid of the map
@@ -156,7 +160,7 @@ private:
     ExitPoint exit_point;
     Obstacle obstacles;
     Arena arena;
-
+    
     Digit_Recognition::PeopleStorage people;
 
     Clipper clipper;

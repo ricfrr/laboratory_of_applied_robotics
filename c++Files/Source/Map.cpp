@@ -834,3 +834,45 @@ void Map::scalePixelsForMap(){
     std::cout << "Map pixel scale: " << pixel_scale << std::endl;
     //Settings::PIXEL_SCALE = pixel_scale;
 }
+
+void Map::setFilterPath(const std::string &imgPath){
+    people.filter_img = imgPath;
+}
+
+std::string Map::findBestFilter(const std::vector<std::string> &filter,const Mat &img){
+    
+    std::cout << "\nfinding best filter out of " << filter.size() << " images" << std::endl;
+    
+    std::string best = "";
+    double bestConf = 0;
+    
+    for(auto && name : filter){
+        
+        std::cout << ".";
+        
+        ImageProcessing::Digit_Recognition::PeopleStorage storage(DigitRecognitionAlgo::tesseractOCP,
+                                                                  60,
+                                                                  20,
+                                                                  4,
+                                                                  1);
+    
+        storage.filter_img = name;
+        
+        storage.findCircles(img);
+        
+        if(storage.success){
+            double conf = 0;
+            
+            for(auto && guy : storage.people)
+                conf += (double)guy.confidence/(double)storage.people.size();
+            
+            if(conf > bestConf){
+                best = name;
+                bestConf = conf;
+            }
+        }
+    }
+    
+    std::cout << "\n";
+    return best;
+}

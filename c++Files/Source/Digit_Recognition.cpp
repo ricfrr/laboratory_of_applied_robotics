@@ -215,15 +215,16 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
             }
         }
         
-        if(digit.first == 1)
-            found_one = true;
+        for(auto &&result : results)
+            if(result.name == 1){
+                found_one = true;
+                break;
+            }
 
         //create the people data
         if(is_valid(digit.first))
             results.push_back(LAR::People(digit,rects[i]));
         else if (digit.first == 7 && !found_one)
-            results.push_back(LAR::People({1,1},rects[i]));
-        else if (!found_one)
             results.push_back(LAR::People({1,1},rects[i]));
         else if (!found_one)
             results.push_back(LAR::People({1,1},rects[i]));
