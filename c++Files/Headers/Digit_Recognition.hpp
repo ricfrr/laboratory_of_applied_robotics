@@ -186,7 +186,7 @@ public:
         ///check wether all people objects where correctly identified
         void checkSuccess(){
             for(auto &&guy : people)
-                if(guy.confidence == 0){
+                if(guy.confidence == 0 || guy.name == 0){
                     success = false;
                     break;
                 }
