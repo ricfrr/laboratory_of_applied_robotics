@@ -850,11 +850,11 @@ std::string Map::findBestFilter(const std::vector<std::string> &filter,const Mat
         
         std::cout << ".";
         
-        ImageProcessing::Digit_Recognition::PeopleStorage storage(DigitRecognitionAlgo::tesseractOCP,
-                                                                  60,
-                                                                  20,
-                                                                  4,
-                                                                  1);
+        ImageProcessing::Digit_Recognition::PeopleStorage storage(people.algorithm,
+                                                                  people.suff_confidence,
+                                                                  people.search_angle,
+                                                                  people.d_angle,
+                                                                  people.extra_eroding);
     
         storage.filter_img = name;
         
@@ -891,11 +891,11 @@ std::vector<std::string> Map::findBestFilters(const std::vector<std::string> &fi
         
         std::cout << ".";
         
-        ImageProcessing::Digit_Recognition::PeopleStorage storage(DigitRecognitionAlgo::tesseractOCP,
-                                                                  70,
-                                                                  15,
-                                                                  3,
-                                                                  0);
+        ImageProcessing::Digit_Recognition::PeopleStorage storage(people.algorithm,
+                                                                  people.suff_confidence,
+                                                                  people.search_angle,
+                                                                  people.d_angle,
+                                                                  people.extra_eroding);
         
         storage.filter_img = name;
         

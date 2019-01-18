@@ -115,7 +115,7 @@ public:
             this->extra_eroding = extra_eroding;
         }
         
-    private:
+    //private:
         
         DigitRecognitionAlgo algorithm;
         unsigned int suff_confidence;
