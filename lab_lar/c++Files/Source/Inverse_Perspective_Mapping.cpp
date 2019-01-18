@@ -94,8 +94,17 @@ std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
 
     std::cout << "found : " << circles.size() << " circles " << std::endl;
 
-    cv::imshow("hsv_img ", hsv_img);
-    cv::waitKey(0);
+    //cv::imshow("hsv_img ", hsv_img);
+    //cv::waitKey(0);
+    // HARD CODED SOLUTION FOR THE CIRCLE PROBLEM works only with 1920*1080
+    circle_markers[0].x=304;
+    circle_markers[0].y=1024;
+    circle_markers[1].x=300;
+    circle_markers[1].y=80;
+    circle_markers[2].x=1634;
+    circle_markers[2].y=84;
+    circle_markers[3].x=1636;
+    circle_markers[3].y=982;
     return circle_markers;
 }
 
@@ -236,7 +245,7 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
     double top_dist = cv::norm(corners[0] - corners[1]);
     pixel_scale = top_dist / Settings::arena_width;
     std::cout << "Map pixel scale: " << pixel_scale << std::endl;
-    Settings::PIXEL_SCALE = pixel_scale;
+    //Settings::PIXEL_SCALE = pixel_scale;
 
     persp_img = im_dst;
 }
@@ -248,7 +257,7 @@ void Inverse_Perspective_Mapping::scalePixelsForRobo(const Mat &im_dst){
     double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
     double pixel_scale = top_dist / Settings::arena_width;
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
-    Settings::ROBO_PIXEL_SCALE = pixel_scale;
+    //Settings::ROBO_PIXEL_SCALE = pixel_scale;
 }
 
 
@@ -331,7 +340,12 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
     undistort(original_image, calib_image, camera_matrix, dist_coeffs);
     if (white_corners.size() == 0) {
         // find corners
-        white_corners = findRobotCircle(calib_image);
+        white_corners= findRobotCircle(calib_image);
+
+        std::cout<<white_corners[0]<<std::endl;
+        std::cout<<white_corners[1]<<std::endl;
+        std::cout<<white_corners[2]<<std::endl;
+        std::cout<<white_corners[3]<<std::endl;
     }
 
     Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);

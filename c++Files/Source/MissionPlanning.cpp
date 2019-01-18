@@ -137,7 +137,7 @@ void MissionPlanning::plan_mission_two() {
     std::pair<cv::Point, double> exit = map_p->getExitPoint().getEntryPoint();
     Path2D::Position finalPos = Path2D::Position(exit.first, exit.second);
     finalPos.orientation_locked = true;
-    finalPos.setWeight(0);
+    finalPos.setWeight(100*10*map_p->robo->map_pixelscale);
     point_of_interest.push_back(&finalPos);
 
     Path2D::Path *path = new Path();
@@ -228,10 +228,10 @@ MissionPlanning::findOptimalPath(Position *start_point, std::vector<Path2D::Posi
                     net_dinstance = final_path->length;
                     final_orientation = temp_orientation;
                     final_index = i;
-
                 }
             }
         }
+        //return final_path;
     }
 
     start_point->setOrientation(final_orientation);
@@ -246,7 +246,7 @@ MissionPlanning::findOptimalPath(Position *start_point, std::vector<Path2D::Posi
     return final_path;
 };
 
-// function that found the angle between two points
+// function that find the angle between two points
 double angleBetweenPoints(cv::Point2d p1, cv::Point2d p2) {
     double dinst = dinstance(p1, p2);
     double x_dist = abs(p1.x - p2.x);

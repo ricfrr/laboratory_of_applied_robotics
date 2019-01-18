@@ -102,10 +102,10 @@ bool Robot::findRobot(const cv::Mat &img){
     
     // Find red regions: h values around 0 (positive and negative angle: [0,15] U [160,179])
     cv::Mat blue_mask;
-    cv::inRange(hsv_img, cv::Scalar(75, 50, 50), cv::Scalar(130, 255, 255), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(75, 60, 50), cv::Scalar(130, 255, 255), blue_mask);
     
     // Filter (applying dilation, blurring, dilation and erosion) the image
-    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 2, (2 * 2) + 2));
+    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 2));
     // Filter (applying an erosion and dilation) the image
     //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(7, 7), 6, 6);
     //cv::imshow("blue mask 1", blue_mask);
@@ -115,10 +115,9 @@ bool Robot::findRobot(const cv::Mat &img){
     cv::erode(blue_mask, blue_mask, kernel);
 
 
-    //cv::imshow("blue mask", blue_mask);
-    //cv::waitKey(0);
-    // Process red mask
-    
+    cv::imshow("robo mask", blue_mask);
+    cv::waitKey(0);
+
     contours_img = img.clone();
     cv::findContours(blue_mask, contours, hierarchy, cv::RETR_LIST,
                      cv::CHAIN_APPROX_SIMPLE);

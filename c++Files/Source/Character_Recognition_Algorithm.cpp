@@ -118,7 +118,9 @@ std::vector<cv::Mat> Character_Recognition_Algorithm::preprocessing(cv::Mat &img
     
     //find a filter
     Color_Processing color;
+    
     std::string filename = filter_img;
+
     color.calibrate_color(filename);
     HSVFilterRange filter = color.getFilter();
     this->filter = filter;

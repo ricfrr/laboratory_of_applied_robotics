@@ -36,11 +36,12 @@ void ExitPoint::findExitPoint(const Mat &img)
     kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
     // Filter (applying dilation, blurring, dilation and erosion) the image
     cv::dilate(blue_mask, blue_mask, kernel);
-    cv::GaussianBlur(blue_mask, blue_mask, cv::Size(9, 9), 6, 6);
+    //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(9, 9), 6, 6);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
-
+    //imshow("exit mask ", blue_mask);
+    //waitKey(0);
 
     // Process blue mask
 
