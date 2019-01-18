@@ -63,7 +63,13 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
         "../data/calib/filter_8.png",
         "../data/calib/filter_9.png",
         "../data/calib/filter_10.png",
-        "../data/calib/filter_11.png"
+        "../data/calib/filter_11.png",
+        "../data/calib/filter_12.png",
+        "../data/calib/filter_13.png",
+        "../data/calib/filter_14.png",
+        "../data/calib/filter_15.png",
+        "../data/calib/filter_16.png",
+        "../data/calib/filter_17.png"
     }, persp_img);
     
     if(result.empty())
