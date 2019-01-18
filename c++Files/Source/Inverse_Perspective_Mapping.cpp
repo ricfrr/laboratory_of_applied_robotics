@@ -97,14 +97,14 @@ std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
     //cv::imshow("hsv_img ", hsv_img);
     //cv::waitKey(0);
     // HARD CODED SOLUTION FOR THE CIRCLE PROBLEM works only with 1920*1080
-    circle_markers[0].x=304;
-    circle_markers[0].y=1024;
-    circle_markers[1].x=300;
-    circle_markers[1].y=80;
-    circle_markers[2].x=1634;
-    circle_markers[2].y=84;
-    circle_markers[3].x=1636;
-    circle_markers[3].y=982;
+//    circle_markers[0].x=304;
+//    circle_markers[0].y=1024;
+//    circle_markers[1].x=300;
+//    circle_markers[1].y=80;
+//    circle_markers[2].x=1634;
+//    circle_markers[2].y=84;
+//    circle_markers[3].x=1636;
+//    circle_markers[3].y=982;
     return circle_markers;
 }
 

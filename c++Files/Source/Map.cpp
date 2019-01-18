@@ -876,3 +876,53 @@ std::string Map::findBestFilter(const std::vector<std::string> &filter,const Mat
     std::cout << "\n";
     return best;
 }
+
+
+std::vector<std::string> Map::findBestFilters(const std::vector<std::string> &filter,const Mat &img){
+    
+    std::cout << "\nfinding best filter out of " << filter.size() << " images" << std::endl;
+    
+    std::string best = "";
+    double bestConf = 0;
+    
+    std::vector<std::string> results;
+    
+    for(auto && name : filter){
+        
+        std::cout << ".";
+        
+        ImageProcessing::Digit_Recognition::PeopleStorage storage(DigitRecognitionAlgo::tesseractOCP,
+                                                                  70,
+                                                                  15,
+                                                                  3,
+                                                                  0);
+        
+        storage.filter_img = name;
+        
+        storage.findCircles(img);
+        
+        if(storage.success){
+            double conf = 0;
+            
+            if(results.empty()){
+                results.push_back(name);
+            }
+            
+            for(auto && guy : storage.people)
+                conf += (double)guy.confidence/(double)storage.people.size();
+            
+            if(conf > bestConf){
+                best = name;
+                bestConf = conf;
+                if(results.size() != 1 && results[0] != name)
+                    results.insert(results.begin(), name);
+            }
+            else{
+                results.push_back(name);
+            }
+        }
+    }
+    
+    std::cout << "\n";
+    return results;
+}

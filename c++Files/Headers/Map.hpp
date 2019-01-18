@@ -134,6 +134,7 @@ public:
     void scalePixelsForMap();
     
     std::string findBestFilter(const std::vector<std::string> &filter, const Mat &img);
+    std::vector<std::string> findBestFilters(const std::vector<std::string> &filter, const Mat &img);
     
     void setFilterPath(const std::string &imgPath);
     

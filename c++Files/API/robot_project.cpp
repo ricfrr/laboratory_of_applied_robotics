@@ -52,7 +52,7 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     //  - consecutive delusions
     //  - main CRA
     //  - min rotation angle
-    std::string result = map->findBestFilter({
+    std::vector<std::string> result = map->findBestFilters({
         "../data/calib/filter_1.png",
         "../data/calib/filter_2.png",
         "../data/calib/filter_3.png",
@@ -74,11 +74,16 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     
     if(result.empty())
        std::cout << "!!! no filter found !!!" << std::endl;
-    else
-        std::cout << "best filter was ->" << result << std::endl;
+    else{
+        std::cout << "best filter was ->" << result[0] << std::endl;
+    
+        for(int i=1;i<result.size();i++)
+            std::cout << i+1 << ".best filter was ->" << result[i] << std::endl;
+        }
+        
     
     if(!result.empty())
-        map->setFilterPath(result);
+        map->setFilterPath(result[0]);
     
     map->createMap(persp_img,robot_plane);
     map->save("savedMap.json");
