@@ -101,8 +101,8 @@ std::vector<LAR::People> Digit_Recognition::detect_digits_for_map(const cv::Mat 
     cv::Mat source = img_input.clone();
 
     std::vector<cv::Mat> digit_images = this->algorithm->preprocessing(source, filtered, rects);
-    cv::imshow("filtered", filtered);
-    cv::waitKey(0);
+//    cv::imshow("filtered", filtered);
+//    cv::waitKey(0);
     
 
     std::vector<LAR::People> results;
