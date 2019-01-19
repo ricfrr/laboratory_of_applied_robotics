@@ -1,0 +1,10 @@
+{
+"_Intro":"Laboratory of Applied Robotics -> Map structure",
+"PixelScale":0.426005,
+"_ArenaPoints":"Arena Values are pixel points of the projected image",
+"Arena":[{"Point":{"x":15,"y":7}},{"Point":{"x":441,"y":9}},{"Point":{"x":437,"y":658}},{"Point":{"x":19,"y":660}}],
+"_Units":"All units are mm values based on pixel_scale",
+"Obstacles":[{"Ostacle":[{"Point":{"x":180,"y":1011}},{"Point":{"x":131,"y":1039}},{"Point":{"x":129,"y":1077}},{"Point":{"x":159,"y":1103}},{"Point":{"x":206,"y":1082}},{"Point":{"x":211,"y":1039}}]},{"Ostacle":[{"Point":{"x":300,"y":150}},{"Point":{"x":234,"y":204}},{"Point":{"x":241,"y":298}},{"Point":{"x":328,"y":335}},{"Point":{"x":396,"y":279}},{"Point":{"x":387,"y":187}}]},{"Ostacle":[{"Point":{"x":744,"y":882}},{"Point":{"x":889,"y":887}},{"Point":{"x":814,"y":1023}}]}],
+"People":[{"Victim":{"Center":{"x":619,"y":1122},"Radius":36,"Name":5}},
+{"Victim":{"Center":{"x":375,"y":661},"Radius":37,"Name":3}}]
+}

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="opencv"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\..\..\usr\local\share\OpenCV\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lar">
+				<Option output="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/lar" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 lar"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lar/fast">
+				<Option output="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/lar" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 lar/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/API/path.h">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/API/robot_project.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/API/robot_project.h">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Arena.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Calibration_Intrinsic.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Cell.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Character_Recognition_Algorithm.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Circle.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/CircularLine.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Clipper.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Color_Processing.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/CustomPolygon.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Digit_Recognition.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/DubinPathEFinder.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/DubinPathFinder.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/ExitPoint.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Geometry.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Hexagon.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Introduction.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Inverse_Perspective_Mapping.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Line.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Map.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/MissionPlanning.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Obstacle.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Optical_Character_Recognition.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Path.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/PathCoordinates.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/PathEFinder.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/PathEPlanning.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Pentagon.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/People.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Polygon.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Position.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Rectangle.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Robot.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/RoboticMapping.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Settings.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Shape.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Square.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/StraightLine.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Template_Character_Recognition.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Triangle.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Headers/Undistortion.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Arena.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Calibration_Intrinsic.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Cell.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Character_Recognition_Algorithm.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Circle.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/CircularLine.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Clipper.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Color_Processing.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/CustomPolygon.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Digit_Recognition.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/DubinPathEFinder.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/ExitPoint.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Hexagon.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Inverse_Perspective_Mapping.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Line.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Map.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/MissionPlanning.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Obstacle.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Optical_Character_Recognition.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/PathE.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/PathECoordinates.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/PathEFinder.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Pentagon.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/People.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Polygon.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Position.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Rectangle.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Robot.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Settings.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Shape.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Square.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/StraightLine.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Template_Character_Recognition.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Triangle.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Source/Undistortion.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Visualizing/Visualizer.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/Visualizing/Visualizer.hpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/config/fullCalibration.yml">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/config/intrinsic_calibration.xml">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/main.cpp">
+			<Option target="lar"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/../../../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/../../../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/../../../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/riccardo/Desktop/laboratory_of_applied_robotics/hardcoded_lar_for_lab/../../../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
