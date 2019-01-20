@@ -264,9 +264,10 @@ void reTransform(cv::Mat &persp_img, double &pixel_scale) {
 void Inverse_Perspective_Mapping::scalePixelsForRobo(const Mat &im_dst){
     //LAR::Arena arena = LAR::Arena();
     //arena.findArena(im_dst);
+    //std::cout<<"arean in scale pixel for robot : "<<arena.getCorners()<<std::endl;
     //std::vector<cv::Point> corners = white_corners;
-    double top_dist = cv::norm(white_corners[0]- white_corners[1]);
-    double pixel_scale = top_dist / (Settings::arena_width+40);
+    double top_dist = cv::norm(cv::Point(22,28)- cv::Point(436,26));
+    double pixel_scale = top_dist / (Settings::arena_width);
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
     //Settings::ROBO_PIXEL_SCALE = pixel_scale;
 }
@@ -349,7 +350,7 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
     calib_image = img;
     if (white_corners.size() == 0) {
         // find corners

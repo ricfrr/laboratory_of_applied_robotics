@@ -29,17 +29,18 @@ void ExitPoint::findExitPoint(const Mat &img)
 
     // Find blue regions
     cv::Mat blue_mask;
-    cv::inRange(hsv_img, cv::Scalar(110, 80, 65), cv::Scalar(140, 250, 255), blue_mask);
+    //cv::inRange(hsv_img, cv::Scalar(110, 80, 65), cv::Scalar(140, 250, 255), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(90, 60, 55), cv::Scalar(130, 250, 255), blue_mask);
 
     // Process blue mask
 
-    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 2, (2 * 2) + 2));
+    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
     // Filter (applying dilation, blurring, dilation and erosion) the image
     //cv::dilate(blue_mask, blue_mask, kernel);
-    //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(9, 9), 6, 6);
+    cv::GaussianBlur(blue_mask, blue_mask, cv::Size(3, 3), 1, 1);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
-    cv::erode(blue_mask, blue_mask, kernel);  
+   cv::erode(blue_mask, blue_mask, kernel);
 
    
 

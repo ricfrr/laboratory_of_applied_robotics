@@ -56,12 +56,7 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-        "../data/calib/filter_1.png",
-        "../data/calib/filter_2.png",
-        "../data/calib/filter_3.png",
-        "../data/calib/filter_4.png",
-        "../data/calib/filter_5.png"
-
+        "../data/calib/filter_2.png"
     }, persp_img);
     
     if(result.empty())
