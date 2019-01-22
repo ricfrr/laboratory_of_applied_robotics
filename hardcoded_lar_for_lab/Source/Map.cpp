@@ -71,9 +71,9 @@ void Map::clipPoints() {
 
 
 void Map::createMap(const Mat &img,const Mat &robot_plane) {
-   
+
     std::cout << "\nCREATING MAP\n" << std::endl;
-    
+
     std::cout << "detect areana     ->";
     //arena.findArena(img);
     //std::cout<<arena.getCorners()<<std::endl;
@@ -88,34 +88,34 @@ void Map::createMap(const Mat &img,const Mat &robot_plane) {
     arena.setBottomLeft(cv::Point(19,660));
 
     std::cout << " done" << std::endl;
-    
+
     std::cout << "detect exit       ->";
     exit_point.findExitPoint(img);
     std::cout << " done" << std::endl;
-    
+
     std::cout << "find obstacles    ->";
     obstacles.findObstacles(img);
     std::cout << " done" << std::endl;
-    
+
     std::cout << "find people:\n";
     people.findCircles(img);
     if(!people.success){
         std::cout << "could not find all digits!!! Try to modify parameters\n\n";
         success = false;
     }
-    
+
     std::cout << "find robot        ->";
     this->robo = new Robot;
-    
+
     this->robo->scalePixelsForRobo(robot_plane);
     this->robo->scalePixelsForMap(img);
-    
+
     robo->findRobot(robot_plane);
     robo->initialPosition = robo->getPosition();
     robo->initialAngle = robo->angle;
     std::cout << " position in map: (" << robo->initialPosition.x << "," << robo->initialPosition.y << ")";
     std::cout << " done" << std::endl;
-    
+
     std::cout << "clip points       ->";
     clipPoints();
     std::cout << " done" << std::endl;
@@ -123,8 +123,8 @@ void Map::createMap(const Mat &img,const Mat &robot_plane) {
 
     std::cout << "init grid:        ->";
     initializeGrid(arena, exit_point, obstacles);
-    std::cout << " done" << std::endl;  
-    
+    std::cout << " done" << std::endl;
+
     std::cout << "\nCREATED MAP\n" << std::endl;
 }
 
@@ -228,7 +228,7 @@ void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
     grid = this->grid;
 }
 
-Cell * Map::getCell(cv::Point forPoint){
+Cell * Map::getCell(const cv::Point &forPoint){
     
     Cell* cell = new Cell;
     
@@ -281,6 +281,17 @@ Cell * Map::getCell(cv::Point forPoint){
     
     return cell;
     
+}
+
+Polygon * Map::getObstacle(const cv::Point &forPoint){
+    
+    for(auto && ob : obstacles.get()){
+        double result = cv::pointPolygonTest(ob->getClippedCorners(), forPoint, false);
+        if(result > 0)
+            return ob;
+    }
+    
+    return nullptr;
 }
 
 Obstacle Map::getObstacles() {
@@ -595,6 +606,70 @@ std::vector<std::vector<cv::Point>> Map::getEmptyNearestNeighborsPoints(Cell * &
     return points;
 }
 
+std::vector<cv::Point> Map::getEmptyNearestNeighborsPoints(const cv::Point &point){
+    std::vector<cv::Point> points;
+    
+    //get obstacle
+    Polygon * obstacle = getObstacle(point);
+    
+    //some conditions
+    if(obstacle == nullptr){
+        Cell * cell = getCell(point);
+        if(cell == nullptr || !cell->isEmpty())
+            return {};
+    }
+    
+    std::vector<Polygon *> vector;
+    points = neighbouringPointsOfObstacle(vector, obstacle);
+        
+    
+    return points;
+}
+
+std::vector<cv::Point> Map::neighbouringPointsOfObstacle(
+                                                         std::vector<Polygon*> &obstacles,
+                                                         Polygon* &ofObstacle){
+    std::vector<cv::Point> points;
+    std::vector<cv::Point> checkpoints = ofObstacle->getClippedCorners();
+    
+    for(auto &&point : checkpoints){
+        std::vector<std::vector<Cell*>> cells = getNearestNeighbors(point);
+        for(int i=0;i<4;i++){
+            for(auto && cell : cells[i]){
+                Polygon * newobstacle = getObstacle(cell->center());
+                //check if cell is empty
+                if(cell->isEmpty())
+                    points.push_back(cell->center());
+                //check if cell is inside same obstacle
+                else if(newobstacle == ofObstacle)
+                    continue;
+                //check if cell is inside different obstacle
+                else if (newobstacle != nullptr){
+                    bool unknown = true;
+                    for(auto && obstacle : obstacles){
+                        if(newobstacle == obstacle){
+                            unknown = false;
+                            break;
+                        }
+                    }
+                    if(unknown){
+                    //cell is inside new obstacle
+                        obstacles.push_back(newobstacle);
+                        std::vector<cv::Point> n_points =
+                        neighbouringPointsOfObstacle(obstacles, ofObstacle);
+                        points.reserve(n_points.size() + points.size());
+                        points.insert(points.end(), n_points.begin(),n_points.end());
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    return points;
+    
+}
+
 std::vector<Cell *> Map::getTopNeighbors(Cell* &forCell){
     
     double multiplier = n_multiplier;
@@ -846,8 +921,8 @@ void Map::scalePixelsForMap(){
     //Settings::PIXEL_SCALE = pixel_scale;
 }
 
-void Map::setFilterPathE(const std::string &imgPathE){
-    people.filter_img = imgPathE;
+void Map::setFilterPathE(const std::string &imgPath){
+    people.filter_img = imgPath;
 }
 
 std::string Map::findBestFilter(const std::vector<std::string> &filter,const Mat &img){

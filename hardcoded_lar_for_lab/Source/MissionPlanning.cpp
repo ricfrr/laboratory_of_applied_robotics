@@ -105,8 +105,8 @@ void MissionPlanning::plan_mission_one() {
 
     this->path_p = path;
 
-    //Visualizer v(*map_p, path);
-    //v.visualize();
+    Visualizer v(*map_p, path);
+    v.visualize();
     //v.simulate();
 
 }

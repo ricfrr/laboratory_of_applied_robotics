@@ -58,7 +58,9 @@ public:
 
     void getGrid(std::vector<std::vector<Cell *>> &grid);
     
-    Cell * getCell(cv::Point forPoint);
+    Cell * getCell(const cv::Point &forPoint);
+    
+    Polygon * getObstacle(const cv::Point &forPoint);
 
     LAR::Obstacle getObstacles();
 
@@ -110,6 +112,9 @@ public:
     /// returns 4 vectors with top, right, bottom & left neighboring center points of empty cells for a cell
     std::vector<std::vector<cv::Point>> getEmptyNearestNeighborsPoints(Cell * &cell);
     
+    /// returns neighboring center points of empty cells for a point. When point is an obstacle it will return neighbouring cell if that obstacle
+   std::vector<cv::Point> getEmptyNearestNeighborsPoints(const cv::Point &point );
+    
     ///the distance a neighboring cell is given based on cell width/height and a multiplier
     double n_multiplier = 2.0;
     
@@ -136,7 +141,7 @@ public:
     std::string findBestFilter(const std::vector<std::string> &filter, const Mat &img);
     std::vector<std::string> findBestFilters(const std::vector<std::string> &filter, const Mat &img);
     
-    void setFilterPathE(const std::string &imgPathE);
+    void setFilterPathE(const std::string &imgPath);
     
 private:
 
@@ -156,6 +161,8 @@ private:
     void checkPeople(Cell &cell, Digit_Recognition::PeopleStorage &people);
 
     void checkObstacles(Cell &cell, Obstacle &obstacles);
+    
+    std::vector<cv::Point> neighbouringPointsOfObstacle(std::vector<Polygon*> &obstacles, Polygon* &ofObstacle);
 
 
     ExitPoint exit_point;
