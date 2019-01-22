@@ -71,7 +71,9 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     
     if(!result.empty())
         map->setFilterPathE(result[0]);
-    
+    else{
+        map->setFilterPathE("../data/calib/filter_2.png");
+    }
     map->createMap(persp_img,robot_plane);
     map->save("savedMap.json");
     std::cout<<map->wasSuccess()<<std::endl;

@@ -102,18 +102,16 @@ bool Robot::findRobot(const cv::Mat &img){
     
     // Find red regions: h values around 0 (positive and negative angle: [0,15] U [160,179])
     cv::Mat blue_mask;
-    //for light conditions
-    // cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 180, 180), blue_mask);
-    cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(90, 60, 55), cv::Scalar(130, 250, 255), blue_mask);
     
     // Filter (applying dilation, blurring, dilation and erosion) the image
-    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
+    kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 2, (2 * 2) + 2));
     // Filter (applying an erosion and dilation) the image
-    //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(3, 3), 1, 1);
+    //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(7, 7), 6, 6);
     cv::imshow("robot mask 1", blue_mask);
     cv::waitKey(0);
-    //cv::erode(blue_mask, blue_mask, kernel);
-    //cv::dilate(blue_mask, blue_mask, kernel);
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
 
@@ -126,17 +124,16 @@ bool Robot::findRobot(const cv::Mat &img){
                      cv::CHAIN_APPROX_SIMPLE);
     drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
                  cv::LINE_AA);
-    int area =0;
+    int perimeter =0;
     for (int i = 0; i < contours.size(); ++i)
     {
         approxPolyDP(contours[i], approx_curve, epsilon_approx, true);
         drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         contours_approx = {approx_curve};
-        cv::contourArea(approx_curve,false);
-        if (approx_curve.size() ==3 && cv::contourArea(approx_curve,false)>area)
+        if (approx_curve.size() ==3 && robotPerimeter(approx_curve)>perimeter)
         {
             Triangle triangle = Triangle();
-            area = cv::contourArea(approx_curve,false);
+            perimeter = robotPerimeter(approx_curve);
             triangle.setCorners(approx_curve);
 
            // std::cout << "Triangle : " << triangle.getCorners() << std::endl;
@@ -155,7 +152,7 @@ bool Robot::findRobot(const cv::Mat &img){
 
     imshow("contour robot", contours_img);
     waitKey(0);
-    if(area>0){
+    if(perimeter>0){
         return true;
     }else{
         return false;
@@ -232,33 +229,28 @@ void Robot::move(const cv::Point &location, const double &angle){
 }
 
 void Robot::scalePixelsForRobo(const Mat &onPlane){
-    /*LAR::Arena arena = LAR::Arena();
-    arena.setTopLeft(cv::Point(15,7));
-    arena.setTopRight(cv::Point(441,9));
-    arena.setBottomRight(cv::Point(437,658));
-    arena.setBottomLeft(cv::Point(19,660));*/
+    LAR::Arena arena = LAR::Arena();
+        arena.setTopLeft(cv::Point(15,15));
+    arena.setTopRight(cv::Point(15,665));
+    arena.setBottomRight(cv::Point(443,663));
+    arena.setBottomLeft(cv::Point(444,16));
     //arena.findArena(onPlane);
     //std::vector<cv::Point> corners = white_corners;
-    /*use this value if we are using the robot plane
-     * double top_dist = cv::norm(cv::Point(22,28)- cv::Point(436,26));
-     * */
-
-    double top_dist = cv::norm(cv::Point(15,7)- cv::Point(441,9));
-
+    double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
     double pixel_scale = top_dist / ImageProcessing::Settings::arena_width;
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
     robo_pixelscale = pixel_scale;
 }
 
 void Robot::scalePixelsForMap(const Mat &onPlane){
-    /*LAR::Arena arena = LAR::Arena();
-    arena.setTopLeft(cv::Point(15,7));
-    arena.setTopRight(cv::Point(441,9));
-    arena.setBottomRight(cv::Point(437,658));
-    arena.setBottomLeft(cv::Point(19,660));*/
+    LAR::Arena arena = LAR::Arena();
+        arena.setTopLeft(cv::Point(15,15));
+    arena.setTopRight(cv::Point(15,665));
+    arena.setBottomRight(cv::Point(443,663));
+    arena.setBottomLeft(cv::Point(444,16));
     //arena.findArena(onPlane);
     //std::vector<cv::Point> corners = white_corners;
-    double top_dist = cv::norm(cv::Point(15,7)- cv::Point(441,9));
+    double top_dist = cv::norm(arena.getTopLeft()- arena.getTopRight());
     double pixel_scale = top_dist / ImageProcessing::Settings::arena_width;
     std::cout << "robot pixel scale: " << pixel_scale << std::endl;
     map_pixelscale = pixel_scale;
