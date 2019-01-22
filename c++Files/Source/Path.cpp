@@ -159,6 +159,13 @@ std::vector<Line> Path::getLines() {
     return lines;
 }
 
+std::vector<Line*> Path::getLinesP(){
+    std::vector<Line*> lines_p;
+    for(auto &&line : this->lines)
+        lines_p.push_back(&line);
+    return lines_p;
+}
+
 
 void Path::setLength(double length){
     this->length = length;

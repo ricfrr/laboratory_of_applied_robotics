@@ -69,12 +69,20 @@ std::vector<Line> DubinPathFinder::dubinShortestPath(std::vector<cv::Point> &alt
             else{
                 //std::cout<<"non path valido\nreturning alternative points"<<std::endl;
                 
-                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(coll.second);
+//                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(coll.second);
+//
+//                for(int j=0;j<points.size();j++){
+//                    alternative_Points.reserve( alternative_Points.size() + points[j].size() ); // preallocate memory
+//                    alternative_Points.insert( alternative_Points.end(), points[j].begin(), points[j].end() );
+//                }
                 
-                for(int j=0;j<points.size();j++){
-                    alternative_Points.reserve( alternative_Points.size() + points[j].size() ); // preallocate memory
-                    alternative_Points.insert( alternative_Points.end(), points[j].begin(), points[j].end() );
-                }
+                std::vector<cv::Point> points =
+                map->getEmptyNearestNeighborsPoints(coll.second->center());
+                alternative_Points.reserve( alternative_Points.size() + points.size() );
+                alternative_Points.insert(
+                                          alternative_Points.end(),
+                                          points.begin(),
+                                          points.end() );
                 
             }
         }

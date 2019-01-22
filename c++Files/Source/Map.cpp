@@ -217,7 +217,7 @@ void Map::getGrid(std::vector<std::vector<Cell *>> &grid) {
     grid = this->grid;
 }
 
-Cell * Map::getCell(cv::Point forPoint){
+Cell * Map::getCell(const cv::Point &forPoint){
     
     Cell* cell = new Cell;
     
@@ -270,6 +270,17 @@ Cell * Map::getCell(cv::Point forPoint){
     
     return cell;
     
+}
+
+Polygon * Map::getObstacle(const cv::Point &forPoint){
+    
+    for(auto && ob : obstacles.get()){
+        double result = cv::pointPolygonTest(ob->getClippedCorners(), forPoint, false);
+        if(result > 0)
+            return ob;
+    }
+    
+    return nullptr;
 }
 
 Obstacle Map::getObstacles() {
@@ -582,6 +593,70 @@ std::vector<std::vector<cv::Point>> Map::getEmptyNearestNeighborsPoints(Cell * &
     
     
     return points;
+}
+
+std::vector<cv::Point> Map::getEmptyNearestNeighborsPoints(const cv::Point &point){
+    std::vector<cv::Point> points;
+    
+    //get obstacle
+    Polygon * obstacle = getObstacle(point);
+    
+    //some conditions
+    if(obstacle == nullptr){
+        Cell * cell = getCell(point);
+        if(cell == nullptr || !cell->isEmpty())
+            return {};
+    }
+    
+    std::vector<Polygon *> vector;
+    points = neighbouringPointsOfObstacle(vector, obstacle);
+        
+    
+    return points;
+}
+
+std::vector<cv::Point> Map::neighbouringPointsOfObstacle(
+                                                         std::vector<Polygon*> &obstacles,
+                                                         Polygon* &ofObstacle){
+    std::vector<cv::Point> points;
+    std::vector<cv::Point> checkpoints = ofObstacle->getClippedCorners();
+    
+    for(auto &&point : checkpoints){
+        std::vector<std::vector<Cell*>> cells = getNearestNeighbors(point);
+        for(int i=0;i<4;i++){
+            for(auto && cell : cells[i]){
+                Polygon * newobstacle = getObstacle(cell->center());
+                //check if cell is empty
+                if(cell->isEmpty())
+                    points.push_back(cell->center());
+                //check if cell is inside same obstacle
+                else if(newobstacle == ofObstacle)
+                    continue;
+                //check if cell is inside different obstacle
+                else if (newobstacle != nullptr){
+                    bool unknown = true;
+                    for(auto && obstacle : obstacles){
+                        if(newobstacle == obstacle){
+                            unknown = false;
+                            break;
+                        }
+                    }
+                    if(unknown){
+                    //cell is inside new obstacle
+                        obstacles.push_back(newobstacle);
+                        std::vector<cv::Point> n_points =
+                        neighbouringPointsOfObstacle(obstacles, ofObstacle);
+                        points.reserve(n_points.size() + points.size());
+                        points.insert(points.end(), n_points.begin(),n_points.end());
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    return points;
+    
 }
 
 std::vector<Cell *> Map::getTopNeighbors(Cell* &forCell){

@@ -53,23 +53,23 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-        "../data/calib/filter_1.png",
-        "../data/calib/filter_2.png",
-        "../data/calib/filter_3.png",
-        "../data/calib/filter_4.png",
-        "../data/calib/filter_5.png",
-        "../data/calib/filter_6.png",
-        "../data/calib/filter_7.png",
-        "../data/calib/filter_8.png",
-        "../data/calib/filter_9.png",
-        "../data/calib/filter_10.png",
-        "../data/calib/filter_11.png",
-        "../data/calib/filter_12.png",
-        "../data/calib/filter_13.png",
-        "../data/calib/filter_14.png",
-        "../data/calib/filter_15.png",
-        "../data/calib/filter_16.png",
-        "../data/calib/filter_17.png"
+        "../data/calib/filter_2.png"
+//        "../data/calib/filter_2.png",
+//        "../data/calib/filter_3.png",
+//        "../data/calib/filter_4.png",
+//        "../data/calib/filter_5.png",
+//        "../data/calib/filter_6.png",
+//        "../data/calib/filter_7.png",
+//        "../data/calib/filter_8.png",
+//        "../data/calib/filter_9.png",
+//        "../data/calib/filter_10.png",
+//        "../data/calib/filter_11.png",
+//        "../data/calib/filter_12.png",
+//        "../data/calib/filter_13.png",
+//        "../data/calib/filter_14.png",
+//        "../data/calib/filter_15.png",
+//        "../data/calib/filter_16.png",
+//        "../data/calib/filter_17.png"
     }, persp_img);
     
     if(result.empty())
@@ -87,6 +87,12 @@ bool RobotProject::preprocessMap(cv::Mat const & img){
     
     map->createMap(persp_img,robot_plane);
     map->save("savedMap.json");
+    
+//    Path2D::Path* path = new Path2D::Path();
+//
+//    Visualizer v = Visualizer(*map,path);
+//    v.visualize();
+    
     std::cout<<map->wasSuccess()<<std::endl;
     return 1;//map->wasSuccess();
 }
@@ -106,11 +112,11 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
     //initialization of pose vector
     double int_point_counter =0;
     double  points_number =0;
-    for (int i =0; m.path_p->lines.size(); i++){
-        points_number+= m.path_p->lines[i].getIntermediatePoints().size();
+    for (int i =0; i < m.lines.size(); i++){
+        points_number+= m.lines[i]->getIntermediatePoints().size();
     }
-    for (int i =0; m.path_p->lines.size(); i++){
-        std::vector<cv::Point2d> intermediate_points = m.path_p->lines[i].getIntermediatePoints();
+    for (int i =0; i < m.lines.size(); i++){
+        std::vector<cv::Point2d> intermediate_points = m.lines[i]->getIntermediatePoints();
         for (int j =0; j<intermediate_points.size(); j++){
             //int_point_counter*5*Setting::PIXEL_SCALE i the distance from the starting point
             
@@ -119,7 +125,7 @@ bool RobotProject::planPath(cv::Mat const & img, ApiPath & path){
             pose.push_back(Pose(
                                 int_point_counter/points_number,mm_point.first,mm_point.second
                                 ,map->robo->getAngleForRobotFrame(),
-                                m.path_p->lines[i].getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
+                                m.lines[i]->getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
             int_point_counter++;
         }
     }

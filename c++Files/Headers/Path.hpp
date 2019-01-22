@@ -57,6 +57,8 @@ public:
      * @return vector of lines
      */
     std::vector<Line> getLines();
+    
+    std::vector<Line*> getLinesP();
     /**
      * \brief set the start point of the path
      * @param start_point start point of the path

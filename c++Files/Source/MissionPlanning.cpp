@@ -104,10 +104,11 @@ void MissionPlanning::plan_mission_one() {
     std::cout << delta.count() << "s\n";
 
     this->path_p = path;
+    this->lines = path->getLinesP();
 
     Visualizer v(*map_p, path);
     v.visualize();
-    v.simulate();
+    //v.simulate();
 
 }
 
@@ -161,11 +162,14 @@ void MissionPlanning::plan_mission_two() {
     auto t1 = std::chrono::steady_clock::now();
     fsec delta = t1 - t0;
     std::cout << delta.count() << "s\n";
+    
+    
+    this->lines = path->getLinesP();
 
     std::cout << "-----DONE----" << std::endl;
     Visualizer v(*map_p, path);
     v.visualize();
-    v.simulate();
+    //v.simulate();
 }
 
 Path2D::Path *

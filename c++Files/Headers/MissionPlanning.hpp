@@ -26,8 +26,9 @@ public:
     Map* map_p;
     Path2D::Path* path_p;
 
+    std::vector<Line*> lines;
 
-        void plan_mission_one();
+    void plan_mission_one();
     void plan_mission_two();
 
 private:
