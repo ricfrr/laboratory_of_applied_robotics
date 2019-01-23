@@ -92,8 +92,10 @@ public:
      * @return the image after transformation
      */
     cv::Mat run(std::string intrinsic_conf, const cv::Mat &image, std::string outputfilename);
-    
+
+    cv::Mat detectMapPlane(const Mat &img);
     void scalePixelsForRobo(const Mat& im_dst);
+
 
 private:
     cv::Mat camera_matrix, dist_coeffs;

@@ -124,8 +124,9 @@ void computeDistanceandSwap(std::vector<cv::Point> &corner) {
     }
 }
 
-std::vector<cv::Point> findCorners(Mat img) {
-    // Convert color space from BGR to HSV
+std::vector<cv::Point> findCorners(const Mat &img) {
+    /*
+     * // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     //cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
     cv::cvtColor(img, hsv_img, cv::COLOR_BGR2GRAY);
@@ -218,15 +219,21 @@ std::vector<cv::Point> findCorners(Mat img) {
             //list of corners that identify the arena
             arena = approx_curve;
         }
-    }
-    arena[0].x =0;
+    }*/
+    //HARDCODED SOLUTION
+    std::vector<cv::Point> arena ;
+    arena.push_back(cv::Point(0,1079));
+    arena.push_back(cv::Point(0,0));
+    arena.push_back(cv::Point(1919,0));
+    arena.push_back(cv::Point(1919,1079));
+    /*arena[0].x =0;
     arena[0].y =1079;
     arena[1].x =0;
     arena[1].y =0;
     arena[2].x =1919;
     arena[2].y =0;
     arena[3].x =1919;
-    arena[3].y =1079;
+    arena[3].y =1079;*/
     return arena;
 }
 
@@ -290,8 +297,8 @@ Mat Inverse_Perspective_Mapping::findTransform(
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    calib_image=img;
+    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    //calib_image=img;
     //    imshow("origin", original_image);
      //   imshow("undistored", calib_image);
      //   waitKey(0);
@@ -314,7 +321,7 @@ Mat Inverse_Perspective_Mapping::findTransform(
     reTransform(im_dst, pixel_scale);
     persp_img = im_dst;
     //imshow("sec persp", im_dst);
-    imwrite("sec_persp.png", im_dst);
+    //imwrite("sec_persp.png", im_dst);
     //waitKey(0);
     return tform;
 }
@@ -350,8 +357,8 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    calib_image = img;
+    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    //calib_image = img;
     if (white_corners.size() == 0) {
         // find corners
         white_corners= findRobotCircle(calib_image);
@@ -382,6 +389,66 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
 
     //cv::imshow("trasf img", im_dst);
     //cv::waitKey(0);
+
+    return im_dst;
+}
+
+cv::Mat Inverse_Perspective_Mapping::detectMapPlane(const Mat& img) {
+    double pixel_scale;
+    Mat calib_image, original_image = img;
+    if (original_image.empty()) {
+        throw std::runtime_error("Image is empty! ");
+    }
+    //undistort the image based on the calibration
+    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    //calib_image=img;
+    //    imshow("origin", original_image);
+    //   imshow("undistored", calib_image);
+    //   waitKey(0);
+    // find corners
+    std::vector<cv::Point> corners = findCorners(calib_image);
+    // Destination image
+    Size size(settings.IMG_WIDTH, settings.IMG_LENGHT);
+    Mat plane = Mat::zeros(size, CV_8UC3);
+    // Create a vector of points.
+    std::vector<Point2f> pts_dst;
+
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    pts_dst.push_back(Point2f(settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    //imshow("first persp", im_dst);
+
+    Mat tform = findHomography(corners, pts_dst);
+    warpPerspective(calib_image, plane, tform, size, cv::INTER_LINEAR,
+                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+
+
+
+    std::vector<cv::Point> corners_sec;
+    corners_sec.push_back(cv::Point(63,142));
+    corners_sec.push_back(cv::Point(388,142));
+    corners_sec.push_back(cv::Point(391,540));
+    corners_sec.push_back(cv::Point(70,542));
+
+    Mat im_dst = Mat::zeros(size, CV_8UC3);
+    // Create a vector of points.
+
+    std::vector<Point2f> pts_dst_sec;
+    pts_dst_sec.push_back(Point2f(settings.GAP_PERSP, settings.GAP_PERSP));
+    pts_dst_sec.push_back(Point2f(size.width - settings.GAP_PERSP, +settings.GAP_PERSP));
+    pts_dst_sec.push_back(Point2f(size.width - settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+    pts_dst_sec.push_back(Point2f(settings.GAP_PERSP, size.height - settings.GAP_PERSP));
+
+    Mat tform_2 = findHomography(corners_sec, pts_dst_sec);
+    warpPerspective(plane, im_dst, tform_2, size, cv::INTER_LINEAR,
+                    cv::BORDER_CONSTANT, cv::Scalar(255, 255, 255));
+
+    double top_dist = cv::norm(corners_sec[0] - corners_sec[1]);
+    pixel_scale = top_dist / Settings::arena_width;
+    std::cout << "Map pixel scale: " << pixel_scale << std::endl;
+    //Settings::PIXEL_SCALE = pixel_scale;
+
 
     return im_dst;
 }

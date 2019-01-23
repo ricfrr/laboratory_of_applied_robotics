@@ -64,8 +64,8 @@ void Robot::update(const std::vector<cv::Point> &points){
     }
     angle+=M_PI;
     // center of the wheel of the robot
-    center_wheel.x = (int)(center.x + 50*map_pixelscale*cos(angle));
-    center_wheel.y = (int)(center.y + 50*map_pixelscale*sin(angle));
+    center_wheel.x = (int)(center.x + 50*robo_pixelscale*cos(angle));
+    center_wheel.y = (int)(center.y + 50*robo_pixelscale*sin(angle));
 
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
@@ -104,8 +104,11 @@ bool Robot::findRobot(const cv::Mat &img){
     cv::Mat blue_mask;
     //for light conditions
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 180, 180), blue_mask);
-    cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
-    
+    //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
+    //BEST FILTER EVER FOUND
+    cv::inRange(hsv_img, cv::Scalar(75, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
+
+
     // Filter (applying dilation, blurring, dilation and erosion) the image
     kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
     // Filter (applying an erosion and dilation) the image
@@ -113,8 +116,8 @@ bool Robot::findRobot(const cv::Mat &img){
     cv::imshow("robot mask 1", blue_mask);
     cv::waitKey(1);
     //cv::erode(blue_mask, blue_mask, kernel);
-    //cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
     //cv::erode(blue_mask, blue_mask, kernel);
 
 

@@ -10,7 +10,7 @@
 
 
 RobotProject::RobotProject(int argc, char *argv[]) {
-    int shift = 1;
+    int shift = 0;
     //this->source_img_path       = argv[1];
     this->calibration_filepath = argv[2 + shift];
     this->intrinsic_calibration = argv[3 + shift];
@@ -56,7 +56,7 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-                                                                   "data/calib/filter_2.png"
+                                                                   "../data/calib/filter_2.png"
                                                            }, persp_img);
 
     if (result.empty())
@@ -72,7 +72,7 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     if (!result.empty())
         map->setFilterPathE(result[0]);
    else{
-	map->setFilterPathE("data/calib/filter_2.png");
+	map->setFilterPathE("../data/calib/filter_2.png");
 	}
 
     map->createMap(persp_img, robot_plane);
@@ -145,7 +145,12 @@ bool RobotProject::localize(cv::Mat const &img,
                             std::vector<double> &state) {
 
     state.clear();
-    cv::Mat robot_plane = ipm.detectRobotPlane(img);
+    //USE THIS FUNCTION TO DETECT THE ROBOT USING THE ROBOT PLANE
+    //cv::Mat robot_plane = ipm.detectRobotPlane(img);
+    //USE THIS FUNCTION TO DETECT THE ROBOT USING THE MAP PLANE
+    cv::Mat robot_plane = ipm.detectMapPlane(img);
+
+
     //do not reconstruct map because too expensive
     //find robot shape
     //calculate COM
@@ -153,16 +158,19 @@ bool RobotProject::localize(cv::Mat const &img,
     //Robot robo;
     bool result = map->robo->findRobot(robot_plane);
 
-    cv:
-    Point start = map->getStartPoint();
+    cv::Point start = map->getStartPoint();
 
-    cv::Point2d coordinates = map->robo->getPosition2dRobotFrame(start);
+    //OLD WAY
+    //cv::Point2d coordinates = map->robo->getPosition2dRobotFrame(start);
+    //NEW WAY we are simply picking the center of the robot and using the pixel scale value of the map to do the conversion
+    //TODO ask to marvin if the conversion is right
+    cv::Point2d coordinates  = cv::Point2d(map->robo->center_wheel.x*map->robo->map_pixelscale,map->robo->center_wheel.y*map->robo->map_pixelscale);
 
-    double x = coordinates.x;
-    double y = coordinates.y;
-    double theta = map->robo->angle;
-
-    state = { y/1000.0,x/1000.0, theta*-1};
+    double x = coordinates.x/1000.0;
+    double y = coordinates.y/1000.0;
+    double theta = map->robo->angle*-1;
+    std::cout<<"x :"<< x<<" y : "<<y<<" theta : "<<theta<<std::endl;
+    state = { y,x, theta*-1};
 
     //put info to state
 
