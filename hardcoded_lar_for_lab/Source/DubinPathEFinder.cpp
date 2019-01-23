@@ -38,7 +38,9 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
     double Lcur = 0;
     PossibleDubinPathE path;
     std::vector<Line> lines;
+    std::vector<cv::Point> random;
     std::vector<Line> tmp_lines;
+    bool alternatives = false;
     
     cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
     
@@ -48,7 +50,6 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
         cv::circle(pointimg, path_coordinates.getInitialPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
         cv::circle(pointimg, path_coordinates.getFinalPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
          cv::imshow("collision", pointimg);
-        cv::waitKey(1000);
         Lcur = possiblePathEs[i].sc_s1 + possiblePathEs[i].sc_s2 + possiblePathEs[i].sc_s3;
         if (possiblePathEs[i].ok && Lcur < L) {
             path.sc_s1 = possiblePathEs[i].sc_s1;
@@ -80,12 +81,10 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                 
                 int y = path_coordinates.getInitialPosition().getCoordinates().y + (path_coordinates.getFinalPosition().getCoordinates().y - path_coordinates.getInitialPosition().getCoordinates().y)/2;
                 
-                x = x + rand() % 30 - rand() % 30;
-                y = y + rand() % 30 - rand() % 30;
+                x = x + rand() % 100 - rand() % 100;
+                y = y + rand() % 100 - rand() % 100;
                 
-                alternative_Points.push_back(cv::Point(x,y));
-                cv::circle(pointimg, cv::Point(x,y), 2, cv::Scalar(0,250,0),-1);
-                cv::imshow("collision", pointimg);
+                random.push_back(cv::Point(x,y));
                 continue;
                 
             }
@@ -129,12 +128,20 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                                           alternative_Points.end(),
                                           points.begin(),
                                           points.end() );
+                alternatives = true;
                 
                 std::cout << "printing path" << std::endl;
                 
                 
             }
         }
+    }
+    
+    if(lines.empty() && !alternatives){
+        cv::Point alt = random[rand() % random.size()];
+        alternative_Points.push_back(alt);
+        cv::circle(pointimg, alt, 2, cv::Scalar(0,250,0),-1);
+        cv::imshow("collision", pointimg);
     }
 //    cv::waitKey(0);
     return lines;

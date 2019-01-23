@@ -220,23 +220,23 @@ void PathE::findPathE() {
                 cv::waitKey(0);
             }
             
-            cv::waitKey(0);
-            
             dubin_lines = best_lines;
             
             // here we need to find a new set of points
             // ... for every point get cell and neighboring points
             // ... store them all in an alt_points vector
             
-            std::vector<cv::Point> newset;
+            std::vector<cv::Point> newset,alt_points2;
+            alt_points2 = alt_points;
+            alt_points.clear();
             
             
             
-            for(int i=0;i<alt_points.size();i++){
+            for(int i=0;i<alt_points2.size();i++){
 //                Cell* cell = map->getCell(alt_points[i]);
 //                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(cell);
-                std::vector<cv::Point> points = map->getEmptyNearestNeighborsPoints(alt_points[i]);
-                cv::circle(pointimg, alt_points[i], 3, cv::Scalar(100,100,100),-1);
+                std::vector<cv::Point> points = map->getEmptyNearestNeighborsPoints(alt_points2[i]);
+                cv::circle(pointimg, alt_points2[i], 3, cv::Scalar(100,100,100),-1);
                 cv::imshow("points", pointimg);
                 
 //                for(int j=0;j<points.size();j++)
