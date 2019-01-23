@@ -15,6 +15,18 @@ Robot::Robot(const std::vector<cv::Point> &points): Triangle(points){
 }
 Robot::~Robot(){}
 
+
+double angle(const cv::Point& v1, const cv::Point& v2)
+{
+    double cosAngle = v1.dot(v2) / (cv::norm(v1) * cv::norm(v2));
+    if (cosAngle > 1.0)
+        return 0.0;
+    else if (cosAngle < -1.0)
+        return CV_PI;
+    return std::acos(cosAngle);
+}
+
+
 void Robot::update(const std::vector<cv::Point> &points){
     
     this->points = points;
@@ -24,39 +36,49 @@ void Robot::update(const std::vector<cv::Point> &points){
     center = center/3;
     
     //find shorter side
+    //vector pointing from 0->1
     int a_x = std::abs(points[0].x - points[1].x);
+    //vector pointing from 0->2
     int b_x = std::abs(points[0].x - points[2].x);
+    //vector pointing from 1->2
     int c_x = std::abs(points[1].x - points[2].x);
+
 
     int a_y = std::abs(points[0].y - points[1].y);
     int b_y = std::abs(points[0].y - points[2].y);
     int c_y = std::abs(points[1].y - points[2].y);
-    
+
+    //vector pointing from point to next
     cv::Point a(a_x,a_y);
     cv::Point b(b_x,b_y);
     cv::Point c(c_x,c_y);
-    
+
+    //length of vector
     double La = sqrt(pow(a_x,2) + pow(a_y,2));
     double Lb = sqrt(pow(b_x,2) + pow(b_y,2));
     double Lc = sqrt(pow(c_x,2) + pow(c_y,2));
     
     cv::Point result;
     double deg = 0.0;
-    
     if(La <= Lb && La <= Lc){
-        cv::Point start = points[1] + a/2;
+        cv::Point start = points[0] + a/2;
         cv::Point end = points[2];
         angle = Geometry::angle_rad(start, end);
+        std::cout << "shortest a: " << La << std::endl;
+
     }
     else if(Lb < La && Lb < Lc){
         cv::Point start = points[2] + b/2;
         cv::Point end = points[1];
         angle = Geometry::angle_rad(start, end);
+        std::cout << "shortest b: " << Lb << std::endl;
+
     }
     else if(Lc < La && Lc < Lb){
         cv::Point start = points[2] + c/2;
         cv::Point end = points[0];
         angle = Geometry::angle_rad(start, end);
+        std::cout << "shortest c: " << Lc << std::endl;
     }
     else{
         std::cout << "can not find orientation of triangle" << std::endl;
@@ -64,14 +86,13 @@ void Robot::update(const std::vector<cv::Point> &points){
     }
     angle+=M_PI;
     // center of the wheel of the robot
-    center_wheel.x = (int)(center.x + 50*robo_pixelscale*cos(angle));
-    center_wheel.y = (int)(center.y + 50*robo_pixelscale*sin(angle));
+    center_wheel.x = (int)(center.x + 50*map_pixelscale*cos(angle));
+    center_wheel.y = (int)(center.y + 50*map_pixelscale*sin(angle));
 
     this->radius = max(La,Lb);
     this->radius = max(this->radius,Lc);
     this->radius = this->radius/2;
-    
-    
+
 
 
 }
@@ -106,7 +127,7 @@ bool Robot::findRobot(const cv::Mat &img){
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 180, 180), blue_mask);
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
     //BEST FILTER EVER FOUND
-    cv::inRange(hsv_img, cv::Scalar(75, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(80, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
 
 
     // Filter (applying dilation, blurring, dilation and erosion) the image
@@ -118,6 +139,11 @@ bool Robot::findRobot(const cv::Mat &img){
     //cv::erode(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
+    //cv::erode(blue_mask, blue_mask, kernel);
+    //cv::dilate(blue_mask, blue_mask, kernel);
+
     //cv::erode(blue_mask, blue_mask, kernel);
 
 

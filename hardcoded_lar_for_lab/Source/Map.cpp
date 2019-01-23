@@ -63,7 +63,7 @@ void Map::clipPoints() {
     }
 
     tmp_point = arena.getCorners();
-    tmp_clip = clipper.clipArena(tmp_point, 0);
+    tmp_clip = clipper.clipArena(tmp_point, 50*robo->map_pixelscale);
     arena.setClippedCorners(tmp_clip);
 
 
@@ -109,8 +109,12 @@ void Map::createMap(const Mat &img,const Mat &robot_plane) {
 
     this->robo->scalePixelsForRobo(robot_plane);
     this->robo->scalePixelsForMap(img);
+    //TODO test these lines
+    //USE THIS IF YOU WANNA USE THE ROBOT PLANE
+    //robo->findRobot(robot_plane);
+    //USE THIS IF YOU WANNA USE THE MAP PLANE
+    robo->findRobot(img);
 
-    robo->findRobot(robot_plane);
     robo->initialPosition = robo->getPosition();
     robo->initialAngle = robo->angle;
     std::cout << " position in map: (" << robo->initialPosition.x << "," << robo->initialPosition.y << ")";
@@ -615,8 +619,17 @@ std::vector<cv::Point> Map::getEmptyNearestNeighborsPoints(const cv::Point &poin
     //some conditions
     if(obstacle == nullptr){
         Cell * cell = getCell(point);
-        if(cell == nullptr || !cell->isEmpty())
-            return {};
+
+            if(cell != nullptr && cell->isBorder(point)){
+                std::vector<std::vector<cv::Point>> points2 = getEmptyNearestNeighborsPoints(cell);
+                for(auto &&v : points2){
+                    points.reserve(v.size()+points.size());
+                    points.insert(points.end(),v.begin(),v.end());
+                }
+                return points;
+            }
+            else
+                return {};
     }
     
     std::vector<Polygon *> vector;

@@ -10,7 +10,7 @@
 
 
 RobotProject::RobotProject(int argc, char *argv[]) {
-    int shift = 0;
+    int shift = 1;
     //this->source_img_path       = argv[1];
     this->calibration_filepath = argv[2 + shift];
     this->intrinsic_calibration = argv[3 + shift];
@@ -56,7 +56,10 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-                                                                   "../data/calib/filter_2.png"
+                                                                   "data/calib/filter_2.png",
+                                                                   "data/calib/filter_3.png",
+                                                                   "data/calib/filter_11.png",
+                                                                   "data/calib/filter_14.png"
                                                            }, persp_img);
 
     if (result.empty())
@@ -72,7 +75,7 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     if (!result.empty())
         map->setFilterPathE(result[0]);
    else{
-	map->setFilterPathE("../data/calib/filter_2.png");
+	map->setFilterPathE("data/calib/filter_3.png");
 	}
 
     map->createMap(persp_img, robot_plane);
@@ -120,7 +123,7 @@ bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
                 endpoint.y-=5;
             }
 
-            map->robo->angle = Geometry::angle_rad_for_robots(intermediate_points[j],endpoint);
+            map->robo->angle = Geometry::angle_rad(intermediate_points[j],endpoint);
             std::pair<double, double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],
                                                                                               map->getStartPoint(),
                                                                                               map->robo->map_pixelscale);
@@ -130,9 +133,10 @@ bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
 
             pose.push_back(Pose(
                     (int_point_counter / points_number)*(fin_length.first/1000),  mm_point.second/1000.0,mm_point.first/1000.0,
-                    map->robo->angle*-1,
-                    m.path_p->lines[i].getCurvature())); //TODO check theta and kappa values and trasform the x and y in meters
+                    map->robo->angle*-1+M_PI/2.0,
+                    -1*m.path_p->lines[i].getCurvature()*map->robo->map_pixelscale*1000.0)); //TODO check theta and kappa values and trasform the x and y in meters
             int_point_counter++;
+            
             }
         }
     
@@ -164,13 +168,22 @@ bool RobotProject::localize(cv::Mat const &img,
     //cv::Point2d coordinates = map->robo->getPosition2dRobotFrame(start);
     //NEW WAY we are simply picking the center of the robot and using the pixel scale value of the map to do the conversion
     //TODO ask to marvin if the conversion is right
-    cv::Point2d coordinates  = cv::Point2d(map->robo->center_wheel.x*map->robo->map_pixelscale,map->robo->center_wheel.y*map->robo->map_pixelscale);
+    //cv::Point2d coordinates  = cv::Point2d(map->robo->center_wheel.x/map->robo->map_pixelscale,map->robo->center_wheel.y/map->robo->map_pixelscale);
+    //cv::Point2d coordinates  = cv::Point2d(map->robo->center.x/map->robo->map_pixelscale,map->robo->center.y/map->robo->map_pixelscale);
+   std::pair<double, double> coordinates = Geometry::convertPixelToMillimeterInMapPlane(map->robo->center,
+                                                                                              map->getStartPoint(),
+                                                                                              map->robo->map_pixelscale);
+    /*std::pair<double, double> coordinates = Geometry::convertPixelToMillimeterInMapPlane(map->robo->center_wheel,
+                                                                                              map->getStartPoint(),
+                                                                                              map->robo->map_pixelscale);*/
 
-    double x = coordinates.x/1000.0;
-    double y = coordinates.y/1000.0;
-    double theta = map->robo->angle*-1;
+    double x = coordinates.first/1000.0;
+    //MIRROR X
+    //x = 1-x;
+    double y = coordinates.second/1000.0;
+    double theta = map->robo->angle*-1+M_PI/2.0;
     std::cout<<"x :"<< x<<" y : "<<y<<" theta : "<<theta<<std::endl;
-    state = { y,x, theta*-1};
+    state = { y,x, theta};
 
     //put info to state
 

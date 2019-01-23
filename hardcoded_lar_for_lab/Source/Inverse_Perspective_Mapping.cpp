@@ -297,8 +297,8 @@ Mat Inverse_Perspective_Mapping::findTransform(
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image=img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image=img;
     //    imshow("origin", original_image);
      //   imshow("undistored", calib_image);
      //   waitKey(0);
@@ -357,8 +357,8 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image = img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image = img;
     if (white_corners.size() == 0) {
         // find corners
         white_corners= findRobotCircle(calib_image);
@@ -400,8 +400,8 @@ cv::Mat Inverse_Perspective_Mapping::detectMapPlane(const Mat& img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image=img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image=img;
     //    imshow("origin", original_image);
     //   imshow("undistored", calib_image);
     //   waitKey(0);
@@ -446,7 +446,7 @@ cv::Mat Inverse_Perspective_Mapping::detectMapPlane(const Mat& img) {
 
     double top_dist = cv::norm(corners_sec[0] - corners_sec[1]);
     pixel_scale = top_dist / Settings::arena_width;
-    std::cout << "Map pixel scale: " << pixel_scale << std::endl;
+    //std::cout << "Map pixel scale: " << pixel_scale << std::endl;
     //Settings::PIXEL_SCALE = pixel_scale;
 
 
