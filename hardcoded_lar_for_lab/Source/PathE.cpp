@@ -172,6 +172,8 @@ void PathE::findPathE() {
     std::vector<Line> dubin_lines = {};
     std::vector<Line> best_lines;
     
+   
+    
     //some kind of do while (dubin_lines.empty())
     // ...
 
@@ -186,7 +188,12 @@ void PathE::findPathE() {
         
         if(dubin_lines.empty()){
             //std::cout << "will break down path" << std::endl;
-            //std::cout << "found " << alt_points.size() << " alternative points" << std::endl;
+            std::cout << "found " << alt_points.size() << " alternative points" << std::endl;
+            
+            cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
+            cv::circle(pointimg, start_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
+            cv::circle(pointimg, end_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
+            cv::imshow("points", pointimg);
             
             for(int i=0;i<alt_points.size();i++){
                 std::cout << "splitting for point " << i+1 << std::endl;
@@ -198,6 +205,8 @@ void PathE::findPathE() {
                 path.setLines(lines);
                 map->n_multiplier = 2.0;
                 PathE::split<DubinPathEFinder>(path, alt_points[i]);
+                cv::circle(pointimg,alt_points[i], 3, cv::Scalar(10,200,10),-1);
+                cv::imshow("points", pointimg);
                 
                 double l = path.getLength();
 
@@ -208,20 +217,33 @@ void PathE::findPathE() {
                     if(map->quickCalculation)
                         break;
                 }
+                cv::waitKey(0);
             }
+            
+            cv::waitKey(0);
             
             dubin_lines = best_lines;
             
             // here we need to find a new set of points
             // ... for every point get cell and neighboring points
             // ... store them all in an alt_points vector
+            
             std::vector<cv::Point> newset;
+            
+            
+            
             for(int i=0;i<alt_points.size();i++){
-                Cell* cell = map->getCell(alt_points[i]);
-                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(cell);
-                for(int j=0;j<points.size();j++)
-                    for(int k=0;k<points[j].size();k++)
-                        newset.push_back(points[j][k]);
+//                Cell* cell = map->getCell(alt_points[i]);
+//                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(cell);
+                std::vector<cv::Point> points = map->getEmptyNearestNeighborsPoints(alt_points[i]);
+                cv::circle(pointimg, alt_points[i], 3, cv::Scalar(100,100,100),-1);
+                cv::imshow("points", pointimg);
+                
+//                for(int j=0;j<points.size();j++)
+//                    for(int k=0;k<points[j].size();k++)
+//                        newset.push_back(points[j][k]);
+                newset.reserve(points.size() + newset.size());
+                newset.insert(newset.end(),points.begin(),points.end());
 
             }
             
@@ -246,6 +268,8 @@ void PathE::findPathE() {
 
 template <class T>
 void PathE::split(PathE &path, cv::Point intermediate){
+
+    cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
     
     double orientation_estimation =
     Geometry::angle_rad(path.start_point.getCoordinates(),
@@ -267,6 +291,7 @@ void PathE::split(PathE &path, cv::Point intermediate){
         
     while(orientation_i < orientation_estimation + 2.01*M_PI){
         
+        
         Position point = Position(intermediate,orientation_i);
         
         one = PathE(PathECoordinates(path.start_point, point, path.maxCurvature), path.map, new T(PathECoordinates(path.start_point, point, path.maxCurvature), path.map),false);
@@ -280,10 +305,12 @@ void PathE::split(PathE &path, cv::Point intermediate){
             break;
         }
         
-        orientation_i += 0.1;
+        orientation_i += M_PI/5.0;
+        cv::waitKey(10);
     }
-        orientation_e += M_PI/4.0;
+        orientation_e += M_PI/5.0;
     }while(orientation_e < max_orientation && path.end_point.orientation_locked == false && ok == false);
+    
     
     if(ok){
         path = PathE(one,two);

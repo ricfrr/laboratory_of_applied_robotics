@@ -10,7 +10,7 @@
 
 
 RobotProject::RobotProject(int argc, char *argv[]) {
-    int shift = 1;
+    int shift = 0;//1;
     //this->source_img_path       = argv[1];
     this->calibration_filepath = argv[2 + shift];
     this->intrinsic_calibration = argv[3 + shift];
@@ -55,13 +55,19 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - consecutive delusions
     //  - main CRA
     //  - min rotation angle
-    std::vector<std::string> result = map->findBestFilters({
-                                                                   "data/calib/filter_2.png",
-                                                                   "data/calib/filter_3.png",
-                                                                   "data/calib/filter_11.png",
-                                                                   "data/calib/filter_14.png"
-                                                           }, persp_img);
+//    std::vector<std::string> result = map->findBestFilters({
+//                                                                   "data/calib/filter_2.png",
+//                                                                   "data/calib/filter_3.png",
+//                                                                   "data/calib/filter_11.png",
+//                                                                   "data/calib/filter_14.png"
+//                                                           }, persp_img);
 
+    std::vector<std::string> result = map->findBestFilters({
+        "calib/filter_2.png",
+        "calib/filter_3.png",
+        "calib/filter_11.png"
+    }, persp_img);
+    
     if (result.empty())
         std::cout << "!!! no filter found !!!" << std::endl;
     else {
@@ -75,7 +81,9 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     if (!result.empty())
         map->setFilterPathE(result[0]);
    else{
-	map->setFilterPathE("data/calib/filter_3.png");
+	
+       //map->setFilterPathE("data/calib/filter_3.png");
+       map->setFilterPathE("calib/filter_3.png");
 	}
 
     map->createMap(persp_img, robot_plane);

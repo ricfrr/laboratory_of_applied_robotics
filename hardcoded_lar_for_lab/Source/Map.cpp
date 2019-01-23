@@ -988,7 +988,7 @@ std::vector<std::string> Map::findBestFilters(const std::vector<std::string> &fi
     
     for(auto && name : filter){
         
-        std::cout << ".";
+        std::cout << "checking filter " << name << std::endl;
         
         ImageProcessing::Digit_Recognition::PeopleStorage storage(people.algorithm,
                                                                   people.suff_confidence,
