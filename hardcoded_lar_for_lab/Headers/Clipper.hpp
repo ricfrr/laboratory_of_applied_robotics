@@ -19,6 +19,12 @@ public:
      * @return vector of points after clipping
      */
     std::vector<cv::Point> clip(std::vector<cv::Point> &points, int offset);
+    /**
+     * brief clip the arena corners
+     * @param points corners of the arena
+     * @param offset amount of clipping
+     * @return a vector of clipped points
+     */
     std::vector<cv::Point> clipArena(std::vector<cv::Point> &points, int offset);
 
 };

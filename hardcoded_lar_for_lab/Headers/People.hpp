@@ -18,13 +18,13 @@ class People : public Circle {
 
 public:
     /*!
-     * constructor of people class
+     * \brief constructor of people class
      */
     People();
     People(std::pair<int,int> digit, cv::Rect rect);
     //People(People &p);
     /*!
-     * destructor of people class
+     * \brief destructor of people class
      */
     ~People();
     /// People have names - represented by a digit

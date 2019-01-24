@@ -59,13 +59,23 @@ public:
     void getGrid(std::vector<std::vector<Cell *>> &grid);
     
     Cell * getCell(const cv::Point &forPoint);
-    
-    Polygon * getObstacle(const cv::Point &forPoint);
 
+    Polygon * getObstacle(const cv::Point &forPoint);
+    /**
+     * return the list of obstacles
+     * @return the list of obstacles
+     */
     LAR::Obstacle getObstacles();
 
+    /**
+     * return the people on the arena
+     * @return the people on the arena
+     */
     Digit_Recognition::PeopleStorage getPeople();
-
+    /**
+     * return the exit point of the arena
+     * @return the exit point of the arena
+     */
     LAR::ExitPoint getExitPoint();
 
 

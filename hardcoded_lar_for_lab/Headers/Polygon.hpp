@@ -17,8 +17,18 @@ namespace Geometry2D {
 class Polygon: public Shape {
 
 public:
+    /**
+     * \brief constructor of the Polygon class
+     */
     Polygon();
+    /**
+     * \brief constructor of the Polygon class
+     * @param points point of the polygon
+     */
     Polygon(const std::vector<cv::Point> &points);
+    /**
+     * destructor of the polygon class
+     */
     ~Polygon();
     
     ///brief the points of the polygon

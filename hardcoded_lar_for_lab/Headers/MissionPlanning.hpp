@@ -19,16 +19,34 @@
 class MissionPlanning {
 
 public:
+    /**
+     * \brief constructor of the mission planning
+     */
     MissionPlanning();
+    /**
+     * \brief constructor of the mission planning
+     * @param map map where the mission planner will try to find the path
+     */
     MissionPlanning(Map *map);
+    /**
+     * \brief destructor  of the mission planner
+     */
     ~MissionPlanning();
     
     Map* map_p;
     PathE2D::PathE* path_p;
 
-
-        void plan_mission_one();
+    /**
+     * \brief plan the mission one, so pick the people in order
+     */
+    void plan_mission_one();
+    /**
+     * \brief find a path trying to minimize the length and maximize the number of people
+     */
     void plan_mission_two();
+    /**
+     *  \brief find a path trying to minimize the length and maximize the number of people in a fastest way
+     */
     void plan_mission_two_fast();
 
 
