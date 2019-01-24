@@ -209,8 +209,8 @@ void PathE::findPathE() {
                 pointimg = cv::imread("data/exam_dataset/img/testsave.jpg");
                 cv::circle(pointimg, start_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
                 cv::circle(pointimg, end_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
-                cv::imshow("points", pointimg);
-                cv::waitKey(10);
+                //cv::imshow("points", pointimg);
+                //cv::waitKey(10);
             }
             
             for(int i=0;i<alt_points.size();i++){
@@ -257,8 +257,8 @@ void PathE::findPathE() {
                
                 if(visualizing){
                     cv::circle(pointimg, alt_points2[i], 3, cv::Scalar(100,100,100),-1);
-                    cv::imshow("points", pointimg);
-                    cv::waitKey(10);
+                    //cv::imshow("points", pointimg);
+                    //cv::waitKey(10);
                 }
 //                for(int j=0;j<points.size();j++)
 //                    for(int k=0;k<points[j].size();k++)
@@ -290,7 +290,7 @@ void PathE::findPathE() {
         for(auto &&point : dubin_lines[i].getIntermediatePoints())
             cv::circle(pointimg, point, 3, cv::Scalar(0,0,200),-1);
         
-            cv::imshow("points", pointimg);
+            //cv::imshow("points", pointimg);
         }
         
     }

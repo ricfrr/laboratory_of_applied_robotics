@@ -57,7 +57,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
         
             cv::circle(pointimg, path_coordinates.getInitialPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
             cv::circle(pointimg, path_coordinates.getFinalPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
-            cv::imshow("collision", pointimg);
+            //cv::imshow("collision", pointimg);
         }
         
         Lcur = possiblePathEs[i].sc_s1 + possiblePathEs[i].sc_s2 + possiblePathEs[i].sc_s3;
@@ -95,7 +95,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                 int y = path_coordinates.getInitialPosition().getCoordinates().y + (path_coordinates.getFinalPosition().getCoordinates().y - path_coordinates.getInitialPosition().getCoordinates().y)/2;
                 
                
-            
+
                 x = x + rand() % 100 - rand() % 100;
                 y = y + rand() % 100 - rand() % 100;
                 
@@ -124,7 +124,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                 
                     for(auto &&point : line.getIntermediatePoints())
                         cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,10,200),-1);
-                    cv::imshow("collision", pointimg);
+                    //cv::imshow("collision", pointimg);
                     //waitKey(5);
                 
                 
@@ -143,7 +143,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                     
                         for(auto &&point : line.getIntermediatePoints())
                             cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,250,0),-1);
-                        cv::imshow("collision", pointimg);
+                       // cv::imshow("collision", pointimg);
                        // waitKey(50);
                     }
                 }
@@ -165,7 +165,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                             cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,250,0),-1);
                     }
                     cv::circle(pointimg, coll.second->center(), 7, cv::Scalar(5,5,5),-1);
-                    cv::imshow("collision", pointimg);
+                    //cv::imshow("collision", pointimg);
                 }
                 
                 
@@ -199,7 +199,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
         if(debug)
         {
             cv::circle(pointimg, alt, 2, cv::Scalar(0,250,0),-1);
-            cv::imshow("collision", pointimg);
+            //cv::imshow("collision", pointimg);
         }
     }
     if(debug){

@@ -80,34 +80,34 @@ void ExitPoint::findExitPoint(const Mat &img)
 }
 
 std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
-    
-    cv::Point center = top_left + (bottom_right - top_left)/2;
-    
+
+    //cv::Point center = top_left + (bottom_right - top_left)/2;
+    cv::Point center = (top_left+top_right+bottom_left+bottom_right)/4;
     int height =  bottom_right.y - top_left.y;
     int width = bottom_right.x - top_left.x;
-    
+
     //where is the exit in the map
     bool left = false;
     bool right = false;
     bool top = false;
     bool bottom = false;
-    
-    if(top_left.x < 20){
+
+    if(top_left.x < 50){
         left = true;
-        center.x += width/2;
+        //center.x += width/2;
     }
-    else if(top_right.x > ImageProcessing::Settings().IMG_WIDTH -20){
+    else if(top_right.x > ImageProcessing::Settings().IMG_WIDTH -50){
         right = true;
-        center.x -= width/2;
+        //center.x -= width/2;
     }
-    
-    if(top_left.y < 20)
+
+    if(top_left.y < 50)
         top = true;
-    else if(bottom_left.y > ImageProcessing::Settings().IMG_LENGHT - 20)
+    else if(bottom_left.y > ImageProcessing::Settings().IMG_LENGHT - 50)
         bottom = true;
-    
+
     double angle = 0;
-    
+
     if(height > width){
         //vertically
         if(left)
@@ -120,12 +120,12 @@ std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
     else{
         //horizontal
         if(top)
-            angle = 1.5;
+            angle = -0.5;
         else if(bottom)
             angle = 0.5;
         else
             std::runtime_error("ohh it's not so simple");
     }
-    
+
     return std::pair<cv::Point,double> (center, angle * M_PI);
 }

@@ -29,6 +29,8 @@ public:
 
         void plan_mission_one();
     void plan_mission_two();
+    void plan_mission_two_fast();
+
 
 private:
 
@@ -40,6 +42,8 @@ private:
     bool isExitReached(std::vector<PathE2D::Position*> &point_of_interests);
     
     PathE2D::PathE* findOptimalPathE(Position * start_point, std::vector<PathE2D::Position*> &point_of_interests);
+    PathE2D::PathE *
+    findOptimalFastPathE(Position *start_point, std::vector<PathE2D::Position *> &point_of_interests);
     
     PathE2D::PathE * passNearAnotherPerson(PathE2D::PathE * path, std::vector<Position*> &point_of_interest, int index, std::vector<int> &intermediate_person_index);
     
