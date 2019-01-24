@@ -44,7 +44,7 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
     
 //    cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
     
-    bool debug = true;
+    bool debug = false;
     cv::Mat pointimg;
     
     if(debug)

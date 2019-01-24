@@ -213,7 +213,12 @@ void PathE::findPathE() {
                 //cv::waitKey(10);
             }
             
-            for(int i=0;i<alt_points.size();i++){
+            while(!alt_points.empty()){
+                
+                int size = alt_points.size();
+                int i = rand() % size;
+                
+            //for(int i=0;i<alt_points.size();i++){
                 std::cout << "splitting for point " << i+1 << std::endl;
                 PathE path = PathE(*this);
                 path.start_point = start_point;
@@ -236,6 +241,8 @@ void PathE::findPathE() {
                 }
                 if(visualizing)
                     cv::waitKey(10);
+                
+                alt_points.erase(alt_points.begin()+i);
             }
             
             dubin_lines = best_lines;
@@ -338,9 +345,9 @@ void PathE::split(PathE &path, cv::Point intermediate){
             break;
         }
         
-        orientation_i += M_PI/3.0;
+        orientation_i += M_PI/2.0;
     }
-        orientation_e += M_PI/3.0;
+        orientation_e += M_PI/2.0;
     }while(orientation_e < max_orientation && path.end_point.orientation_locked == false && ok == false);
     
     
