@@ -16,10 +16,7 @@ struct {
 } customLess;
 
 
-double dinstance(cv::Point &p, cv::Point &o) {
-    cv::Point point = p - o;
-    return std::sqrt(std::pow(point.x, 2) + std::pow(point.y, 2));
-}
+
 
 double dinstance(cv::Point2d p, cv::Point2d o) {
     cv::Point point = p - o;

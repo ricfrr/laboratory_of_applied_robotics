@@ -27,6 +27,9 @@ double angle(const cv::Point& v1, const cv::Point& v2)
 }
 
 
+
+
+
 void Robot::update(const std::vector<cv::Point> &points){
     
     this->points = points;
@@ -62,21 +65,21 @@ void Robot::update(const std::vector<cv::Point> &points){
     double deg = 0.0;
     if(La <= Lb && La <= Lc){
         cv::Point start = points[0] + a/2;
-        cv::Point end = center;
+        cv::Point end = points[2];
         angle = Geometry::angle_rad(start, end);
         std::cout << "shortest a: " << La << std::endl;
 
     }
     else if(Lb < La && Lb < Lc){
         cv::Point start = points[2] + b/2;
-        cv::Point end = center;
-        angle = Geometry::angle_rad(start, end);
+        cv::Point end = points[1];
+        angle =Geometry::angle_rad(start, end);
         std::cout << "shortest b: " << Lb << std::endl;
 
     }
     else if(Lc < La && Lc < Lb){
         cv::Point start = points[2] + c/2;
-        cv::Point end = center;
+        cv::Point end = points[0];
         angle = Geometry::angle_rad(start, end);
         std::cout << "shortest c: " << Lc << std::endl;
     }
