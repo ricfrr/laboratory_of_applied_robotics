@@ -127,7 +127,7 @@ bool Robot::findRobot(const cv::Mat &img){
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 180, 180), blue_mask);
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
     //BEST FILTER EVER FOUND
-    cv::inRange(hsv_img, cv::Scalar(80, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(50, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
 
 
     // Filter (applying dilation, blurring, dilation and erosion) the image

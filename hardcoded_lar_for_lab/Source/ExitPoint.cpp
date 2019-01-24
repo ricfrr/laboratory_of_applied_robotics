@@ -30,7 +30,7 @@ void ExitPoint::findExitPoint(const Mat &img)
     // Find blue regions
     cv::Mat blue_mask;
     //cv::inRange(hsv_img, cv::Scalar(110, 80, 65), cv::Scalar(140, 250, 255), blue_mask);
-    cv::inRange(hsv_img, cv::Scalar(90, 60, 55), cv::Scalar(130, 250, 255), blue_mask);
+    cv::inRange(hsv_img, cv::Scalar(70, 60, 55), cv::Scalar(130, 250, 255), blue_mask);
 
     // Process blue mask
 
@@ -81,8 +81,8 @@ void ExitPoint::findExitPoint(const Mat &img)
 
 std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
     
-    cv::Point center = top_left + (bottom_right - top_left)/2;
-    
+    //cv::Point center = top_left + (bottom_right - top_left)/2;
+    cv::Point center = (top_left+top_right+bottom_left+bottom_right)/4;
     int height =  bottom_right.y - top_left.y;
     int width = bottom_right.x - top_left.x;
     
@@ -92,18 +92,18 @@ std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
     bool top = false;
     bool bottom = false;
     
-    if(top_left.x < 20){
+    if(top_left.x < 50){
         left = true;
-        center.x += width/2;
+        //center.x += width/2;
     }
-    else if(top_right.x > ImageProcessing::Settings().IMG_WIDTH -20){
+    else if(top_right.x > ImageProcessing::Settings().IMG_WIDTH -50){
         right = true;
-        center.x -= width/2;
+        //center.x -= width/2;
     }
     
-    if(top_left.y < 20)
+    if(top_left.y < 50)
         top = true;
-    else if(bottom_left.y > ImageProcessing::Settings().IMG_LENGHT - 20)
+    else if(bottom_left.y > ImageProcessing::Settings().IMG_LENGHT - 50)
         bottom = true;
     
     double angle = 0;
@@ -120,7 +120,7 @@ std::pair<cv::Point,double> ExitPoint::getEntryPoint(){
     else{
         //horizontal
         if(top)
-            angle = 1.5;
+            angle = -0.5;
         else if(bottom)
             angle = 0.5;
         else

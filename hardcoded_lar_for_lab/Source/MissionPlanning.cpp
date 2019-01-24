@@ -79,6 +79,8 @@ void MissionPlanning::plan_mission_one() {
 
     if (people_s.size() > 1)
         or2 = Geometry::angle_rad(people_s[0]->center, people_s[1]->center);
+    else
+        or2 =Geometry::angle_rad(people_s[0]->center, finalPos.getCoordinates());
 
     PathE2D::PathE *path = new PathE2D::PathE(PathE2D::Position(map_p->robo->center, map_p->robo->angle),
                                           PathE2D::Position(people_s[0]->center, or2), this->curvature, map_p);
@@ -135,9 +137,9 @@ void MissionPlanning::plan_mission_two() {
     }
 
     std::pair<cv::Point, double> exit = map_p->getExitPoint().getEntryPoint();
-    PathE2D::Position finalPos = PathE2D::Position(exit.first, exit.second);
+    PathE2D::Position finalPos = PathE2D::Position(exit.first,exit.second);
     finalPos.orientation_locked = true;
-    finalPos.setWeight(0*10*map_p->robo->map_pixelscale);
+    finalPos.setWeight(5*10*map_p->robo->map_pixelscale);
     point_of_interest.push_back(&finalPos);
 
     PathE2D::PathE *path = new PathE();
