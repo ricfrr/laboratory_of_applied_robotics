@@ -24,6 +24,11 @@ void Map::clipPoints() {
 
     std::vector<cv::Point> tmp_point;
     std::vector<cv::Point> tmp_clip;
+    
+    tmp_point = arena.getCorners();
+    tmp_clip = clipper.clipArena(tmp_point, 50*robo->map_pixelscale);
+    arena.setClippedCorners(tmp_clip);
+    
     //clipping exit-point
     tmp_point = exit_point.getCorners();
     tmp_clip = clipper.clip(tmp_point, radius);
@@ -34,7 +39,6 @@ void Map::clipPoints() {
     std::vector<Pentagon *> pentagons = obstacles.getPentagons();
     std::vector<Hexagon *> hexagons = obstacles.getHexagons();
     std::vector<CustomPolygon *> customPolygons= obstacles.getCustomPolygons();
-
 
     for (auto &triangle : triangles) {
         tmp_point = triangle->getCorners();
@@ -61,10 +65,6 @@ void Map::clipPoints() {
         tmp_clip = clipper.clip(tmp_point, radius);
         customPolygon->setClippedCorners(tmp_clip);
     }
-
-    tmp_point = arena.getCorners();
-    tmp_clip = clipper.clipArena(tmp_point, 50*robo->map_pixelscale);
-    arena.setClippedCorners(tmp_clip);
 
 
 }
@@ -167,10 +167,11 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
             // check if cell is in contact with an obj
 
             if (isOutofArena(cell_corners, arena)) {
-
+                
                 arena.setCell(*cell);
                 cell->refine_if_neccessary(arena.getClippedCorners());
                 cell->set_Border();
+                
 
 
 //            std::vector<Cell*> cells;
@@ -187,12 +188,13 @@ void Map::initializeGrid(Arena &arena, ExitPoint &exit_point,
                 // std::cout << "CHECK EXIT" << std::endl;
                 if (contact(cell_corners, corners)) {
                     exit_point.setCell(*cell);
-                    cell->set_Exit();
                     cell->refine_if_neccessary(exit_point.getClippedCorners());
+                    cell->set_Exit();
 
                     if (debug)
                         std::cout << "\033[1;34mx\033[0m";
                 }
+                
             }
             if (cell->isEmpty()) {
                 checkObstacles(*cell, obstacles);
@@ -464,8 +466,12 @@ bool Map::isOutofArena(std::vector<cv::Point> corners, Arena arena) {
     cv::Point top_right = arena.getClippedCorners()[1]; //top_right
     cv::Point bottom_right = arena.getClippedCorners()[2]; //bottom_right
     cv::Point bottom_left = arena.getClippedCorners()[3]; // bottom_left
+    
+
 
     for (int i = 0; i < corners.size(); i++) {
+        if(cv::pointPolygonTest(exit_point.clipped_corners, corners[i], false) >= 0)
+            return false;
         if (corners[i].x >= top_right.x || corners[i].x >= bottom_right.x ||
             corners[i].x <= top_left.x || corners[i].x <= bottom_left.x) {
             return true;
@@ -620,7 +626,7 @@ std::vector<cv::Point> Map::getEmptyNearestNeighborsPoints(const cv::Point &poin
     if(obstacle == nullptr){
         Cell * cell = getCell(point);
 
-            if(cell != nullptr && cell->isBorder(point)){
+            if(cell != nullptr){
                 std::vector<std::vector<cv::Point>> points2 = getEmptyNearestNeighborsPoints(cell);
                 for(auto &&v : points2){
                     points.reserve(v.size()+points.size());
@@ -988,7 +994,7 @@ std::vector<std::string> Map::findBestFilters(const std::vector<std::string> &fi
     
     for(auto && name : filter){
         
-        std::cout << ".";
+        std::cout << "checking filter " << name << std::endl;
         
         ImageProcessing::Digit_Recognition::PeopleStorage storage(people.algorithm,
                                                                   people.suff_confidence,

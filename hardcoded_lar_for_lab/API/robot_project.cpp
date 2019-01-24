@@ -10,7 +10,7 @@
 
 
 RobotProject::RobotProject(int argc, char *argv[]) {
-    int shift = 1;
+    int shift = 0;//1;
     //this->source_img_path       = argv[1];
     this->calibration_filepath = argv[2 + shift];
     this->intrinsic_calibration = argv[3 + shift];
@@ -56,12 +56,12 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-                                                                   "data/calib/filter_2.png",
-                                                                   "data/calib/filter_3.png",
-                                                                   "data/calib/filter_11.png",
-                                                                   "data/calib/filter_14.png"
+                                                                   "../data/calib/filter_2.png",
+                                                                   "../data/calib/filter_3.png",
+                                                                   "../data/calib/filter_11.png"
                                                            }, persp_img);
 
+    
     if (result.empty())
         std::cout << "!!! no filter found !!!" << std::endl;
     else {
@@ -75,24 +75,34 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     if (!result.empty())
         map->setFilterPathE(result[0]);
    else{
-	map->setFilterPathE("data/calib/filter_3.png");
+	
+       //map->setFilterPathE("data/calib/filter_3.png");
+       map->setFilterPathE("../data/calib/filter_3.png");
 	}
 
     map->createMap(persp_img, robot_plane);
     map->save("savedMap.json");
+    cv::imwrite("../data/exam_dataset/img/testsave.jpg", persp_img);
     std::cout << map->wasSuccess() << std::endl;
     return 1;//map->wasSuccess();
 }
 
 bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
 
+    
+    
     MissionPlanning m = MissionPlanning(map);
+    //Visualizer v(*m.map_p, m.path_p);
+    //qv.visualize();
     switch (mission) {
         case 1:
             m.plan_mission_one();
             break;
         case 2:
             m.plan_mission_two();
+            break;
+        case 3:
+            m.plan_mission_two_fast();
             break;
     }
     std::vector<Pose> pose;

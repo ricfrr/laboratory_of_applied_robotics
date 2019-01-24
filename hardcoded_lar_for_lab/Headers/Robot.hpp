@@ -62,7 +62,7 @@ public:
 private:
 
 
-};
+    };
 
 #endif /* Robot_hpp */
 

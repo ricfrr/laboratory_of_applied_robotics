@@ -186,7 +186,7 @@ public:
         ///check wether all people objects where correctly identified
         void checkSuccess(){
             for(auto &&guy : people)
-                if(guy.confidence == 0 || people.size() < 2){
+                if(guy.confidence == 0 || people.size() < 2 || guy.radius > 80){
                     success = false;
                     break;
                 }
