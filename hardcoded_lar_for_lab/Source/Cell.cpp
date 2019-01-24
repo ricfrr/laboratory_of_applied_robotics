@@ -111,8 +111,8 @@ void Cell::setExit()
 void Cell::setBorder()
 {
     empty = false;
-    exit_p = false;
     border = true;
+    exit_p = false;
     obstacle = false;
     rescue = false;
 };
@@ -142,6 +142,7 @@ void Cell::set_Exit()
 };
 void Cell::set_Border()
 {
+    
     setBorder();
     
     if(isEmpty())
@@ -271,6 +272,10 @@ bool Cell::isExit()
 };
 bool Cell::isBorder(cv::Point forPoint)
 {
+    
+    if(isExit())
+        return  false;
+    
     if(state == EMPTY)
         return false;
     else if(state == FULL && border)

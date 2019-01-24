@@ -77,7 +77,7 @@ cv::Mat Visualizer::print_arena(cv::Mat &result){
     for(int c = 0;c<cells.size();c++){
         
         
-        if(cells[c]->getSubcells().empty()){
+        if(cells[c]->isEmpty()){
             color_pixels_from(*cells[c], result, Vec3b(0,0,0));
             continue;
         }
@@ -85,8 +85,9 @@ cv::Mat Visualizer::print_arena(cv::Mat &result){
         std::vector<Cell*> subcells = cells[c]->getAllSubcells();
         
         for(int i=0;i<subcells.size();i++){
-            if(subcells[i]->contains_object())
+            if(subcells[i]->isBorder())
                 color_pixels_from(*subcells[i], result, Vec3b(0,0,0));
+            
         }
         
         

@@ -42,14 +42,24 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
     std::vector<Line> tmp_lines;
     bool alternatives = false;
     
-    cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
+//    cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
     
-   
-
+    bool debug = true;
+    cv::Mat pointimg;
+    
+    if(debug)
+        pointimg = cv::imread("data/exam_dataset/img/testsave.jpg");
+    
     for (int i = 0; i < possiblePathEs.size(); i++) {
-        cv::circle(pointimg, path_coordinates.getInitialPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
-        cv::circle(pointimg, path_coordinates.getFinalPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
-         cv::imshow("collision", pointimg);
+        
+        if(debug){
+           // pointimg = cv::imread("data/exam_dataset/img/testsave.jpg");
+        
+            cv::circle(pointimg, path_coordinates.getInitialPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
+            cv::circle(pointimg, path_coordinates.getFinalPosition().getCoordinates(), 3, cv::Scalar(0,25,200),-1);
+            cv::imshow("collision", pointimg);
+        }
+        
         Lcur = possiblePathEs[i].sc_s1 + possiblePathEs[i].sc_s2 + possiblePathEs[i].sc_s3;
         if (possiblePathEs[i].ok && Lcur < L) {
             path.sc_s1 = possiblePathEs[i].sc_s1;
@@ -69,11 +79,14 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                                     path.signs[2] * path_coordinates.getMaxCurvature());
             
             
+            
             std::vector<Line> tmp_lines2;
+            
+            std::pair<bool,Cell*> coll = collisionDetector.detectCollision(tmp_lines, map,path_coordinates.getMaxCurvature());
+            
             for(auto &&line : tmp_lines)
                 if(line.getIntermediatePoints().size() > 0)
                     tmp_lines2.push_back(line);
-            
             
             if(tmp_lines2.empty()){
                 //get a middistance point
@@ -81,33 +94,59 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                 
                 int y = path_coordinates.getInitialPosition().getCoordinates().y + (path_coordinates.getFinalPosition().getCoordinates().y - path_coordinates.getInitialPosition().getCoordinates().y)/2;
                 
+               
+            
                 x = x + rand() % 100 - rand() % 100;
                 y = y + rand() % 100 - rand() % 100;
                 
-                random.push_back(cv::Point(x,y));
+                cv::Point p = cv::Point(x,y);
+                
+                if(!map->getCell(p)->isEmpty()){
+                    std::vector<cv::Point> v = map->getEmptyNearestNeighborsPoints(p);
+                    if(!v.empty())
+                        p = v[0];
+                }
+                
+                
+                random.push_back(p);
+                if(debug)
+                    std::cout << "did not find dubin curve" << std::endl;
                 continue;
                 
             }
             
-            std::cout << "found " << tmp_lines2.size() << " dubin lines" << std::endl;
+            if(debug){
+                std::cout << "found " << tmp_lines2.size() << " dubin lines" << std::endl;
             //show inside
-            for(auto &&line : tmp_lines2){
-                std::cout << "print a line with " << line.getIntermediatePoints().size() << " points" << std::endl;
+                for(auto &&line : tmp_lines2){
                 
-                for(auto &&point : line.getIntermediatePoints())
-                    cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,10,200),-1);
-                cv::imshow("collision", pointimg);
+                    std::cout << "print a line with " << line.getIntermediatePoints().size() << " points" << std::endl;
+                
+                    for(auto &&point : line.getIntermediatePoints())
+                        cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,10,200),-1);
+                    cv::imshow("collision", pointimg);
+                    //waitKey(5);
                 
                 
+                }
             }
             
-            
-            std::pair<bool,Cell*> coll = collisionDetector.detectCollision(tmp_lines2, map,path_coordinates.getMaxCurvature());
+     
             
             if (!coll.first) {
-                std::cout<<"path valido"<<std::endl;
+                //std::cout<<"path valido"<<std::endl;
                 L = Lcur;
                 lines = tmp_lines;
+                if(debug)
+                {
+                    for(auto &&line : tmp_lines2){
+                    
+                        for(auto &&point : line.getIntermediatePoints())
+                            cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,250,0),-1);
+                        cv::imshow("collision", pointimg);
+                       // waitKey(50);
+                    }
+                }
             }
             else{
                 
@@ -118,8 +157,17 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                 //                    alternative_Points.insert( alternative_Points.end(), points[j].begin(), points[j].end() );
                 //                }
                 
-                cv::circle(pointimg, coll.second->center(), 4, cv::Scalar(5,5,5),-1);
-                cv::imshow("collision", pointimg);
+                if(debug)
+                {
+                    for(auto &&line : tmp_lines2){
+                    
+                        for(auto &&point : line.getIntermediatePoints())
+                            cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,250,0),-1);
+                    }
+                    cv::circle(pointimg, coll.second->center(), 7, cv::Scalar(5,5,5),-1);
+                    cv::imshow("collision", pointimg);
+                }
+                
                 
                 std::vector<cv::Point> points =
                 map->getEmptyNearestNeighborsPoints(coll.second->center());
@@ -130,20 +178,34 @@ std::vector<Line> DubinPathEFinder::dubinShortestPathE(std::vector<cv::Point> &a
                                           points.end() );
                 alternatives = true;
                 
-                std::cout << "printing path" << std::endl;
+                if(debug)
+                {
+                    std::cout << "alternative points added -> " << alternative_Points.size() << std::endl;
                 
+                    for(auto &&point : alternative_Points)
+                        cv::circle(pointimg, cv::Point(point.x,point.y), 2, cv::Scalar(20,25,250),-1);
+                
+                   // cv::waitKey(50);
+                }
                 
             }
         }
     }
     
+    
     if(lines.empty() && !alternatives){
         cv::Point alt = random[rand() % random.size()];
         alternative_Points.push_back(alt);
-        cv::circle(pointimg, alt, 2, cv::Scalar(0,250,0),-1);
-        cv::imshow("collision", pointimg);
+        if(debug)
+        {
+            cv::circle(pointimg, alt, 2, cv::Scalar(0,250,0),-1);
+            cv::imshow("collision", pointimg);
+        }
     }
-//    cv::waitKey(0);
+    if(debug){
+        std::cout << "\n\nDONE WITH SHORTEST PATH\n\n" << std::endl;
+        cv::waitKey(5);
+    }
     return lines;
 
 };

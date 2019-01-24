@@ -55,18 +55,12 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - consecutive delusions
     //  - main CRA
     //  - min rotation angle
-//    std::vector<std::string> result = map->findBestFilters({
-//                                                                   "data/calib/filter_2.png",
-//                                                                   "data/calib/filter_3.png",
-//                                                                   "data/calib/filter_11.png",
-//                                                                   "data/calib/filter_14.png"
-//                                                           }, persp_img);
-
     std::vector<std::string> result = map->findBestFilters({
-        "calib/filter_2.png",
-        "calib/filter_3.png",
-        "calib/filter_11.png"
-    }, persp_img);
+                                                                   "data/calib/filter_2.png",
+                                                                   "data/calib/filter_3.png",
+                                                                   "data/calib/filter_11.png"
+                                                           }, persp_img);
+
     
     if (result.empty())
         std::cout << "!!! no filter found !!!" << std::endl;
@@ -83,18 +77,23 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
    else{
 	
        //map->setFilterPathE("data/calib/filter_3.png");
-       map->setFilterPathE("calib/filter_3.png");
+       map->setFilterPathE("data/calib/filter_3.png");
 	}
 
     map->createMap(persp_img, robot_plane);
     map->save("savedMap.json");
+    cv::imwrite("data/exam_dataset/img/testsave.jpg", persp_img);
     std::cout << map->wasSuccess() << std::endl;
     return 1;//map->wasSuccess();
 }
 
 bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
 
+    
+    
     MissionPlanning m = MissionPlanning(map);
+    Visualizer v(*m.map_p, m.path_p);
+    v.visualize();
     switch (mission) {
         case 1:
             m.plan_mission_one();

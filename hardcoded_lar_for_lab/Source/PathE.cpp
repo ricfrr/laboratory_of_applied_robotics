@@ -39,6 +39,10 @@ PathE::PathE(Position start_point, Position end_point, double curvature, Map *ma
     setFinder<DubinPathEFinder>(path_coordinates);
     
     findPathE();
+    
+    if(!lines.empty())
+        std::cout << "was success" << std::endl;
+    
 };
 
 template <class T>
@@ -169,6 +173,8 @@ double PathE::getLength(){
 
 void PathE::findPathE() {
     
+    bool visualizing = false;
+    
     std::vector<Line> dubin_lines = {};
     std::vector<Line> best_lines;
     
@@ -181,6 +187,9 @@ void PathE::findPathE() {
     double it = 2.0;
     double initLength = 1000000000;
     std::vector<cv::Point> alt_points;
+    cv::Mat pointimg;
+    if(visualizing)
+        pointimg= cv::imread("data/exam_dataset/img/testsave.jpg");
     
     do{
         getMap()->n_multiplier = it;
@@ -190,10 +199,19 @@ void PathE::findPathE() {
             //std::cout << "will break down path" << std::endl;
             std::cout << "found " << alt_points.size() << " alternative points" << std::endl;
             
-            cv::Mat pointimg = cv::Mat(Settings::IMG_LENGHT,Settings::IMG_WIDTH, CV_8UC3, cv::Scalar(255,255, 255));
-            cv::circle(pointimg, start_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
-            cv::circle(pointimg, end_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
-            cv::imshow("points", pointimg);
+            //too much information
+            while(alt_points.size() > 25)
+                alt_points.erase(alt_points.begin());
+            
+            std::cout <<  alt_points.size() << " points left\n";
+            
+            if(visualizing){
+                pointimg = cv::imread("data/exam_dataset/img/testsave.jpg");
+                cv::circle(pointimg, start_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
+                cv::circle(pointimg, end_point.getCoordinates(), 3, cv::Scalar(200,10,10),-1);
+                cv::imshow("points", pointimg);
+                cv::waitKey(10);
+            }
             
             for(int i=0;i<alt_points.size();i++){
                 std::cout << "splitting for point " << i+1 << std::endl;
@@ -205,8 +223,7 @@ void PathE::findPathE() {
                 path.setLines(lines);
                 map->n_multiplier = 2.0;
                 PathE::split<DubinPathEFinder>(path, alt_points[i]);
-                cv::circle(pointimg,alt_points[i], 3, cv::Scalar(10,200,10),-1);
-                cv::imshow("points", pointimg);
+    
                 
                 double l = path.getLength();
 
@@ -217,7 +234,8 @@ void PathE::findPathE() {
                     if(map->quickCalculation)
                         break;
                 }
-                cv::waitKey(0);
+                if(visualizing)
+                    cv::waitKey(10);
             }
             
             dubin_lines = best_lines;
@@ -236,12 +254,16 @@ void PathE::findPathE() {
 //                Cell* cell = map->getCell(alt_points[i]);
 //                std::vector<std::vector<cv::Point>> points = map->getEmptyNearestNeighborsPoints(cell);
                 std::vector<cv::Point> points = map->getEmptyNearestNeighborsPoints(alt_points2[i]);
-                cv::circle(pointimg, alt_points2[i], 3, cv::Scalar(100,100,100),-1);
-                cv::imshow("points", pointimg);
-                
+               
+                if(visualizing){
+                    cv::circle(pointimg, alt_points2[i], 3, cv::Scalar(100,100,100),-1);
+                    cv::imshow("points", pointimg);
+                    cv::waitKey(10);
+                }
 //                for(int j=0;j<points.size();j++)
 //                    for(int k=0;k<points[j].size();k++)
 //                        newset.push_back(points[j][k]);
+//
                 newset.reserve(points.size() + newset.size());
                 newset.insert(newset.end(),points.begin(),points.end());
 
@@ -262,7 +284,18 @@ void PathE::findPathE() {
     double tmp_length;
     for (int i =0; i<dubin_lines.size(); i++){
         tmp_length += dubin_lines[i].getLength();
+        
+        if(visualizing)
+        {
+        for(auto &&point : dubin_lines[i].getIntermediatePoints())
+            cv::circle(pointimg, point, 3, cv::Scalar(0,0,200),-1);
+        
+            cv::imshow("points", pointimg);
+        }
+        
     }
+    if(visualizing)
+        cv::waitKey(1000);
     setLength(tmp_length);
 }
 
@@ -305,10 +338,9 @@ void PathE::split(PathE &path, cv::Point intermediate){
             break;
         }
         
-        orientation_i += M_PI/5.0;
-        cv::waitKey(10);
+        orientation_i += M_PI/3.0;
     }
-        orientation_e += M_PI/5.0;
+        orientation_e += M_PI/3.0;
     }while(orientation_e < max_orientation && path.end_point.orientation_locked == false && ok == false);
     
     

@@ -100,7 +100,7 @@ std::pair<bool,Cell*> collision(cv::Point2d point, Map *map) {
     
     if(subcells.empty()){
         if(cell->isObstacle(point)
-           //|| cell->isBorder(point)
+           || cell->isBorder(point)
            ){
             //std::cout << "collision" << std::endl;
             return std::pair<bool,Cell*>(true,cell);
@@ -113,7 +113,7 @@ std::pair<bool,Cell*> collision(cv::Point2d point, Map *map) {
         //if(subcells[i]->contains_object() &&  subcells[i]->getSubcells().empty() && !subcells[i]->isRescue())
         if(
            (subcells[i]->isObstacle(point)
-                 // || cell->isBorder(point)
+                  || cell->isBorder(point)
             
             ) && subcells[i]->getSubcells().empty())
             if(subcells[i]->pointInside(point)){
