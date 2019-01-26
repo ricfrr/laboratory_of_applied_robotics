@@ -48,7 +48,7 @@ void Arena::findArena(const Mat &img)
     cv::erode(black_mask, black_mask, kernel);*/
 
     cv::imshow("arena mask",black_mask);
-    cv::waitKey(0);
+    cv::waitKey(1);
     // Process black mask
 
     contours_img = img.clone();
@@ -116,7 +116,7 @@ void Arena::findArena(const Mat &img)
 
     
     imshow("arena", contours_img);
-    cv::waitKey(0);
+    cv::waitKey(1);
 
 }
 

@@ -32,7 +32,7 @@ void Inverse_Perspective_Mapping::loadCoefficients(const std::string &filename,
 }
 
 std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
-    
+    /*
     // Convert color space from BGR to HSV
     cv::Mat hsv_img;
     //cv::cvtColor(img, hsv_img, cv::COLOR_BGR2HSV);
@@ -93,19 +93,17 @@ std::vector<cv::Point> findRobotCircle(const cv::Mat &img) {
     }
 
     std::cout << "found : " << circles.size() << " circles " << std::endl;
-
+    */
     //cv::imshow("hsv_img ", hsv_img);
     //cv::waitKey(0);
     // HARD CODED SOLUTION FOR THE CIRCLE PROBLEM works only with 1920*1080
     //d::vector<cv::Point> circle_markers;
-    circle_markers[0].x=304;
-    circle_markers[0].y=1024;
-    circle_markers[1].x=300;
-    circle_markers[1].y=80;
-    circle_markers[2].x=1634;
-    circle_markers[2].y=84;
-    circle_markers[3].x=1636;
-    circle_markers[3].y=982;
+    std::vector<cv::Point> circle_markers;
+    circle_markers.push_back(cv::Point(304,1024));
+    circle_markers.push_back(cv::Point(300,80));
+    circle_markers.push_back(cv::Point(1634,84));
+    circle_markers.push_back(cv::Point(1636,982));
+
     return circle_markers;
 }
 
@@ -297,8 +295,8 @@ Mat Inverse_Perspective_Mapping::findTransform(
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image=img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image=img;
     //    imshow("origin", original_image);
      //   imshow("undistored", calib_image);
      //   waitKey(0);
@@ -357,8 +355,8 @@ Mat Inverse_Perspective_Mapping::detectRobotPlane(const cv::Mat &img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image = img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image = img;
     if (white_corners.size() == 0) {
         // find corners
         white_corners= findRobotCircle(calib_image);
@@ -400,8 +398,8 @@ cv::Mat Inverse_Perspective_Mapping::detectMapPlane(const Mat& img) {
         throw std::runtime_error("Image is empty! ");
     }
     //undistort the image based on the calibration
-    undistort(original_image, calib_image, camera_matrix, dist_coeffs);
-    //calib_image=img;
+    //undistort(original_image, calib_image, camera_matrix, dist_coeffs);
+    calib_image=img;
     //    imshow("origin", original_image);
     //   imshow("undistored", calib_image);
     //   waitKey(0);

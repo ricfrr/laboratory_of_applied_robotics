@@ -64,7 +64,7 @@ void Visualizer::play(){
 void Visualizer::visualize(){
     
     play();
-    cv::waitKey(0);
+    cv::waitKey(1);
     
     
 }

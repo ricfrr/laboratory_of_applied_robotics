@@ -90,8 +90,8 @@ void Obstacle::findObstacles(const Mat &img)
             drawContours(contours_img, contours_approx, -1, cv::Scalar(0, 170, 220), 3, cv::LINE_AA);
         }
     }
-    imshow("shapes", contours_img);
-    waitKey(0);
+    //imshow("shapes", contours_img);
+    //waitKey(1);
 }
 
 std::vector<Square *> Obstacle::getSquares()

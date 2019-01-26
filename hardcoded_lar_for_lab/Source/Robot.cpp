@@ -65,21 +65,21 @@ void Robot::update(const std::vector<cv::Point> &points){
     double deg = 0.0;
     if(La <= Lb && La <= Lc){
         cv::Point start = points[0] + a/2;
-        cv::Point end = points[2];
+        cv::Point end =points[2];
         angle = Geometry::angle_rad(start, end);
         std::cout << "shortest a: " << La << std::endl;
 
     }
     else if(Lb < La && Lb < Lc){
         cv::Point start = points[2] + b/2;
-        cv::Point end = points[1];
+        cv::Point end =points[1];
         angle =Geometry::angle_rad(start, end);
         std::cout << "shortest b: " << Lb << std::endl;
 
     }
     else if(Lc < La && Lc < Lb){
         cv::Point start = points[2] + c/2;
-        cv::Point end = points[0];
+        cv::Point end =points[0];
         angle = Geometry::angle_rad(start, end);
         std::cout << "shortest c: " << Lc << std::endl;
     }
@@ -129,23 +129,23 @@ bool Robot::findRobot(const cv::Mat &img){
     //for light conditions
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 180, 180), blue_mask);
     //cv::inRange(hsv_img, cv::Scalar(70, 90, 90), cv::Scalar(130, 230, 230), blue_mask);
-    //BEST FILTER EVER FOUND
-    cv::inRange(hsv_img, cv::Scalar(50, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
+    //BEST FILTER EVER FOUND tune low h this to obtain a good value
+    cv::inRange(hsv_img, cv::Scalar(72, 90, 90), cv::Scalar(105, 230, 230), blue_mask);
 
 
     // Filter (applying dilation, blurring, dilation and erosion) the image
     kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size((2 * 2) + 1, (2 * 2) + 1));
     // Filter (applying an erosion and dilation) the image
     //cv::GaussianBlur(blue_mask, blue_mask, cv::Size(3, 3), 1, 1);
-    cv::imshow("robot mask 1", blue_mask);
-    cv::waitKey(1);
+    //cv::imshow("robot mask 1", blue_mask);
+    //cv::waitKey(1);
     //cv::erode(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
-    //cv::erode(blue_mask, blue_mask, kernel);
-    //cv::dilate(blue_mask, blue_mask, kernel);
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
 
     //cv::erode(blue_mask, blue_mask, kernel);
 
@@ -156,8 +156,8 @@ bool Robot::findRobot(const cv::Mat &img){
     contours_img = img.clone();
     cv::findContours(blue_mask, contours, hierarchy, cv::RETR_LIST,
                      cv::CHAIN_APPROX_SIMPLE);
-    drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
-                 cv::LINE_AA);
+   //drawContours(contours_img, contours, -1, cv::Scalar(40, 190, 40), 1,
+    //             cv::LINE_AA);
     int area =0;
     for (int i = 0; i < contours.size(); ++i)
     {

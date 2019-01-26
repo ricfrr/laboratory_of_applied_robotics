@@ -29,8 +29,10 @@ void ExitPoint::findExitPoint(const Mat &img)
 
     // Find blue regions
     cv::Mat blue_mask;
-    //cv::inRange(hsv_img, cv::Scalar(110, 80, 65), cv::Scalar(140, 250, 255), blue_mask);
-    cv::inRange(hsv_img, cv::Scalar(70, 60, 55), cv::Scalar(130, 250, 255), blue_mask);
+    //buono scura
+    cv::inRange(hsv_img, cv::Scalar(100, 60, 55), cv::Scalar(115, 240, 240), blue_mask);
+    // buono chiara
+    //cv::inRange(hsv_img, cv::Scalar(90, 60, 55), cv::Scalar(110, 240, 240), blue_mask);
 
     // Process blue mask
 
@@ -41,9 +43,10 @@ void ExitPoint::findExitPoint(const Mat &img)
     
     cv::erode(blue_mask, blue_mask, kernel);
     cv::dilate(blue_mask, blue_mask, kernel);
-   cv::erode(blue_mask, blue_mask, kernel);
-   cv::erode(blue_mask, blue_mask, kernel);
-
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::erode(blue_mask, blue_mask, kernel);
+    cv::dilate(blue_mask, blue_mask, kernel);
    
 
 

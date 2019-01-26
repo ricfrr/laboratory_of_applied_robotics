@@ -26,7 +26,7 @@ void Map::clipPoints() {
     std::vector<cv::Point> tmp_clip;
     
     tmp_point = arena.getCorners();
-    tmp_clip = clipper.clipArena(tmp_point, 50*robo->map_pixelscale);
+    tmp_clip = clipper.clipArena(tmp_point, 5*robo->map_pixelscale);
     arena.setClippedCorners(tmp_clip);
     
     //clipping exit-point

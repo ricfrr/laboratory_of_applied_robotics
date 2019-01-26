@@ -7,10 +7,11 @@
 //
 
 #include "robot_project.h"
+#include <chrono>
 
 
 RobotProject::RobotProject(int argc, char *argv[]) {
-    int shift = 0;//1;
+    int shift = 1;//1;
     //this->source_img_path       = argv[1];
     this->calibration_filepath = argv[2 + shift];
     this->intrinsic_calibration = argv[3 + shift];
@@ -33,6 +34,9 @@ void RobotProject::start() {
 
 bool RobotProject::preprocessMap(cv::Mat const &img) {
 
+    using fsec = std::chrono::duration<float>;
+    auto t0 = std::chrono::steady_clock::now();
+
     //take the image and preprocess
     cv::Mat persp_img, robot_plane;
     // cv::imshow("input", img);
@@ -40,8 +44,8 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
 
     persp_img = ipm.run(this->intrinsic_calibration, img, calibration_filepath);
     //detect the robot plane
-    cv::imshow("persp", persp_img);
-    cv::waitKey(0);
+    //cv::imshow("persp", persp_img);
+    //cv::waitKey(1);
     robot_plane = ipm.detectRobotPlane(img);
 //    cv::imshow("robot_plane",robot_plane);
 //    cv::waitKey(0);
@@ -56,12 +60,11 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
     //  - main CRA
     //  - min rotation angle
     std::vector<std::string> result = map->findBestFilters({
-                                                                   "../data/calib/filter_2.png",
-                                                                   "../data/calib/filter_3.png",
-                                                                   "../data/calib/filter_11.png"
+                                                                
+
                                                            }, persp_img);
 
-    
+
     if (result.empty())
         std::cout << "!!! no filter found !!!" << std::endl;
     else {
@@ -74,14 +77,18 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
 
     if (!result.empty())
         map->setFilterPathE(result[0]);
-   else{
-	
-       //map->setFilterPathE("data/calib/filter_3.png");
-       map->setFilterPathE("../data/calib/filter_3.png");
-	}
+    else {
+        //map->setFilterPathE("data/calib/filter_3.png");
+        map->setFilterPathE("data/calib/filter_11.png");
+    }
 
     map->createMap(persp_img, robot_plane);
     map->save("savedMap.json");
+
+    auto t1 = std::chrono::steady_clock::now();
+    fsec delta = t1 - t0;
+    std::cout << "TOT TIME : " << delta.count() << "s\n";
+
     cv::imwrite("../data/exam_dataset/img/testsave.jpg", persp_img);
     std::cout << map->wasSuccess() << std::endl;
     return 1;//map->wasSuccess();
@@ -89,8 +96,7 @@ bool RobotProject::preprocessMap(cv::Mat const &img) {
 
 bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
 
-    
-    
+
     MissionPlanning m = MissionPlanning(map);
     //Visualizer v(*m.map_p, m.path_p);
     //qv.visualize();
@@ -124,32 +130,38 @@ bool RobotProject::planPath(cv::Mat const &img, ApiPath &path) {
         for (int j = 0; j < intermediate_points.size(); j++) {
             //int_point_counter*5*Setting::PIXEL_SCALE i the distance from the starting point
 
-            cv::Point endpoint = cv::Point(0,0);
-            if (j < intermediate_points.size()-1){
+            cv::Point endpoint = cv::Point(0, 0);
+            cv::Point start_p = cv::Point(0, 0);
+            if (j < intermediate_points.size() - 2) {
+                start_p = intermediate_points[j];
                 endpoint = intermediate_points[j + 1];
+            } else {
+                start_p = intermediate_points[j-1];
+                endpoint = intermediate_points[j];
             }
-            else{
-                endpoint = intermediate_points[j-1];
-                endpoint.y-=5;
+            if (start_p != endpoint){
+                 map->robo->angle = Geometry::angle_rad(start_p, endpoint);
             }
 
-            map->robo->angle = Geometry::angle_rad(intermediate_points[j],endpoint);
             std::pair<double, double> mm_point = Geometry::convertPixelToMillimeterInMapPlane(intermediate_points[j],
                                                                                               map->getStartPoint(),
                                                                                               map->robo->map_pixelscale);
-            std::pair<double, double> fin_length = Geometry::convertPixelToMillimeterInMapPlane(cv::Point2d(m.path_p->length,m.path_p->length),
-                                                                                              cv::Point2d(0,0),
-                                                                                              map->robo->map_pixelscale);
+            std::pair<double, double> fin_length = Geometry::convertPixelToMillimeterInMapPlane(
+                    cv::Point2d(m.path_p->length, m.path_p->length),
+                    cv::Point2d(0, 0),
+                    map->robo->map_pixelscale);
 
             pose.push_back(Pose(
-                    (int_point_counter / points_number)*(fin_length.first/1000),  mm_point.second/1000.0,mm_point.first/1000.0,
-                    map->robo->angle*-1+M_PI/2.0,
-                    -1*m.path_p->lines[i].getCurvature()*map->robo->map_pixelscale*1000.0)); //TODO check theta and kappa values and trasform the x and y in meters
+                    (int_point_counter / points_number) * (fin_length.first / 1000), mm_point.second / 1000.0,
+                    mm_point.first / 1000.0,
+                    map->robo->angle * -1 + M_PI / 2.0,
+                    -1 * m.path_p->lines[i].getCurvature() * map->robo->map_pixelscale *
+                    1000.0)); //TODO check theta and kappa values and trasform the x and y in meters
             int_point_counter++;
-            
-            }
+
         }
-    
+    }
+
     path.setPoints(pose);
     std::cout << "pose setted" << std::endl;
     return true;
@@ -180,20 +192,20 @@ bool RobotProject::localize(cv::Mat const &img,
     //TODO ask to marvin if the conversion is right
     //cv::Point2d coordinates  = cv::Point2d(map->robo->center_wheel.x/map->robo->map_pixelscale,map->robo->center_wheel.y/map->robo->map_pixelscale);
     //cv::Point2d coordinates  = cv::Point2d(map->robo->center.x/map->robo->map_pixelscale,map->robo->center.y/map->robo->map_pixelscale);
-   std::pair<double, double> coordinates = Geometry::convertPixelToMillimeterInMapPlane(map->robo->center,
-                                                                                              map->getStartPoint(),
-                                                                                              map->robo->map_pixelscale);
+    std::pair<double, double> coordinates = Geometry::convertPixelToMillimeterInMapPlane(map->robo->center,
+                                                                                         map->getStartPoint(),
+                                                                                         map->robo->map_pixelscale);
     /*std::pair<double, double> coordinates = Geometry::convertPixelToMillimeterInMapPlane(map->robo->center_wheel,
                                                                                               map->getStartPoint(),
                                                                                               map->robo->map_pixelscale);*/
 
-    double x = coordinates.first/1000.0;
+    double x = coordinates.first / 1000.0;
     //MIRROR X
     //x = 1-x;
-    double y = coordinates.second/1000.0;
-    double theta = map->robo->angle*-1+M_PI/2.0;
-    std::cout<<"x :"<< x<<" y : "<<y<<" theta : "<<theta<<std::endl;
-    state = { y,x, theta};
+    double y = coordinates.second / 1000.0;
+    double theta = map->robo->angle * -1 + M_PI / 2.0;
+    std::cout << "x :" << x << " y : " << y << " theta : " << theta << std::endl;
+    state = {y, x, theta};
 
     //put info to state
 

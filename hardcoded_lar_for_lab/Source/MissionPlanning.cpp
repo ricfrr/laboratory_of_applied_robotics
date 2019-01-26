@@ -104,8 +104,8 @@ void MissionPlanning::plan_mission_one() {
 
     this->path_p = path;
 
-    Visualizer v(*map_p, path);
-    v.visualize();
+    //Visualizer v(*map_p, path);
+    //v.visualize();
     //v.simulate();
 
 }
@@ -161,8 +161,8 @@ void MissionPlanning::plan_mission_two_fast() {
     std::cout << delta.count() << "s\n";
     this->path_p = path;
     std::cout << "-----DONE----" << std::endl;
-    Visualizer v(*map_p, path);
-    v.visualize();
+    //Visualizer v(*map_p, path);
+    //v.visualize();
     //v.simulate();
 }
 
@@ -237,7 +237,9 @@ MissionPlanning::findOptimalFastPathE(Position *start_point, std::vector<PathE2D
         orientation = Geometry::angle_rad(point_of_interests[0]->getCoordinates(),
                                           point_of_interests[1]->getCoordinates());
         std::cout << "angle : " << orientation << std::endl;
-        point_of_interests[0]->setOrientation(orientation);
+        if(!point_of_interests[0]->orientation_locked){
+            point_of_interests[0]->setOrientation(orientation);
+        }
         path = new PathE2D::PathE(*start_point, *point_of_interests[0], this->curvature, map_p);
     } else {
         path = new PathE2D::PathE(*start_point, *point_of_interests[0], this->curvature, map_p);
@@ -266,8 +268,8 @@ MissionPlanning::findOptimalPathE(Position *start_point, std::vector<PathE2D::Po
 
     // sort the point of interest vector to make the algorithm faster
     std::sort(point_of_interests.begin(), point_of_interests.end(), [start_point](Position *a, Position *b) {
-        return dinstance(a->getCoordinates(), start_point->getCoordinates()) <
-               dinstance(b->getCoordinates(), start_point->getCoordinates());
+        return dinstance(a->getCoordinates(), start_point->getCoordinates())<
+                dinstance(b->getCoordinates(), start_point->getCoordinates());
     });
     // loop through all the point of interest
     for (int i = 0; i < point_of_interests.size(); i++) {
