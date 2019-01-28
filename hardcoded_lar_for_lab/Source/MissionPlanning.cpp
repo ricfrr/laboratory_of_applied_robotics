@@ -104,8 +104,8 @@ void MissionPlanning::plan_mission_one() {
 
     this->path_p = path;
 
-    //Visualizer v(*map_p, path);
-    //v.visualize();
+    Visualizer v(*map_p, path);
+    v.visualize();
     //v.simulate();
 
 }
@@ -161,8 +161,8 @@ void MissionPlanning::plan_mission_two_fast() {
     std::cout << delta.count() << "s\n";
     this->path_p = path;
     std::cout << "-----DONE----" << std::endl;
-    //Visualizer v(*map_p, path);
-    //v.visualize();
+    Visualizer v(*map_p, path);
+    v.visualize();
     //v.simulate();
 }
 
@@ -203,7 +203,7 @@ void MissionPlanning::plan_mission_two() {
         if (i > 0) {
             start_point = &path_tmp->end_point;
         }
-        path_tmp = findOptimalPathE(start_point, point_of_interest);
+        path_tmp = findOptimalPathE(start_point, point_of_interest,&finalPos);
         if (i == 0) {
             path = path_tmp;
         } else {
@@ -253,7 +253,7 @@ MissionPlanning::findOptimalFastPathE(Position *start_point, std::vector<PathE2D
 
 
 PathE2D::PathE *
-MissionPlanning::findOptimalPathE(Position *start_point, std::vector<PathE2D::Position *> &point_of_interests) {
+MissionPlanning::findOptimalPathE(Position *start_point, std::vector<PathE2D::Position *> &point_of_interests, Position *end_point) {
     PathE2D::PathE *path;
     PathE2D::PathE *final_path;
     double value = std::numeric_limits<double>::infinity();
@@ -267,9 +267,9 @@ MissionPlanning::findOptimalPathE(Position *start_point, std::vector<PathE2D::Po
     std::vector<int> intermediate_person_index;
 
     // sort the point of interest vector to make the algorithm faster
-    std::sort(point_of_interests.begin(), point_of_interests.end(), [start_point](Position *a, Position *b) {
-        return dinstance(a->getCoordinates(), start_point->getCoordinates())<
-                dinstance(b->getCoordinates(), start_point->getCoordinates());
+    std::sort(point_of_interests.begin(), point_of_interests.end(), [start_point,end_point](Position *a, Position *b) {
+        return dinstance(a->getCoordinates(), start_point->getCoordinates())-dinstance(a->getCoordinates(),end_point->getCoordinates())<
+                dinstance(b->getCoordinates(), start_point->getCoordinates())-dinstance(b->getCoordinates(),end_point->getCoordinates());
     });
     // loop through all the point of interest
     for (int i = 0; i < point_of_interests.size(); i++) {
@@ -299,6 +299,7 @@ MissionPlanning::findOptimalPathE(Position *start_point, std::vector<PathE2D::Po
 
                 path = new PathE2D::PathE(*start_point, *point_of_interests[i], this->curvature, map_p);
                 path_value = path->length - point_of_interests[i]->getWeight();
+                path_value +=dinstance(point_of_interests[i]->getCoordinates(),end_point->getCoordinates());
 
                 if (value > path_value) {
 

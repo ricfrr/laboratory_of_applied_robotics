@@ -59,7 +59,7 @@ private:
 private:
     bool isExitReached(std::vector<PathE2D::Position*> &point_of_interests);
     
-    PathE2D::PathE* findOptimalPathE(Position * start_point, std::vector<PathE2D::Position*> &point_of_interests);
+    PathE2D::PathE* findOptimalPathE(Position * start_point, std::vector<PathE2D::Position*> &point_of_interests, Position * end_point);
     PathE2D::PathE *
     findOptimalFastPathE(Position *start_point, std::vector<PathE2D::Position *> &point_of_interests);
     
